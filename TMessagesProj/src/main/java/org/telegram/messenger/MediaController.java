@@ -135,11 +135,11 @@ import java.util.TimerTask;
 import java.util.concurrent.ConcurrentHashMap;
 import java.util.concurrent.CountDownLatch;
 
-import tw.nekomimi.nekogram.NekoConfig;
-import tw.nekomimi.nekogram.NekoXConfig;
-import tw.nekomimi.nekogram.SaveToDownloadReceiver;
-import xyz.nextalone.nagram.NaConfig;
-import xyz.nextalone.nagram.helper.AudioEnhance;
+import one.axgram.core.AxCoreConfig;
+import one.axgram.core.AxLegacyConfig;
+import one.axgram.core.SaveToDownloadReceiver;
+import one.axgram.extra.AxConfig;
+import one.axgram.extra.helper.AudioEnhance;
 
 public class MediaController implements AudioManager.OnAudioFocusChangeListener, NotificationCenter.NotificationCenterDelegate, SensorEventListener {
 
@@ -1412,7 +1412,7 @@ public class MediaController implements AudioManager.OnAudioFocusChangeListener,
 
     public void recreateProximityWakeLock() {
 
-        if (NekoConfig.disableProximityEvents.Bool()) {
+        if (AxCoreConfig.disableProximityEvents.Bool()) {
             proximityWakeLock = null;
             return;
         }
@@ -2026,7 +2026,7 @@ public class MediaController implements AudioManager.OnAudioFocusChangeListener,
     }
 
     private boolean isNearToSensor(float value) {
-        return !NekoConfig.disableProximityEvents.Bool() && value < 5.0f && value != proximitySensor.getMaximumRange();
+        return !AxCoreConfig.disableProximityEvents.Bool() && value < 5.0f && value != proximitySensor.getMaximumRange();
     }
 
     public boolean isRecordingOrListeningByProximity() {
@@ -4774,7 +4774,7 @@ public class MediaController implements AudioManager.OnAudioFocusChangeListener,
         manualRecording = manual;
         requestRecordAudioFocus(true);
 
-        if (!NekoConfig.disableVibration.Bool()) {
+        if (!AxCoreConfig.disableVibration.Bool()) {
             try {
                 feedbackView.performHapticFeedback(HapticFeedbackConstants.KEYBOARD_TAP, HapticFeedbackConstants.FLAG_IGNORE_GLOBAL_SETTING);
             } catch (Exception ignore) {}
@@ -5070,7 +5070,7 @@ public class MediaController implements AudioManager.OnAudioFocusChangeListener,
             if (send == 0) {
                 stopRecordingInternal(0, false, 0, false, 0);
             }
-            if (!NekoConfig.disableVibration.Bool()) {
+            if (!AxCoreConfig.disableVibration.Bool()) {
                 try {
                     feedbackView.performHapticFeedback(HapticFeedbackConstants.KEYBOARD_TAP, HapticFeedbackConstants.FLAG_IGNORE_GLOBAL_SETTING);
                 } catch (Exception ignore) {}
@@ -5542,7 +5542,7 @@ public class MediaController implements AudioManager.OnAudioFocusChangeListener,
                 try {
                     Uri uri;
                     boolean result = true;
-                    final String folderName = NekoConfig.customSavePath.String();
+                    final String folderName = AxCoreConfig.customSavePath.String();
                     if (Build.VERSION.SDK_INT >= 29) {
                         uri = saveFileInternal(type, sourceFile, name);
                         result = uri != null;
@@ -5840,7 +5840,7 @@ public class MediaController implements AudioManager.OnAudioFocusChangeListener,
                     selectedType = 1;
                 }
             }
-            final String folderName = NekoConfig.customSavePath.String();
+            final String folderName = AxCoreConfig.customSavePath.String();
             if (selectedType == 0) {
                 if (filename == null) {
                     filename = AndroidUtilities.generateFileName(0, extension);
@@ -6784,7 +6784,7 @@ public class MediaController implements AudioManager.OnAudioFocusChangeListener,
             compressFactor = 0.6f;
             minCompressFactor = 0.7f;
         }
-        if (NaConfig.INSTANCE.getEnhancedVideoBitrate().Bool()) {
+        if (AxConfig.INSTANCE.getEnhancedVideoBitrate().Bool()) {
             int size = Math.min(height, width);
             if (size >= 2160) {
                 maxBitrate = VIDEO_BITRATE_2160;

@@ -97,8 +97,8 @@ import javax.microedition.khronos.egl.EGLContext;
 import javax.microedition.khronos.egl.EGLDisplay;
 import javax.microedition.khronos.egl.EGLSurface;
 
-import tw.nekomimi.nekogram.NekoConfig;
-import tw.nekomimi.nekogram.utils.VibrateUtil;
+import one.axgram.core.AxCoreConfig;
+import one.axgram.core.utils.VibrateUtil;
 
 @SuppressLint("NewApi")
 public class CameraView extends FrameLayout implements TextureView.SurfaceTextureListener, CameraController.ICameraView, CameraController.ErrorCallback  {
@@ -1088,7 +1088,7 @@ public class CameraView extends FrameLayout implements TextureView.SurfaceTextur
             VibrationEffect vibrationEffect = VibrationEffect.createWaveform(vibrationWaveFormDurationPattern, -1);
             VibrateUtil.vibrate(200L, vibrationEffect);
         } else {
-            if (!NekoConfig.disableVibration.Bool()) {
+            if (!AxCoreConfig.disableVibration.Bool()) {
                 try {
                     performHapticFeedback(HapticFeedbackConstants.KEYBOARD_TAP, HapticFeedbackConstants.FLAG_IGNORE_GLOBAL_SETTING);
                 } catch (Exception ignored) {}

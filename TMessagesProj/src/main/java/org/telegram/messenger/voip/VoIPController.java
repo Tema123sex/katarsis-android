@@ -25,7 +25,7 @@ import java.util.Arrays;
 import java.util.Calendar;
 import java.util.Locale;
 
-import tw.nekomimi.nekogram.utils.EnvUtil;
+import one.axgram.core.utils.EnvUtil;
 
 public class VoIPController {
 

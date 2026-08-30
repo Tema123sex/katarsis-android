@@ -20,10 +20,10 @@ VERSION_CODE = read_env("VERSION_CODE")
 COMMIT_HASH = read_env("GITHUB_SHA")
 COMMIT_MESSAGE = read_env("COMMIT_MESSAGE")
 
-APK_CHANNEL_ID = "@NekoXApks"
-UPDATE_CHANNEL_ID = "@NekogramX"
-UPDATE_METADATA_CHANNEL_ID = "@nekox_update_metadata"
-CI_CHANNEL_ID = "@NekoX_CI"
+APK_CHANNEL_ID = os.environ.get("APK_CHANNEL_ID", "")
+UPDATE_CHANNEL_ID = os.environ.get("UPDATE_CHANNEL_ID", "")
+UPDATE_METADATA_CHANNEL_ID = os.environ.get("UPDATE_METADATA_CHANNEL_ID", "")
+CI_CHANNEL_ID = os.environ.get("CI_CHANNEL_ID", "")
 
 
 def addEntity(entities, origin_str, en_type, content, url = None) -> str:
@@ -116,7 +116,7 @@ def sendRelease():
         entities.append(copy)
     text += admin_resp["text"]
     text += "\n\n"
-    text += addEntity(entities, text, "text_link", "GitHub Release", f"https://github.com/NekoX-Dev/NekoX/releases/{VERSION_NAME}")
+    text += addEntity(entities, text, "text_link", "GitHub Release", f"https://github.com/aevornyx/axgram-android/releases/{VERSION_NAME}")
     text += " | "
     text += addEntity(entities, text, "text_link", "Apks", f'https://t.me/{APK_CHANNEL_ID.replace("@","")}/{apk_channel_first_id}')
     text += " | "
@@ -136,7 +136,7 @@ def sendCIRelease():
     apk = os.path.join(APK_FOLDER, apks[0])
     entities = []
     message = f"CI Build\n\n{COMMIT_MESSAGE}\n\n"
-    message += addEntity(entities, message, "text_link", COMMIT_HASH[0:8], f"https://github.com/NekoX-Dev/NekoX/commit/{COMMIT_HASH}")
+    message += addEntity(entities, message, "text_link", COMMIT_HASH[0:8], f"https://github.com/aevornyx/axgram-android/commit/{COMMIT_HASH}")
     sendDocument(user_id=CI_CHANNEL_ID, path = apk, message=message, )
 
 
@@ -155,9 +155,15 @@ if __name__ == '__main__':
             CI_CHANNEL_ID = BOT_TARGET
         sendCIRelease()
     elif mode == "debug":
-        APK_CHANNEL_ID = "@test_channel_nekox"
-        UPDATE_CHANNEL_ID = "@test_channel_nekox"
-        UPDATE_METADATA_CHANNEL_ID = "@test_channel_nekox"
+        # AxGram: тестовый канал исходного проекта убран. Свой задаётся
+        # переменной TEST_CHANNEL_ID; без неё отладочная публикация не идёт.
+        test_channel = os.environ.get("TEST_CHANNEL_ID", "")
+        if not test_channel:
+            print("TEST_CHANNEL_ID не задан — отладочная публикация пропущена")
+            exit(0)
+        APK_CHANNEL_ID = test_channel
+        UPDATE_CHANNEL_ID = test_channel
+        UPDATE_METADATA_CHANNEL_ID = test_channel
         sendRelease()
     else:
         print("unknown mode")

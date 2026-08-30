@@ -26,3 +26,9 @@ TMessagesProj_App/afat/
 TMessagesProj_AppHockeyApp/afat/
 TMessagesProj_AppStandalone/afat/
 TMessagesProj_AppHuawei/afat/
+
+# AxGram: ключ подписи и пароли к нему.
+# Ключом подписываются обновления — если он утечёт, чужой сможет собрать
+# APK, который система примет как обновление твоего приложения.
+*.keystore
+*.jks

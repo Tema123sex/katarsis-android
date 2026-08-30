@@ -176,13 +176,13 @@ import java.util.stream.Collectors;
 import me.vkryl.core.BitwiseUtils;
 
 import kotlin.Unit;
-import tw.nekomimi.nekogram.helpers.PasscodeHelper;
-import tw.nekomimi.nekogram.ui.BottomBuilder;
-import tw.nekomimi.nekogram.NekoConfig;
-import tw.nekomimi.nekogram.utils.AlertUtil;
-import tw.nekomimi.nekogram.utils.VibrateUtil;
-import static tw.nekomimi.nekogram.settings.NekoChatSettingsActivity.getDeleteMenuChecks;
-import xyz.nextalone.nagram.NaConfig;
+import one.axgram.core.helpers.PasscodeHelper;
+import one.axgram.core.ui.BottomBuilder;
+import one.axgram.core.AxCoreConfig;
+import one.axgram.core.utils.AlertUtil;
+import one.axgram.core.utils.VibrateUtil;
+import static one.axgram.core.settings.AxChatSettingsActivity.getDeleteMenuChecks;
+import one.axgram.extra.AxConfig;
 
 public class AlertsCreator {
     public final static int PERMISSIONS_REQUEST_TOP_ICON_SIZE = 72;
@@ -1496,7 +1496,7 @@ public class AlertsCreator {
         }
         long inlineReturn = (fragment instanceof ChatActivity) ? ((ChatActivity) fragment).getInlineReturn() : 0;
         final String scheme = url == null ? null : Uri.parse(url).getScheme();
-        if (Browser.isInternalUrl(url, null) || !ask || "mailto".equalsIgnoreCase(scheme) || NekoConfig.skipOpenLinkConfirm.Bool()) {
+        if (Browser.isInternalUrl(url, null) || !ask || "mailto".equalsIgnoreCase(scheme) || AxCoreConfig.skipOpenLinkConfirm.Bool()) {
             Browser.openUrl(fragment.getParentActivity(), Uri.parse(url), inlineReturn == 0, tryTelegraph, forceNotInternalForApps && checkInternalBotApp(url), progress, null, false, true, false);
         } else {
             String urlFinal;
@@ -6308,7 +6308,7 @@ public class AlertsCreator {
             return null;
         }
 
-        BottomSheet.NekoXBuilder builder = new BottomSheet.NekoXBuilder(fragment.getParentActivity(), false);
+        BottomSheet.AxAlertBuilder builder = new BottomSheet.AxAlertBuilder(fragment.getParentActivity(), false);
         builder.setTitle(LocaleController.getString(R.string.Notifications), true);
         CharSequence[] items = new CharSequence[]{
                 LocaleController.formatString(R.string.MuteFor, LocaleController.formatPluralString("Hours", 1)),

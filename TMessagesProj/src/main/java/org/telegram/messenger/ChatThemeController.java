@@ -38,8 +38,8 @@ import java.util.Map;
 import java.util.zip.GZIPInputStream;
 import java.util.zip.GZIPOutputStream;
 
-import tw.nekomimi.nekogram.helpers.remote.WallpaperHelper;
-import xyz.nextalone.nagram.NaConfig;
+import one.axgram.core.helpers.remote.WallpaperHelper;
+import one.axgram.extra.AxConfig;
 
 public class ChatThemeController extends BaseController {
 
@@ -375,7 +375,7 @@ public class ChatThemeController extends BaseController {
     public TLRPC.WallPaper getDialogWallpaper(long dialogId) {
         TLRPC.WallPaper info = WallpaperHelper.getInstance().getDialogWallpaper(dialogId);
         if (dialogId >= 0) {
-            if (NaConfig.INSTANCE.getDisableCustomWallpaperUser().Bool()) {
+            if (AxConfig.INSTANCE.getDisableCustomWallpaperUser().Bool()) {
                 return null;
             }
             if (info != null) {
@@ -386,7 +386,7 @@ public class ChatThemeController extends BaseController {
                 return userFull.wallpaper;
             }
         } else {
-            if (NaConfig.INSTANCE.getDisableCustomWallpaperChannel().Bool()) {
+            if (AxConfig.INSTANCE.getDisableCustomWallpaperChannel().Bool()) {
                 return null;
             }
             if (info != null) {

@@ -67,13 +67,13 @@ import java.util.List;
 import java.util.Locale;
 
 import cn.hutool.core.util.StrUtil;
-import tw.nekomimi.nekogram.NekoConfig;
-import tw.nekomimi.nekogram.transtale.TranslateDb;
-import tw.nekomimi.nekogram.transtale.Translator;
-import tw.nekomimi.nekogram.transtale.TranslatorKt;
-import tw.nekomimi.nekogram.utils.AlertUtil;
-import xyz.nextalone.nagram.NaConfig;
-import xyz.nextalone.nagram.ui.syntaxhighlight.SyntaxHighlight;
+import one.axgram.core.AxCoreConfig;
+import one.axgram.core.transtale.TranslateDb;
+import one.axgram.core.transtale.Translator;
+import one.axgram.core.transtale.TranslatorKt;
+import one.axgram.core.utils.AlertUtil;
+import one.axgram.extra.AxConfig;
+import one.axgram.extra.ui.syntaxhighlight.SyntaxHighlight;
 
 public class EditTextCaption extends EditTextBoldCursor {
 
@@ -179,7 +179,7 @@ public class EditTextCaption extends EditTextBoldCursor {
     }
 
     public void makeSelectedMono() {
-        if (!NaConfig.INSTANCE.getCodeSyntaxHighlight().Bool()) {
+        if (!AxConfig.INSTANCE.getCodeSyntaxHighlight().Bool()) {
             TextStyleSpan.TextStyleRun run = new TextStyleSpan.TextStyleRun();
             run.flags |= TextStyleSpan.FLAG_STYLE_MONO;
             applyTextStyleToSelection(new TextStyleSpan(run));
@@ -203,7 +203,7 @@ public class EditTextCaption extends EditTextBoldCursor {
             editText.setLineColors(getThemedColor(Theme.key_windowBackgroundWhiteInputField), getThemedColor(Theme.key_windowBackgroundWhiteInputFieldActivated), getThemedColor(Theme.key_windowBackgroundWhiteRedText3));
             editText.setImeOptions(EditorInfo.IME_ACTION_DONE);
             editText.setBackgroundDrawable(null);
-            editText.setText(NaConfig.INSTANCE.getDefaultMonoLanguage().String());
+            editText.setText(AxConfig.INSTANCE.getDefaultMonoLanguage().String());
             editText.requestFocus();
             editText.setPadding(0, 0, 0, 0);
             builder.setView(editText);
@@ -316,7 +316,7 @@ public class EditTextCaption extends EditTextBoldCursor {
 
         } else {
             Locale to;
-            Locale toDefault = TranslatorKt.getCode2Locale(NekoConfig.translateInputLang.String());
+            Locale toDefault = TranslatorKt.getCode2Locale(AxCoreConfig.translateInputLang.String());
             if (delegate != null) {
                 to = TranslateDb.getChatLanguage(delegate.getCurrentChat(), toDefault);
             } else {

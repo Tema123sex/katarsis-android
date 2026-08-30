@@ -45,8 +45,8 @@ import org.telegram.ui.Cells.DialogCell;
 import java.util.ArrayList;
 import java.util.List;
 
-import tw.nekomimi.nekogram.NekoConfig;
-import xyz.nextalone.nagram.NaConfig;
+import one.axgram.core.AxCoreConfig;
+import one.axgram.extra.AxConfig;
 
 /**
  * This is a utility class to add swipe to dismiss and drag & drop support to RecyclerView.
@@ -696,7 +696,7 @@ public class ItemTouchHelper extends RecyclerView.ItemDecoration
             mSelected = selected;
 
             if (actionState == ACTION_STATE_DRAG) {
-                if (!NekoConfig.disableVibration.Bool()) {
+                if (!AxCoreConfig.disableVibration.Bool()) {
                     try {
                         mSelected.itemView.performHapticFeedback(HapticFeedbackConstants.LONG_PRESS, HapticFeedbackConstants.FLAG_IGNORE_GLOBAL_SETTING);
                     } catch (Exception ignore) {}
@@ -1259,7 +1259,7 @@ public class ItemTouchHelper extends RecyclerView.ItemDecoration
 
     public int checkHorizontalSwipe(ViewHolder viewHolder, int flags) {
         if (viewHolder != null && viewHolder.itemView instanceof DialogCell) {
-            if (((DialogCell) viewHolder.itemView).getFolderId() == 1 && NaConfig.INSTANCE.getDoNotUnarchiveBySwipe().Bool()) {
+            if (((DialogCell) viewHolder.itemView).getFolderId() == 1 && AxConfig.INSTANCE.getDoNotUnarchiveBySwipe().Bool()) {
                 return 0;
             }
         }

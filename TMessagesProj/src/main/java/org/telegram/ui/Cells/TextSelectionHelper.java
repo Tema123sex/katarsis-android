@@ -68,13 +68,13 @@ import org.telegram.ui.RestrictedLanguagesSelectActivity;
 
 import java.util.ArrayList;
 
-import tw.nekomimi.nekogram.NekoConfig;
-import tw.nekomimi.nekogram.transtale.TranslateDb;
-import tw.nekomimi.nekogram.transtale.Translator;
-import tw.nekomimi.nekogram.utils.AlertUtil;
-import tw.nekomimi.nekogram.utils.ProxyUtil;
-import xyz.nextalone.nagram.NaConfig;
-import xyz.nextalone.nagram.helper.SystemAiServiceHelper;
+import one.axgram.core.AxCoreConfig;
+import one.axgram.core.transtale.TranslateDb;
+import one.axgram.core.transtale.Translator;
+import one.axgram.core.utils.AlertUtil;
+import one.axgram.core.utils.ProxyUtil;
+import one.axgram.extra.AxConfig;
+import one.axgram.extra.helper.SystemAiServiceHelper;
 
 import static com.google.zxing.common.detector.MathUtils.distance;
 import static org.telegram.ui.ActionBar.FloatingToolbar.STYLE_THEME;
@@ -287,7 +287,7 @@ public abstract class TextSelectionHelper<Cell extends TextSelectionHelper.Selec
                 textY = maybeTextY;
 
                 selectedView = newView;
-                if (!NekoConfig.disableVibration.Bool()) {
+                if (!AxCoreConfig.disableVibration.Bool()) {
                     try {
                         textSelectionOverlay.performHapticFeedback(HapticFeedbackConstants.LONG_PRESS, HapticFeedbackConstants.FLAG_IGNORE_VIEW_SETTING);
                     } catch (Exception ignored) {}
@@ -1450,7 +1450,7 @@ public abstract class TextSelectionHelper<Cell extends TextSelectionHelper.Selec
                     }
                     menu.getItem(2).setVisible(selectedView instanceof View);
                 }
-                // NekoX: Merge 8.5.0, remove due to removing LanguageDetector
+                // AxGram: Merge 8.5.0, remove due to removing LanguageDetector
                 return true;
             }
 
@@ -3441,7 +3441,7 @@ public abstract class TextSelectionHelper<Cell extends TextSelectionHelper.Selec
     }
 
     protected boolean canCopyOverride() {
-        return NaConfig.INSTANCE.getForceCopy().Bool() || canCopy();
+        return AxConfig.INSTANCE.getForceCopy().Bool() || canCopy();
     }
 
     protected boolean canCopy() {

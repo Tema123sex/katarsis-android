@@ -47,7 +47,7 @@
     <string name="TransToLang">Переклад на мову</string>
     <string name="TransInputToLang">Переклад із мови</string>
     <string name="More">Більше</string>
-    <string name="NekoXUpdatesChannel">Канал оновлень NekoX</string>
+    <string name="AxUpdatesChannel">Канал оновлень AxGram</string>
     <string name="ShowIdAndDc">Показати ID / DC в профілі</string>
     <string name="UseDefaultTheme">Використовувати стандартну тему *</string>
     <string name="NightMode">Нічний режим</string>
@@ -59,7 +59,7 @@
     <string name="ApplySuggestion">Добре, застосувати</string>
     <string name="DoNotRemindAgain">Не нагадувати більше</string>
     <string name="RemoveTitleEmoji">Видаляти смайли в назві</string>
-    <string name="NekoXProxy">Публічний проксі NekoX</string>
+    <string name="AxProxy">Публічний проксі AxGram</string>
     <string name="PublicPrefix">Загальнодоступна</string>
     <string name="DisableChatAction">Не надсилати мій статус вводу</string>
     <string name="FakeScreenshot">Імітувати знімок екрану</string>
@@ -87,9 +87,9 @@
     <string name="SortByUnmuted">Сортувати за ввімк. звуком</string>
     <string name="SortByUser">Сортувати за користувачем</string>
     <string name="SortByContacts">Сортувати за контактами</string>
-    <string name="NekoXPushService">Push-сервіс NekoX</string>
-    <string name="EnablePushAlert">Будь ласка, ввімкніть Push-сервіс NekoX</string>
-    <string name="DisablePushAlert">Будь ласка, вимкніть Push-сервіс NekoX</string>
+    <string name="AxPushService">Push-сервіс AxGram</string>
+    <string name="EnablePushAlert">Будь ласка, ввімкніть Push-сервіс AxGram</string>
+    <string name="DisablePushAlert">Будь ласка, вимкніть Push-сервіс AxGram</string>
     <string name="DisableUndo">Вимкнути скасування</string>
     <string name="DisableSystemAccount">Вимкнути системний обліковий запис</string>
     <string name="FilterMenu">Меню фільтру діалогів</string>
@@ -170,7 +170,7 @@
     <string name="DisableDeveloperMode">Вимкнути режим розробки</string>
     <string name="DeveloperSettings">Параметри розробки</string>
     <string name="LoginSettings">Параметри входу</string>
-    <string name="NekoXFaq">Питання Nagram</string>
+    <string name="AxFaq">Питання AxGram</string>
     <string name="TransSite">Платформа перекладу</string>
     <string name="OpenKayChain">Клієнт OpenPGP</string>
     <string name="OpenPGPApp">Провайдер OpenPGP</string>
@@ -217,7 +217,7 @@
     <string name="HideDeviceInfo">Сховати модель пристрою</string>
     <string name="HideDeviceInfoOff">Модель пристрою буде завантажена вдруге, коли програма запуститься після входу в систему.</string>
     <string name="HideDeviceInfoOn">Ви можете змінити це в налаштуваннях пізніше.</string>
-    <string name="nekoXPaymentRemovedToast">Функцію оплати вилучено.</string>
+    <string name="axPaymentRemovedToast">Функцію оплати вилучено.</string>
     <string name="ImportSettingsAlert">Перезаписати налаштування\? Імпорт налаштувань із невідомих джерел може спричинити перезапис пін-коду й блокування застосунку.</string>
     <string name="EnableStickerPinTip">Розробка функції триває. Синхронізація з хмарою може не працювати.</string>
     <string name="EnableStickerPinAbout">Закріпити стікери і синхронізувати з хмарним сховищем, навіть коли додаєте нові стікери.
@@ -270,8 +270,8 @@
     <string name="update_download_soucre">Оберіть джерело завантаження</string>
     <string name="rememberAllBackMessages">Пам\'ятати натиснені відповіді</string>
     <string name="AutoCheckUpdatePreview">Випробувальна (нестабільна)</string>
-    <string name="NekoXUpdateTranslationHint">Торкніть, щоб перекласти журнал змін</string>
-    <string name="AppUpdateNekoX">Оновити Nagram</string>
+    <string name="AxUpdateTranslationHint">Торкніть, щоб перекласти журнал змін</string>
+    <string name="AppUpdateAxGram">Оновити AxGram</string>
     <string name="Name">Ім\'я</string>
     <string name="channelAlias">Псевдонім каналу</string>
     <string name="labelChannelUserDetails">Підписувати повідомлення з каналу відповідно.</string>
@@ -281,5 +281,5 @@
     <string name="StickerSettings">Стікер</string>
     <string name="ConfirmSettings">Підтвердження</string>
     <string name="InteractionSettings">Взаємодія</string>
-    <string name="nekoxPremiumGiftRemoved">Premium в подарунок видаляється в NekoX.</string>
+    <string name="axPremiumGiftRemoved">Premium в подарунок видаляється в AxGram.</string>
 </resources>

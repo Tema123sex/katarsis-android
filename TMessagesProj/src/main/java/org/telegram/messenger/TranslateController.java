@@ -51,9 +51,9 @@ import java.util.Locale;
 import java.util.Objects;
 import java.util.Set;
 
-import tw.nekomimi.nekogram.transtale.popupwrapper.LanguageDetector;
-import xyz.nextalone.nagram.NaConfig;
-import xyz.nextalone.nagram.SummarizeTextButtonStatus;
+import one.axgram.core.transtale.popupwrapper.LanguageDetector;
+import one.axgram.extra.AxConfig;
+import one.axgram.extra.SummarizeTextButtonStatus;
 
 public class TranslateController extends BaseController {
 
@@ -140,7 +140,7 @@ public class TranslateController extends BaseController {
     }
 
     public static boolean isSummarizable(MessageObject messageObject) {
-        int buttonStatus = NaConfig.INSTANCE.getSummarizeTextButton().Int();
+        int buttonStatus = AxConfig.INSTANCE.getSummarizeTextButton().Int();
         if (buttonStatus == SummarizeTextButtonStatus.DISABLE.getValue()) {
             return false;
         }
@@ -826,7 +826,7 @@ public class TranslateController extends BaseController {
 
     private ArrayList<Integer> pendingLanguageChecks = new ArrayList<>();
     private void checkLanguage(MessageObject messageObject) {
-        // NekoX: remove Language Detector
+        // AxGram: remove Language Detector
     }
 
     private void checkDialogTranslatable(MessageObject messageObject) {

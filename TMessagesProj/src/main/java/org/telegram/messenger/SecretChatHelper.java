@@ -34,7 +34,7 @@ import java.util.Collections;
 import java.util.Locale;
 import java.util.concurrent.ConcurrentHashMap;
 
-import tw.nekomimi.nekogram.utils.AlertUtil;
+import one.axgram.core.utils.AlertUtil;
 
 public class SecretChatHelper extends BaseController {
 

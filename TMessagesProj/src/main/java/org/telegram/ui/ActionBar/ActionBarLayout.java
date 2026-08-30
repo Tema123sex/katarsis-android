@@ -96,9 +96,9 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
-import tw.nekomimi.nekogram.NekoConfig;
-import tw.nekomimi.nekogram.utils.VibrateUtil;
-import xyz.nextalone.nagram.NaConfig;
+import one.axgram.core.AxCoreConfig;
+import one.axgram.core.utils.VibrateUtil;
+import one.axgram.extra.AxConfig;
 
 public class ActionBarLayout extends FrameLayout implements INavigationLayout, FloatingDebugProvider {
 
@@ -659,7 +659,7 @@ public class ActionBarLayout extends FrameLayout implements INavigationLayout, F
 
         if (layerShadowDrawable == null) {
             layerShadowDrawable = getResources().getDrawable(R.drawable.layer_shadow);
-            headerShadowDrawable = NekoConfig.disableAppBarShadow.Bool() ? null : getResources().getDrawable(R.drawable.header_shadow).mutate();
+            headerShadowDrawable = AxCoreConfig.disableAppBarShadow.Bool() ? null : getResources().getDrawable(R.drawable.header_shadow).mutate();
             scrimPaint = new Paint();
         }
 
@@ -1358,7 +1358,7 @@ public class ActionBarLayout extends FrameLayout implements INavigationLayout, F
                 ViewCompat.setOnApplyWindowInsetsListener(fragmentView, lastFragment::onInsetsInternal);
                 containerViewBack.invalidate();
             }
-            if (NekoConfig.disableVibration.Bool()) {
+            if (AxCoreConfig.disableVibration.Bool()) {
                 VibrateUtil.disableHapticFeedback(fragmentView);
             }
         }
@@ -1797,7 +1797,7 @@ public class ActionBarLayout extends FrameLayout implements INavigationLayout, F
         containerViewBack.setVisibility(View.INVISIBLE);
     }
 
-    private static final boolean USE_SPRING_ANIMATION = NaConfig.INSTANCE.getNavigationAnimationSpring().Bool();
+    private static final boolean USE_SPRING_ANIMATION = AxConfig.INSTANCE.getNavigationAnimationSpring().Bool();
     private static final float SPRING_STIFFNESS = 1000f;
     private static final float SPRING_STIFFNESS_PREVIEW = 650f;
     private static final float SPRING_STIFFNESS_PREVIEW_OUT = 800f;
@@ -2086,7 +2086,7 @@ public class ActionBarLayout extends FrameLayout implements INavigationLayout, F
                 ViewCompat.setOnApplyWindowInsetsListener(fragmentView, fragment::onInsetsInternal);
                 containerViewBack.invalidate();
             }
-            if (NekoConfig.disableVibration.Bool()) {
+            if (AxCoreConfig.disableVibration.Bool()) {
                 VibrateUtil.disableHapticFeedback(fragmentView);
             }
         } else {
@@ -2579,7 +2579,7 @@ public class ActionBarLayout extends FrameLayout implements INavigationLayout, F
             }
         });
         animatorSet.start();
-        if (!NekoConfig.disableVibration.Bool()) {
+        if (!AxCoreConfig.disableVibration.Bool()) {
             try {
                 performHapticFeedback(HapticFeedbackConstants.KEYBOARD_TAP);
             } catch (Exception ignore) {}
@@ -2644,7 +2644,7 @@ public class ActionBarLayout extends FrameLayout implements INavigationLayout, F
                     ViewCompat.setOnApplyWindowInsetsListener(fragmentView, previousFragment::onInsetsInternal);
                     containerView.invalidate();
                 }
-                if (NekoConfig.disableVibration.Bool()) {
+                if (AxCoreConfig.disableVibration.Bool()) {
                     VibrateUtil.disableHapticFeedback(fragmentView);
                 }
             }
@@ -2834,7 +2834,7 @@ public class ActionBarLayout extends FrameLayout implements INavigationLayout, F
                 ViewCompat.setOnApplyWindowInsetsListener(fragmentView, previousFragment::onInsetsInternal);
                 containerView.invalidate();
             }
-            if (NekoConfig.disableVibration.Bool()) {
+            if (AxCoreConfig.disableVibration.Bool()) {
                 VibrateUtil.disableHapticFeedback(fragmentView);
             }
         } else {

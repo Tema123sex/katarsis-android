@@ -49,7 +49,7 @@ import org.telegram.ui.Components.SizeNotifierFrameLayout;
 
 import java.util.ArrayList;
 
-import tw.nekomimi.nekogram.NekoXConfig;
+import one.axgram.core.AxLegacyConfig;
 
 public class ExternalActionActivity extends Activity implements INavigationLayout.INavigationLayoutDelegate {
 
@@ -78,7 +78,7 @@ public class ExternalActionActivity extends Activity implements INavigationLayou
         requestWindowFeature(Window.FEATURE_NO_TITLE);
         setTheme(R.style.Theme_TMessages);
         getWindow().setBackgroundDrawableResource(R.drawable.transparent);
-        if (SharedConfig.passcodeHash.isEmpty() && !SharedConfig.allowScreenCapture && !NekoXConfig.disableFlagSecure) {
+        if (SharedConfig.passcodeHash.isEmpty() && !SharedConfig.allowScreenCapture && !AxLegacyConfig.disableFlagSecure) {
             try {
                 getWindow().setFlags(WindowManager.LayoutParams.FLAG_SECURE, WindowManager.LayoutParams.FLAG_SECURE);
                 AndroidUtilities.logFlagSecure();

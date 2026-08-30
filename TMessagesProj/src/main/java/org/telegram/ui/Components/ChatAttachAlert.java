@@ -177,13 +177,13 @@ import java.util.Locale;
 import java.util.concurrent.atomic.AtomicBoolean;
 
 import kotlin.Unit;
-import tw.nekomimi.nekogram.NekoConfig;
-import tw.nekomimi.nekogram.transtale.TranslateDb;
-import tw.nekomimi.nekogram.transtale.Translator;
-import tw.nekomimi.nekogram.transtale.TranslatorKt;
-import tw.nekomimi.nekogram.utils.AlertUtil;
-import tw.nekomimi.nekogram.utils.VibrateUtil;
-import xyz.nextalone.nagram.NaConfig;
+import one.axgram.core.AxCoreConfig;
+import one.axgram.core.transtale.TranslateDb;
+import one.axgram.core.transtale.Translator;
+import one.axgram.core.transtale.TranslatorKt;
+import one.axgram.core.utils.AlertUtil;
+import one.axgram.core.utils.VibrateUtil;
+import one.axgram.extra.AxConfig;
 
 import java.util.Objects;
 
@@ -3905,7 +3905,7 @@ public class ChatAttachAlert extends BottomSheet implements NotificationCenter.N
                     if (messageSendPreview != null) {
                         messageSendPreview.dismiss(false);
                     }
-                    translateComment(parentFragment.getParentActivity(), TranslateDb.getChatLanguage(finalDialogId, TranslatorKt.getCode2Locale(NekoConfig.translateInputLang.String())));
+                    translateComment(parentFragment.getParentActivity(), TranslateDb.getChatLanguage(finalDialogId, TranslatorKt.getCode2Locale(AxCoreConfig.translateInputLang.String())));
                 });
                 // TODO: nekox
 //                itemCells[a].setOnLongClickListener(v -> {
@@ -4018,7 +4018,7 @@ public class ChatAttachAlert extends BottomSheet implements NotificationCenter.N
 
             messageSendPreview.show();
 
-            if (!NekoConfig.disableVibration.Bool()) {
+            if (!AxCoreConfig.disableVibration.Bool()) {
                 try {
                     view.performHapticFeedback(HapticFeedbackConstants.KEYBOARD_TAP, HapticFeedbackConstants.FLAG_IGNORE_GLOBAL_SETTING);
                 } catch (Exception ignored) {}
@@ -5878,7 +5878,7 @@ public class ChatAttachAlert extends BottomSheet implements NotificationCenter.N
                 pollsEnabled = UserObject.isBot(user) || UserObject.isUserSelf(user);
                 todoEnabled = !(baseFragment instanceof ChatActivity) || ((ChatActivity) baseFragment).getCurrentEncryptedChat() == null;
             }
-            todoEnabled = todoEnabled && (!NaConfig.INSTANCE.getDisablePremiumSendTodo().Bool() || UserConfig.getInstance(currentAccount).isPremium());
+            todoEnabled = todoEnabled && (!AxConfig.INSTANCE.getDisablePremiumSendTodo().Bool() || UserConfig.getInstance(currentAccount).isPremium());
         }
         if (!(baseFragment instanceof ChatActivity && avatarPicker != 2)) {
             commentTextView.setVisibility(allowEnterCaption ? View.VISIBLE : View.INVISIBLE);

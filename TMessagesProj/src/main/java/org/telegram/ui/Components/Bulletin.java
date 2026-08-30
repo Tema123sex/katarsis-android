@@ -87,7 +87,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.WeakHashMap;
 
-import xyz.nextalone.nagram.NaConfig;
+import one.axgram.extra.AxConfig;
 
 public class Bulletin {
 
@@ -1766,7 +1766,7 @@ public class Bulletin {
         }
 
         public void init() {
-            if (NaConfig.INSTANCE.getDisableShortcutTagActions().Bool()) return;
+            if (AxConfig.INSTANCE.getDisableShortcutTagActions().Bool()) return;
             textView.setLayoutParams(LayoutHelper.createFrameRelatively(LayoutHelper.WRAP_CONTENT, LayoutHelper.WRAP_CONTENT, Gravity.START | Gravity.TOP, 56, 6, 8, 0));
             imageView.setLayoutParams(LayoutHelper.createFrameRelatively(56, 48, Gravity.START | Gravity.TOP));
             reactionsContainerLayout = new ReactionsContainerLayout(ReactionsContainerLayout.TYPE_TAGS, fragment, getContext(), fragment.getCurrentAccount(), fragment.getResourceProvider()) {

@@ -111,11 +111,11 @@ import java.util.concurrent.atomic.AtomicInteger;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
-import tw.nekomimi.nekogram.DialogConfig;
-import tw.nekomimi.nekogram.NekoConfig;
-import tw.nekomimi.nekogram.ui.PinnedStickerHelper;
-import xyz.nextalone.nagram.NaConfig;
-import xyz.nextalone.nagram.helper.ExternalStickerCacheHelper;
+import one.axgram.core.DialogConfig;
+import one.axgram.core.AxCoreConfig;
+import one.axgram.core.ui.PinnedStickerHelper;
+import one.axgram.extra.AxConfig;
+import one.axgram.extra.helper.ExternalStickerCacheHelper;
 
 @SuppressWarnings("unchecked")
 public class MediaDataController extends BaseController {
@@ -913,7 +913,7 @@ public class MediaDataController extends BaseController {
         if (type == TYPE_PREMIUM_STICKERS) {
             return new ArrayList<>(recentStickers[type]);
         }
-        ArrayList<TLRPC.Document> result = new ArrayList<>(arrayList.subList(0, Math.min(arrayList.size(), NekoConfig.maxRecentStickerCount.Int())));
+        ArrayList<TLRPC.Document> result = new ArrayList<>(arrayList.subList(0, Math.min(arrayList.size(), AxCoreConfig.maxRecentStickerCount.Int())));
         if (firstEmpty && !result.isEmpty() && !StickersAlert.DISABLE_STICKER_EDITOR) {
             result.add(0, new TLRPC.TL_documentEmpty());
         }
@@ -998,7 +998,7 @@ public class MediaDataController extends BaseController {
                     AndroidUtilities.runOnUIThread(() -> getMediaDataController().loadRecents(MediaDataController.TYPE_FAVE, false, false, true));
                 }
             });
-            maxCount = NekoConfig.unlimitedFavedStickers.Bool() ? Integer.MAX_VALUE : getMessagesController().getMaxFaveStickersCount();
+            maxCount = AxCoreConfig.unlimitedFavedStickers.Bool() ? Integer.MAX_VALUE : getMessagesController().getMaxFaveStickersCount();
         } else {
             if (type == TYPE_IMAGE && remove) {
                 NotificationCenter.getGlobalInstance().postNotificationName(NotificationCenter.showBulletin, Bulletin.TYPE_STICKER, document, StickerSetBulletinLayout.TYPE_REMOVED_FROM_RECENT);
@@ -1908,7 +1908,7 @@ public class MediaDataController extends BaseController {
     }
 
     public void loadRecents(int type, boolean gif, boolean cache, boolean force) {
-        if (NekoConfig.unlimitedFavedStickers.Bool() && type == TYPE_FAVE && !cache) {
+        if (AxCoreConfig.unlimitedFavedStickers.Bool() && type == TYPE_FAVE && !cache) {
             return;
         }
         if (gif) {
@@ -2093,7 +2093,7 @@ public class MediaDataController extends BaseController {
                         if (type == TYPE_GREETINGS || type == TYPE_PREMIUM_STICKERS) {
                             maxCount = 200;
                         } else if (type == TYPE_FAVE) {
-                            maxCount = NekoConfig.unlimitedFavedStickers.Bool() ? Integer.MAX_VALUE : getMessagesController().getMaxFaveStickersCount();
+                            maxCount = AxCoreConfig.unlimitedFavedStickers.Bool() ? Integer.MAX_VALUE : getMessagesController().getMaxFaveStickersCount();
                         } else {
                             maxCount = getMessagesController().maxRecentStickersCount;
                         }
@@ -2270,7 +2270,7 @@ public class MediaDataController extends BaseController {
     }
 
     public void loadFeaturedStickers(boolean emoji, boolean cache) {
-        if (loadingFeaturedStickers[emoji ? 1 : 0] || NaConfig.INSTANCE.getDisableFeaturedStickers().Bool()) {
+        if (loadingFeaturedStickers[emoji ? 1 : 0] || AxConfig.INSTANCE.getDisableFeaturedStickers().Bool()) {
             return;
         }
         loadingFeaturedStickers[emoji ? 1 : 0] = true;
@@ -2629,8 +2629,8 @@ public class MediaDataController extends BaseController {
             processLoadedStickers(type, newStickerArray, false, (int) (System.currentTimeMillis() / 1000), res.hash2, onDone);
         } else {
             LongSparseArray<TLRPC.TL_messages_stickerSet> newStickerSets = new LongSparseArray<>();
-            // NekoX: Pin Sticker
-            if (NekoConfig.enableStickerPin.Bool() && type == MediaDataController.TYPE_IMAGE) {
+            // AxGram: Pin Sticker
+            if (AxCoreConfig.enableStickerPin.Bool() && type == MediaDataController.TYPE_IMAGE) {
                 PinnedStickerHelper ins = PinnedStickerHelper.getInstance(UserConfig.selectedAccount);
                 if (ins.reorderPinnedStickersForSS(res.sets, true))
                     AndroidUtilities.runOnUIThread(() -> {
@@ -3403,7 +3403,7 @@ public class MediaDataController extends BaseController {
         }
         final int type = type1;
 
-        if (NekoConfig.enableStickerPin.Bool() && type == MediaDataController.TYPE_IMAGE && (toggle == 0 || toggle == 1)) {
+        if (AxCoreConfig.enableStickerPin.Bool() && type == MediaDataController.TYPE_IMAGE && (toggle == 0 || toggle == 1)) {
             PinnedStickerHelper.getInstance(currentAccount).removePinnedStickerLocal(stickerSet.id);
         }
 
@@ -3440,10 +3440,10 @@ public class MediaDataController extends BaseController {
             toggleStickerSetInternal(context, toggle, baseFragment, bulletinContainer, showSettings, stickerSetObject, stickerSet, sticker, type, false);
         } else {
             StickerSetBulletinLayout bulletinLayout = new StickerSetBulletinLayout(context, stickerSetObject, toggle, sticker, baseFragment == null ? null : baseFragment.getResourceProvider());
-            int finalCurrentIndex = NekoConfig.enableStickerPin.Bool() && type == TYPE_IMAGE && PinnedStickerHelper.getInstance(UserConfig.selectedAccount).isPinned(stickerSet.id)
+            int finalCurrentIndex = AxCoreConfig.enableStickerPin.Bool() && type == TYPE_IMAGE && PinnedStickerHelper.getInstance(UserConfig.selectedAccount).isPinned(stickerSet.id)
                     ? PinnedStickerHelper.getInstance(UserConfig.selectedAccount).pinnedList.size()
                     : currentIndex;
-            // NekoX: Pin Sticker, Fix undo for Archiving and Deleting
+            // AxGram: Pin Sticker, Fix undo for Archiving and Deleting
             Context finalContext = context;
             boolean[] undoDone = new boolean[1];
             markSetUninstalling(stickerSet.id, true);
@@ -7233,7 +7233,7 @@ public class MediaDataController extends BaseController {
         boolean isPre = false;
         final String mono = "`";
         final String pre = "```";
-        while (!(xyz.nextalone.nagram.NaConfig.INSTANCE.getNewMarkdownParser().Bool() || xyz.nextalone.nagram.NaConfig.INSTANCE.getDisableMarkdown().Bool()) && (index = TextUtils.indexOf(message[0], !isPre ? mono : pre, lastIndex)) != -1) {
+        while (!(one.axgram.extra.AxConfig.INSTANCE.getNewMarkdownParser().Bool() || one.axgram.extra.AxConfig.INSTANCE.getDisableMarkdown().Bool()) && (index = TextUtils.indexOf(message[0], !isPre ? mono : pre, lastIndex)) != -1) {
             if (start == -1) {
                 isPre = message[0].length() - index > 2 && message[0].charAt(index + 1) == '`' && message[0].charAt(index + 2) == '`';
                 start = index;
@@ -7320,8 +7320,8 @@ public class MediaDataController extends BaseController {
         }
 
         // Nagram: call new markdown parser before processing Spanned
-        if (!xyz.nextalone.nagram.NaConfig.INSTANCE.getDisableMarkdown().Bool() && xyz.nextalone.nagram.NaConfig.INSTANCE.getNewMarkdownParser().Bool()) {
-            xyz.nextalone.nagram.helper.EntitiesHelper.parseMarkdown(message, allowStrike);
+        if (!one.axgram.extra.AxConfig.INSTANCE.getDisableMarkdown().Bool() && one.axgram.extra.AxConfig.INSTANCE.getNewMarkdownParser().Bool()) {
+            one.axgram.extra.helper.EntitiesHelper.parseMarkdown(message, allowStrike);
         }
 
         if (message[0] instanceof Spanned) {
@@ -7515,7 +7515,7 @@ public class MediaDataController extends BaseController {
         CharSequence cs = message[0];
         if (entities == null) entities = new ArrayList<>();
         // Nagram: skip old regex parsing when using new parser or markdown disabled
-        if (xyz.nextalone.nagram.NaConfig.INSTANCE.getNewMarkdownParser().Bool() || xyz.nextalone.nagram.NaConfig.INSTANCE.getDisableMarkdown().Bool()) return entities;
+        if (one.axgram.extra.AxConfig.INSTANCE.getNewMarkdownParser().Bool() || one.axgram.extra.AxConfig.INSTANCE.getDisableMarkdown().Bool()) return entities;
         cs = parsePattern(cs, BOLD_PATTERN, entities, obj -> new TLRPC.TL_messageEntityBold());
         cs = parsePattern(cs, ITALIC_PATTERN, entities, obj -> new TLRPC.TL_messageEntityItalic());
         cs = parsePattern(cs, SPOILER_PATTERN, entities, obj -> new TLRPC.TL_messageEntitySpoiler());

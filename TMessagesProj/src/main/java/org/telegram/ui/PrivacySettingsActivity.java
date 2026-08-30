@@ -76,7 +76,7 @@ import org.telegram.ui.bots.BotBiometrySettings;
 
 import java.util.ArrayList;
 
-import tw.nekomimi.nekogram.NekoConfig;
+import one.axgram.core.AxCoreConfig;
 
 public class PrivacySettingsActivity extends BaseFragment implements NotificationCenter.NotificationCenterDelegate {
 
@@ -458,7 +458,7 @@ public class PrivacySettingsActivity extends BaseFragment implements Notificatio
                             Bulletin.make(PrivacySettingsActivity.this, layout, duration).show();
 
                             try {
-                                if (!NekoConfig.disableVibration.Bool())
+                                if (!AxCoreConfig.disableVibration.Bool())
                                 fragmentView.performHapticFeedback(HapticFeedbackConstants.KEYBOARD_TAP, HapticFeedbackConstants.FLAG_IGNORE_GLOBAL_SETTING);
                             } catch (Exception ignored) {}
 

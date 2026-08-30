@@ -81,14 +81,14 @@ import java.util.concurrent.atomic.AtomicInteger;
 import javax.net.ssl.SSLException;
 
 import cn.hutool.core.util.StrUtil;
-import tw.nekomimi.nekogram.NekoConfig;
-import tw.nekomimi.nekogram.NekoXConfig;
-import tw.nekomimi.nekogram.utils.AyuGhostUtils;
-import tw.nekomimi.nekogram.utils.DnsFactory;
-import tw.nekomimi.nekogram.ErrorDatabase;
+import one.axgram.core.AxCoreConfig;
+import one.axgram.core.AxLegacyConfig;
+import one.axgram.core.utils.AxGhostUtils;
+import one.axgram.core.utils.DnsFactory;
+import one.axgram.core.ErrorDatabase;
 
-import tw.nekomimi.nekogram.utils.ProxyUtil;
-import xyz.nextalone.nagram.NaConfig;
+import one.axgram.core.utils.ProxyUtil;
+import one.axgram.extra.AxConfig;
 
 public class ConnectionsManager extends BaseController {
 
@@ -283,7 +283,7 @@ public class ConnectionsManager extends BaseController {
         if (getUserConfig().getCurrentUser() != null) {
             userPremium = getUserConfig().getCurrentUser().premium;
         }
-        init(BuildConfig.VERSION_CODE, TLRPC.LAYER, NekoXConfig.currentAppId(), deviceModel, systemVersion, appVersion, langCode, systemLangCode, configPath, FileLog.getNetworkLogPath(), pushString, fingerprint, timezoneOffset, getUserConfig().getClientUserId(), userPremium, enablePushConnection);
+        init(BuildConfig.VERSION_CODE, TLRPC.LAYER, AxLegacyConfig.currentAppId(), deviceModel, systemVersion, appVersion, langCode, systemLangCode, configPath, FileLog.getNetworkLogPath(), pushString, fingerprint, timezoneOffset, getUserConfig().getClientUserId(), userPremium, enablePushConnection);
     }
 
     private String getRegId() {
@@ -332,19 +332,19 @@ public class ConnectionsManager extends BaseController {
 
     private boolean ayuGhostShouldSend(TLObject object) {
         // --- 不发送动态已读 ---
-        if (!NekoConfig.sendReadStoryPackets &&
+        if (!AxCoreConfig.sendReadStoryPackets &&
                 (object instanceof TL_stories.TL_stories_readStories ||
                         object instanceof TL_stories.TL_stories_incrementStoryViews)) {
             return false;
         }
         // --- 不发送输入状态 ---
-        if (!NekoConfig.sendUploadProgress &&
+        if (!AxCoreConfig.sendUploadProgress &&
                 (object instanceof TLRPC.TL_messages_setTyping ||
                         object instanceof TLRPC.TL_messages_setEncryptedTyping)) {
             return false;
         }
         // --- 不发送已读消息 ---
-        if (!NekoConfig.sendReadMessagePackets && !AyuGhostUtils.getAllowReadPacket() &&
+        if (!AxCoreConfig.sendReadMessagePackets && !AxGhostUtils.getAllowReadPacket() &&
                 (object instanceof TLRPC.TL_messages_readHistory ||
                         object instanceof TLRPC.TL_messages_readMessageContents ||
                         object instanceof TLRPC.TL_channels_readHistory ||
@@ -356,11 +356,11 @@ public class ConnectionsManager extends BaseController {
 
     private RequestDelegate ayuGhostApplyCallbackHooks(TLObject object, RequestDelegate onComplete) {
         // --- 发送消息后自动已读对面消息 ---
-        if (NekoConfig.markReadAfterSend && !NekoConfig.sendReadMessagePackets) {
+        if (AxCoreConfig.markReadAfterSend && !AxCoreConfig.sendReadMessagePackets) {
             onComplete = ayuGhostWrapMarkReadHook(object, onComplete);
         }
         // --- 在线后立即离线 ---
-        if (NekoConfig.sendOfflineAfterOnline &&
+        if (AxCoreConfig.sendOfflineAfterOnline &&
                 (object instanceof TLRPC.TL_messages_sendMessage ||
                         object instanceof TLRPC.TL_messages_sendMedia ||
                         object instanceof TLRPC.TL_messages_sendMultiMedia)) {
@@ -381,14 +381,14 @@ public class ConnectionsManager extends BaseController {
             peer = null;
         }
         if (peer == null) return origCallback;
-        var dialogId = AyuGhostUtils.getDialogId(peer);
+        var dialogId = AxGhostUtils.getDialogId(peer);
         return (response, error) -> {
             origCallback.run(response, error);
             getMessagesStorage().getDialogMaxMessageId(dialogId, maxId -> {
                 TLRPC.TL_messages_readHistory request = new TLRPC.TL_messages_readHistory();
                 request.peer = peer;
                 request.max_id = maxId;
-                AyuGhostUtils.setAllowReadPacket(true, 1);
+                AxGhostUtils.setAllowReadPacket(true, 1);
                 sendRequest(request, (a1, a2) -> {});
             });
         };
@@ -469,7 +469,7 @@ public class ConnectionsManager extends BaseController {
         // start request hook
         {
             // --- 不发送在线状态 ---
-            if (!NekoConfig.sendOnlinePackets && object instanceof TL_account.updateStatus) {
+            if (!AxCoreConfig.sendOnlinePackets && object instanceof TL_account.updateStatus) {
                 // 不发送在线状态，将状态设置为离线
                 TL_account.updateStatus status = (TL_account.updateStatus) object;
                 status.offline = true;  // 将在线状态改为离线
@@ -518,7 +518,7 @@ public class ConnectionsManager extends BaseController {
                         if (BuildVars.LOGS_ENABLED && error.code != -2000) {
                             FileLog.e(object + " got error " + error.code + " " + error.text);
                         }
-                        if (NaConfig.INSTANCE.getShowRPCError().Bool()) {
+                        if (AxConfig.INSTANCE.getShowRPCError().Bool()) {
                             ErrorDatabase.showErrorToast(object, errorText);
                         }
                     }
@@ -954,7 +954,7 @@ public class ConnectionsManager extends BaseController {
     }
 
     public static void onRequestNewServerIpAndPort(final int second, final int currentAccount) {
-        if (NaConfig.INSTANCE.getDisableSecondAddress().Bool()) {
+        if (AxConfig.INSTANCE.getDisableSecondAddress().Bool()) {
             return;
         }
         Utilities.globalQueue.postRunnable(() -> {
@@ -1203,8 +1203,8 @@ public class ConnectionsManager extends BaseController {
         }
         if (ipStrategy != -1) return ipStrategy;
 
-        if (NaConfig.INSTANCE.getCustomIpStrategy().Int() != 0) {
-            return ipStrategy = (byte) (NaConfig.INSTANCE.getCustomIpStrategy().Int() - 1);
+        if (AxConfig.INSTANCE.getCustomIpStrategy().Int() != 0) {
+            return ipStrategy = (byte) (AxConfig.INSTANCE.getCustomIpStrategy().Int() - 1);
         }
 
         if (BuildVars.LOGS_ENABLED) {

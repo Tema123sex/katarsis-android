@@ -118,17 +118,17 @@ import java.util.concurrent.atomic.AtomicBoolean;
 import java.util.concurrent.atomic.AtomicReference;
 
 import kotlin.Unit;
-import tw.nekomimi.nekogram.ui.BottomBuilder;
-import tw.nekomimi.nekogram.NekoConfig;
-import tw.nekomimi.nekogram.ui.PinnedStickerHelper;
-import tw.nekomimi.nekogram.utils.AlertUtil;
-import tw.nekomimi.nekogram.utils.EnvUtil;
-import tw.nekomimi.nekogram.utils.FileUtil;
-import tw.nekomimi.nekogram.utils.ShareUtil;
-import tw.nekomimi.nekogram.utils.StickersUtil;
-import tw.nekomimi.nekogram.utils.UIUtil;
-import xyz.nextalone.nagram.NaConfig;
-import xyz.nextalone.nagram.helper.ExternalStickerCacheHelper;
+import one.axgram.core.ui.BottomBuilder;
+import one.axgram.core.AxCoreConfig;
+import one.axgram.core.ui.PinnedStickerHelper;
+import one.axgram.core.utils.AlertUtil;
+import one.axgram.core.utils.EnvUtil;
+import one.axgram.core.utils.FileUtil;
+import one.axgram.core.utils.ShareUtil;
+import one.axgram.core.utils.StickersUtil;
+import one.axgram.core.utils.UIUtil;
+import one.axgram.extra.AxConfig;
+import one.axgram.extra.helper.ExternalStickerCacheHelper;
 
 public class StickersActivity extends BaseFragment implements NotificationCenter.NotificationCenterDelegate {
 
@@ -837,15 +837,15 @@ public class StickersActivity extends BaseFragment implements NotificationCenter
             .addIf(!set.set.official, R.drawable.msg_delete, LocaleController.getString(R.string.StickersRemove), true, () -> {
                 MediaDataController.getInstance(currentAccount).toggleStickerSet(getParentActivity(), set, 0, StickersActivity.this, true, true);
             })
-            .addIf(!set.set.official & NekoConfig.enableStickerPin.Bool() && currentType == MediaDataController.TYPE_IMAGE, R.drawable.msg_pin, PinnedStickerHelper.getInstance(currentAccount).isPinned(set.set.id) ?
+            .addIf(!set.set.official & AxCoreConfig.enableStickerPin.Bool() && currentType == MediaDataController.TYPE_IMAGE, R.drawable.msg_pin, PinnedStickerHelper.getInstance(currentAccount).isPinned(set.set.id) ?
                     LocaleController.getString(R.string.UnpinSticker) :
                     LocaleController.getString(R.string.PinSticker), () -> {
                 processSelectionOption(MENU_TOGGLE_PIN, set);
             })
-            .addIf(!set.set.official & !NaConfig.INSTANCE.getExternalStickerCache().String().isBlank(), R.drawable.menu_views_reposts, LocaleController.getString(R.string.ExternalStickerCacheRefresh), () -> {
+            .addIf(!set.set.official & !AxConfig.INSTANCE.getExternalStickerCache().String().isBlank(), R.drawable.menu_views_reposts, LocaleController.getString(R.string.ExternalStickerCacheRefresh), () -> {
                 ExternalStickerCacheHelper.refreshCacheFiles(set);
             })
-            .addIf(!set.set.official & !NaConfig.INSTANCE.getExternalStickerCache().String().isBlank(), R.drawable.msg_delete, LocaleController.getString(R.string.ExternalStickerCacheDelete), () -> {
+            .addIf(!set.set.official & !AxConfig.INSTANCE.getExternalStickerCache().String().isBlank(), R.drawable.msg_delete, LocaleController.getString(R.string.ExternalStickerCacheDelete), () -> {
                 ExternalStickerCacheHelper.deleteCacheFiles(set);
             })
             .setMinWidth(190)

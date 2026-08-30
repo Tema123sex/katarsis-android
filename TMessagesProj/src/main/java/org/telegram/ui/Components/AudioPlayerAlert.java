@@ -126,7 +126,7 @@ import java.io.File;
 import java.util.ArrayList;
 import java.util.List;
 
-import xyz.nextalone.nagram.NaConfig;
+import one.axgram.extra.AxConfig;
 
 public class AudioPlayerAlert extends BottomSheet implements NotificationCenter.NotificationCenterDelegate, DownloadController.FileDownloadProgressListener {
 
@@ -2358,7 +2358,7 @@ public class AudioPlayerAlert extends BottomSheet implements NotificationCenter.
                 dialogId < 0 && MessagesController.getInstance(currentAccount).isPeerNoForwards(dialogId) ||
                 MessagesController.getInstance(currentAccount).isPeerNoForwards(messageObject.getDialogId()) ||
                 messageObject.messageOwner.noforwards
-            ) && !NaConfig.INSTANCE.getForceCopy().Bool();
+            ) && !AxConfig.INSTANCE.getForceCopy().Bool();
             if (noforwards != this.noforwards) {
                 this.noforwards = noforwards;
 

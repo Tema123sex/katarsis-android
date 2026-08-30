@@ -87,7 +87,7 @@ import org.telegram.ui.Stories.StoriesUtilities;
 
 import java.util.ArrayList;
 
-import tw.nekomimi.nekogram.NekoConfig;
+import one.axgram.core.AxCoreConfig;
 
 public class MessageStatisticActivity extends BaseFragment implements NotificationCenter.NotificationCenterDelegate {
 
@@ -349,7 +349,7 @@ public class MessageStatisticActivity extends BaseFragment implements Notificati
         listView.setOnItemLongClickListener((view, position) -> {
             if (position >= startRow && position < endRow) {
                 try {
-                    if (!NekoConfig.disableVibration.Bool())
+                    if (!AxCoreConfig.disableVibration.Bool())
                     view.performHapticFeedback(HapticFeedbackConstants.LONG_PRESS, HapticFeedbackConstants.FLAG_IGNORE_GLOBAL_SETTING);
                 } catch (Exception ignore) {}
                 MessageObject message = messages.get(position - startRow);

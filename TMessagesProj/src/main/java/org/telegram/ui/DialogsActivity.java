@@ -275,19 +275,19 @@ import java.util.concurrent.ConcurrentHashMap;
 import java.util.Random;
 
 import kotlin.Unit;
-import tw.nekomimi.nekogram.BackButtonMenuRecent;
-import tw.nekomimi.nekogram.helpers.PasscodeHelper;
-import tw.nekomimi.nekogram.settings.NekoGhostModeActivity;
-import tw.nekomimi.nekogram.ui.BottomBuilder;
-import tw.nekomimi.nekogram.NekoConfig;
-import tw.nekomimi.nekogram.NekoXConfig;
-import tw.nekomimi.nekogram.utils.PrivacyUtil;
-import tw.nekomimi.nekogram.utils.ProxyUtil;
-import tw.nekomimi.nekogram.utils.UIUtil;
-import tw.nekomimi.nekogram.utils.UpdateUtil;
-import tw.nekomimi.nekogram.utils.VibrateUtil;
-import xyz.nextalone.nagram.MainTabsStyle;
-import xyz.nextalone.nagram.NaConfig;
+import one.axgram.core.BackButtonMenuRecent;
+import one.axgram.core.helpers.PasscodeHelper;
+import one.axgram.core.settings.AxGhostModeActivity;
+import one.axgram.core.ui.BottomBuilder;
+import one.axgram.core.AxCoreConfig;
+import one.axgram.core.AxLegacyConfig;
+import one.axgram.core.utils.PrivacyUtil;
+import one.axgram.core.utils.ProxyUtil;
+import one.axgram.core.utils.UIUtil;
+import one.axgram.core.utils.UpdateUtil;
+import one.axgram.core.utils.VibrateUtil;
+import one.axgram.extra.MainTabsStyle;
+import one.axgram.extra.AxConfig;
 
 import me.vkryl.android.animator.BoolAnimator;
 import me.vkryl.android.animator.FactorAnimator;
@@ -2248,7 +2248,7 @@ public class DialogsActivity extends BaseFragment implements NotificationCenter.
                                 }
                                 if (!canShowHiddenArchive) {
                                     canShowHiddenArchive = true;
-                                    if (!NekoConfig.disableVibration.Bool()) {
+                                    if (!AxCoreConfig.disableVibration.Bool()) {
                                         try {
                                             performHapticFeedback(HapticFeedbackConstants.KEYBOARD_TAP, HapticFeedbackConstants.FLAG_IGNORE_GLOBAL_SETTING);
                                         } catch (Exception ignored) {}
@@ -2263,7 +2263,7 @@ public class DialogsActivity extends BaseFragment implements NotificationCenter.
                                     AndroidUtilities.makeAccessibilityAnnouncement(LocaleController.getString(R.string.AccDescrArchivedChatsShown));
                                 }
 
-                                if (NekoConfig.openArchiveOnPull.Bool()) {
+                                if (AxCoreConfig.openArchiveOnPull.Bool()) {
                                     AndroidUtilities.runOnUIThread(() -> {
                                         // Open the folder.
                                         // Delay was taken from PullForegroundDrawable::startOutAnimation().
@@ -3528,7 +3528,7 @@ public class DialogsActivity extends BaseFragment implements NotificationCenter.
             }
             actionBar.setBackgroundColor(getThemedColor(Theme.key_windowBackgroundWhite));
             actionBar.setOnLongClickListener(v -> {
-                if (NekoConfig.hideAllTab.Bool() && filterTabsView != null && filterTabsView.getDefaultTabId() != filterTabsView.getCurrentTabId()) {
+                if (AxCoreConfig.hideAllTab.Bool() && filterTabsView != null && filterTabsView.getDefaultTabId() != filterTabsView.getCurrentTabId()) {
                     filterTabsView.toggleAllTabs(true);
                     filterTabsView.selectDefaultTab();
                 }
@@ -3543,14 +3543,18 @@ public class DialogsActivity extends BaseFragment implements NotificationCenter.
             } else {
                 statusDrawable = new AnimatedEmojiDrawable.SwapAnimatedEmojiDrawable(null, dp(26));
                 statusDrawable.center = true;
-                String title = NaConfig.INSTANCE.getCustomTitle().String();
-                if (NaConfig.INSTANCE.getCustomTitleUserName().Bool()) {
+                String title = AxConfig.INSTANCE.getCustomTitle().String();
+                // AxGram: migrate any stored old-brand custom title to the app name
+                if (title == null || title.equals("Nagram") || title.equals("NekoX") || title.equals("Nekogram") || title.equals("Nekogram X")) {
+                    title = getString(R.string.AxGram);
+                }
+                if (AxConfig.INSTANCE.getCustomTitleUserName().Bool()) {
                     TLRPC.User self = UserConfig.getInstance(currentAccount).getCurrentUser();
                     if (self != null && self.first_name != null) title = self.first_name;
                 }
                 actionBar.centerTitle(false);
-                if (title.equals(getString(R.string.NekoX))) {
-                    logoDrawable = context.getResources().getDrawable(R.drawable.nagram_logo_2).mutate();
+                if (false) { // AxGram: never draw the Nagram logo image, always plain text title
+                    logoDrawable = context.getResources().getDrawable(R.drawable.ax_logo_2).mutate();
                     logoDrawable.setBounds(0, dp(2), logoDrawable.getIntrinsicWidth(), dp(2) + logoDrawable.getIntrinsicHeight());
                     logoDrawable.setColorFilter(getThemedColor(Theme.key_telegram_color_dialogsLogo), PorterDuff.Mode.MULTIPLY);
                     SpannableStringBuilder ssb = new SpannableStringBuilder(title);
@@ -3560,7 +3564,7 @@ public class DialogsActivity extends BaseFragment implements NotificationCenter.
                     actionBar.setTitle(title, statusDrawable);
                 }
                 actionBar.setOnLongClickListener(v -> {
-                    if (NekoConfig.hideAllTab.Bool() && filterTabsView != null && filterTabsView.getCurrentTabId() != Integer.MAX_VALUE) {
+                    if (AxCoreConfig.hideAllTab.Bool() && filterTabsView != null && filterTabsView.getCurrentTabId() != Integer.MAX_VALUE) {
                         filterTabsView.toggleAllTabs(true);
                         filterTabsView.selectDefaultTab();
                     }
@@ -3604,7 +3608,7 @@ public class DialogsActivity extends BaseFragment implements NotificationCenter.
                 protected void onDefaultTabMoved() {
                     if (!getMessagesController().premiumFeaturesBlocked()) {
                         try {
-                            if (!NekoConfig.disableVibration.Bool())
+                            if (!AxCoreConfig.disableVibration.Bool())
                                 performHapticFeedback(HapticFeedbackConstants.KEYBOARD_PRESS, HapticFeedbackConstants.FLAG_IGNORE_VIEW_SETTING);
                         } catch (Exception ignore) {}
                         topBulletin = BulletinFactory.of(DialogsActivity.this).createSimpleBulletin(R.raw.filter_reorder, AndroidUtilities.replaceTags(LocaleController.formatString(R.string.LimitReachedReorderFolder, LocaleController.getString(R.string.FilterAllChats))), LocaleController.getString(R.string.PremiumMore), Bulletin.DURATION_PROLONG, () -> {
@@ -3716,7 +3720,7 @@ public class DialogsActivity extends BaseFragment implements NotificationCenter.
 
                 @Override
                 public int getTabCounter(int tabId) {
-                    if (NaConfig.INSTANCE.getIgnoreFolderCount().Bool()) {
+                    if (AxConfig.INSTANCE.getIgnoreFolderCount().Bool()) {
                         return 0;
                     }
 
@@ -3852,7 +3856,7 @@ public class DialogsActivity extends BaseFragment implements NotificationCenter.
                             .add(R.drawable.msg_edit, defaultTab ? LocaleController.getString(R.string.FilterEditAll) : LocaleController.getString(R.string.FilterEdit), () -> {
                                 presentFragment(defaultTab ? new FiltersSetupActivity() : new FilterCreateActivity(dialogFilter));
                             })
-                            .addIf(!NaConfig.INSTANCE.getHideFilterMuteAll().Bool() && dialogFilter != null && !dialogs.isEmpty(), muteAll ? R.drawable.msg_mute : R.drawable.msg_unmute, muteAll ? LocaleController.getString(R.string.FilterMuteAll) : LocaleController.getString(R.string.FilterUnmuteAll), () -> {
+                            .addIf(!AxConfig.INSTANCE.getHideFilterMuteAll().Bool() && dialogFilter != null && !dialogs.isEmpty(), muteAll ? R.drawable.msg_mute : R.drawable.msg_unmute, muteAll ? LocaleController.getString(R.string.FilterMuteAll) : LocaleController.getString(R.string.FilterUnmuteAll), () -> {
                                 int count = 0;
                                 for (int i = 0; i < dialogs.size(); ++i) {
                                     TLRPC.Dialog dialog = dialogs.get(i);
@@ -4350,7 +4354,7 @@ public class DialogsActivity extends BaseFragment implements NotificationCenter.
                             if (canShowHiddenArchive != canShowInternal) {
                                 canShowHiddenArchive = canShowInternal;
                                 if (viewPage.archivePullViewState == ARCHIVE_ITEM_STATE_HIDDEN) {
-                                    if (!NekoConfig.disableVibration.Bool()) {
+                                    if (!AxCoreConfig.disableVibration.Bool()) {
                                         try {
                                             viewPage.listView.performHapticFeedback(HapticFeedbackConstants.KEYBOARD_TAP, HapticFeedbackConstants.FLAG_IGNORE_GLOBAL_SETTING);
                                         } catch (Exception ignored) {}
@@ -5221,7 +5225,7 @@ public class DialogsActivity extends BaseFragment implements NotificationCenter.
                     BotWebViewVibrationEffect.APP_ERROR.vibrate();
                     return;
                 }
-                if (!NekoConfig.disableVibration.Bool()) {
+                if (!AxCoreConfig.disableVibration.Bool()) {
                     try {
                         view.performHapticFeedback(HapticFeedbackConstants.LONG_PRESS);
                     } catch (Exception ignored) {}
@@ -5642,12 +5646,12 @@ public class DialogsActivity extends BaseFragment implements NotificationCenter.
             contentView.addView(topPanelLayout, LayoutHelper.createFrame(LayoutHelper.MATCH_PARENT, LayoutHelper.WRAP_CONTENT, Gravity.TOP, 0, -14, 0, 0));
         }
 
+        // AxGram: раньше здесь с некоторой вероятностью резолвились каналы
+        // исходного форка (@nagram_channel, @NagramTips) и показывалось
+        // предложение на них подписаться. Реклама чужого проекта из нашей
+        // сборки убрана; проверка настроек приватности оставлена.
         if (new Random().nextInt(100) < 50)
             PrivacyUtil.postCheckAll(getParentActivity(), currentAccount);
-        else if (new Random().nextInt(100) < 20) {
-            UpdateUtil.postCheckFollowChannel(getParentActivity(), currentAccount);
-            UpdateUtil.postCheckFollowTipsChannel(getParentActivity(), currentAccount);
-        }
 
         updateStoriesVisibility(false);
 
@@ -5735,7 +5739,7 @@ public class DialogsActivity extends BaseFragment implements NotificationCenter.
                     return false;
                 }
 
-                if (actionBarHeightNoSearch < scrollY && scrollY < actionBarHeight && !NekoConfig.disablePullDownSearch.Bool()) {
+                if (actionBarHeightNoSearch < scrollY && scrollY < actionBarHeight && !AxCoreConfig.disablePullDownSearch.Bool()) {
                     int h = dp(SEARCH_FIELD_HEIGHT);
                     int s = scrollY - actionBarHeightNoSearch;
                     if (s < h / 2) {
@@ -5765,7 +5769,7 @@ public class DialogsActivity extends BaseFragment implements NotificationCenter.
     }
 
     private int searchFieldHeight() {
-        return NekoConfig.disablePullDownSearch.Bool() ? 0 : dp(SEARCH_FIELD_HEIGHT);
+        return AxCoreConfig.disablePullDownSearch.Bool() ? 0 : dp(SEARCH_FIELD_HEIGHT);
     }
 
     private int getMaxScrollYOffsetWithoutSearch() {
@@ -6022,7 +6026,7 @@ public class DialogsActivity extends BaseFragment implements NotificationCenter.
                 MessagesController.getInstance(currentAccount).removeSuggestion(0, "SETUP_PASSKEY");
                 updateDialogsHint();
             });
-        } else if (folderId == 0 && getMessagesController().pendingSuggestions.contains("PREMIUM_GRACE") && !NaConfig.INSTANCE.getDisablePremiumExpiring().Bool()) {
+        } else if (folderId == 0 && getMessagesController().pendingSuggestions.contains("PREMIUM_GRACE") && !AxConfig.INSTANCE.getDisablePremiumExpiring().Bool()) {
             dialogsHintCellVisible = true;
             dialogsHintCell.setOnClickListener(v -> {
                 Browser.openUrl(getContext(), getMessagesController().premiumManageSubscriptionUrl);
@@ -6054,7 +6058,7 @@ public class DialogsActivity extends BaseFragment implements NotificationCenter.
                 MessagesController.getInstance(currentAccount).removeSuggestion(0, suggestion.suggestion);
                 updateDialogsHint();
             });
-        } else if (isStarsSubscriptionHintVisible() && !NaConfig.INSTANCE.getDisableStarsSubscription().Bool()) {
+        } else if (isStarsSubscriptionHintVisible() && !AxConfig.INSTANCE.getDisableStarsSubscription().Bool()) {
             StarsController c = StarsController.getInstance(currentAccount);
             dialogsHintCellVisible = true;
             StringBuilder s = new StringBuilder();
@@ -6092,7 +6096,7 @@ public class DialogsActivity extends BaseFragment implements NotificationCenter.
                 MessagesController.getInstance(currentAccount).removeSuggestion(0, "STARS_SUBSCRIPTION_LOW_BALANCE");
                 updateDialogsHint();
             });
-        } else if (folderId == 0 && !getMessagesController().premiumPurchaseBlocked() && BirthdayController.getInstance(currentAccount).contains() && !getMessagesController().dismissedSuggestions.contains("BIRTHDAY_CONTACTS_TODAY") && !NaConfig.INSTANCE.getDisableBirthdayContact().Bool()) {
+        } else if (folderId == 0 && !getMessagesController().premiumPurchaseBlocked() && BirthdayController.getInstance(currentAccount).contains() && !getMessagesController().dismissedSuggestions.contains("BIRTHDAY_CONTACTS_TODAY") && !AxConfig.INSTANCE.getDisableBirthdayContact().Bool()) {
             BirthdayController.BirthdayState state = BirthdayController.getInstance(currentAccount).getState();
             ArrayList<TLRPC.User> users = state.today;
             dialogsHintCellVisible = true;
@@ -6199,7 +6203,7 @@ public class DialogsActivity extends BaseFragment implements NotificationCenter.
                     .setDuration(Bulletin.DURATION_PROLONG)
                     .show();
             });
-        } else if (isPremiumChristmasHintVisible() && !NaConfig.INSTANCE.getDisablePremiumChristmas().Bool()) {
+        } else if (isPremiumChristmasHintVisible() && !AxConfig.INSTANCE.getDisablePremiumChristmas().Bool()) {
             dialogsHintCellVisible = true;
             dialogsHintCell.setOnClickListener(v -> UserSelectorBottomSheet.open());
             dialogsHintCell.setText(Emoji.replaceEmoji(AndroidUtilities.replaceSingleTag(
@@ -6216,7 +6220,7 @@ public class DialogsActivity extends BaseFragment implements NotificationCenter.
                         .setDuration(Bulletin.DURATION_PROLONG)
                         .show();
             });
-        } else if (isPremiumRestoreHintVisible() && !NaConfig.INSTANCE.getDisablePremiumRestore().Bool()) {
+        } else if (isPremiumRestoreHintVisible() && !AxConfig.INSTANCE.getDisablePremiumRestore().Bool()) {
             dialogsHintCellVisible = true;
             dialogsHintCell.setOnClickListener(v -> {
                 presentFragment(new PremiumPreviewFragment("dialogs_hint").setSelectAnnualByDefault());
@@ -6234,7 +6238,7 @@ public class DialogsActivity extends BaseFragment implements NotificationCenter.
                     ),
                     LocaleController.getString(R.string.RestorePremiumHintMessage)
             );
-        } else if (isPremiumHintVisible() && !NaConfig.INSTANCE.getDisablePremiumUpgrade().Bool()) {
+        } else if (isPremiumHintVisible() && !AxConfig.INSTANCE.getDisablePremiumUpgrade().Bool()) {
             dialogsHintCellVisible = true;
             dialogsHintCell.setOnClickListener(v -> {
                 presentFragment(new PremiumPreviewFragment("dialogs_hint").setSelectAnnualByDefault());
@@ -6869,7 +6873,7 @@ public class DialogsActivity extends BaseFragment implements NotificationCenter.
                     animatedUpdateItems = false;
                 }
                 canShowFilterTabsView = true;
-                boolean updateCurrentTab = filterTabsView.isEmpty() || NekoConfig.hideAllTab.Bool();
+                boolean updateCurrentTab = filterTabsView.isEmpty() || AxCoreConfig.hideAllTab.Bool();
                 updateFilterTabsVisibility(animated);
                 int id = filterTabsView.getCurrentTabId();
                 int stableId = filterTabsView.getCurrentTabStableId();
@@ -6888,7 +6892,7 @@ public class DialogsActivity extends BaseFragment implements NotificationCenter.
                         filterTabsView.addTab(a, filter.localId, filter.name, filter.emoticon == null ? "\uD83D\uDCAC" : filter.emoticon, filter.entities, filter.title_noanimate, false, filters.get(a).locked);
                     }
                 }
-                if (NekoConfig.hideAllTab.Bool() && stableId <= 0) {
+                if (AxCoreConfig.hideAllTab.Bool() && stableId <= 0) {
                     id = filterTabsView.getFirstTabId();
                     updateCurrentTab = true;
                     viewPages[0].selectedType = id;
@@ -7030,6 +7034,13 @@ public class DialogsActivity extends BaseFragment implements NotificationCenter.
     @Override
     public void onResume() {
         super.onResume();
+        // AxGram: редкое ненавязчивое напоминание о канале и боте поддержки.
+        // Показывается плашкой снизу, не чаще раза в трое суток и не раньше
+        // трёх дней после установки; отключается в настройках AxGram.
+        if (folderId == 0 && !onlySelect) {
+            AndroidUtilities.runOnUIThread(
+                    () -> one.axgram.core.helpers.AxPromoHelper.maybeShow(this), 1500);
+        }
         if (dialogStoriesCell != null) {
             dialogStoriesCell.onResume();
         }
@@ -7209,7 +7220,7 @@ public class DialogsActivity extends BaseFragment implements NotificationCenter.
         updateVisibleRows(0, false);
         updateProxyButton(false, true);
         updateStoriesVisibility(false);
-        if (NaConfig.INSTANCE.getDisableDialogsFloatingButton().Bool()) {
+        if (AxConfig.INSTANCE.getDisableDialogsFloatingButton().Bool()) {
             floatingButtonHidden = false;
             hideFloatingButton(true);
         }
@@ -7315,7 +7326,7 @@ public class DialogsActivity extends BaseFragment implements NotificationCenter.
             }
             return false;
         } else if (filterTabsView != null && filterTabsView.getVisibility() == View.VISIBLE && !tabsAnimationInProgress && !filterTabsView.isAnimatingIndicator() && filterTabsView.getCurrentTabId() != filterTabsView.getFirstTabId() && !startedTracking && !filterTabsView.isFirstTabSelected()) {
-            if (!NekoConfig.hideAllTab.Bool()) {
+            if (!AxCoreConfig.hideAllTab.Bool()) {
                 if (invoked) filterTabsView.selectFirstTab();
                 return false;
             }
@@ -8396,12 +8407,12 @@ public class DialogsActivity extends BaseFragment implements NotificationCenter.
     }
 
     private void onArchiveLongPress(View view) {
-        if (!NekoConfig.disableVibration.Bool()) {
+        if (!AxCoreConfig.disableVibration.Bool()) {
             try {
                 view.performHapticFeedback(HapticFeedbackConstants.LONG_PRESS, HapticFeedbackConstants.FLAG_IGNORE_GLOBAL_SETTING);
             } catch (Exception ignored) {}
         }
-        BottomSheet.NekoXBuilder builder = new BottomSheet.NekoXBuilder(getParentActivity());
+        BottomSheet.AxAlertBuilder builder = new BottomSheet.AxAlertBuilder(getParentActivity());
         final boolean hasUnread = getMessagesStorage().getArchiveUnreadCount() != 0;
 
         int[] icons = new int[]{
@@ -8821,7 +8832,7 @@ public class DialogsActivity extends BaseFragment implements NotificationCenter.
         }
     }
 
-    public boolean storiesEnabled = !NaConfig.INSTANCE.getDisableStories().Bool();
+    public boolean storiesEnabled = !AxConfig.INSTANCE.getDisableStories().Bool();
     private void updateStoriesPosting() {
         final boolean storiesEnabled = getMessagesController().storiesEnabled();
         if (this.storiesEnabled != storiesEnabled) {
@@ -8935,7 +8946,7 @@ public class DialogsActivity extends BaseFragment implements NotificationCenter.
             }
             if (isOpen && afterSignup) {
                 try {
-                    if (!NekoConfig.disableVibration.Bool())
+                    if (!AxCoreConfig.disableVibration.Bool())
                         fragmentView.performHapticFeedback(HapticFeedbackConstants.KEYBOARD_TAP, HapticFeedbackConstants.FLAG_IGNORE_GLOBAL_SETTING);
                 } catch (Exception ignored) {}
                 if (getParentActivity() instanceof LaunchActivity) {
@@ -9174,7 +9185,7 @@ public class DialogsActivity extends BaseFragment implements NotificationCenter.
             int maxPinnedCount;
             if (containsFilter) {
                 maxPinnedCount = 100 - filter.alwaysShow.size();
-            } else if (NekoConfig.unlimitedPinnedDialogs.Bool() || folderId != 0 || filter != null) {
+            } else if (AxCoreConfig.unlimitedPinnedDialogs.Bool() || folderId != 0 || filter != null) {
                 if (UserConfig.getInstance(currentAccount).isPremium()) {
                     maxPinnedCount = getMessagesController().maxFolderPinnedDialogsCountPremium;
                 } else {
@@ -10147,7 +10158,7 @@ public class DialogsActivity extends BaseFragment implements NotificationCenter.
                 break;
             }
         }
-        if (NaConfig.INSTANCE.getAlwaysShowDownloadIcon().Bool()) {
+        if (AxConfig.INSTANCE.getAlwaysShowDownloadIcon().Bool()) {
             showDownloads = true;
         }
         if ((getDownloadController().hasUnviewedDownloads() || showDownloads || (downloadsItem.getVisibility() == View.VISIBLE && downloadsItem.getAlpha() == 1 && !force))) {
@@ -11046,7 +11057,7 @@ public class DialogsActivity extends BaseFragment implements NotificationCenter.
     boolean floatingButtonHidden;
 
     private void hideFloatingButton(boolean hide) {
-        if (NaConfig.INSTANCE.getDisableDialogsFloatingButton().Bool()) {
+        if (AxConfig.INSTANCE.getDisableDialogsFloatingButton().Bool()) {
             hide = true;
         }
 
@@ -13387,7 +13398,7 @@ public class DialogsActivity extends BaseFragment implements NotificationCenter.
     }
 
     private void openStoriesRecorder() {
-        if (!storiesEnabled && !NaConfig.INSTANCE.getDisableStories().Bool()) {
+        if (!storiesEnabled && !AxConfig.INSTANCE.getDisableStories().Bool()) {
             if (storyPremiumHint != null) {
                 if (storyPremiumHint.shown()) {
                     return;
@@ -13471,7 +13482,7 @@ public class DialogsActivity extends BaseFragment implements NotificationCenter.
 
                 Bulletin.make(DialogsActivity.this, layout, duration).show();
                 try {
-                    if (!NekoConfig.disableVibration.Bool())
+                    if (!AxCoreConfig.disableVibration.Bool())
                     fragmentView.performHapticFeedback(HapticFeedbackConstants.KEYBOARD_TAP, HapticFeedbackConstants.FLAG_IGNORE_GLOBAL_SETTING);
                 } catch (Exception ignored) {}
 
@@ -13530,7 +13541,7 @@ public class DialogsActivity extends BaseFragment implements NotificationCenter.
             } else {
                 isCurrentThemeDark = Theme.isCurrentThemeDark();
             }
-            if (NaConfig.INSTANCE.getCustomDialogsMenuTheme().Bool()) {
+            if (AxConfig.INSTANCE.getCustomDialogsMenuTheme().Bool()) {
             io.add(isCurrentThemeDark ? R.drawable.menu_day_mode_24 : R.drawable.menu_night_mode_24,
                     getString(isCurrentThemeDark ? R.string.SwitchThemeToDay : R.string.SwitchThemeToNight), () -> {
                 if (switchingTheme) {
@@ -13568,21 +13579,21 @@ public class DialogsActivity extends BaseFragment implements NotificationCenter.
             });
             io.addGap();
             }
-            io.addIf(NaConfig.INSTANCE.getShowRecentChatsInSidebar().Bool(), R.drawable.msg2_autodelete, LocaleController.getString(R.string.RecentChats), () -> {
-                presentFragment(new tw.nekomimi.nekogram.ChatHistoryActivity());
+            io.addIf(AxConfig.INSTANCE.getShowRecentChatsInSidebar().Bool(), R.drawable.msg2_autodelete, LocaleController.getString(R.string.RecentChats), () -> {
+                presentFragment(new one.axgram.core.ChatHistoryActivity());
             });
-            io.addIf(NaConfig.INSTANCE.getCustomDialogsMenuNewGroup().Bool(), R.drawable.outline_groups_24, getString(R.string.NewGroup), () -> {
+            io.addIf(AxConfig.INSTANCE.getCustomDialogsMenuNewGroup().Bool(), R.drawable.outline_groups_24, getString(R.string.NewGroup), () -> {
                 Bundle args = new Bundle();
                 presentFragment(new GroupCreateActivity(args));
             });
-            io.addIf(NaConfig.INSTANCE.getCustomDialogsMenuNewMessage().Bool(), R.drawable.outline_groups_24, getString(R.string.NewMessageTitle), this::openWriteContacts);
-            io.addIf(NaConfig.INSTANCE.getCustomDialogsMenuSavedMessages().Bool(), R.drawable.outline_saved_24, getString(R.string.SavedMessages), () -> {
+            io.addIf(AxConfig.INSTANCE.getCustomDialogsMenuNewMessage().Bool(), R.drawable.outline_groups_24, getString(R.string.NewMessageTitle), this::openWriteContacts);
+            io.addIf(AxConfig.INSTANCE.getCustomDialogsMenuSavedMessages().Bool(), R.drawable.outline_saved_24, getString(R.string.SavedMessages), () -> {
                 Bundle args = new Bundle();
                 args.putLong("user_id", UserConfig.getInstance(currentAccount).getClientUserId());
                 presentFragment(new ChatActivity(args));
             });
-            io.addIf(NekoConfig.showGhostToggleInDrawer, R.drawable.icon_ghost, getString(R.string.GhostMode), () -> {
-                presentFragment(new NekoGhostModeActivity());
+            io.addIf(AxCoreConfig.showGhostToggleInDrawer, R.drawable.icon_ghost, getString(R.string.GhostMode), () -> {
+                presentFragment(new AxGhostModeActivity());
             });
             if (ApplicationLoader.applicationLoaderInstance != null) {
                 ApplicationLoader.applicationLoaderInstance.addItemOptions(io);
@@ -13611,7 +13622,7 @@ public class DialogsActivity extends BaseFragment implements NotificationCenter.
                     }
                 }
             }
-            boolean noMainTabs = NaConfig.INSTANCE.getMainTabsStyle().Int() == MainTabsStyle.DISABLE.getValue() || NaConfig.INSTANCE.getCustomDialogsMenuSettings().Bool();
+            boolean noMainTabs = AxConfig.INSTANCE.getMainTabsStyle().Int() == MainTabsStyle.DISABLE.getValue() || AxConfig.INSTANCE.getCustomDialogsMenuSettings().Bool();
             if (getUserConfig().showCallsTab || noMainTabs) {
                 io.add(R.drawable.msg_settings_old, getString(R.string.Settings), () -> {
                     presentFragment(new SettingsActivity());
@@ -13632,13 +13643,13 @@ public class DialogsActivity extends BaseFragment implements NotificationCenter.
                 final boolean proxyVisible = proxyEnabled && !TextUtils.isEmpty(proxyAddress)
                         || getMessagesController().blockedCountry && !SharedConfig.proxyList.isEmpty();
 
-                if (proxyVisible && NaConfig.INSTANCE.getCustomDialogsMenuProxy().Bool()) {
+                if (proxyVisible && AxConfig.INSTANCE.getCustomDialogsMenuProxy().Bool()) {
                     io.addGap();
                     io.add(proxyMenuSubItem);
                 }
             }
 
-            if (NaConfig.INSTANCE.getCustomDialogsMenuAccount().Bool()) {
+            if (AxConfig.INSTANCE.getCustomDialogsMenuAccount().Bool()) {
                 io.addGap();
                 MainTabsActivity.makeAccountSelector(this, currentAccount, io);
             }
@@ -13878,7 +13889,7 @@ public class DialogsActivity extends BaseFragment implements NotificationCenter.
         }
 
         final int maxScrollWithoutSearch = getMaxScrollYOffsetWithoutSearch();
-        final float alphaByScrollOffset = NekoConfig.disablePullDownSearch.Bool() ? 0 : 1f - MathUtils.clamp((-scrollYOffset - maxScrollWithoutSearch) / dp(SEARCH_FIELD_HEIGHT), 0, 1);
+        final float alphaByScrollOffset = AxCoreConfig.disablePullDownSearch.Bool() ? 0 : 1f - MathUtils.clamp((-scrollYOffset - maxScrollWithoutSearch) / dp(SEARCH_FIELD_HEIGHT), 0, 1);
 
         final float actionModeVisible = Math.max(progressToActionMode, animatorActionModeVisible.getFloatValue());
         final float searchFieldVisible = animatorSearchVisible.getFloatValue();

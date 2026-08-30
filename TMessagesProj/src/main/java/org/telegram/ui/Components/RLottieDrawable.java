@@ -49,7 +49,7 @@ import java.util.HashMap;
 import java.util.concurrent.CountDownLatch;
 import java.util.concurrent.atomic.AtomicInteger;
 
-import tw.nekomimi.nekogram.NekoConfig;
+import one.axgram.core.AxCoreConfig;
 
 public class RLottieDrawable extends BitmapDrawable implements Animatable, BitmapsCache.Cacheable {
 
@@ -1263,7 +1263,7 @@ public class RLottieDrawable extends BitmapDrawable implements Animatable, Bitma
             } else if (nextRenderingBitmap != null && (renderingBitmap == null || (timeDiff >= timeCheck && !skipFrameUpdate))) {
                 if (vibrationPattern != null && allowVibration) {
                     Integer force = vibrationPattern.get(currentFrame - 1);
-                    if (force != null && !NekoConfig.disableVibration.Bool()) {
+                    if (force != null && !AxCoreConfig.disableVibration.Bool()) {
                         try {
                             Activity activity = LaunchActivity.instance;
                             if (activity == null) activity = BubbleActivity.instance;

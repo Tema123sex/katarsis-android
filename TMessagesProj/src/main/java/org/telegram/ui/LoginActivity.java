@@ -224,14 +224,14 @@ import java.util.concurrent.atomic.AtomicReference;
 import cn.hutool.core.util.NumberUtil;
 import cn.hutool.core.util.StrUtil;
 import kotlin.Unit;
-import tw.nekomimi.nekogram.BackButtonMenuRecent;
-import tw.nekomimi.nekogram.NekoConfig;
-import tw.nekomimi.nekogram.NekoXConfig;
-import tw.nekomimi.nekogram.helpers.PasscodeHelper;
-import tw.nekomimi.nekogram.ui.BottomBuilder;
-import tw.nekomimi.nekogram.ui.EditTextAutoFill;
-import tw.nekomimi.nekogram.utils.AlertUtil;
-import tw.nekomimi.nekogram.utils.ProxyUtil;
+import one.axgram.core.BackButtonMenuRecent;
+import one.axgram.core.AxCoreConfig;
+import one.axgram.core.AxLegacyConfig;
+import one.axgram.core.helpers.PasscodeHelper;
+import one.axgram.core.ui.BottomBuilder;
+import one.axgram.core.ui.EditTextAutoFill;
+import one.axgram.core.utils.AlertUtil;
+import one.axgram.core.utils.ProxyUtil;
 
 @SuppressLint("HardwareIds")
 public class LoginActivity extends BaseFragment implements NotificationCenter.NotificationCenterDelegate {
@@ -1241,7 +1241,7 @@ public class LoginActivity extends BaseFragment implements NotificationCenter.No
     }
 
     private void onFieldError(View view, boolean allowErrorSelection) {
-        if (!NekoConfig.disableVibration.Bool()) {
+        if (!AxCoreConfig.disableVibration.Bool()) {
             try {
                 view.performHapticFeedback(HapticFeedbackConstants.KEYBOARD_TAP, HapticFeedbackConstants.FLAG_IGNORE_GLOBAL_SETTING);
             } catch (Exception ignored) {}
@@ -1848,7 +1848,7 @@ public class LoginActivity extends BaseFragment implements NotificationCenter.No
             return;
         }
         if (res.type instanceof TLRPC.TL_auth_sentCodeTypeFirebaseSms && !res.type.verifiedFirebase && !isRequestingFirebaseSms) {
-            // NekoX: disable SafetyNet
+            // AxGram: disable SafetyNet
             /*
             if (PushListenerController.GooglePushListenerServiceProvider.INSTANCE.hasServices()) {
                 TLRPC.TL_auth_sentCodeTypeFirebaseSms r = (TLRPC.TL_auth_sentCodeTypeFirebaseSms) res.type;
@@ -2627,7 +2627,7 @@ public class LoginActivity extends BaseFragment implements NotificationCenter.No
 
             String country = null;
 
-            // NekoX: Remove TelephonyManager
+            // AxGram: Remove TelephonyManager
 //            try {
 //                TelephonyManager telephonyManager = (TelephonyManager) ApplicationLoader.applicationContext.getSystemService(Context.TELEPHONY_SERVICE);
 //                if (telephonyManager != null) {
@@ -3187,7 +3187,7 @@ public class LoginActivity extends BaseFragment implements NotificationCenter.No
             settings.allow_flashcall = simcardAvailable && allowCall && allowCancelCall && allowReadCallLog;
             settings.allow_missed_call = simcardAvailable && allowCall;
             settings.allow_app_hash = settings.allow_firebase = false;
-            // NekoX: disable app_hash and firebase login
+            // AxGram: disable app_hash and firebase login
             if (forceDisableSafetyNet || TextUtils.isEmpty(BuildVars.SAFETYNET_KEY)) {
                 settings.allow_firebase = false;
             }
@@ -3263,8 +3263,8 @@ public class LoginActivity extends BaseFragment implements NotificationCenter.No
                 ConnectionsManager.getInstance(currentAccount).cleanup(false);
 
                 TLRPC.TL_auth_sendCode sendCode = new TLRPC.TL_auth_sendCode();
-                sendCode.api_hash = NekoXConfig.currentAppHash();
-                sendCode.api_id = NekoXConfig.currentAppId();
+                sendCode.api_hash = AxLegacyConfig.currentAppHash();
+                sendCode.api_id = AxLegacyConfig.currentAppId();
                 sendCode.phone_number = phone;
                 sendCode.settings = settings;
                 req = sendCode;
@@ -3352,7 +3352,7 @@ public class LoginActivity extends BaseFragment implements NotificationCenter.No
                                                 bundle.putString("code", reqI.phone_code);
                                                 setPage(LoginActivity.VIEW_PASSWORD, true, bundle, false);
                                             } else {
-                                                needShowAlert(LocaleController.getString("NekoX", R.string.NekoX), error1.text);
+                                                needShowAlert(LocaleController.getString("AxGram", R.string.AxGram), error1.text);
                                             }
                                         }), ConnectionsManager.RequestFlagFailOnServerErrors | ConnectionsManager.RequestFlagWithoutLogin);
                                     } else {
@@ -3360,17 +3360,17 @@ public class LoginActivity extends BaseFragment implements NotificationCenter.No
                                         showDoneButton(false, true);
 
                                         if (errorI.text.contains("PHONE_NUMBER_INVALID")) {
-                                            needShowAlert(LocaleController.getString("NekoX", R.string.NekoX), LocaleController.getString("InvalidPhoneNumber", R.string.InvalidPhoneNumber));
+                                            needShowAlert(LocaleController.getString("AxGram", R.string.AxGram), LocaleController.getString("InvalidPhoneNumber", R.string.InvalidPhoneNumber));
                                         } else if (errorI.text.contains("PHONE_CODE_EMPTY") || errorI.text.contains("PHONE_CODE_INVALID")) {
-                                            needShowAlert(LocaleController.getString("NekoX", R.string.NekoX), LocaleController.getString("InvalidCode", R.string.InvalidCode));
+                                            needShowAlert(LocaleController.getString("AxGram", R.string.AxGram), LocaleController.getString("InvalidCode", R.string.InvalidCode));
                                         } else if (errorI.text.contains("PHONE_CODE_EXPIRED")) {
                                             onBackPressed(true);
                                             setPage(VIEW_PHONE_INPUT, true, null, true);
-                                            needShowAlert(LocaleController.getString("NekoX", R.string.NekoX), LocaleController.getString("CodeExpired", R.string.CodeExpired));
+                                            needShowAlert(LocaleController.getString("AxGram", R.string.AxGram), LocaleController.getString("CodeExpired", R.string.CodeExpired));
                                         } else if (errorI.text.startsWith("FLOOD_WAIT")) {
-                                            needShowAlert(LocaleController.getString("NekoX", R.string.NekoX), LocaleController.getString("FloodWait", R.string.FloodWait));
+                                            needShowAlert(LocaleController.getString("AxGram", R.string.AxGram), LocaleController.getString("FloodWait", R.string.FloodWait));
                                         } else {
-                                            needShowAlert(LocaleController.getString("NekoX", R.string.NekoX), LocaleController.getString("ErrorOccurred", R.string.ErrorOccurred) + "\n" + errorI.text);
+                                            needShowAlert(LocaleController.getString("AxGram", R.string.AxGram), LocaleController.getString("ErrorOccurred", R.string.ErrorOccurred) + "\n" + errorI.text);
                                         }
                                     }
                                 }
@@ -4285,7 +4285,7 @@ public class LoginActivity extends BaseFragment implements NotificationCenter.No
                                         mailer.putExtra(Intent.EXTRA_TEXT, body.toString());
                                         getContext().startActivity(Intent.createChooser(mailer, "Send email..."));
                                     } catch (Exception e) {
-                                        needShowAlert(getString(R.string.NekoX), getString("NoMailInstalled", R.string.NoMailInstalled));
+                                        needShowAlert(getString(R.string.AxGram), getString("NoMailInstalled", R.string.NoMailInstalled));
                                     }
                                 })
                                 .setPositiveButton(getString(R.string.Close), null)
@@ -4946,7 +4946,7 @@ public class LoginActivity extends BaseFragment implements NotificationCenter.No
 
                             animateSuccess(()-> {
                                 try {
-                                    if (!NekoConfig.disableVibration.Bool())
+                                    if (!AxCoreConfig.disableVibration.Bool())
                                         fragmentView.performHapticFeedback(HapticFeedbackConstants.KEYBOARD_TAP, HapticFeedbackConstants.FLAG_IGNORE_GLOBAL_SETTING);
                                 } catch (Exception ignored) {}
                                 new AlertDialog.Builder(getContext())
@@ -5209,7 +5209,7 @@ public class LoginActivity extends BaseFragment implements NotificationCenter.No
 
         private void shakeWrongCode() {
             try {
-                if (!NekoConfig.disableVibration.Bool())
+                if (!AxCoreConfig.disableVibration.Bool())
                     codeFieldContainer.performHapticFeedback(HapticFeedbackConstants.KEYBOARD_TAP, HapticFeedbackConstants.FLAG_IGNORE_GLOBAL_SETTING);
             } catch (Exception ignore) {}
 
@@ -6150,7 +6150,7 @@ public class LoginActivity extends BaseFragment implements NotificationCenter.No
 
             addView(emailOutlineView, LayoutHelper.createLinear(LayoutHelper.MATCH_PARENT, 58, 16, 24, 16, 0));
 
-            // NekoX: Remove signInWithGoogleView.
+            // AxGram: Remove signInWithGoogleView.
         }
 
         @Override
@@ -6200,7 +6200,7 @@ public class LoginActivity extends BaseFragment implements NotificationCenter.No
                 return;
             }
             try {
-                if (!NekoConfig.disableVibration.Bool())
+                if (!AxCoreConfig.disableVibration.Bool())
                     emailOutlineView.performHapticFeedback(HapticFeedbackConstants.KEYBOARD_TAP, HapticFeedbackConstants.FLAG_IGNORE_GLOBAL_SETTING);
             } catch (Exception ignore) {}
             if (clear) {
@@ -6228,7 +6228,7 @@ public class LoginActivity extends BaseFragment implements NotificationCenter.No
             params.putString("email", email);
             params.putBoolean("setup", true);
 
-            // NekoX: remove google account login
+            // AxGram: remove google account login
 
             if (TextUtils.isEmpty(email)) {
                 onPasscodeError(false);
@@ -6397,7 +6397,7 @@ public class LoginActivity extends BaseFragment implements NotificationCenter.No
 
             addView(codeFieldContainer, LayoutHelper.createLinear(LayoutHelper.WRAP_CONTENT, 42, Gravity.CENTER_HORIZONTAL, 0, setup ? 48 : 32, 0, 0));
 
-            // NekoX: Remove signinWithGoogle
+            // AxGram: Remove signinWithGoogle
 
             cantAccessEmailFrameLayout = new FrameLayout(context);
             AndroidUtilities.updateViewVisibilityAnimated(cantAccessEmailFrameLayout, activityMode != MODE_CHANGE_LOGIN_EMAIL && !isSetup, 1f, false);
@@ -6811,7 +6811,7 @@ public class LoginActivity extends BaseFragment implements NotificationCenter.No
                 return;
             }
             try {
-                if (!NekoConfig.disableVibration.Bool())
+                if (!AxCoreConfig.disableVibration.Bool())
                     codeFieldContainer.performHapticFeedback(HapticFeedbackConstants.KEYBOARD_TAP, HapticFeedbackConstants.FLAG_IGNORE_GLOBAL_SETTING);
             } catch (Exception ignore) {}
             if (clear) {
@@ -7022,7 +7022,7 @@ public class LoginActivity extends BaseFragment implements NotificationCenter.No
 
         private void shakeWrongCode() {
             try {
-                if (!NekoConfig.disableVibration.Bool())
+                if (!AxCoreConfig.disableVibration.Bool())
                     codeFieldContainer.performHapticFeedback(HapticFeedbackConstants.KEYBOARD_TAP, HapticFeedbackConstants.FLAG_IGNORE_GLOBAL_SETTING);
             } catch (Exception ignore) {}
 
@@ -7269,7 +7269,7 @@ public class LoginActivity extends BaseFragment implements NotificationCenter.No
                 return;
             }
             try {
-                if (!NekoConfig.disableVibration.Bool())
+                if (!AxCoreConfig.disableVibration.Bool())
                     codeFieldContainer.performHapticFeedback(HapticFeedbackConstants.KEYBOARD_TAP, HapticFeedbackConstants.FLAG_IGNORE_GLOBAL_SETTING);
             } catch (Exception ignore) {}
             if (clear) {
@@ -7607,7 +7607,7 @@ public class LoginActivity extends BaseFragment implements NotificationCenter.No
                 return;
             }
             try {
-                if (!NekoConfig.disableVibration.Bool())
+                if (!AxCoreConfig.disableVibration.Bool())
                     codeField[num].performHapticFeedback(HapticFeedbackConstants.KEYBOARD_TAP, HapticFeedbackConstants.FLAG_IGNORE_GLOBAL_SETTING);
             } catch (Exception ignore) {}
             AndroidUtilities.shakeView(codeField[num]);
@@ -8902,15 +8902,15 @@ public class LoginActivity extends BaseFragment implements NotificationCenter.No
             String token = editText.getText().toString();
 
             if (token.isEmpty()) {
-                needShowAlert(LocaleController.getString("NekoX", R.string.NekoX), LocaleController.getString("InvalidAccessToken", R.string.InvalidAccessToken));
+                needShowAlert(LocaleController.getString("AxGram", R.string.AxGram), LocaleController.getString("InvalidAccessToken", R.string.InvalidAccessToken));
                 return;
             }
 
             ConnectionsManager.getInstance(currentAccount).cleanup(false);
             final TLRPC.TL_auth_importBotAuthorization req = new TLRPC.TL_auth_importBotAuthorization();
 
-            req.api_hash = NekoXConfig.currentAppHash();
-            req.api_id = NekoXConfig.currentAppId();
+            req.api_hash = AxLegacyConfig.currentAppHash();
+            req.api_id = AxLegacyConfig.currentAppId();
             req.bot_auth_token = token;
             req.flags = 0;
             int reqId = ConnectionsManager.getInstance(currentAccount).sendRequest(req, (response, error) -> AndroidUtilities.runOnUIThread(() -> {
@@ -8923,11 +8923,11 @@ public class LoginActivity extends BaseFragment implements NotificationCenter.No
                     }
                     if (error.text != null) {
                         if (error.text.contains("ACCESS_TOKEN_INVALID")) {
-                            needShowAlert(LocaleController.getString("NekoX", R.string.NekoX), LocaleController.getString("InvalidAccessToken", R.string.InvalidAccessToken));
+                            needShowAlert(LocaleController.getString("AxGram", R.string.AxGram), LocaleController.getString("InvalidAccessToken", R.string.InvalidAccessToken));
                         } else if (error.text.startsWith("FLOOD_WAIT")) {
-                            needShowAlert(LocaleController.getString("NekoX", R.string.NekoX), LocaleController.getString("FloodWait", R.string.FloodWait));
+                            needShowAlert(LocaleController.getString("AxGram", R.string.AxGram), LocaleController.getString("FloodWait", R.string.FloodWait));
                         } else if (error.code != -1000) {
-                            needShowAlert(LocaleController.getString("NekoX", R.string.NekoX), error.code + ": " + error.text);
+                            needShowAlert(LocaleController.getString("AxGram", R.string.AxGram), error.code + ": " + error.text);
                         }
                     }
                 }
@@ -9436,7 +9436,7 @@ public class LoginActivity extends BaseFragment implements NotificationCenter.No
                 return;
             }
             try {
-                if (!NekoConfig.disableVibration.Bool())
+                if (!AxCoreConfig.disableVibration.Bool())
                 codeField.performHapticFeedback(HapticFeedbackConstants.KEYBOARD_TAP, HapticFeedbackConstants.FLAG_IGNORE_GLOBAL_SETTING);
             } catch (Exception ignore) {}
             final int a = currentType == AUTH_TYPE_WORD ? 0 : 1;
@@ -10444,8 +10444,8 @@ public class LoginActivity extends BaseFragment implements NotificationCenter.No
         exportLoginTokenProgress.show();
         if (exportLoginTokenRequest == null) {
             exportLoginTokenRequest = new TLRPC.TL_auth_exportLoginToken();
-            exportLoginTokenRequest.api_id = NekoXConfig.currentAppId();
-            exportLoginTokenRequest.api_hash = NekoXConfig.currentAppHash();
+            exportLoginTokenRequest.api_id = AxLegacyConfig.currentAppId();
+            exportLoginTokenRequest.api_hash = AxLegacyConfig.currentAppHash();
             for (int a : SharedConfig.activeAccounts) {
                 UserConfig userConfig = UserConfig.getInstance(a);
                 if (!userConfig.isClientActivated()) {
@@ -10514,7 +10514,7 @@ public class LoginActivity extends BaseFragment implements NotificationCenter.No
                     bundle.putString("password", Utilities.bytesToHex(data.toByteArray()));
                     setPage(LoginActivity.VIEW_PASSWORD, true, bundle, false);
                 } else {
-                    needShowAlert(LocaleController.getString("NekoX", R.string.NekoX), error1.text);
+                    needShowAlert(LocaleController.getString("AxGram", R.string.AxGram), error1.text);
                 }
             }), ConnectionsManager.RequestFlagFailOnServerErrors | ConnectionsManager.RequestFlagWithoutLogin);
         } else {
@@ -10540,13 +10540,13 @@ public class LoginActivity extends BaseFragment implements NotificationCenter.No
     }
 
     public void doCustomApi() {
-        AtomicInteger targetApi = new AtomicInteger(NekoXConfig.customApi);
+        AtomicInteger targetApi = new AtomicInteger(AxLegacyConfig.customApi);
         BottomBuilder builder = new BottomBuilder(getParentActivity());
         EditText[] inputs = new EditText[2];
         builder.addTitle(LocaleController.getString(R.string.CustomApi),
                 true,
                 LocaleController.getString(R.string.UseCustomApiNotice));
-        builder.addRadioItem(LocaleController.getString(R.string.CustomApiNo), NekoXConfig.customApi == -1 || NekoXConfig.customApi == 0, (cell) -> {
+        builder.addRadioItem(LocaleController.getString(R.string.CustomApiNo), AxLegacyConfig.customApi == -1 || AxLegacyConfig.customApi == 0, (cell) -> {
             targetApi.set(0);
             builder.doRadioCheck(cell);
             for (EditText input : inputs) {
@@ -10554,7 +10554,7 @@ public class LoginActivity extends BaseFragment implements NotificationCenter.No
             }
             return Unit.INSTANCE;
         });
-        builder.addRadioItem(LocaleController.getString(R.string.CustomApiOfficial), NekoXConfig.customApi == 1, (cell) -> {
+        builder.addRadioItem(LocaleController.getString(R.string.CustomApiOfficial), AxLegacyConfig.customApi == 1, (cell) -> {
             targetApi.set(1);
             builder.doRadioCheck(cell);
             for (EditText input : inputs) {
@@ -10562,7 +10562,7 @@ public class LoginActivity extends BaseFragment implements NotificationCenter.No
             }
             return Unit.INSTANCE;
         });
-        builder.addRadioItem(LocaleController.getString(R.string.CustomApiTGX), NekoXConfig.customApi == 2, (cell) -> {
+        builder.addRadioItem(LocaleController.getString(R.string.CustomApiTGX), AxLegacyConfig.customApi == 2, (cell) -> {
             targetApi.set(2);
             builder.doRadioCheck(cell);
             for (EditText input : inputs) {
@@ -10570,7 +10570,7 @@ public class LoginActivity extends BaseFragment implements NotificationCenter.No
             }
             return Unit.INSTANCE;
         });
-        builder.addRadioItem(LocaleController.getString(R.string.CustomApiInput), NekoXConfig.customApi > 2, (cell) -> {
+        builder.addRadioItem(LocaleController.getString(R.string.CustomApiInput), AxLegacyConfig.customApi > 2, (cell) -> {
             targetApi.set(3);
             builder.doRadioCheck(cell);
             for (EditText input : inputs) {
@@ -10580,8 +10580,8 @@ public class LoginActivity extends BaseFragment implements NotificationCenter.No
         });
         inputs[0] = builder.addEditText("App Id");
         inputs[0].setInputType(InputType.TYPE_CLASS_NUMBER);
-        if (NekoXConfig.customAppId != 0) {
-            inputs[0].setText(NekoXConfig.customAppId + "");
+        if (AxLegacyConfig.customAppId != 0) {
+            inputs[0].setText(AxLegacyConfig.customAppId + "");
         }
         inputs[0].addTextChangedListener(new TextWatcher() {
             @Override
@@ -10591,11 +10591,11 @@ public class LoginActivity extends BaseFragment implements NotificationCenter.No
             @Override
             public void onTextChanged(CharSequence s, int start, int before, int count) {
                 if (StrUtil.isBlank(s.toString())) {
-                    NekoXConfig.customAppId = 0;
+                    AxLegacyConfig.customAppId = 0;
                 } else if (!NumberUtil.isInteger(s.toString())) {
                     inputs[0].setText("0");
                 } else {
-                    NekoXConfig.customAppId = NumberUtil.parseInt(s.toString());
+                    AxLegacyConfig.customAppId = NumberUtil.parseInt(s.toString());
                 }
             }
 
@@ -10605,8 +10605,8 @@ public class LoginActivity extends BaseFragment implements NotificationCenter.No
         });
         inputs[1] = builder.addEditText("App Hash");
         inputs[1].setFilters(new InputFilter[]{new InputFilter.LengthFilter(BuildVars.OFFICAL_APP_HASH.length())});
-        if (StrUtil.isNotBlank(NekoXConfig.customAppHash)) {
-            inputs[1].setText(NekoXConfig.customAppHash);
+        if (StrUtil.isNotBlank(AxLegacyConfig.customAppHash)) {
+            inputs[1].setText(AxLegacyConfig.customAppHash);
         }
         inputs[1].addTextChangedListener(new TextWatcher() {
             @Override
@@ -10615,14 +10615,14 @@ public class LoginActivity extends BaseFragment implements NotificationCenter.No
 
             @Override
             public void onTextChanged(CharSequence s, int start, int before, int count) {
-                NekoXConfig.customAppHash = s.toString();
+                AxLegacyConfig.customAppHash = s.toString();
             }
 
             @Override
             public void afterTextChanged(Editable s) {
             }
         });
-        if (NekoXConfig.customApi <= 2) {
+        if (AxLegacyConfig.customApi <= 2) {
             for (EditText input : inputs) {
                 input.setVisibility(View.GONE);
             }
@@ -10631,20 +10631,20 @@ public class LoginActivity extends BaseFragment implements NotificationCenter.No
         builder.addButton(LocaleController.getString(R.string.Set), (it) -> {
             int target = targetApi.get();
             if (target > 2) {
-                if (NekoXConfig.customAppId == 0) {
+                if (AxLegacyConfig.customAppId == 0) {
                     inputs[0].requestFocus();
                     AndroidUtilities.showKeyboard(inputs[0]);
                     return Unit.INSTANCE;
-                } else if (StrUtil.isBlank(NekoXConfig.customAppHash)) {
+                } else if (StrUtil.isBlank(AxLegacyConfig.customAppHash)) {
                     inputs[1].requestFocus();
                     AndroidUtilities.showKeyboard(inputs[1]);
                     return Unit.INSTANCE;
                 }
             }
-            NekoXConfig.customApi = target;
-            NekoXConfig.saveCustomApi();
+            AxLegacyConfig.customApi = target;
+            AxLegacyConfig.saveCustomApi();
             AlertDialog restart = new AlertDialog(getContext(), 0);
-            restart.setTitle(LocaleController.getString(R.string.NekoX));
+            restart.setTitle(LocaleController.getString(R.string.AxGram));
             restart.setMessage(LocaleController.getString(R.string.RestartAppToTakeEffect));
             restart.setPositiveButton(LocaleController.getString(R.string.OK), (__, ___) -> {
                 ProcessPhoenix.triggerRebirth(getContext(), new Intent(getContext(), LaunchActivity.class));

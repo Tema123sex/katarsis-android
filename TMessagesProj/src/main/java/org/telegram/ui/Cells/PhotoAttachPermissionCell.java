@@ -24,7 +24,7 @@ import org.telegram.ui.ActionBar.Theme;
 import org.telegram.ui.Components.ChatAttachAlertPhotoLayout;
 import org.telegram.ui.Components.LayoutHelper;
 
-import tw.nekomimi.nekogram.NekoXConfig;
+import one.axgram.core.AxLegacyConfig;
 
 public class PhotoAttachPermissionCell extends FrameLayout {
 

@@ -66,7 +66,7 @@ import org.telegram.ui.Components.RLottieDrawable;
 import org.telegram.ui.Components.Text;
 import org.telegram.ui.Stars.StarsIntroActivity;
 
-import xyz.nextalone.nagram.NaConfig;
+import one.axgram.extra.AxConfig;
 
 public class ShareDialogCell extends FrameLayout implements NotificationCenter.NotificationCenterDelegate {
 
@@ -452,7 +452,7 @@ public class ShareDialogCell extends FrameLayout implements NotificationCenter.N
         Theme.checkboxSquare_checkPaint.setAlpha((int) (checkBox.getProgress() * 255));
         int radius = dp(currentType == TYPE_CREATE ? 24 : 28);
         AndroidUtilities.rectTmp.set(cx - radius, cy - radius, cx + radius, cy + radius);
-        if (NaConfig.INSTANCE.getShowSquareAvatar().Bool()) {
+        if (AxConfig.INSTANCE.getShowSquareAvatar().Bool()) {
             canvas.drawRoundRect(AndroidUtilities.rectTmp, 0, 0, Theme.checkboxSquare_checkPaint);
         } else {
             canvas.drawRoundRect(AndroidUtilities.rectTmp, imageView.getRoundRadius()[0], imageView.getRoundRadius()[0], Theme.checkboxSquare_checkPaint);

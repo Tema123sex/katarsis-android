@@ -67,8 +67,8 @@ import org.telegram.ui.LaunchActivity;
 import java.io.File;
 import java.util.Collections;
 
-import tw.nekomimi.nekogram.NekoConfig;
-import xyz.nextalone.nagram.NaConfig;
+import one.axgram.core.AxCoreConfig;
+import one.axgram.extra.AxConfig;
 
 public class StoriesUtilities {
 
@@ -1319,7 +1319,7 @@ public class StoriesUtilities {
                         }
                         AndroidUtilities.runOnUIThread(longPressRunnable = () -> {
                             try {
-                                if (!NekoConfig.disableVibration.Bool())
+                                if (!AxCoreConfig.disableVibration.Bool())
                                 view.performHapticFeedback(HapticFeedbackConstants.LONG_PRESS);
                             } catch (Exception ignored) {}
                             if (buttonBounce != null) {

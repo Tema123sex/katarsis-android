@@ -73,8 +73,8 @@ import java.util.function.Consumer;
 
 import cn.hutool.core.util.NumberUtil;
 import cn.hutool.core.util.StrUtil;
-import tw.nekomimi.nekogram.NekoConfig;
-import tw.nekomimi.nekogram.database.ObjectBoxKt;
+import one.axgram.core.AxCoreConfig;
+import one.axgram.core.database.ObjectBoxKt;
 
 public class MessagesStorage extends BaseController {
 
@@ -2912,7 +2912,7 @@ public class MessagesStorage extends BaseController {
                         continue;
                     }
                     flags = filter.flags;
-                    if (NekoConfig.ignoreMutedCount.Bool() && (flags & MessagesController.DIALOG_FILTER_FLAG_EXCLUDE_MUTED) == 0) {
+                    if (AxCoreConfig.ignoreMutedCount.Bool() && (flags & MessagesController.DIALOG_FILTER_FLAG_EXCLUDE_MUTED) == 0) {
                         flags |= MessagesController.DIALOG_FILTER_FLAG_EXCLUDE_MUTED;
                     }
                 } else {
@@ -4375,6 +4375,34 @@ public class MessagesStorage extends BaseController {
 
     public void deleteDialog(long did, int messagesOnly) {
         storageQueue.postRunnable(() -> {
+            // === AxGram anti-delete: очистка истории идёт мимо markMessagesAsDeleted ===
+            // Когда собеседник очищает переписку «у обоих», сюда приходит удаление
+            // всего диалога целиком, а не список идентификаторов сообщений. Без
+            // этого перехвата вся история просто исчезала, хотя анти-удаление
+            // включено. Сохраняем сообщения до того, как их сотрут.
+            try {
+                org.telegram.SQLite.SQLiteCursor axCursor =
+                        database.queryFinalized("SELECT data FROM messages_v2 WHERE uid = " + did);
+                int axSaved = 0;
+                while (axCursor.next()) {
+                    NativeByteBuffer axData = axCursor.byteBufferValue(0);
+                    if (axData != null) {
+                        TLRPC.Message axMsg = TLRPC.Message.TLdeserialize(axData, axData.readInt32(false), false);
+                        axData.reuse();
+                        if (axMsg != null) {
+                            one.axgram.core.AxDeletedMessages.getInstance().saveMessage(currentAccount, did, axMsg);
+                            axSaved++;
+                        }
+                    }
+                }
+                axCursor.dispose();
+                if (axSaved > 0) {
+                    FileLog.d("AxGram: сохранено " + axSaved + " сообщений перед очисткой истории " + did);
+                }
+            } catch (Throwable axError) {
+                FileLog.e("AxGram clear-history: " + axError);
+            }
+            // === end AxGram ===
             SQLiteCursor cursor = null;
             SQLiteCursor cursor2 = null;
             SQLitePreparedStatement state5 = null;
@@ -6224,7 +6252,7 @@ public class MessagesStorage extends BaseController {
                 }
                 unreadCount = filter.pendingUnreadCount;
                 flags = filter.flags;
-                if (NekoConfig.ignoreMutedCount.Bool() && (flags & MessagesController.DIALOG_FILTER_FLAG_EXCLUDE_MUTED) == 0) {
+                if (AxCoreConfig.ignoreMutedCount.Bool() && (flags & MessagesController.DIALOG_FILTER_FLAG_EXCLUDE_MUTED) == 0) {
                     flags |= MessagesController.DIALOG_FILTER_FLAG_EXCLUDE_MUTED;
                 }
             } else {
@@ -13560,7 +13588,8 @@ public class MessagesStorage extends BaseController {
                     arrayList.add(cursor.intValue(0));
                 }
                 if (arrayList != null) {
-                    emptyMessagesMedia(dialogId, arrayList);
+                    // AxGram: keep self-destruct / one-time media instead of wiping it (anti-destruct).
+                    // emptyMessagesMedia(dialogId, arrayList);
                 }
                 cursor.dispose();
                 cursor = null;
@@ -13787,6 +13816,28 @@ public class MessagesStorage extends BaseController {
                 HashMap<TopicKey, int[]> topicsMessagesToUpdate = new HashMap<>();
                 LongSparseArray<ArrayList<Integer>> messagesByDialogs = new LongSparseArray<>();
                 String ids = TextUtils.join(",", messages);
+                // === AxGram anti-delete: save incoming messages before they are removed ===
+                try {
+                    org.telegram.SQLite.SQLiteCursor axCursor = dialogId != 0
+                            ? database.queryFinalized("SELECT uid, data FROM messages_v2 WHERE mid IN(" + ids + ") AND uid = " + dialogId)
+                            : database.queryFinalized("SELECT uid, data FROM messages_v2 WHERE mid IN(" + ids + ") AND is_channel = 0");
+                    while (axCursor.next()) {
+                        long axDid = axCursor.longValue(0);
+                        NativeByteBuffer axData = axCursor.byteBufferValue(1);
+                        if (axData != null) {
+                            TLRPC.Message axMsg = TLRPC.Message.TLdeserialize(axData, axData.readInt32(false), false);
+                            axData.reuse();
+                            if (axMsg != null) {
+                                // AxGram: save all deleted messages incl. our own (media etc.), so they persist after restart
+                                one.axgram.core.AxDeletedMessages.getInstance().saveMessage(currentAccount, axDid, axMsg);
+                            }
+                        }
+                    }
+                    axCursor.dispose();
+                } catch (Throwable axError) {
+                    FileLog.e("AxGram anti-delete: " + axError);
+                }
+                // === end AxGram ===
                 ArrayList<File> filesToDelete = new ArrayList<>();
                 ArrayList<String> namesToDelete = new ArrayList<>();
                 ArrayList<Pair<Long, Integer>> idsToDelete = new ArrayList<>();

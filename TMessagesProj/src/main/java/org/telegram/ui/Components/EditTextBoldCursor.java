@@ -78,8 +78,8 @@ import java.lang.reflect.Method;
 import java.util.ArrayList;
 import java.util.List;
 
-import xyz.nextalone.nagram.NaConfig;
-import xyz.nextalone.nagram.helper.SystemAiServiceHelper;
+import one.axgram.extra.AxConfig;
+import one.axgram.extra.helper.SystemAiServiceHelper;
 
 public class EditTextBoldCursor extends EditTextEffects {
 
@@ -1227,7 +1227,7 @@ public class EditTextBoldCursor extends EditTextEffects {
             };
             callback.onCreateActionMode(floatingActionMode, floatingActionMode.getMenu());
             extendActionMode(floatingActionMode, floatingActionMode.getMenu());
-            if (NaConfig.INSTANCE.getShowTextUndoRedo().Bool()) {
+            if (AxConfig.INSTANCE.getShowTextUndoRedo().Bool()) {
                 addUndoRedo(floatingActionMode.getMenu());
             }
             addHyperOsAi(floatingActionMode.getMenu());

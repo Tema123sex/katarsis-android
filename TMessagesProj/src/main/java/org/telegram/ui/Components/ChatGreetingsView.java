@@ -49,7 +49,7 @@ import org.telegram.ui.Stories.recorder.HintView2;
 
 import java.util.Locale;
 
-import tw.nekomimi.nekogram.NekoConfig;
+import one.axgram.core.AxCoreConfig;
 
 public class ChatGreetingsView extends LinearLayout {
 
@@ -256,7 +256,7 @@ public class ChatGreetingsView extends LinearLayout {
             stickerToSendView.setImage(ImageLocation.getForDocument(sticker), createFilter(sticker), ImageLocation.getForDocument(thumb, sticker), null, 0, sticker);
         }
         stickerToSendView.setOnClickListener(v -> {
-            if (NekoConfig.dontSendGreetingSticker.Bool())
+            if (AxCoreConfig.dontSendGreetingSticker.Bool())
                 return;
             if (listener != null) {
                 listener.onGreetings(sticker);

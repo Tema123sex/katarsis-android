@@ -78,10 +78,10 @@ import java.util.Collections;
 
 import me.vkryl.android.animator.BoolAnimator;
 import me.vkryl.android.animator.FactorAnimator;
-import tw.nekomimi.nekogram.BackButtonMenuRecent;
-import tw.nekomimi.nekogram.helpers.PasscodeHelper;
-import xyz.nextalone.nagram.MainTabsStyle;
-import xyz.nextalone.nagram.NaConfig;
+import one.axgram.core.BackButtonMenuRecent;
+import one.axgram.core.helpers.PasscodeHelper;
+import one.axgram.extra.MainTabsStyle;
+import one.axgram.extra.AxConfig;
 
 public class MainTabsActivity extends ViewPagerActivity implements NotificationCenter.NotificationCenterDelegate, FactorAnimator.Target {
     private static int TABS_COUNT = 5;
@@ -106,7 +106,7 @@ public class MainTabsActivity extends ViewPagerActivity implements NotificationC
     }
 
     private static boolean isEnabledSettingsSlide() {
-        return NaConfig.INSTANCE.getSidebarSettingsActivity().Bool();
+        return AxConfig.INSTANCE.getSidebarSettingsActivity().Bool();
     }
 
     private void initializeTabsConfiguration() {
@@ -307,7 +307,7 @@ public class MainTabsActivity extends ViewPagerActivity implements NotificationC
         tabs[INDEX_CALLS] = GlassTabView.createMainTab(context, resourceProvider, GlassTabView.TabAnimation.CALLS, R.string.MainTabsCalls);
         tabs[INDEX_PROFILE] = GlassTabView.createAvatar(context, resourceProvider, currentAccount, R.string.MainTabsProfile);
         tabs[INDEX_CHATS].setOnLongClickListener(v -> {
-            if (NaConfig.INSTANCE.getShowRecentChatsOnTabLongPress().Bool()) {
+            if (AxConfig.INSTANCE.getShowRecentChatsOnTabLongPress().Bool()) {
                 BackButtonMenuRecent.show(currentAccount, this, v);
                 return true;
             }
@@ -1021,7 +1021,7 @@ public class MainTabsActivity extends ViewPagerActivity implements NotificationC
     private class MainTabsActivityControllerImpl implements MainTabsActivityController {
         @Override
         public void setTabsVisible(boolean visible) {
-            visible = visible && NaConfig.INSTANCE.getMainTabsStyle().Int() != MainTabsStyle.DISABLE.getValue();
+            visible = visible && AxConfig.INSTANCE.getMainTabsStyle().Int() != MainTabsStyle.DISABLE.getValue();
             animatorTabsVisible.setValue(visible, true);
         }
     }
@@ -1138,6 +1138,6 @@ public class MainTabsActivity extends ViewPagerActivity implements NotificationC
     }
 
     private boolean isTextFreeMode() {
-        return NaConfig.INSTANCE.getMainTabsStyle().Int() == MainTabsStyle.TEXT_FREE.getValue();
+        return AxConfig.INSTANCE.getMainTabsStyle().Int() == MainTabsStyle.TEXT_FREE.getValue();
     }
 }

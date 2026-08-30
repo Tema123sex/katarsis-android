@@ -42,7 +42,7 @@ public class NotificationsService extends Service {
                 .setShowWhen(false)
                 .setOngoing(true)
                 .setSmallIcon(NotificationsController.getNotificationIconResId())
-                .setContentText(LocaleController.getString("NekoXPushService", R.string.NekoXPushService))
+                .setContentText(LocaleController.getString("AxPushService", R.string.AxPushService))
                 .build();
         try {
             startForeground(9999, notification);
@@ -54,7 +54,7 @@ public class NotificationsService extends Service {
     private void createNotificationChannel() {
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
             NotificationManager notificationManager = (NotificationManager) getSystemService(Context.NOTIFICATION_SERVICE);
-            NotificationChannel channel = new NotificationChannel(CHANNEL_ID, LocaleController.getString("NekoXPushService", R.string.NekoXPushService), NotificationManager.IMPORTANCE_DEFAULT);
+            NotificationChannel channel = new NotificationChannel(CHANNEL_ID, LocaleController.getString("AxPushService", R.string.AxPushService), NotificationManager.IMPORTANCE_DEFAULT);
             notificationManager.createNotificationChannel(channel);
         }
     }

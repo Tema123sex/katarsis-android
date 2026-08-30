@@ -237,12 +237,12 @@ import java.util.Locale;
 
 import cn.hutool.core.util.StrUtil;
 import kotlin.Unit;
-import tw.nekomimi.nekogram.ui.BottomBuilder;
-import tw.nekomimi.nekogram.NekoConfig;
-import tw.nekomimi.nekogram.parts.ArticleTransKt;
-import tw.nekomimi.nekogram.transtale.TranslateDb;
-import tw.nekomimi.nekogram.utils.AlertUtil;
-import tw.nekomimi.nekogram.utils.ProxyUtil;
+import one.axgram.core.ui.BottomBuilder;
+import one.axgram.core.AxCoreConfig;
+import one.axgram.core.parts.ArticleTransKt;
+import one.axgram.core.transtale.TranslateDb;
+import one.axgram.core.utils.AlertUtil;
+import one.axgram.core.utils.ProxyUtil;
 
 public class ArticleViewer implements NotificationCenter.NotificationCenterDelegate {
 
@@ -1358,7 +1358,7 @@ public class ArticleViewer implements NotificationCenter.NotificationCenterDeleg
             if (checkingForLongPress && windowView != null) {
                 checkingForLongPress = false;
                 if (pressedLink != null) {
-                    if (!NekoConfig.disableVibration.Bool()) {
+                    if (!AxCoreConfig.disableVibration.Bool()) {
                         try {
                             windowView.performHapticFeedback(HapticFeedbackConstants.LONG_PRESS, HapticFeedbackConstants.FLAG_IGNORE_GLOBAL_SETTING);
                         } catch (Exception ignored) {}
@@ -1375,14 +1375,14 @@ public class ArticleViewer implements NotificationCenter.NotificationCenterDeleg
                     } else {
                         textSelectionHelper.trySelect(pressedLinkOwnerView);
                     }
-                    if (textSelectionHelper.isInSelectionMode() && !NekoConfig.disableVibration.Bool()) {
+                    if (textSelectionHelper.isInSelectionMode() && !AxCoreConfig.disableVibration.Bool()) {
                         try {
                             windowView.performHapticFeedback(HapticFeedbackConstants.LONG_PRESS, HapticFeedbackConstants.FLAG_IGNORE_GLOBAL_SETTING);
                         } catch (Exception ignored) {
                         }
                     }
                 } else if (pressedLinkOwnerLayout != null && pressedLinkOwnerView != null) {
-                    if (!NekoConfig.disableVibration.Bool()) {
+                    if (!AxCoreConfig.disableVibration.Bool()) {
                         try {
                             windowView.performHapticFeedback(HapticFeedbackConstants.LONG_PRESS, HapticFeedbackConstants.FLAG_IGNORE_GLOBAL_SETTING);
                         } catch (Exception ignored) {}
@@ -12017,9 +12017,9 @@ public class ArticleViewer implements NotificationCenter.NotificationCenterDeleg
                 String currentUrl = AndroidUtilities.formapMapUrl(false, currentBlock.geo.lat, currentBlock.geo._long, (int) (photoWidth / AndroidUtilities.density), (int) (height / AndroidUtilities.density), true, 15);
                 WebFile currentWebFile = WebFile.createWithGeoPoint(currentBlock.geo, (int) (photoWidth / AndroidUtilities.density), (int) (height / AndroidUtilities.density), 15, Math.min(2, (int) Math.ceil(AndroidUtilities.density)));
 
-                if (NekoConfig.mapPreviewProvider.Int() == 0) {
+                if (AxCoreConfig.mapPreviewProvider.Int() == 0) {
                     currentMapProvider = 2;
-                } else if (NekoConfig.mapPreviewProvider.Int() == 1) {
+                } else if (AxCoreConfig.mapPreviewProvider.Int() == 1) {
                     currentMapProvider = 1;
                 } else {
                     currentMapProvider = -1;

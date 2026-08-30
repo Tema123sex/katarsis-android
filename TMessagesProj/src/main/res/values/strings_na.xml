@@ -1,5 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
+    <string name="AxDeletedMessages">Удалённые сообщения</string>
+    <string name="AxOnceMessages">Исчезающие сообщения</string>
     <string name="N_Config">N-Config</string>
     <string name="ForceCopy">Force Copy</string>
     <string name="disableSecondAddress">Disable Second Address Request</string>
@@ -20,11 +22,11 @@
     <string name="SendReactions">Send Reactions</string>
     <string name="ShowReactions">Show Reactions</string>
     <string name="CustomTitle">Custom Title</string>
-    <string name="CustomTitleHint">Leave blank to use Nagram</string>
+    <string name="CustomTitleHint">Leave blank to use AxGram</string>
     <string name="CodeSyntaxHighlight">Code syntax highlight</string>
     <string name="CreateMono">Create Monospace</string>
     <string name="CreateMonoLanguage">Code language</string>
-    <string name="CodeSyntaxHighlightDetails">Thanks to prismjs and Nekogram</string>
+    <string name="CodeSyntaxHighlightDetails">Thanks to prismjs and AxGram</string>
     <string name="UseSystemUnlock">Passcode Unlock use system ui</string>
     <string name="CopyPhoto">Copy Photo</string>
     <string name="PhotoCopied">Photo copied to Clipboard</string>
@@ -75,7 +77,7 @@
     <string name="IconDecoration">Icon Decoration</string>
     <string name="NotificationIcon">Notification Icon</string>
     <string name="Official">Official</string>
-    <string name="Nekogram">Nekogram</string>
+    <string name="AxGramLegacy">AxGram</string>
     <string name="HalloWeen">HalloWeen</string>
     <string name="ShowOnlineStatus">Show Online Status</string>
     <string name="ShowOnlineStatusNotice">Show the online status of other people next to their profile photo in groups</string>
@@ -90,7 +92,7 @@
     <string name="ShowForumAsNormalChat">Show forum as normal chat</string>
     <string name="DecorationNone">None</string>
     <string name="ChatDecoration">Chat Decoration</string>
-    <string name="NeedChangeNekoSettings">You need to change N-Settings</string>
+    <string name="NeedChangeAxSettings">You need to change N-Settings</string>
     <string name="DoNotUnarchiveBySwipe">Do not unarchive by swipe</string>
     <string name="DoNotShareMyPhoneNumber">Do not share my phone number</string>
     <string name="DefaultDeleteMenu">Default Delete Menu</string>

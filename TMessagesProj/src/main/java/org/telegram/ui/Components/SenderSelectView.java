@@ -24,7 +24,7 @@ import org.telegram.tgnet.TLObject;
 import org.telegram.tgnet.TLRPC;
 import org.telegram.ui.ActionBar.Theme;
 
-import xyz.nextalone.nagram.NaConfig;
+import one.axgram.extra.AxConfig;
 
 public class SenderSelectView extends View {
     private final static float SPRING_MULTIPLIER = 100f;
@@ -58,7 +58,7 @@ public class SenderSelectView extends View {
     private void updateColors() {
         backgroundPaint.setColor(Theme.getColor(Theme.key_chat_messagePanelVoiceBackground));
         menuPaint.setColor(Theme.getColor(Theme.key_chat_messagePanelVoicePressed));
-        int value = NaConfig.INSTANCE.getShowSquareAvatar().Bool() ? 0 : 16;
+        int value = AxConfig.INSTANCE.getShowSquareAvatar().Bool() ? 0 : 16;
         selectorDrawable = Theme.createSimpleSelectorRoundRectDrawable(AndroidUtilities.dp(value), Color.TRANSPARENT, Theme.getColor(Theme.key_windowBackgroundWhite));
         selectorDrawable.setCallback(this);
     }
@@ -102,7 +102,7 @@ public class SenderSelectView extends View {
 
         int alpha = (int) (menuProgress * 0xFF);
         backgroundPaint.setAlpha(alpha);
-        if (NaConfig.INSTANCE.getShowSquareAvatar().Bool()) {
+        if (AxConfig.INSTANCE.getShowSquareAvatar().Bool()) {
             AndroidUtilities.rectTmp.set(0, 0, getWidth(), getHeight());
             canvas.drawRoundRect(AndroidUtilities.rectTmp, 0, 0, backgroundPaint);
         } else {

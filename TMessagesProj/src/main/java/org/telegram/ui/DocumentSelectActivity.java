@@ -100,12 +100,12 @@ import java.util.concurrent.atomic.AtomicBoolean;
 
 import cn.hutool.core.collection.CollectionUtil;
 import kotlin.Unit;
-import tw.nekomimi.nekogram.utils.EnvUtil;
-import tw.nekomimi.nekogram.NekoConfig;
-import tw.nekomimi.nekogram.transtale.TranslateDb;
-import tw.nekomimi.nekogram.transtale.Translator;
-import tw.nekomimi.nekogram.transtale.TranslatorKt;
-import tw.nekomimi.nekogram.utils.AlertUtil;
+import one.axgram.core.utils.EnvUtil;
+import one.axgram.core.AxCoreConfig;
+import one.axgram.core.transtale.TranslateDb;
+import one.axgram.core.transtale.Translator;
+import one.axgram.core.transtale.TranslatorKt;
+import one.axgram.core.utils.AlertUtil;
 
 public class DocumentSelectActivity extends BaseFragment {
 
@@ -748,7 +748,7 @@ public class DocumentSelectActivity extends BaseFragment {
                             sendPopupWindow.dismiss();
                         }
                         if (num == 0) {
-                            translateComment(TranslateDb.getChatLanguage(chatId, TranslatorKt.getCode2Locale(NekoConfig.translateInputLang.String())));
+                            translateComment(TranslateDb.getChatLanguage(chatId, TranslatorKt.getCode2Locale(AxCoreConfig.translateInputLang.String())));
                         } else if (num == 1) {
                             AlertsCreator.createScheduleDatePickerDialog(getParentActivity(), chatActivity.getDialogId(), this::sendSelectedFiles);
                         } else if (num == 2) {
@@ -787,7 +787,7 @@ public class DocumentSelectActivity extends BaseFragment {
             view.getLocationInWindow(location);
             sendPopupWindow.showAtLocation(view, Gravity.LEFT | Gravity.TOP, location[0] + view.getMeasuredWidth() - sendPopupLayout.getMeasuredWidth() + AndroidUtilities.dp(8), location[1] - sendPopupLayout.getMeasuredHeight() - AndroidUtilities.dp(2));
             sendPopupWindow.dimBehind();
-            if (!NekoConfig.disableVibration.Bool()) {
+            if (!AxCoreConfig.disableVibration.Bool()) {
                 view.performHapticFeedback(HapticFeedbackConstants.KEYBOARD_TAP, HapticFeedbackConstants.FLAG_IGNORE_GLOBAL_SETTING);
             }
 
@@ -1309,7 +1309,7 @@ public class DocumentSelectActivity extends BaseFragment {
         if (getParentActivity() == null) {
             return;
         }
-        new AlertDialog.Builder(getParentActivity()).setTitle(LocaleController.getString("NekoX", R.string.NekoX)).setMessage(error).setPositiveButton(LocaleController.getString("OK", R.string.OK), null).show();
+        new AlertDialog.Builder(getParentActivity()).setTitle(LocaleController.getString("AxGram", R.string.AxGram)).setMessage(error).setPositiveButton(LocaleController.getString("OK", R.string.OK), null).show();
     }
 
     @SuppressLint("NewApi")

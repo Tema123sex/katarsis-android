@@ -71,9 +71,9 @@ import org.telegram.ui.Components.UndoView;
 
 import java.util.ArrayList;
 
-import tw.nekomimi.nekogram.folder.FolderIconHelper;
+import one.axgram.core.folder.FolderIconHelper;
 
-import tw.nekomimi.nekogram.NekoConfig;
+import one.axgram.core.AxCoreConfig;
 
 public class FiltersSetupActivity extends BaseFragment implements NotificationCenter.NotificationCenterDelegate {
 
@@ -1221,7 +1221,7 @@ public class FiltersSetupActivity extends BaseFragment implements NotificationCe
 
     protected void onDefaultTabMoved() {
         try {
-            if (!NekoConfig.disableVibration.Bool())
+            if (!AxCoreConfig.disableVibration.Bool())
                 fragmentView.performHapticFeedback(HapticFeedbackConstants.KEYBOARD_PRESS, HapticFeedbackConstants.FLAG_IGNORE_VIEW_SETTING);
         } catch (Exception ignore) {}
         BulletinFactory.of(this).createSimpleBulletin(R.raw.filter_reorder, AndroidUtilities.replaceTags(LocaleController.formatString("LimitReachedReorderFolder", R.string.LimitReachedReorderFolder, LocaleController.getString(R.string.FilterAllChats))), LocaleController.getString(R.string.PremiumMore), Bulletin.DURATION_PROLONG, () -> {

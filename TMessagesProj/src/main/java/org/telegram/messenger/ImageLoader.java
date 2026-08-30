@@ -88,8 +88,8 @@ import java.util.concurrent.ConcurrentHashMap;
 import java.util.stream.Stream;
 import java.util.zip.GZIPInputStream;
 
-import tw.nekomimi.nekogram.utils.EnvUtil;
-import tw.nekomimi.nekogram.utils.FileUtil;
+import one.axgram.core.utils.EnvUtil;
+import one.axgram.core.utils.FileUtil;
 
 /**
  * image filter types

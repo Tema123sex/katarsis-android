@@ -68,9 +68,9 @@ import org.telegram.ui.Components.URLSpanNoUnderline;
 import java.util.concurrent.atomic.AtomicReference;
 
 import kotlin.Unit;
-import tw.nekomimi.nekogram.NekoConfig;
-import tw.nekomimi.nekogram.ui.BottomBuilder;
-import xyz.nextalone.nagram.NaConfig;
+import one.axgram.core.AxCoreConfig;
+import one.axgram.core.ui.BottomBuilder;
+import one.axgram.extra.AxConfig;
 
 public class AboutLinkCell extends FrameLayout {
 
@@ -407,7 +407,7 @@ public class AboutLinkCell extends FrameLayout {
                     url = pressedLink.getSpan().toString();
                 }
 
-                if (!NekoConfig.disableVibration.Bool()) {
+                if (!AxCoreConfig.disableVibration.Bool()) {
                     try {
                         performHapticFeedback(HapticFeedbackConstants.LONG_PRESS, HapticFeedbackConstants.FLAG_IGNORE_GLOBAL_SETTING);
                     } catch (Exception ignore) {}
@@ -721,7 +721,7 @@ public class AboutLinkCell extends FrameLayout {
             textLayout = makeTextLayout(stringBuilder, maxWidth);
             shouldExpand = textLayout.getLineCount() >= 4; // && valueTextView.getVisibility() != View.VISIBLE;
 
-            if (NaConfig.INSTANCE.getShowFullAbout().Bool() && shouldExpand) {
+            if (AxConfig.INSTANCE.getShowFullAbout().Bool() && shouldExpand) {
                 shouldExpand = false;
             }
 

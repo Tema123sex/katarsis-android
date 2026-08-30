@@ -36,8 +36,8 @@ import java.util.HashMap;
 import java.util.HashSet;
 import java.util.List;
 
-import tw.nekomimi.nekogram.DialogConfig;
-import tw.nekomimi.nekogram.helpers.remote.PeerColorHelper;
+import one.axgram.core.DialogConfig;
+import one.axgram.core.helpers.remote.PeerColorHelper;
 
 public class ChatObject {
 

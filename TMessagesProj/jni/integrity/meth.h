@@ -2,8 +2,8 @@
 // Created by xtao on 2024/11/10.
 //
 
-#ifndef NAGRAM_METH_H
-#define NAGRAM_METH_H
+#ifndef AXGRAM_METH_H
+#define AXGRAM_METH_H
 
 #include <jni.h>
 #include "log.h"
@@ -19,4 +19,4 @@ const char *getApkPath(JNIEnv *env, jobject context);
 }
 #endif
 
-#endif //NAGRAM_METH_H
+#endif //AXGRAM_METH_H

@@ -56,11 +56,11 @@ import java.util.Locale;
 
 import java.util.LinkedList;
 
-import tw.nekomimi.nekogram.NekoConfig;
-import tw.nekomimi.nekogram.helpers.AnalyticsHelper;
-import tw.nekomimi.nekogram.parts.SignturesKt;
-import tw.nekomimi.nekogram.utils.FileUtil;
-import xyz.nextalone.nagram.NaConfig;
+import one.axgram.core.AxCoreConfig;
+import one.axgram.core.helpers.AnalyticsHelper;
+import one.axgram.core.parts.SignturesKt;
+import one.axgram.core.utils.FileUtil;
+import one.axgram.extra.AxConfig;
 
 import static android.os.Build.VERSION.SDK_INT;
 
@@ -104,7 +104,7 @@ public class ApplicationLoader extends Application {
         } catch (Throwable ignore) {
         }
         Thread.currentThread().setUncaughtExceptionHandler((thread, error) -> {
-            Log.e("nekox", "from " + thread.toString(), error);
+            Log.e("axgram", "from " + thread.toString(), error);
             AnalyticsHelper.captureException(error);
         });
     }
@@ -118,7 +118,7 @@ public class ApplicationLoader extends Application {
 
     public static IMapsProvider getMapsProvider() {
         if (mapsProvider == null) {
-            if (NekoConfig.useOSMDroidMap.Bool())
+            if (AxCoreConfig.useOSMDroidMap.Bool())
                 mapsProvider = new LibreMapsProvider();
             else {
                 mapsProvider = new GoogleMapsProvider();
@@ -361,6 +361,16 @@ public class ApplicationLoader extends Application {
 
         AnalyticsHelper.start(this);
 
+        // AxGram: force-start the keep-alive foreground service. Telegram only auto-starts it
+        // when Google Play is unavailable; we want it always so the app stays connected in the
+        // background and catches instant deletions (like AyuGram's resident notification).
+        Utilities.stageQueue.postRunnable(() -> {
+            try {
+                startPushService();
+            } catch (Throwable ignore) {
+            }
+        }, 3000);
+
         new ForegroundDetector(this) {
             @Override
             public void onActivityStarted(Activity activity) {
@@ -388,7 +398,8 @@ public class ApplicationLoader extends Application {
 
     private static Intent createNotificationsServiceIntent() {
         Intent intent = new Intent(applicationContext, NotificationsService.class);
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O && NaConfig.INSTANCE.getPushServiceTypeInAppDialog().Bool()) {
+        // AxGram: always foreground → persistent notification keeps the app alive (like AyuGram)
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
             intent.setAction(NotificationsService.ACTION_START_FOREGROUND);
         } else {
             intent.setAction(NotificationsService.ACTION_START_BACKGROUND);
@@ -397,9 +408,11 @@ public class ApplicationLoader extends Application {
     }
 
     private static void startPushServiceInternal() {
-        if (PushListenerController.getProvider().hasServices()) {
-            return;
-        }
+        // AxGram: keep the foreground connection alive even when Google Play push is available,
+        // so the app stays active in the background and catches instant deletions.
+        // if (PushListenerController.getProvider().hasServices()) {
+        //     return;
+        // }
         SharedPreferences preferences = MessagesController.getNotificationsSettings(UserConfig.selectedAccount);
         boolean enabled;
         if (preferences.contains("pushService")) {
@@ -412,11 +425,19 @@ public class ApplicationLoader extends Application {
             editor.apply();
             ConnectionsManager.getInstance(UserConfig.selectedAccount).setPushConnectionEnabled(enabled);
         }
+        // AxGram: always keep the connection alive (foreground service) so instant deletions are caught.
+        try {
+            enabled = true;
+            MessagesController.getMainSettings(UserConfig.selectedAccount).edit().putBoolean("keepAliveService", true).apply();
+            preferences.edit().putBoolean("pushService", true).putBoolean("pushConnection", true).apply();
+            ConnectionsManager.getInstance(UserConfig.selectedAccount).setPushConnectionEnabled(true);
+        } catch (Throwable ignore) {
+        }
         if (enabled) {
             AndroidUtilities.runOnUIThread(() -> {
                 try {
                     Log.d("TFOSS", "Starting push service...");
-                    if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O && NaConfig.INSTANCE.getPushServiceTypeInAppDialog().Bool()) {
+                    if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
                         applicationContext.startForegroundService(createNotificationsServiceIntent());
                     } else {
                         applicationContext.startService(createNotificationsServiceIntent());

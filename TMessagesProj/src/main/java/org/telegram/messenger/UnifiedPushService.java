@@ -16,7 +16,7 @@ import java.net.URLEncoder;
 import java.nio.charset.StandardCharsets;
 
 import it.belloworld.mercurygram.WebPushDecryptor;
-import xyz.nextalone.nagram.NaConfig;
+import one.axgram.extra.AxConfig;
 
 public class UnifiedPushService extends PushService {
 
@@ -73,11 +73,11 @@ public class UnifiedPushService extends PushService {
             return;
         }
 
-        String wpPriv = NaConfig.INSTANCE.getPushServiceTypeUnifiedWebPushPrivateKey().String();
+        String wpPriv = AxConfig.INSTANCE.getPushServiceTypeUnifiedWebPushPrivateKey().String();
         if (!TextUtils.isEmpty(wpPriv)) webPushPrivateKey = Base64.decode(wpPriv, Base64.DEFAULT);
-        String wpPub = NaConfig.INSTANCE.getPushServiceTypeUnifiedWebPushPublicKey().String();
+        String wpPub = AxConfig.INSTANCE.getPushServiceTypeUnifiedWebPushPublicKey().String();
         if (!TextUtils.isEmpty(wpPub)) webPushPublicKey = Base64.decode(wpPub, Base64.DEFAULT);
-        String wpAuth = NaConfig.INSTANCE.getPushServiceTypeUnifiedWebPushAuthSecret().String();
+        String wpAuth = AxConfig.INSTANCE.getPushServiceTypeUnifiedWebPushAuthSecret().String();
         if (!TextUtils.isEmpty(wpAuth)) webPushAuthSecret = Base64.decode(wpAuth, Base64.DEFAULT);
     }
 
@@ -85,9 +85,9 @@ public class UnifiedPushService extends PushService {
         if (webPushPrivateKey == null || webPushPublicKey == null || webPushAuthSecret == null) {
             return;
         }
-        NaConfig.INSTANCE.getPushServiceTypeUnifiedWebPushPrivateKey().setConfigString(Base64.encodeToString(webPushPrivateKey, Base64.DEFAULT));
-        NaConfig.INSTANCE.getPushServiceTypeUnifiedWebPushPublicKey().setConfigString(Base64.encodeToString(webPushPublicKey, Base64.DEFAULT));
-        NaConfig.INSTANCE.getPushServiceTypeUnifiedWebPushAuthSecret().setConfigString(Base64.encodeToString(webPushAuthSecret, Base64.DEFAULT));
+        AxConfig.INSTANCE.getPushServiceTypeUnifiedWebPushPrivateKey().setConfigString(Base64.encodeToString(webPushPrivateKey, Base64.DEFAULT));
+        AxConfig.INSTANCE.getPushServiceTypeUnifiedWebPushPublicKey().setConfigString(Base64.encodeToString(webPushPublicKey, Base64.DEFAULT));
+        AxConfig.INSTANCE.getPushServiceTypeUnifiedWebPushAuthSecret().setConfigString(Base64.encodeToString(webPushAuthSecret, Base64.DEFAULT));
     }
 
     public static synchronized void ensureWebPushKeys() {
@@ -133,7 +133,7 @@ public class UnifiedPushService extends PushService {
 
             // All distributors route through the /aesgcm gateway which serializes
             // WebPush headers into the body (common-proxies compatible format)
-            String gateway = NaConfig.INSTANCE.getPushServiceTypeUnifiedGateway().String();
+            String gateway = AxConfig.INSTANCE.getPushServiceTypeUnifiedGateway().String();
             if (!gateway.endsWith("/")) gateway += "/";
 
             try {

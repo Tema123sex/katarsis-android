@@ -91,7 +91,7 @@ import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Locale;
 
-import tw.nekomimi.nekogram.utils.VibrateUtil;
+import one.axgram.core.utils.VibrateUtil;
 
 public class ChatRightsEditActivity extends BaseFragment implements NotificationCenter.NotificationCenterDelegate {
 

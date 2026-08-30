@@ -85,8 +85,8 @@ import java.util.ArrayList;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
-import tw.nekomimi.nekogram.NekoConfig;
-import tw.nekomimi.nekogram.utils.ProxyUtil;
+import one.axgram.core.AxCoreConfig;
+import one.axgram.core.utils.ProxyUtil;
 
 public class EmojiPacksAlert extends BottomSheet implements NotificationCenter.NotificationCenterDelegate {
 
@@ -385,7 +385,7 @@ public class EmojiPacksAlert extends BottomSheet implements NotificationCenter.N
                         onCloseByLink();
                         dismiss();
                     } catch (Exception ignore) {}
-                    if (!NekoConfig.disableVibration.Bool()) {
+                    if (!AxCoreConfig.disableVibration.Bool()) {
                         try {
                             view.performHapticFeedback(HapticFeedbackConstants.KEYBOARD_TAP, HapticFeedbackConstants.FLAG_IGNORE_VIEW_SETTING);
                         } catch (Exception e) {
@@ -468,7 +468,7 @@ public class EmojiPacksAlert extends BottomSheet implements NotificationCenter.N
                 view.getLocationInWindow(loc);
                 popupWindow.showAtLocation(view, Gravity.TOP | Gravity.LEFT, loc[0] - AndroidUtilities.dp(49) + view.getMeasuredWidth() / 2, loc[1] - AndroidUtilities.dp(52));
 
-                if (!NekoConfig.disableVibration.Bool()) {
+                if (!AxCoreConfig.disableVibration.Bool()) {
                     try {
                         view.performHapticFeedback(HapticFeedbackConstants.LONG_PRESS, HapticFeedbackConstants.FLAG_IGNORE_VIEW_SETTING);
                     } catch (Exception e) {

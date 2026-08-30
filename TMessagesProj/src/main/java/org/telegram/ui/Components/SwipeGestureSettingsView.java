@@ -23,7 +23,7 @@ import org.telegram.messenger.R;
 import org.telegram.messenger.SharedConfig;
 import org.telegram.ui.ActionBar.Theme;
 
-import tw.nekomimi.nekogram.NekoConfig;
+import one.axgram.core.AxCoreConfig;
 
 public class SwipeGestureSettingsView extends FrameLayout {
 
@@ -109,7 +109,7 @@ public class SwipeGestureSettingsView extends FrameLayout {
 
             SharedConfig.updateChatListSwipeSetting(newVal);
             invalidate();
-            if (!NekoConfig.disableVibration.Bool()) {
+            if (!AxCoreConfig.disableVibration.Bool()) {
                 try {
                     picker.performHapticFeedback(HapticFeedbackConstants.KEYBOARD_TAP, HapticFeedbackConstants.FLAG_IGNORE_GLOBAL_SETTING);
                 } catch (Exception ignored) {}

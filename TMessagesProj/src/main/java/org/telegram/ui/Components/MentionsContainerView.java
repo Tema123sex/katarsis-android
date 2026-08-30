@@ -55,7 +55,7 @@ import org.telegram.ui.PhotoViewer;
 
 import java.util.ArrayList;
 
-import xyz.nextalone.nagram.NaConfig;
+import one.axgram.extra.AxConfig;
 
 public class MentionsContainerView extends FrameLayout implements NotificationCenter.NotificationCenterDelegate {
 
@@ -687,7 +687,7 @@ public class MentionsContainerView extends FrameLayout implements NotificationCe
                 boolean isMediaInlineResult = result.type.equals("photo") && (result.photo != null || result.content != null) ||
                         result.type.equals("gif") && (result.document != null || result.content != null) ||
                         result.type.equals("video") && (result.document != null/* || result.content_url != null*/);
-                boolean skipMediaPreview = NaConfig.INSTANCE.getFixUrlAutoInlineBotSkipMediaPreview().Bool() && getAdapter() != null && getAdapter().isAutoSearchingContextBot();
+                boolean skipMediaPreview = AxConfig.INSTANCE.getFixUrlAutoInlineBotSkipMediaPreview().Bool() && getAdapter() != null && getAdapter().isAutoSearchingContextBot();
                 if (isMediaInlineResult && !skipMediaPreview) {
                     ArrayList<Object> arrayList = botContextResults = new ArrayList<>(getAdapter().getSearchResultBotContext());
                     PhotoViewer.getInstance().setParentActivity(baseFragment, resourcesProvider);

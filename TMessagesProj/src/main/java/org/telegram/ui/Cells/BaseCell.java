@@ -24,7 +24,7 @@ import androidx.annotation.Nullable;
 import org.telegram.messenger.FileLog;
 import org.telegram.ui.Components.SizeNotifierFrameLayout;
 
-import tw.nekomimi.nekogram.NekoConfig;
+import one.axgram.core.AxCoreConfig;
 
 public abstract class BaseCell extends ViewGroup implements SizeNotifierFrameLayout.IViewWithInvalidateCallback {
 
@@ -45,7 +45,7 @@ public abstract class BaseCell extends ViewGroup implements SizeNotifierFrameLay
             if (checkingForLongPress && getParent() != null && currentPressCount == pressCount) {
                 checkingForLongPress = false;
                 if (onLongPress()) {
-                    if (!NekoConfig.disableVibration.Bool()) {
+                    if (!AxCoreConfig.disableVibration.Bool()) {
                         try {
                             performHapticFeedback(HapticFeedbackConstants.LONG_PRESS);
                         } catch (Exception ignore) {}

@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <string name="NekoSettings">Neko Einstellungen</string>
+    <string name="AxSettings">AxGram Einstellungen</string>
     <string name="IPv6">Über IPv6 verbinden</string>
     <string name="MessageMenu">Nachrichtenmenü</string>
     <string name="HidePhone">Rufnummer ausblenden</string>
@@ -25,7 +25,7 @@
     <string name="TransparentStatusBar">Transparente Statusleiste</string>
     <string name="EnableResidentNotification">Ständig bleibende Benachrichtigung anzeigen</string>
     <string name="DisableResidentNotification">Ständig bleibende Benachrichtigung deaktivieren</string>
-    <string name="NekogramRunning">Nekogram läuft</string>
+    <string name="AxGramRunning">AxGram läuft</string>
     <string name="EventType">Seitenleistensymbole einstellen</string>
     <string name="ChristmasHat">Weihnachtsmütze jeden Tag anzeigen</string>
     <string name="ActionBarDecoration">Titelleiste dekorieren</string>
@@ -109,7 +109,7 @@
     <string name="ProviderMicrosoftTranslator">Microsoft Translator</string>
     <string name="ProviderYouDao">YouDao Translate</string>
     <string name="AutoPauseVideoAbout">Beim Bildschirmsperren/umschalten auf Hintergrund.</string>
-    <string name="enablePublicProxy">Öffentlicher NekoX-Proxy</string>
+    <string name="enablePublicProxy">Öffentlicher AxGram-Proxy</string>
     <string name="autoUpdateSubInfo">Proxys automatisch aktualisieren</string>
     <string name="pressTitleToOpenAllChats">Auf Titel tippen, um den \"Alle Chats\"-Tab zu öffnen</string>
     <string name="hideGroupSticker">Gruppensticker ausblenden</string>
@@ -138,7 +138,7 @@
     <string name="SaveToDownloadCount_zero">%1$d Dateien in Downloads gespeichert</string>
     <string name="SaveToDownloadCount_many">%1$d Dateien in Downloads gespeichert</string>
     <string name="SaveToDownloadCount_other">%1$d Dateien in Downloads gespeichert</string>
-    <string name="NekoGeneralNotification">Benachrichtigung</string>
+    <string name="AxGeneralNotification">Benachrichtigung</string>
     <string name="doubleTapSendReactions">Antwort beim Doppeltippen senden (Standard)</string>
     <string name="showBottomActionsWhenSelecting">Untere Aktionen bei Auswahl anzeigen</string>
     <string name="channelLabel">Kanal</string>

@@ -61,9 +61,9 @@ import java.util.ArrayList;
 import java.util.concurrent.atomic.AtomicReference;
 
 import kotlin.Unit;
-import tw.nekomimi.nekogram.ui.BottomBuilder;
-import tw.nekomimi.nekogram.NekoConfig;
-import tw.nekomimi.nekogram.utils.EnvUtil;
+import one.axgram.core.ui.BottomBuilder;
+import one.axgram.core.AxCoreConfig;
+import one.axgram.core.utils.EnvUtil;
 
 public class DataSettingsActivity extends BaseFragment {
 
@@ -486,7 +486,7 @@ public class DataSettingsActivity extends BaseFragment {
                 AtomicReference<String> target = new AtomicReference<>();
 
                 builder.addRadioItems(EnvUtil.getAvailableDirectories(),
-                        (index, path) -> path.equals(NekoConfig.cachePath.String()), (__, path, cell) -> {
+                        (index, path) -> path.equals(AxCoreConfig.cachePath.String()), (__, path, cell) -> {
 
                             target.set(path);
                             builder.doRadioCheck(cell);
@@ -500,7 +500,7 @@ public class DataSettingsActivity extends BaseFragment {
 
                     if (target.get() != null) {
 
-                        NekoConfig.cachePath.setConfigString(target.get());
+                        AxCoreConfig.cachePath.setConfigString(target.get());
                         ImageLoader.getInstance().checkMediaPaths();
                         listAdapter.notifyItemChanged(position);
 
@@ -636,7 +636,7 @@ public class DataSettingsActivity extends BaseFragment {
                         );
                         textCell.setTextAndValueAndColorfulIcon(LocaleController.getString(R.string.NetworkUsage), AndroidUtilities.formatFileSize(size), true, R.drawable.msg_filled_datausage, 0xFF55CA47, 0xFF27B434, storageNumRow != -1);
                     } else if (position == storageNumRow) {
-                        String value = NekoConfig.cachePath.String();
+                        String value = AxCoreConfig.cachePath.String();
                         textCell.setTextAndValueAndColorfulIcon(LocaleController.getString(R.string.StoragePath), value, true, R.drawable.msg_filled_sdcard, 0xFFF09F1B, 0xFFE18A11, false);
                     }
                     break;

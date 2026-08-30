@@ -47,7 +47,7 @@
     <string name="TransToLang">Çeviri Hedef Dili</string>
     <string name="TransInputToLang">Çeviri Girişi Hedef Dili</string>
     <string name="More">Daha</string>
-    <string name="NekoXUpdatesChannel">NekoX Güncellemeleri Kanalı</string>
+    <string name="AxUpdatesChannel">AxGram Güncellemeleri Kanalı</string>
     <string name="ShowIdAndDc">Profilde ID / DC Değerlerini Göster</string>
     <string name="UseDefaultTheme">Varsayılan Temayı Kullan *</string>
     <string name="NightMode">Gece Modu</string>
@@ -59,7 +59,7 @@
     <string name="ApplySuggestion">Tamam, uygula</string>
     <string name="DoNotRemindAgain">Bir daha hatırlatma</string>
     <string name="RemoveTitleEmoji">Başlıktaki 😶 Emojisini Kaldır</string>
-    <string name="NekoXProxy">NekoX Genel Proxy</string>
+    <string name="AxProxy">AxGram Genel Proxy</string>
     <string name="PublicPrefix">Genel</string>
     <string name="DisableChatAction">Giriş Durumumu (yazıyor, vb.) Gönderme</string>
     <string name="FakeScreenshot">Ekran görüntüsü gibi davran</string>
@@ -87,9 +87,9 @@
     <string name="SortByUnmuted">Seslilere Göre Sırala</string>
     <string name="SortByUser">Kullanıcıya Göre Sırala</string>
     <string name="SortByContacts">Kişilere Göre Sırala</string>
-    <string name="NekoXPushService">NekoX Bildirim Hizmeti</string>
-    <string name="EnablePushAlert">Lütfen \"NekoX Bildirim Hizmeti\"ni etkinleştirin</string>
-    <string name="DisablePushAlert">Lütfen \"NekoX Bildirim Hizmeti\"ni devre dışı bırakın</string>
+    <string name="AxPushService">AxGram Bildirim Hizmeti</string>
+    <string name="EnablePushAlert">Lütfen \"AxGram Bildirim Hizmeti\"ni etkinleştirin</string>
+    <string name="DisablePushAlert">Lütfen \"AxGram Bildirim Hizmeti\"ni devre dışı bırakın</string>
     <string name="DisableUndo">Geri Almayı Devre Dışı Bırak</string>
     <string name="DisableSystemAccount">Sistem Hesabını Devre Dışı Bırak</string>
     <string name="FilterMenu">Mesajlaşma Filtresi Menüsü</string>
@@ -170,7 +170,7 @@
     <string name="DisableDeveloperMode">Geliştirici Modunu Devre Dışı Bırak</string>
     <string name="DeveloperSettings">Geliştirici Ayarları</string>
     <string name="LoginSettings">Giriş Ayarları</string>
-    <string name="NekoXFaq">Nagram SSS</string>
+    <string name="AxFaq">AxGram SSS</string>
     <string name="TransSite">Çeviri Platformu</string>
     <string name="OpenKayChain">OpenPGP İstemcisi</string>
     <string name="OpenPGPApp">OpenPGP Sağlayıcısı</string>
@@ -226,7 +226,7 @@
     <string name="UsePersiancalendarInfo">Güneş Hicri takvimi ile tarihi görüntüle</string>
     <string name="DisplayPersianCalendarByLatin">Farsça takvimini Latince olarak görüntüle</string>
     <string name="UsePersiancalendar">Farsça takvimi kullan</string>
-    <string name="nekoXPaymentRemovedToast">Ödeme işlevi kaldırıldı.</string>
+    <string name="axPaymentRemovedToast">Ödeme işlevi kaldırıldı.</string>
     <string name="ImportSettingsAlert">Ayarların üzerine yazmak istediğinize emin misiniz\? Bilinmeyen kaynaklardan ayarları içe aktarmak, PIN kodunun üzerine yazılmasına ve uygulamanın kilitlenmesine neden olabilir.</string>
     <string name="ImportSettings">Ayarları içe aktar</string>
     <string name="BackupSettings">Yedekleme ayarları</string>
@@ -257,7 +257,7 @@
     <string name="update_download_soucre">İndirme kaynağı seçin</string>
     <string name="useCustomEmoji">Özel emoji paketi kullan</string>
     <string name="showSeconds">Zaman bilgisini saniye türünde göster</string>
-    <string name="AppUpdateNekoX">Nekogram X\'i güncelle</string>
+    <string name="AppUpdateAxGram">AxGram\'i güncelle</string>
     <string name="customPublicProxyIPNotice">Bazı bölgelerde herkese açık proxy IP adresi belirtmek (örneğin Cloudflare) erişim hızını arttırabilir.</string>
     <string name="DeleteDownloadedFileExternal">Harici dosya atlandı.</string>
     <string name="repeatConfirmText">Tekrarlamak istediğinize emin misiniz\?</string>
@@ -274,12 +274,12 @@
 \nBüyük profil resmini arkaplanda kullan</string>
     <string name="hideSponsoredMessage">Reklam içeren mesajları gizle</string>
     <string name="rememberAllBackMessages">Bütün dokunulmuş yanıtları hatırla</string>
-    <string name="NekoXUpdateTranslationHint">Değişim günlüğünü çevirmek için dokunun</string>
+    <string name="AxUpdateTranslationHint">Değişim günlüğünü çevirmek için dokunun</string>
     <string name="Name">İsim</string>
     <string name="labelChannelUser">Kanal kullanıcısı etiketi</string>
     <string name="channelAliasDetails">Kanal kullanıcısı etiketi özelliğinin etkinleştirilmesine ihtiyaç duyar.</string>
     <string name="InteractionSettings">Etkileşim</string>
     <string name="StickerSettings">Çıkartma</string>
     <string name="ConfirmSettings">Doğrulama</string>
-    <string name="nekoxPremiumGiftRemoved">Premium hediyeleri NekoX\'ten kaldırıldı.</string>
+    <string name="axPremiumGiftRemoved">Premium hediyeleri AxGram\'ten kaldırıldı.</string>
 </resources>

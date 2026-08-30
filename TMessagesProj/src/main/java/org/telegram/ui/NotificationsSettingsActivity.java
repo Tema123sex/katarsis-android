@@ -75,7 +75,7 @@ import java.util.Comparator;
 import java.util.HashSet;
 import java.util.Map;
 
-import tw.nekomimi.nekogram.utils.AlertUtil;
+import one.axgram.core.utils.AlertUtil;
 
 public class NotificationsSettingsActivity extends BaseFragment implements NotificationCenter.NotificationCenterDelegate {
 

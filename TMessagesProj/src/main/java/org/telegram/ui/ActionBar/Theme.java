@@ -153,8 +153,8 @@ import java.util.Map;
 import java.util.Objects;
 import java.util.concurrent.CountDownLatch;
 
-import tw.nekomimi.nekogram.NekoConfig;
-import tw.nekomimi.nekogram.helpers.MonetHelper;
+import one.axgram.core.AxCoreConfig;
+import one.axgram.core.helpers.MonetHelper;
 
 public class Theme {
 
@@ -2354,6 +2354,12 @@ public class Theme {
         }
 
         public String getName() {
+            // AxGram: ключ темы остаётся "NekoX" — по нему тема сохранена
+            // у пользователей, и его смена сбросила бы выбранное оформление.
+            // Меняем только отображаемое имя.
+            if ("NekoX".equals(name)) {
+                return "AxGram";
+            }
             if ("Blue".equals(name)) {
                 return getString(R.string.ThemeClassic);
             } else if ("Dark Blue".equals(name)) {
@@ -5316,7 +5322,7 @@ public class Theme {
                 canStartHolidayAnimation = false;
             }
             if (dialogs_holidayDrawable == null) {
-                if (getEventType() == 0 || NekoConfig.newYear.Bool()) {
+                if (getEventType() == 0 || AxCoreConfig.newYear.Bool()) {
                     dialogs_holidayDrawable = ApplicationLoader.applicationContext.getResources().getDrawable(R.drawable.newyear);
                     dialogs_holidayDrawableOffsetX = -dp(3);
                     dialogs_holidayDrawableOffsetY = -dp(-7);

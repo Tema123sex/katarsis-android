@@ -37,7 +37,7 @@ import java.util.concurrent.atomic.AtomicInteger;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
-import xyz.nextalone.nagram.NaConfig;
+import one.axgram.extra.AxConfig;
 
 public class SearchAdapterHelper {
 
@@ -582,7 +582,7 @@ public class SearchAdapterHelper {
     }
 
     public ArrayList<TLObject> getGlobalSearch() {
-        if (NaConfig.INSTANCE.getDisableGlobalSearch().Bool()) {
+        if (AxConfig.INSTANCE.getDisableGlobalSearch().Bool()) {
             return new ArrayList<TLObject>();
         }
         return globalSearch;

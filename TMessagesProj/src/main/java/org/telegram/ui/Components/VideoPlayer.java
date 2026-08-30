@@ -109,7 +109,7 @@ import java.util.HashSet;
 import java.util.List;
 import java.util.Map;
 
-import xyz.nextalone.nagram.NaConfig;
+import one.axgram.extra.AxConfig;
 
 @SuppressLint("NewApi")
 public class VideoPlayer implements Player.Listener, VideoListener, AnalyticsListener, NotificationCenter.NotificationCenterDelegate {
@@ -234,7 +234,7 @@ public class VideoPlayer implements Player.Listener, VideoListener, AnalyticsLis
     }
 
     private int getPlayerExtensionRendererMode() {
-        switch (NaConfig.INSTANCE.getPlayerDecoder().Int()) {
+        switch (AxConfig.INSTANCE.getPlayerDecoder().Int()) {
             case 1:
                 return DefaultRenderersFactory.EXTENSION_RENDERER_MODE_OFF;
             case 2:
@@ -457,7 +457,7 @@ public class VideoPlayer implements Player.Listener, VideoListener, AnalyticsLis
     }
 
     public static Quality getDefaultSavedQuality(ArrayList<Quality> qualities) {
-        int v = NaConfig.INSTANCE.getDefaultHlsVideoQuality().Int();
+        int v = AxConfig.INSTANCE.getDefaultHlsVideoQuality().Int();
         Quality q1;
         switch (v) {
             case 0:

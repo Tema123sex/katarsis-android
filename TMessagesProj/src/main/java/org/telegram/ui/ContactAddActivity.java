@@ -75,7 +75,7 @@ import org.telegram.ui.LNavigation.NavigationExt;
 import java.io.File;
 import java.util.ArrayList;
 
-import xyz.nextalone.nagram.NaConfig;
+import one.axgram.extra.AxConfig;
 
 public class ContactAddActivity extends BaseFragment implements NotificationCenter.NotificationCenterDelegate, ImageUpdater.ImageUpdaterDelegate {
 
@@ -543,7 +543,7 @@ public class ContactAddActivity extends BaseFragment implements NotificationCent
         }
 
         if (addContact && needAddException) {
-            checkShare = !NaConfig.INSTANCE.getDoNotShareMyPhoneNumber().Bool();
+            checkShare = !AxConfig.INSTANCE.getDoNotShareMyPhoneNumber().Bool();
             items.add(UItem.asCheck(2, getString(R.string.AddContactShareNumber)).setChecked(checkShare));
             items.add(UItem.asShadow(formatString(R.string.AddContactShareNumberInfo, UserObject.getFirstName(user))));
         }

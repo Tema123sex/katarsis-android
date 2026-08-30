@@ -116,10 +116,10 @@ import java.util.List;
 
 import me.vkryl.core.reference.ReferenceList;
 
-import tw.nekomimi.nekogram.NekoConfig;
-import tw.nekomimi.nekogram.ui.MessageHelper;
-import tw.nekomimi.nekogram.utils.VibrateUtil;
-import xyz.nextalone.nagram.NaConfig;
+import one.axgram.core.AxCoreConfig;
+import one.axgram.core.ui.MessageHelper;
+import one.axgram.core.utils.VibrateUtil;
+import one.axgram.extra.AxConfig;
 
 public class ContentPreviewViewer {
 
@@ -741,7 +741,7 @@ public class ContentPreviewViewer {
                     showUnlockPremiumView();
                     menuVisible = true;
                     containerView.invalidate();
-                    if (!NekoConfig.disableVibration.Bool()) {
+                    if (!AxCoreConfig.disableVibration.Bool()) {
                         try {
                             containerView.performHapticFeedback(HapticFeedbackConstants.LONG_PRESS);
                         } catch (Exception ignored) {}
@@ -776,7 +776,7 @@ public class ContentPreviewViewer {
                     items.add(LocaleController.getString("SaveToGallery", R.string.SaveToGallery));
                     icons.add(R.drawable.msg_gallery);
                     actions.add(nkbtn_stickerdl);
-                    if (NaConfig.INSTANCE.getShowCopyPhoto().Bool() && !MessageObject.isAnimatedStickerDocument(currentDocument, true) && !MessageObject.isVideoDocument(currentDocument)) {
+                    if (AxConfig.INSTANCE.getShowCopyPhoto().Bool() && !MessageObject.isAnimatedStickerDocument(currentDocument, true) && !MessageObject.isVideoDocument(currentDocument)) {
                         items.add(LocaleController.getString("CopyPhotoAsSticker", R.string.CopyPhotoAsSticker));
                         icons.add(R.drawable.msg_copy);
                         actions.add(nkbtn_sticker_copy);
@@ -949,7 +949,7 @@ public class ContentPreviewViewer {
                 }
                 popupWindow.showAtLocation(containerView, 0, (int) ((containerView.getMeasuredWidth() - previewMenu.getMeasuredWidth()) / 2f), y);
 
-                if (!NekoConfig.disableVibration.Bool()) {
+                if (!AxCoreConfig.disableVibration.Bool()) {
                     try {
                         containerView.performHapticFeedback(HapticFeedbackConstants.LONG_PRESS);
                     } catch (Exception ignored) {}
@@ -1072,7 +1072,7 @@ public class ContentPreviewViewer {
                 popupWindow.showAtLocation(containerView, 0, (int) ((containerView.getMeasuredWidth() - previewMenu.getMeasuredWidth()) / 2f), y);
                 ActionBarPopupWindow.startAnimation(previewMenu);
 
-                if (!NekoConfig.disableVibration.Bool()) {
+                if (!AxCoreConfig.disableVibration.Bool()) {
                     try {
                         containerView.performHapticFeedback(HapticFeedbackConstants.LONG_PRESS);
                     } catch (Exception ignored) {}
@@ -1218,7 +1218,7 @@ public class ContentPreviewViewer {
                 y += AndroidUtilities.dp(24) - moveY;
                 popupWindow.showAtLocation(containerView, 0, (int) ((containerView.getMeasuredWidth() - previewMenu.getMeasuredWidth()) / 2f), y);
 
-                if (!NekoConfig.disableVibration.Bool()) {
+                if (!AxCoreConfig.disableVibration.Bool()) {
                     try {
                         containerView.performHapticFeedback(HapticFeedbackConstants.LONG_PRESS);
                     } catch (Exception ignored) {}
@@ -1716,7 +1716,7 @@ public class ContentPreviewViewer {
                         }
                     }
                     if (opened) {
-                        if (!NekoConfig.disableVibration.Bool()) {
+                        if (!AxCoreConfig.disableVibration.Bool()) {
                             try {
                                 currentPreviewCell.performHapticFeedback(HapticFeedbackConstants.LONG_PRESS, HapticFeedbackConstants.FLAG_IGNORE_GLOBAL_SETTING);
                             } catch (Exception ignored) {}

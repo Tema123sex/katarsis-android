@@ -34,13 +34,13 @@ import com.google.android.gms.maps.model.MarkerOptions;
 import org.telegram.messenger.IMapsProvider;
 import org.telegram.messenger.R;
 
-import nekox.messenger.NekoLocationSource;
+import one.axgram.extra.location.AxLocationSource;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-import tw.nekomimi.nekogram.NekoConfig;
+import one.axgram.core.AxCoreConfig;
 
 public class GoogleMapsProvider implements IMapsProvider {
 
@@ -595,8 +595,8 @@ public class GoogleMapsProvider implements IMapsProvider {
         @Override
         public void getMapAsync(Consumer<IMap> callback) {
             mapView.getMapAsync(googleMap -> {
-                if (NekoConfig.fixDriftingForGoogleMaps())
-                    googleMap.setLocationSource(new NekoLocationSource(mapView.getContext()));
+                if (AxCoreConfig.fixDriftingForGoogleMaps())
+                    googleMap.setLocationSource(new AxLocationSource(mapView.getContext()));
                 callback.accept(new GoogleMapImpl(googleMap));
                 findGlSurfaceView(mapView);
             });

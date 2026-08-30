@@ -24,7 +24,7 @@
     <string name="CodeSyntaxHighlight">Evidenziazione sintassi codice</string>
     <string name="CreateMono">Crea Monospace</string>
     <string name="CreateMonoLanguage">Lingua del codice</string>
-    <string name="CodeSyntaxHighlightDetails">Grazie a prismjs e Nekogram</string>
+    <string name="CodeSyntaxHighlightDetails">Grazie a prismjs e AxGram</string>
     <string name="UseSystemUnlock">Passcode Sblocca usa il sistema ui</string>
     <string name="CopyPhoto">Copia Foto</string>
     <string name="PhotoCopied">Foto copiata negli appunti</string>
@@ -75,7 +75,7 @@
     <string name="IconDecoration">Decorazione Icona</string>
     <string name="NotificationIcon">Icona Notifica</string>
     <string name="Official">Ufficiale</string>
-    <string name="Nekogram">Nekogram</string>
+    <string name="AxGramLegacy">AxGram</string>
     <string name="HalloWeen">HalloWeen</string>
     <string name="ShowOnlineStatus">Mostra Stato Online</string>
     <string name="ShowOnlineStatusNotice">Mostra lo stato online di altre persone accanto alla foto del loro profilo in gruppi</string>
@@ -90,7 +90,7 @@
     <string name="ShowForumAsNormalChat">Mostra il forum come chat normale</string>
     <string name="DecorationNone">Nessuno</string>
     <string name="ChatDecoration">Decorazione Chat</string>
-    <string name="NeedChangeNekoSettings">È necessario modificare le impostazioni N</string>
+    <string name="NeedChangeAxSettings">È necessario modificare le impostazioni N</string>
     <string name="DoNotUnarchiveBySwipe">Non disarchiviare per scorrimento</string>
     <string name="DoNotShareMyPhoneNumber">Non condividere il mio numero di telefono</string>
     <string name="DefaultDeleteMenu">Menu Di Cancellazione Predefinito</string>

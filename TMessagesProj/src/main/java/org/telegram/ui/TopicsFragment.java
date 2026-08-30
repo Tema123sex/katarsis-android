@@ -146,8 +146,8 @@ import java.util.HashSet;
 import java.util.Iterator;
 import java.util.concurrent.CountDownLatch;
 
-import tw.nekomimi.nekogram.BackButtonMenuRecent;
-import tw.nekomimi.nekogram.NekoConfig;
+import one.axgram.core.BackButtonMenuRecent;
+import one.axgram.core.AxCoreConfig;
 
 public class TopicsFragment extends BaseFragment implements NotificationCenter.NotificationCenterDelegate, ChatActivityInterface, RightSlidingDialogContainer.BaseFragmentWithFullscreen, MainTabsActivity.TabFragmentDelegate {
 
@@ -1065,7 +1065,7 @@ public class TopicsFragment extends BaseFragment implements NotificationCenter.N
                 }
             }
             toggleSelection(view);
-            if (!NekoConfig.disableVibration.Bool()) {
+            if (!AxCoreConfig.disableVibration.Bool()) {
                 try {
                     view.performHapticFeedback(HapticFeedbackConstants.LONG_PRESS);
                 } catch (Exception ignored) {}
@@ -1200,7 +1200,7 @@ public class TopicsFragment extends BaseFragment implements NotificationCenter.N
                         if (canShowHiddenArchive != canShowInternal) {
                             canShowHiddenArchive = canShowInternal;
                             if (pullViewState == ARCHIVE_ITEM_STATE_HIDDEN) {
-                                if (!NekoConfig.disableVibration.Bool()) {
+                                if (!AxCoreConfig.disableVibration.Bool()) {
                                     try {
                                         recyclerListView.performHapticFeedback(HapticFeedbackConstants.KEYBOARD_TAP, HapticFeedbackConstants.FLAG_IGNORE_GLOBAL_SETTING);
                                     } catch (Exception ignored) {}
@@ -1865,7 +1865,7 @@ public class TopicsFragment extends BaseFragment implements NotificationCenter.N
                                 }
                                 if (!canShowHiddenArchive) {
                                     canShowHiddenArchive = true;
-                                    if (!NekoConfig.disableVibration.Bool()) {
+                                    if (!AxCoreConfig.disableVibration.Bool()) {
                                         try {
                                             performHapticFeedback(HapticFeedbackConstants.KEYBOARD_TAP, HapticFeedbackConstants.FLAG_IGNORE_GLOBAL_SETTING);
                                         } catch (Exception ignored) {}
@@ -1963,7 +1963,7 @@ public class TopicsFragment extends BaseFragment implements NotificationCenter.N
     }
 
     private boolean showChatPreview(DialogCell cell) {
-        if (!NekoConfig.disableVibration.Bool()) {
+        if (!AxCoreConfig.disableVibration.Bool()) {
             try {
                 cell.performHapticFeedback(HapticFeedbackConstants.LONG_PRESS);
             } catch (Exception ignored) {}

@@ -9,12 +9,10 @@ buildscript {
         classpath 'com.android.tools.build:gradle:8.6.1'
         classpath 'com.google.gms:google-services:4.3.15'
 //        classpath 'com.huawei.agconnect:agcp:1.9.1.301'
-        classpath 'com.google.firebase:firebase-crashlytics-gradle:2.9.0'
         classpath "org.jetbrains.kotlin:kotlin-gradle-plugin:2.1.0"
         classpath "org.jetbrains.kotlin:kotlin-serialization:2.1.0"
 
         //noinspection GradleDependency
-        classpath "io.sentry:sentry-android-gradle-plugin:5.12.2"
         // db
         classpath "io.objectbox:objectbox-gradle-plugin:5.0.1"
     }
@@ -22,7 +20,7 @@ buildscript {
 
 static String detectNdkVersion() {
 
-    def version = "27.2.12479018"
+    def version = "27.3.13750724"
 
     def androidHome = System.getenv("ANDROID_HOME")
 

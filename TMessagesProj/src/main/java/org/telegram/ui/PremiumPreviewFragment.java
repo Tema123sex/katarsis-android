@@ -142,7 +142,7 @@ import java.util.List;
 import java.util.Locale;
 import java.util.Objects;
 
-import tw.nekomimi.nekogram.NekoConfig;
+import one.axgram.core.AxCoreConfig;
 
 public class PremiumPreviewFragment extends BaseFragment implements NotificationCenter.NotificationCenterDelegate {
     public final static String TRANSACTION_PATTERN = "^(.*?)(?:\\.\\.\\d*|)$";
@@ -1224,7 +1224,7 @@ public class PremiumPreviewFragment extends BaseFragment implements Notification
                     }
                     if (fragment != null && fragment.getParentActivity() instanceof LaunchActivity) {
                         try {
-                            if (!NekoConfig.disableVibration.Bool())
+                            if (!AxCoreConfig.disableVibration.Bool())
                             fragment.getFragmentView().performHapticFeedback(HapticFeedbackConstants.KEYBOARD_TAP, HapticFeedbackConstants.FLAG_IGNORE_GLOBAL_SETTING);
                         } catch (Exception ignored) {}
                         ((LaunchActivity) fragment.getParentActivity()).getFireworksOverlay().start();

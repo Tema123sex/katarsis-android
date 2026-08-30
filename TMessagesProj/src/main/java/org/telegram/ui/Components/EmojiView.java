@@ -171,9 +171,9 @@ import java.util.Objects;
 import me.vkryl.android.animator.BoolAnimator;
 import me.vkryl.android.animator.FactorAnimator;
 
-import tw.nekomimi.nekogram.NekoConfig;
-import tw.nekomimi.nekogram.ui.PinnedStickerHelper;
-import xyz.nextalone.nagram.NaConfig;
+import one.axgram.core.AxCoreConfig;
+import one.axgram.core.ui.PinnedStickerHelper;
+import one.axgram.extra.AxConfig;
 
 @SuppressLint("ViewConstructor")
 public class EmojiView extends FrameLayout implements
@@ -2640,7 +2640,7 @@ public class EmojiView extends FrameLayout implements
                 } else if (event.getAction() == MotionEvent.ACTION_CANCEL || event.getAction() == MotionEvent.ACTION_UP) {
                     backspacePressed = false;
                     if (!backspaceOnce) {
-                        if (delegate != null && delegate.onBackspace() && !NekoConfig.disableVibration.Bool()) {
+                        if (delegate != null && delegate.onBackspace() && !AxCoreConfig.disableVibration.Bool()) {
                             try {
                                 backspaceButton.performHapticFeedback(HapticFeedbackConstants.KEYBOARD_TAP);
                             } catch (Exception ignore) {}
@@ -5484,7 +5484,7 @@ public class EmojiView extends FrameLayout implements
             if (!backspacePressed) {
                 return;
             }
-            if (delegate != null && delegate.onBackspace() && !NekoConfig.disableVibration.Bool()) {
+            if (delegate != null && delegate.onBackspace() && !AxCoreConfig.disableVibration.Bool()) {
                 try {
                     backspaceButton.performHapticFeedback(HapticFeedbackConstants.KEYBOARD_TAP);
                 } catch (Exception ignore) {}
@@ -5543,7 +5543,7 @@ public class EmojiView extends FrameLayout implements
         if (trendingAdapter != null) {
             trendingAdapter.notifyDataSetChanged();
         }
-        if (!NaConfig.INSTANCE.getDisableFeaturedStickers().Bool() && !featured.isEmpty() && (!BuildVars.DEBUG_PRIVATE_VERSION || featuredStickerSets.isEmpty() || preferences.getLong("featured_hidden", 0) == featured.get(0).set.id)) {
+        if (!AxConfig.INSTANCE.getDisableFeaturedStickers().Bool() && !featured.isEmpty() && (!BuildVars.DEBUG_PRIVATE_VERSION || featuredStickerSets.isEmpty() || preferences.getLong("featured_hidden", 0) == featured.get(0).set.id)) {
             final int id = mediaDataController.getUnreadStickerSets().isEmpty() ? 2 : 3;
             final StickerTabView trendingStickersTabView = stickersTab.addStickerIconTab(id, stickerIcons[id]);
             trendingStickersTabView.textView.setText(getString(R.string.FeaturedStickersShort));
@@ -5615,7 +5615,7 @@ public class EmojiView extends FrameLayout implements
 //            stickerTabView.setContentDescription(LocaleController.getString(R.string.PremiumStickers));
 //        }
 
-        if (info != null && (!NekoConfig.hideGroupSticker.Bool())) {
+        if (info != null && (!AxCoreConfig.hideGroupSticker.Bool())) {
             long hiddenStickerSetId = MessagesController.getEmojiSettings(currentAccount).getLong("group_hide_stickers_" + info.id, -1);
             TLRPC.Chat chat = MessagesController.getInstance(currentAccount).getChat(info.id);
             if (chat == null || info.stickerset == null || !ChatObject.hasAdminRights(chat)) {
@@ -6164,7 +6164,7 @@ public class EmojiView extends FrameLayout implements
             } else {
                 premiumStickers = new ArrayList<>();
             }
-            if (NaConfig.INSTANCE.getRemoveFavouriteStickersInRecentStickers().Bool()) {
+            if (AxConfig.INSTANCE.getRemoveFavouriteStickersInRecentStickers().Bool()) {
             for (int a = 0; a < favouriteStickers.size(); a++) {
                 TLRPC.Document favSticker = favouriteStickers.get(a);
                 for (int b = 0; b < recentStickers.size(); b++) {
@@ -8724,7 +8724,7 @@ public class EmojiView extends FrameLayout implements
         }
 
         public void loadTrendingGifs() {
-            if (NaConfig.INSTANCE.getDisableFeaturedGifs().Bool()) return;
+            if (AxConfig.INSTANCE.getDisableFeaturedGifs().Bool()) return;
             search("", "", true, true, true);
         }
 

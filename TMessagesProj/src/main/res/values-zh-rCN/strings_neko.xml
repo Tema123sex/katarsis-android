@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <string name="NekoSettings">N-设置</string>
+    <string name="AxSettings">N-设置</string>
     <string name="IPv6">通过 IPv6 连接</string>
     <string name="MessageMenu">消息菜单</string>
     <string name="HidePhone">隐藏您的手机号码</string>
@@ -29,7 +29,7 @@
     <string name="TransparentStatusBar">使用完全透明的状态栏</string>
     <string name="EnableResidentNotification">请让猫咪住在通知栏里吧</string>
     <string name="DisableResidentNotification">果然通知栏还是太挤了</string>
-    <string name="NekogramRunning">猫猫奔跑中</string>
+    <string name="AxGramRunning">猫猫奔跑中</string>
     <string name="EventType">抽屉图标集</string>
     <string name="ChristmasHat">一直显示圣诞帽</string>
     <string name="ActionBarDecoration">标题栏装饰</string>
@@ -127,7 +127,7 @@
     <string name="TakeGIFasVideo">GIF 显示为视频</string>
     <string name="DontSendGreetingSticker">不要发送问候贴纸</string>
     <string name="hideGroupSticker">隐藏群组贴纸</string>
-    <string name="enablePublicProxy">NekoX 公共代理</string>
+    <string name="enablePublicProxy">AxGram 公共代理</string>
     <string name="autoUpdateSubInfo">自动更新代理</string>
     <string name="hideSendAsChannel">隐藏以频道身份发送</string>
     <string name="showSpoilersDirectly">直接显示剧透信息</string>
@@ -138,7 +138,7 @@
     <string name="SaveToDownloadCount_other">正在保存%1$d个文件到下载</string>
     <string name="SaveToDownloadCount_few">正在保存%1$d个文件到下载</string>
     <string name="SaveToDownloadCount_many">正在保存%1$d个文件到下载</string>
-    <string name="NekoGeneralNotification">通知</string>
+    <string name="AxGeneralNotification">通知</string>
     <string name="disableNotificationBubbles">禁用通知气泡</string>
     <string name="reactions">菜单回应</string>
     <string name="doubleTapSendReactions">双击消息发送表情回应(默认)</string>
@@ -154,9 +154,9 @@
     <string name="DatacenterStatusAbout">检查 Telegram 的**数据中心**的状态。</string>
     <string name="DatacenterStatus">数据中心状态</string>
     <string name="enhancedFileLoader">加速上传和下载</string>
-    <string name="UnknownNekoSettingsOption">没有这样的喵设置选项。</string>
+    <string name="UnknownAxSettingsOption">没有这样的喵设置选项。</string>
     <string name="PasscodeNeeded">您必须先启用锁定码</string>
-    <string name="PasscodeNeko">锁定码</string>
+    <string name="PasscodeAx">锁定码</string>
     <string name="PasscodeShowInSettings">在喵设置中显示</string>
     <string name="PasscodeShowInSettingsAbout">隐藏后，您**只能**通过链接打开此页面：</string>
     <string name="PasscodeSet">设置锁定码</string>

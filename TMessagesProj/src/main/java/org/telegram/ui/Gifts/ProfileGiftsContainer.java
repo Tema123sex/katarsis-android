@@ -125,7 +125,7 @@ import java.util.Objects;
 
 import me.vkryl.android.animator.BoolAnimator;
 
-import xyz.nextalone.nagram.NaConfig;
+import one.axgram.extra.AxConfig;
 
 public class ProfileGiftsContainer extends FrameLayout implements NotificationCenter.NotificationCenterDelegate {
 
@@ -1696,7 +1696,7 @@ public class ProfileGiftsContainer extends FrameLayout implements NotificationCe
         } else {
             if (page.list != null && page.list.totalCount > 0) return page.list.totalCount;
         }
-        if (NaConfig.INSTANCE.getDisableGifts().Bool()) {
+        if (AxConfig.INSTANCE.getDisableGifts().Bool()) {
             return 0;
         }
         if (dialogId >= 0) {

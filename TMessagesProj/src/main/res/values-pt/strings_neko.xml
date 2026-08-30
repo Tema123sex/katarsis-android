@@ -7,7 +7,7 @@
     <string name="HidePhone">Ocultar o meu número de telefone</string>
     <string name="MessageMenu">Menu de mensagens</string>
     <string name="IPv6">Conexão via IPv6</string>
-    <string name="NekoSettings">Configurações Neko</string>
+    <string name="AxSettings">Configurações AxGram</string>
     <string name="ProviderYouDao">YouDao Translate</string>
     <string name="ProviderMicrosoftTranslator">Microsoft Translator</string>
     <string name="ProviderDeepLTranslate">DeepL Translate</string>
@@ -84,7 +84,7 @@
     <string name="ActionBarDecoration">Decoração da barra de título</string>
     <string name="ChristmasHat">Mostrar chapéu de papai noel todos os dias</string>
     <string name="EventType">Pacote de ícones da barra lateral</string>
-    <string name="NekogramRunning">Nekogram está em execução</string>
+    <string name="AxGramRunning">AxGram está em execução</string>
     <string name="DisableResidentNotification">Desativar notificação persistente</string>
     <string name="EnableResidentNotification">Exibir notificação persistente</string>
     <string name="TransparentStatusBar">Barra de status transparente</string>
@@ -120,14 +120,14 @@
     <string name="UnlimitedFavoredStickersAbout">Adicionar stickers ilimitados aos favoritos. Os stickers podem não ser sincronizados com outros aparelhos.</string>
     <string name="Experiment">Experimental</string>
     <string name="SaveToDownloadCount_other">Salvando %1$d ficheiros para downloads</string>
-    <string name="NekoGeneralNotification">Notificação</string>
+    <string name="AxGeneralNotification">Notificação</string>
     <string name="disableNotificationBubbles">Desativar notificações em bolha</string>
     <string name="reactions">Reações no menu</string>
     <string name="doubleTapSendReactions">Enviar reação ao tocar duas vezes (padrão)</string>
     <string name="doubleTapShowReactions">Mostrar reações apenas ao tocar duas vezes</string>
     <string name="ReactionsDisabled">Desativar</string>
     <string name="StickerSizeDialogName">Duang</string>
-    <string name="enablePublicProxy">Proxy Público do NekoX</string>
+    <string name="enablePublicProxy">Proxy Público do AxGram</string>
     <string name="autoUpdateSubInfo">Atualizar proxies automaticamente</string>
     <string name="hideSendAsChannel">Ocultar enviar como canal</string>
     <string name="customSavePath">Caminho de Armazenamento Personalizado</string>

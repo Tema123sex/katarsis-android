@@ -73,7 +73,7 @@ import java.util.concurrent.atomic.AtomicReference;
 import me.vkryl.android.animator.BoolAnimator;
 import me.vkryl.android.animator.FactorAnimator;
 
-import xyz.nextalone.nagram.helper.MessageHelper;
+import one.axgram.extra.helper.MessageHelper;
 
 public class ChatAvatarContainer extends FrameLayout implements NotificationCenter.NotificationCenterDelegate {
 

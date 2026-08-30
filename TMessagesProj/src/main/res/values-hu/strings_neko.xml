@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <string name="NekoSettings">Neko Beállítások</string>
+    <string name="AxSettings">AxGram Beállítások</string>
     <string name="MessageMenu">Üzenet menü</string>
     <string name="HidePhone">Telefonszámom elrejtése</string>
     <string name="Hide">Elrejt</string>
@@ -24,7 +24,7 @@
     <string name="TransparentStatusBar">Átlátszó állapotsor</string>
     <string name="EnableResidentNotification">Lakossági értesítés megjelenítése</string>
     <string name="DisableResidentNotification">Lakossági értesítés letiltása</string>
-    <string name="NekogramRunning">A Nekogram fut</string>
+    <string name="AxGramRunning">A AxGram fut</string>
     <string name="EventType">Oldalsáv ikon készlet</string>
     <string name="ChristmasHat">Mikulás sapka mutatása minden nap</string>
     <string name="ActionBarDecoration">Címsor díszítés</string>
@@ -114,7 +114,7 @@
     <string name="customSavePath">Egyéni tárhely útvonal</string>
     <string name="showBottomActionsWhenSelecting">Alsó lehetőségek mutatása kijelöléskor</string>
     <string name="disablePremiumStickerAnimation">Prémium matrica animáció letiltása</string>
-    <string name="enablePublicProxy">NekoX Nyilvános Proxy</string>
+    <string name="enablePublicProxy">AxGram Nyilvános Proxy</string>
     <string name="ProviderDeepLTranslate">DeepL Translate</string>
     <string name="pressTitleToOpenAllChats">Nyomja meg a címet, hogy megnyissa az \"összes beszélgetés\" fület.</string>
     <string name="UseMediaStreamInVoip">Médiafolyam használata VoIP-ben</string>
@@ -133,7 +133,7 @@
     <string name="IPv6">Csatlakozás IPv6-on keresztül</string>
     <string name="IncreaseVoiceMessageQuality">Hangüzenetek minőségének növelése</string>
     <string name="ProviderYouDao">YouDao Fordító</string>
-    <string name="NekoGeneralNotification">Értesítés</string>
+    <string name="AxGeneralNotification">Értesítés</string>
     <string name="reactions">Reakciók a menüben</string>
     <string name="doubleTapSendReactions">Reakció küldése dupla koppintással (Alapértelmezett)</string>
     <string name="forceBlurInChat">Beszelgetés-elmosás kényszerített engedélyezése</string>

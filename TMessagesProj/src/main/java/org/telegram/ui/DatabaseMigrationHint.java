@@ -20,8 +20,8 @@ import org.telegram.ui.ActionBar.Theme;
 import org.telegram.ui.Components.LayoutHelper;
 import org.telegram.ui.Components.RLottieImageView;
 
-import tw.nekomimi.nekogram.utils.EnvUtil;
-import tw.nekomimi.nekogram.NekoConfig;
+import one.axgram.core.utils.EnvUtil;
+import one.axgram.core.AxCoreConfig;
 
 public class DatabaseMigrationHint extends FrameLayout {
 
@@ -80,8 +80,8 @@ public class DatabaseMigrationHint extends FrameLayout {
         // Move to /sdcard/Android/...... automatically
         if (Build.VERSION.SDK_INT >= 30) {
             ContextCompat.getMainExecutor(getContext()).execute(() -> {
-                if (!NekoConfig.cachePath.String().contains("/data/")) {
-                    NekoConfig.cachePath.setConfigString(EnvUtil.getAvailableDirectories()[2]);
+                if (!AxCoreConfig.cachePath.String().contains("/data/")) {
+                    AxCoreConfig.cachePath.setConfigString(EnvUtil.getAvailableDirectories()[2]);
                     ImageLoader.getInstance().checkMediaPaths();
                 }
             });

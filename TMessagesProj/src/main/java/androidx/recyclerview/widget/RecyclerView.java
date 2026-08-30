@@ -97,8 +97,8 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
-import tw.nekomimi.nekogram.NekoConfig;
-import tw.nekomimi.nekogram.utils.VibrateUtil;
+import one.axgram.core.AxCoreConfig;
+import one.axgram.core.utils.VibrateUtil;
 
 /**
  * A flexible view for providing a limited window into a large data set.
@@ -7085,7 +7085,7 @@ public class RecyclerView extends ViewGroup implements ScrollingView,
             try {
                 TraceCompat.beginSection(TRACE_CREATE_VIEW_TAG);
                 final VH holder = onCreateViewHolder(parent, viewType);
-                if (NekoConfig.disableVibration.Bool()) {
+                if (AxCoreConfig.disableVibration.Bool()) {
                     VibrateUtil.disableHapticFeedback(holder.itemView);
                 }
                 if (holder.itemView.getParent() != null) {

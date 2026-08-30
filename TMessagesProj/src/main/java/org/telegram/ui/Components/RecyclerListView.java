@@ -96,7 +96,7 @@ import java.util.HashSet;
 import java.util.List;
 import java.util.Objects;
 
-import tw.nekomimi.nekogram.NekoConfig;
+import one.axgram.core.AxCoreConfig;
 
 @SuppressWarnings("JavaReflectionMemberAccess")
 public class RecyclerListView extends RecyclerView implements IBlur3Capture {
@@ -1185,7 +1185,7 @@ public class RecyclerListView extends RecyclerView implements IBlur3Capture {
                     View child = currentChildView;
                     if (onItemLongClickListener != null) {
                         if (onItemLongClickListener.onItemClick(currentChildView, currentChildPosition)) {
-                            if (!NekoConfig.disableVibration.Bool()) {
+                            if (!AxCoreConfig.disableVibration.Bool()) {
                                 try {
                                     child.performHapticFeedback(HapticFeedbackConstants.LONG_PRESS);
                                 } catch (Exception ignored) {}
@@ -1194,7 +1194,7 @@ public class RecyclerListView extends RecyclerView implements IBlur3Capture {
                         }
                     } else {
                         if (onItemLongClickListenerExtended.onItemClick(currentChildView, currentChildPosition, event.getX() - currentChildView.getX(), event.getY() - currentChildView.getY())) {
-                            if (!NekoConfig.disableVibration.Bool()) {
+                            if (!AxCoreConfig.disableVibration.Bool()) {
                                 try {
                                     child.performHapticFeedback(HapticFeedbackConstants.LONG_PRESS);
                                 } catch (Exception ignored) {}

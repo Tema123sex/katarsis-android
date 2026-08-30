@@ -20,11 +20,11 @@
     <string name="SendReactions">Send reaksjoner</string>
     <string name="ShowReactions">Vis Reaksjoner</string>
     <string name="CustomTitle">Tilpasset tittel</string>
-    <string name="CustomTitleHint">La stå tomt for å bruke Nagram</string>
+    <string name="CustomTitleHint">La stå tomt for å bruke AxGram</string>
     <string name="CodeSyntaxHighlight">Fremheving av kode syntaks</string>
     <string name="CreateMono">Opprett monospace</string>
     <string name="CreateMonoLanguage">Kode språk</string>
-    <string name="CodeSyntaxHighlightDetails">Takk til fengsler og Nekogram</string>
+    <string name="CodeSyntaxHighlightDetails">Takk til fengsler og AxGram</string>
     <string name="UseSystemUnlock">Passord opplåsning bruk system ui</string>
     <string name="CopyPhoto">Kopier bilde</string>
     <string name="PhotoCopied">Bilde kopiert til utklippstavlen</string>
@@ -75,7 +75,7 @@
     <string name="IconDecoration">Ikon dekorasjon</string>
     <string name="NotificationIcon">Notifikasjons ikon</string>
     <string name="Official">Offisiell</string>
-    <string name="Nekogram">Nekogram</string>
+    <string name="AxGramLegacy">AxGram</string>
     <string name="HalloWeen">HalloWeen</string>
     <string name="ShowOnlineStatus">Vis tilkoblet status</string>
     <string name="ShowOnlineStatusNotice">Vis statusen på nettet til andre personer ved siden av deres profilbilde i grupper</string>
@@ -90,7 +90,7 @@
     <string name="ShowForumAsNormalChat">Vis forum som normal chat</string>
     <string name="DecorationNone">Ingen</string>
     <string name="ChatDecoration">Chat dekorasjon</string>
-    <string name="NeedChangeNekoSettings">Du må endre N-innstillinger</string>
+    <string name="NeedChangeAxSettings">Du må endre N-innstillinger</string>
     <string name="DoNotUnarchiveBySwipe">Ikke hent vekk opptak ved å dra</string>
     <string name="DoNotShareMyPhoneNumber">Ikke del mitt telefonnummer</string>
     <string name="DefaultDeleteMenu">Standard slett menyen</string>

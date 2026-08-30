@@ -144,13 +144,13 @@ import java.util.Set;
 import kotlin.Unit;
 import me.vkryl.android.animator.BoolAnimator;
 import me.vkryl.android.animator.FactorAnimator;
-import tw.nekomimi.nekogram.NekoConfig;
-import tw.nekomimi.nekogram.NekoXConfig;
-import tw.nekomimi.nekogram.helpers.PasscodeHelper;
-import tw.nekomimi.nekogram.settings.NekoSettingsActivity;
-import tw.nekomimi.nekogram.utils.AlertUtil;
-import xyz.nextalone.nagram.NaConfig;
-import xyz.nextalone.nagram.ui.ItemOptionsPatch;
+import one.axgram.core.AxCoreConfig;
+import one.axgram.core.AxLegacyConfig;
+import one.axgram.core.helpers.PasscodeHelper;
+import one.axgram.core.settings.AxSettingsActivity;
+import one.axgram.core.utils.AlertUtil;
+import one.axgram.extra.AxConfig;
+import one.axgram.extra.ui.ItemOptionsPatch;
 
 public class SettingsActivity extends BaseFragment implements NotificationCenter.NotificationCenterDelegate, ImageUpdater.ImageUpdaterDelegate, MainTabsActivity.TabFragmentDelegate, FactorAnimator.Target {
 
@@ -471,27 +471,9 @@ public class SettingsActivity extends BaseFragment implements NotificationCenter
         versionView.setTextColor(getThemedColor(Theme.key_windowBackgroundWhiteGrayText4));
         versionView.setPadding(dp(21), dp(10), dp(21), dp(10));
         versionView.setGravity(Gravity.CENTER);
-        versionView.setBackground(Theme.createSelectorDrawable(getThemedColor(Theme.key_listSelector), Theme.RIPPLE_MASK_ALL));
-        versionView.setOnClickListener(v -> {
-            openNagramDebugMenu(v);
-        });
-        versionView.setOnLongClickListener(v -> {
-            versionViewPressCount++;
-            if (versionViewPressCount >= 5) {
-                NaConfig.INSTANCE.getShowHiddenFeature().toggleConfigBool();
-                Toast.makeText(getParentActivity(), LocaleController.getString("ErrorOccurred", R.string.ErrorOccurred), Toast.LENGTH_SHORT).show();
-            }
-            if (versionViewPressCount < 2 && !BuildVars.DEBUG_PRIVATE_VERSION) {
-                try {
-                    Toast.makeText(getParentActivity(), getString(R.string.DebugMenuLongPress), Toast.LENGTH_SHORT).show();
-                } catch (Exception e) {
-                    FileLog.e(e);
-                }
-                return true;
-            }
-            openDebugMenu();
-            return true;
-        });
+        // AxGram: version text is plain and non-interactive (no debug menu, no hidden-feature toggle)
+        versionView.setClickable(false);
+        versionView.setLongClickable(false);
 
         navigationBar = new View(context);
 //        fragmentView.addView(navigationBar, LayoutHelper.createFrame(LayoutHelper.MATCH_PARENT, 0, Gravity.BOTTOM | Gravity.FILL_HORIZONTAL));
@@ -544,7 +526,7 @@ public class SettingsActivity extends BaseFragment implements NotificationCenter
         titleView.setText(UserObject.getUserName(user));
         final StringBuilder sb = new StringBuilder();
         String value = LocaleController.getString(R.string.NumberUnknown);
-        if (!NekoConfig.hidePhone.Bool()) {
+        if (!AxCoreConfig.hidePhone.Bool()) {
             if (user != null && user.phone != null && !user.phone.isEmpty()) {
                 value = PhoneFormat.getInstance().format("+" + user.phone);
             }
@@ -701,7 +683,7 @@ public class SettingsActivity extends BaseFragment implements NotificationCenter
             items.add(UItem.asShadow(null));
         }
 
-        items.add(SettingCell.Factory.of(100, 0xFF1BA4ED, 0xFF1488E1, R.drawable.msg_settings, getString(R.string.NekoSettings)));
+        items.add(SettingCell.Factory.of(100, 0xFF1BA4ED, 0xFF1488E1, R.drawable.msg_settings, getString(R.string.AxSettings)));
         items.add(UItem.asShadow(null));
 
         items.add(SettingCell.Factory.of(1, IconBackgroundColors.BLUE.top, IconBackgroundColors.BLUE.bottom, R.drawable.settings_account, getString(R.string.SettingsAccount), getString(R.string.SettingsAccountInfo)));
@@ -758,7 +740,7 @@ public class SettingsActivity extends BaseFragment implements NotificationCenter
         items.add(SettingCell.Factory.of(23, IconBackgroundColors.PURPLE.top, IconBackgroundColors.PURPLE.bottom, R.drawable.settings_features, getString(R.string.TelegramFeatures)));
         items.add(SettingCell.Factory.of(19, IconBackgroundColors.GREEN.top, IconBackgroundColors.GREEN.bottom, R.drawable.settings_policy, getString(R.string.PrivacyPolicy)));
 
-        if (BuildVars.LOGS_ENABLED || BuildVars.DEBUG_PRIVATE_VERSION) {
+        if (false) { // AxGram: hide the Debug/logs section entirely
             items.add(UItem.asShadow(null));
             items.add(UItem.asHeader(getString(R.string.SettingsDebug)));
             items.add(SettingCell.Factory.of(20, 0xFF55CA47, 0xFF27B434, 0, getString(R.string.DebugSendLogs)));
@@ -881,7 +863,7 @@ public class SettingsActivity extends BaseFragment implements NotificationCenter
                 break;
             }
             case 100: {
-                presentFragment(new NekoSettingsActivity());
+                presentFragment(new AxSettingsActivity());
                 break;
             }
         }
@@ -1401,7 +1383,7 @@ public class SettingsActivity extends BaseFragment implements NotificationCenter
             listView.adapter.update(true);
         });
         o.add(R.drawable.msg_retry, LocaleController.getString(R.string.SwitchVersion), () -> {
-            Browser.openUrl(getContext(), "https://github.com/NextAlone/Nagram/releases");
+            Browser.openUrl(getContext(), "https://github.com/aevornyx/axgram-android/releases");
         });
 
         o.add(R.drawable.msg_search, LocaleController.getString(R.string.CheckUpdate), () -> {
@@ -1409,7 +1391,7 @@ public class SettingsActivity extends BaseFragment implements NotificationCenter
         });
 
         String currentChannel = " - ";
-        switch (NekoXConfig.autoUpdateReleaseChannel) {
+        switch (AxLegacyConfig.autoUpdateReleaseChannel) {
             case 0:
                 currentChannel += LocaleController.getString(R.string.AutoCheckUpdateOFF);
                 break;
@@ -1428,20 +1410,20 @@ public class SettingsActivity extends BaseFragment implements NotificationCenter
             ItemOptions switchOptions = ItemOptions.makeOptions(this, view);
             switchOptions.setScrimViewBackground(listView.getClipBackground(view));
             ItemOptionsPatch.addTitle(switchOptions, LocaleController.getString(R.string.AutoCheckUpdateSwitch), null);
-            ItemOptionsPatch.addRadioItem(switchOptions, LocaleController.getString(R.string.AutoCheckUpdateOFF), NekoXConfig.autoUpdateReleaseChannel == 0, null, radioButtonCell -> {
-                NekoXConfig.setAutoUpdateReleaseChannel(0);
+            ItemOptionsPatch.addRadioItem(switchOptions, LocaleController.getString(R.string.AutoCheckUpdateOFF), AxLegacyConfig.autoUpdateReleaseChannel == 0, null, radioButtonCell -> {
+                AxLegacyConfig.setAutoUpdateReleaseChannel(0);
                 ItemOptionsPatch.doRadioCheck(switchOptions, radioButtonCell);
             });
-            ItemOptionsPatch.addRadioItem(switchOptions, LocaleController.getString(R.string.AutoCheckUpdateStable), NekoXConfig.autoUpdateReleaseChannel == 1, null, radioButtonCell -> {
-                NekoXConfig.setAutoUpdateReleaseChannel(1);
+            ItemOptionsPatch.addRadioItem(switchOptions, LocaleController.getString(R.string.AutoCheckUpdateStable), AxLegacyConfig.autoUpdateReleaseChannel == 1, null, radioButtonCell -> {
+                AxLegacyConfig.setAutoUpdateReleaseChannel(1);
                 ItemOptionsPatch.doRadioCheck(switchOptions, radioButtonCell);
             });
-            ItemOptionsPatch.addRadioItem(switchOptions, LocaleController.getString(R.string.AutoCheckUpdateRc), NekoXConfig.autoUpdateReleaseChannel == 2, null, radioButtonCell -> {
-                NekoXConfig.setAutoUpdateReleaseChannel(2);
+            ItemOptionsPatch.addRadioItem(switchOptions, LocaleController.getString(R.string.AutoCheckUpdateRc), AxLegacyConfig.autoUpdateReleaseChannel == 2, null, radioButtonCell -> {
+                AxLegacyConfig.setAutoUpdateReleaseChannel(2);
                 ItemOptionsPatch.doRadioCheck(switchOptions, radioButtonCell);
             });
-            ItemOptionsPatch.addRadioItem(switchOptions, LocaleController.getString(R.string.AutoCheckUpdatePreview), NekoXConfig.autoUpdateReleaseChannel == 3, null, radioButtonCell -> {
-                NekoXConfig.setAutoUpdateReleaseChannel(3);
+            ItemOptionsPatch.addRadioItem(switchOptions, LocaleController.getString(R.string.AutoCheckUpdatePreview), AxLegacyConfig.autoUpdateReleaseChannel == 3, null, radioButtonCell -> {
+                AxLegacyConfig.setAutoUpdateReleaseChannel(3);
                 ItemOptionsPatch.doRadioCheck(switchOptions, radioButtonCell);
             });
             switchOptions.show();

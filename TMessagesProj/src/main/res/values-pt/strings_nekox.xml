@@ -49,7 +49,7 @@
     <string name="OpenPGPApp">Provedor OpenPGP</string>
     <string name="OpenKayChain">Cliente OpenPGP</string>
     <string name="TransSite">Plataforma de Tradução</string>
-    <string name="NekoXFaq">Perguntas Frequentes</string>
+    <string name="AxFaq">Perguntas Frequentes</string>
     <string name="LoginSettings">Configurações de Login</string>
     <string name="DeveloperSettings">Configurações de Programador</string>
     <string name="DisableDeveloperMode">Desativar Modo Programador</string>
@@ -126,9 +126,9 @@
     <string name="FilterMenu">Menu de Filtro de Chats</string>
     <string name="DisableSystemAccount">Desativar Conta do Sistema</string>
     <string name="DisableUndo">Desativar Desfazer</string>
-    <string name="DisablePushAlert">Por favor, desative o \"Serviço de Notificação NekoX\"</string>
-    <string name="EnablePushAlert">Por favor, ative o \"Serviço de Notificação NekoX\"</string>
-    <string name="NekoXPushService">Serviço de Notificação NekoX</string>
+    <string name="DisablePushAlert">Por favor, desative o \"Serviço de Notificação AxGram\"</string>
+    <string name="EnablePushAlert">Por favor, ative o \"Serviço de Notificação AxGram\"</string>
+    <string name="AxPushService">Serviço de Notificação AxGram</string>
     <string name="SortByContacts">Ordenar por Contatos</string>
     <string name="SortByUser">Ordenar por Utilizador</string>
     <string name="SortByUnmuted">Ordenar por Não silenciadas</string>
@@ -156,7 +156,7 @@
     <string name="FakeScreenshot">Simular captura de tela</string>
     <string name="DisableChatAction">Não enviar meu status de entrada</string>
     <string name="PublicPrefix">Público</string>
-    <string name="NekoXProxy">Proxy Público do NekoX</string>
+    <string name="AxProxy">Proxy Público do AxGram</string>
     <string name="RemoveTitleEmoji">Remover emoji no título</string>
     <string name="DoNotRemindAgain">Não lembrar novamente</string>
     <string name="ApplySuggestion">OK, Aplicar</string>
@@ -168,7 +168,7 @@
     <string name="NightMode">Modo Noturno</string>
     <string name="UseDefaultTheme">Usar o tema padrão *</string>
     <string name="ShowIdAndDc">Mostrar ID / DC no perfil</string>
-    <string name="NekoXUpdatesChannel">Canal de Atualizações NekoX</string>
+    <string name="AxUpdatesChannel">Canal de Atualizações AxGram</string>
     <string name="More">Mais</string>
     <string name="TransInputToLang">Idioma de destino para tradução durante a digitação</string>
     <string name="TransToLang">Idioma de destino para tradução</string>
@@ -220,7 +220,7 @@
     <string name="VersionUpdateVariantNotMatch">Não foi possível determinar a versão do seu aplicativo automaticamente.
 \nPor favor, descarregue manualmente no GitHub.</string>
     <string name="VersionUpdateTitle">Nova Versão Disponível</string>
-    <string name="nekoXPaymentRemovedToast">A função de pagamento foi removida.</string>
+    <string name="axPaymentRemovedToast">A função de pagamento foi removida.</string>
     <string name="ImportSettingsAlert">Tem certeza de que deseja substituir as configurações\? Importar configurações de fontes desconhecidas pode fazer com que o PIN seja sobrescrito e isso faça com que o aplicativo seja bloqueado.</string>
     <string name="ImportSettings">Configurações de importação</string>
     <string name="BackupSettings">Configurações de backup</string>
@@ -267,8 +267,8 @@
     <string name="hideSponsoredMessage">Ocultar mensagens patrocinadas</string>
     <string name="rememberAllBackMessages">Lembrar de todas as respostas clicadas</string>
     <string name="AutoCheckUpdatePreview">Prévia (Instável)</string>
-    <string name="AppUpdateNekoX">Atualizar Nekogram X</string>
-    <string name="NekoXUpdateTranslationHint">Toque para traduzir o histórico de alterações</string>
+    <string name="AppUpdateAxGram">Atualizar AxGram</string>
+    <string name="AxUpdateTranslationHint">Toque para traduzir o histórico de alterações</string>
     <string name="channelAlias">Apelidar canal</string>
     <string name="channelAliasDetails">Exige que \"rotular utilizador do canal\" esteja ativado.</string>
     <string name="setChannelAliasName">Definir apelido</string>
@@ -277,6 +277,6 @@
     <string name="StickerSettings">Sticker</string>
     <string name="ConfirmSettings">Confirmação</string>
     <string name="InteractionSettings">Interação</string>
-    <string name="nekoxPremiumGiftRemoved">Presentear assinatura premium não está disponível no NekoX.</string>
+    <string name="axPremiumGiftRemoved">Presentear assinatura premium não está disponível no AxGram.</string>
     <string name="Name">Nome</string>
 </resources>

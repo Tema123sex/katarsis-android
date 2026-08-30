@@ -20,7 +20,7 @@
     <string name="SendReactions">リアクションを送信</string>
     <string name="ShowReactions">リアクションの表示</string>
     <string name="CustomTitle">カスタムタイトル</string>
-    <string name="CustomTitleHint">Nagramを使用するには空白のままにしてください</string>
+    <string name="CustomTitleHint">AxGramを使用するには空白のままにしてください</string>
     <string name="CodeSyntaxHighlight">コードの構文ハイライト</string>
     <string name="CreateMono">Monospaceを作成</string>
     <string name="CreateMonoLanguage">コード言語</string>
@@ -75,7 +75,7 @@
     <string name="IconDecoration">アイコン装飾</string>
     <string name="NotificationIcon">通知アイコン</string>
     <string name="Official">オフィシャル</string>
-    <string name="Nekogram">Nekogram</string>
+    <string name="AxGramLegacy">AxGram</string>
     <string name="HalloWeen">HalloWeen</string>
     <string name="ShowOnlineStatus">オンライン状態を表示</string>
     <string name="ShowOnlineStatusNotice">グループ内のプロフィール写真の隣に他の人のオンライン状態を表示する</string>
@@ -90,7 +90,7 @@
     <string name="ShowForumAsNormalChat">通常のチャットとしてフォーラムを表示</string>
     <string name="DecorationNone">なし</string>
     <string name="ChatDecoration">別荘外観をチャットする</string>
-    <string name="NeedChangeNekoSettings">N 設定を変更する必要があります</string>
+    <string name="NeedChangeAxSettings">N 設定を変更する必要があります</string>
     <string name="DoNotUnarchiveBySwipe">スワイプでアーカイブを解除しない</string>
     <string name="DoNotShareMyPhoneNumber">自分の電話番号を共有しない</string>
     <string name="DefaultDeleteMenu">デフォルトの削除メニュー</string>

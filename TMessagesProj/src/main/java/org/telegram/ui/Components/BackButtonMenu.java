@@ -468,7 +468,7 @@ public class BackButtonMenu {
         }
     }
 
-    // NekoX: History Chats
+    // AxGram: History Chats
 
     public static ActionBarPopupWindow showHistory(BaseFragment thisFragment, View backButton) {
         if (thisFragment == null) {

@@ -5,7 +5,7 @@ import android.os.VibrationEffect;
 
 import androidx.annotation.RequiresApi;
 
-import tw.nekomimi.nekogram.utils.VibrateUtil;
+import one.axgram.core.utils.VibrateUtil;
 
 public enum BotWebViewVibrationEffect {
     IMPACT_LIGHT(new long[] {7}, new int[] {65}, new long[] {60}),

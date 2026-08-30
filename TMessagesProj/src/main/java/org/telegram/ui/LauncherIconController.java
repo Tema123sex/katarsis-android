@@ -34,15 +34,15 @@ public class LauncherIconController {
     }
 
     public enum LauncherIcon {
-        DEFAULT("DefaultIcon", R.mipmap.ic_launcher_nagram, R.mipmap.icon_background_nagram, R.string.AppIconDefault),
-        GOOGLE("GoogleIcon", R.mipmap.icon_background_google, R.mipmap.icon_foreground_google, R.string.AppIconGoogle),
-        COLORFUL("ColorfulIcon", R.mipmap.icon_background_colorful, R.mipmap.icon_foreground_colorful, R.string.AppIconColorful),
-        DARKGREEN("DarkGreenIcon", R.mipmap.icon_background_darkgreen, R.mipmap.icon_foreground_darkgreen, R.string.AppIconDarkGreen),
-        NEON("NeonIcon", R.mipmap.icon_background_neon, R.mipmap.icon_foreground_neon, R.string.AppIconNeon),
-        NIELLO("NielloIcon", R.drawable.ic_launcher_nagram_round_niello_background, R.drawable.ic_launcher_nagram_round_niello_foreground, R.string.AppIconNiello),
-        BLUE("BlueIcon", R.color.nagram_block_round_background, R.drawable.ic_launcher_nagram_block_round_foreground, R.string.AppIconBlue),
-        DARKBLUE("DarkBlueIcon", R.color.nagram_round_blue_background, R.drawable.ic_launcher_nagram_round_blue_foreground, R.string.AppIconDarkBlue),
-        BLURBLUE("BlurBlueIcon", R.drawable.ic_launcher_nagram_blue_background, R.drawable.ic_launcher_nagram_blue_foreground, R.string.AppIconBlurBlue),
+        DEFAULT("DefaultIcon", R.mipmap.ic_launcher_ax, R.mipmap.icon_background_ax, R.string.AppIconDefault),
+        GOOGLE("GoogleIcon", R.mipmap.icon_background_google, R.drawable.ic_launcher_ax_google_foreground, R.string.AppIconGoogle),
+        COLORFUL("ColorfulIcon", R.mipmap.icon_background_colorful, R.drawable.ic_launcher_ax_colorful_foreground, R.string.AppIconColorful),
+        DARKGREEN("DarkGreenIcon", R.mipmap.icon_background_darkgreen, R.drawable.ic_launcher_ax_darkgreen_foreground, R.string.AppIconDarkGreen),
+        NEON("NeonIcon", R.mipmap.icon_background_neon, R.drawable.ic_launcher_ax_neon_foreground, R.string.AppIconNeon),
+        NIELLO("NielloIcon", R.drawable.ic_launcher_ax_round_niello_background, R.drawable.ic_launcher_ax_round_niello_foreground, R.string.AppIconNiello),
+        BLUE("BlueIcon", R.color.ax_block_round_background, R.drawable.ic_launcher_ax_block_round_foreground, R.string.AppIconBlue),
+        DARKBLUE("DarkBlueIcon", R.color.ax_round_blue_background, R.drawable.ic_launcher_ax_round_blue_foreground, R.string.AppIconDarkBlue),
+        BLURBLUE("BlurBlueIcon", R.drawable.ic_launcher_ax_blue_background, R.drawable.ic_launcher_ax_blue_foreground, R.string.AppIconBlurBlue),
         NOX("PremiumIcon", R.drawable.icon_3_background_sa, R.mipmap.icon_3_foreground_sa, R.string.AppIconPremium);
 
         public final String key;
@@ -72,7 +72,7 @@ public class LauncherIconController {
             this.premium = premium;
         }
 
-        public boolean isNekoX() {
+        public boolean isAx() {
             return this == DEFAULT;
         }
     }

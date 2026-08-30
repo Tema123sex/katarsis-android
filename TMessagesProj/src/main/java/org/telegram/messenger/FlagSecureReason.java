@@ -5,7 +5,7 @@ import android.view.WindowManager;
 
 import java.util.HashMap;
 
-import tw.nekomimi.nekogram.NekoXConfig;
+import one.axgram.core.AxLegacyConfig;
 
 public class FlagSecureReason {
 
@@ -76,7 +76,7 @@ public class FlagSecureReason {
     }
 
     public static boolean isSecuredNow(Window window) {
-        return currentSecureReasons != null && currentSecureReasons.get(window) != null && !NekoXConfig.disableFlagSecure;
+        return currentSecureReasons != null && currentSecureReasons.get(window) != null && !AxLegacyConfig.disableFlagSecure;
     }
 
     public interface FlagSecureCondition {

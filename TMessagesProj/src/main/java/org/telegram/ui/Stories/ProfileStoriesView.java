@@ -56,7 +56,7 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
-import xyz.nextalone.nagram.NaConfig;
+import one.axgram.extra.AxConfig;
 
 public class ProfileStoriesView extends View implements NotificationCenter.NotificationCenterDelegate {
 
@@ -935,7 +935,7 @@ public class ProfileStoriesView extends View implements NotificationCenter.Notif
     }
 
     private void drawArcs(Canvas canvas, StoryCircle A, StoryCircle B, StoryCircle C, Paint paint) {
-        if (NaConfig.INSTANCE.getShowSquareAvatar().Bool()) {
+        if (AxConfig.INSTANCE.getShowSquareAvatar().Bool()) {
             return;
         }
 

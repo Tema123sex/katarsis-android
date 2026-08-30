@@ -37,8 +37,8 @@ import java.util.Locale;
 import java.util.concurrent.ConcurrentHashMap;
 
 import cn.hutool.core.util.StrUtil;
-import tw.nekomimi.nekogram.NekoConfig;
-import tw.nekomimi.nekogram.helpers.AyuFilter;
+import one.axgram.core.AxCoreConfig;
+import one.axgram.core.helpers.AxFilter;
 
 public class DownloadController extends BaseController implements NotificationCenter.NotificationCenterDelegate {
 
@@ -615,9 +615,9 @@ public class DownloadController extends BaseController implements NotificationCe
         if (messageObject.getDocument() != null) {
             String documentName = messageObject.getDocument().file_name;
             if (StrUtil.isNotBlank(documentName)) {
-                if ((NekoConfig.disableAutoDownloadingWin32Executable.Bool() &&
+                if ((AxCoreConfig.disableAutoDownloadingWin32Executable.Bool() &&
                         documentName.toLowerCase().matches(".*\\.(cmd|bat|com|exe|lnk|msi|ps1|reg|vb|vbe|vbs|vbscript)")
-                ) || (NekoConfig.disableAutoDownloadingArchive.Bool() &&
+                ) || (AxCoreConfig.disableAutoDownloadingArchive.Bool() &&
                         documentName.toLowerCase().matches(".*\\.(apk|zip|7z|tar|gz|zst|iso|xz|lha|lzh)")
                 )
                 ) return false;
@@ -879,14 +879,14 @@ public class DownloadController extends BaseController implements NotificationCe
             return canPreloadStories() ? 2 : 0;
         }
 
-        // --- AyuGram hook
+        // --- AxGram hook
 
-        var isFiltered = AyuFilter.isFiltered(new MessageObject(currentAccount, message, false, false), null);
+        var isFiltered = AxFilter.isFiltered(new MessageObject(currentAccount, message, false, false), null);
         if (isFiltered) {
             return 0;
         }
 
-        // --- AyuGram hook
+        // --- AxGram hook
 
         int type;
         boolean isVideo;

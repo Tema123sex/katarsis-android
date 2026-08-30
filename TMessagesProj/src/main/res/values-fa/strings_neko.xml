@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <string name="NekoSettings">تنظیمات Neko</string>
+    <string name="AxSettings">تنظیمات AxGram</string>
     <string name="IPv6">اتصال از طریق IPv6</string>
     <string name="MessageMenu">منوی پیام</string>
     <string name="HidePhone">مخفی کردن شماره تلفن</string>
@@ -25,7 +25,7 @@
     <string name="TransparentStatusBar">نوار وضعیت شفاف</string>
     <string name="EnableResidentNotification">نشان دادن اعلان ساکن</string>
     <string name="DisableResidentNotification">غیرفعال کردن اعلان ساکن</string>
-    <string name="NekogramRunning">نكوگرام در حال اجرا است</string>
+    <string name="AxGramRunning">نكوگرام در حال اجرا است</string>
     <string name="EventType">مجموعه آیکون‌های نوار کناری</string>
     <string name="ChristmasHat">نمایش همیشگی کلاه کریسمس</string>
     <string name="ActionBarDecoration">دکوراسیون نوار عنوان</string>
@@ -118,7 +118,7 @@
     <string name="UseMediaStreamInVoip">استفاده از حالت استریم در تماس صوتی</string>
     <string name="TakeGIFasVideo">نمایش گیف‌ها همانند ویدیو</string>
     <string name="DontSendGreetingSticker">نفرستادن چسبانک خوش‌آمد گویی</string>
-    <string name="enablePublicProxy">پروکسی همگانی NekoX</string>
+    <string name="enablePublicProxy">پروکسی همگانی AxGram</string>
     <string name="autoUpdateSubInfo">بروزرسانی خودکار پروکسی‌های همگانی</string>
     <string name="hideSendAsChannel">پنهان کردن «فرستادن به نام درگاه»</string>
     <string name="disableSwipeToNextChannel">غیرفعال‌سازی پرش به کانال بعدی با کشیدن انگشت</string>
@@ -134,7 +134,7 @@
     <string name="SaveToDownloadCount_other">رو به انباردن %1$d پرونده در دریافت‌ها</string>
     <string name="SaveToDownloadCount_many">رو به انباردن %1$d پرونده در دریافت‌ها</string>
     <string name="doubleTapShowReactions">فقط نمایش واکنش‌ها با دوبار مالش</string>
-    <string name="NekoGeneralNotification">اعلانات</string>
+    <string name="AxGeneralNotification">اعلانات</string>
     <string name="disableNotificationBubbles">غیرفعال‌سازی حباب‌ها در اعلانات</string>
     <string name="doubleTapSendReactions">فرستادن واکنش با دوبار مالش (پیش‌انگار)</string>
     <string name="ReactionsDisabled">غیر فعال کردن</string>

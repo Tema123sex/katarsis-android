@@ -18,7 +18,7 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.HashMap;
 
-import tw.nekomimi.nekogram.helpers.remote.UpdateHelper;
+import one.axgram.core.helpers.remote.UpdateHelper;
 
 public class FileRefController extends BaseController {
 

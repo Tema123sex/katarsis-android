@@ -84,7 +84,7 @@ import org.telegram.ui.LaunchActivity;
 import java.util.ArrayList;
 
 import kotlin.Unit;
-import tw.nekomimi.nekogram.ui.BottomBuilder;
+import one.axgram.core.ui.BottomBuilder;
 
 public class BottomSheet extends Dialog implements BaseFragment.AttachedSheet {
     private final static boolean AVOID_SYSTEM_CUTOUT_FULLSCREEN = false;
@@ -2327,56 +2327,56 @@ public class BottomSheet extends Dialog implements BaseFragment.AttachedSheet {
         }
     }
 
-    public static class NekoXBuilder {
+    public static class AxAlertBuilder {
         // do the same thing as BottomBuilder
-        private final BottomBuilder nekoxBuilder;
+        private final BottomBuilder axBuilder;
 
         private HeaderCell title;
 
         private final BottomSheet bottomSheet;
         // in Telegram interface, BottomSheet only have one title
 
-        public NekoXBuilder(Context context) {
+        public AxAlertBuilder(Context context) {
             this(context, false);
         }
 
-        public NekoXBuilder(Context context, int bgColor) {
+        public AxAlertBuilder(Context context, int bgColor) {
             this(context, false, bgColor);
         }
 
-        public NekoXBuilder(Context context, boolean needFocus) {
+        public AxAlertBuilder(Context context, boolean needFocus) {
             this(context, needFocus, Theme.getColor(Theme.key_dialogBackground));
         }
-        public NekoXBuilder(Context context, boolean needFocus, int bgColor) {
-            this.nekoxBuilder = new BottomBuilder(context, needFocus, bgColor);
-            this.bottomSheet = nekoxBuilder.getBuilder().bottomSheet;
+        public AxAlertBuilder(Context context, boolean needFocus, int bgColor) {
+            this.axBuilder = new BottomBuilder(context, needFocus, bgColor);
+            this.bottomSheet = axBuilder.getBuilder().bottomSheet;
         }
-        public NekoXBuilder setItems(CharSequence[] items, final OnClickListener onClickListener) {
-            nekoxBuilder.addItems(items, null, (index, text, cell) -> {
+        public AxAlertBuilder setItems(CharSequence[] items, final OnClickListener onClickListener) {
+            axBuilder.addItems(items, null, (index, text, cell) -> {
                 onClickListener.onClick(null, index);
                 return Unit.INSTANCE;
             });
             return this;
         }
 
-        public NekoXBuilder setItems(CharSequence[] items, int[] icons, final OnClickListener onClickListener) {
-            nekoxBuilder.addItems(items, icons, (index, text, cell) -> {
+        public AxAlertBuilder setItems(CharSequence[] items, int[] icons, final OnClickListener onClickListener) {
+            axBuilder.addItems(items, icons, (index, text, cell) -> {
                 onClickListener.onClick(null, index);
                 return Unit.INSTANCE;
             });
             return this;
         }
 
-        public NekoXBuilder setTitle(CharSequence title) {
+        public AxAlertBuilder setTitle(CharSequence title) {
             return setTitle(title, false);
         }
 
-        public NekoXBuilder setTitle(CharSequence title, boolean big) {
-            this.title = nekoxBuilder.addTitle(title, big);
+        public AxAlertBuilder setTitle(CharSequence title, boolean big) {
+            this.title = axBuilder.addTitle(title, big);
             return this;
         }
 
-        public NekoXBuilder setTitleMultipleLines(boolean allowMultipleLines) {
+        public AxAlertBuilder setTitleMultipleLines(boolean allowMultipleLines) {
             if (this.title != null) {
                 var textView = this.title.getTextView();
                 if (allowMultipleLines) {
@@ -2393,7 +2393,7 @@ public class BottomSheet extends Dialog implements BaseFragment.AttachedSheet {
         }
 
         public BottomSheet create() {
-            return nekoxBuilder.create();
+            return axBuilder.create();
         }
 
         public BottomSheet setDimBehind(boolean value) {
@@ -2406,27 +2406,27 @@ public class BottomSheet extends Dialog implements BaseFragment.AttachedSheet {
             return bottomSheet;
         }
 
-        public NekoXBuilder setTag(int tag) {
+        public AxAlertBuilder setTag(int tag) {
             bottomSheet.tag = tag;
             return this;
         }
 
-        public NekoXBuilder setUseHardwareLayer(boolean value) {
+        public AxAlertBuilder setUseHardwareLayer(boolean value) {
             bottomSheet.useHardwareLayer = value;
             return this;
         }
 
-        public NekoXBuilder setDelegate(BottomSheetDelegate delegate) {
+        public AxAlertBuilder setDelegate(BottomSheetDelegate delegate) {
             bottomSheet.setDelegate(delegate);
             return this;
         }
 
-        public NekoXBuilder setApplyTopPadding(boolean value) {
+        public AxAlertBuilder setApplyTopPadding(boolean value) {
             bottomSheet.applyTopPadding = value;
             return this;
         }
 
-        public NekoXBuilder setApplyBottomPadding(boolean value) {
+        public AxAlertBuilder setApplyBottomPadding(boolean value) {
             bottomSheet.applyBottomPadding = value;
             return this;
         }
@@ -2445,8 +2445,8 @@ public class BottomSheet extends Dialog implements BaseFragment.AttachedSheet {
             return bottomSheet;
         }
 
-        public NekoXBuilder setOnPreDismissListener(OnDismissListener onDismissListener) {
-            nekoxBuilder.getBuilder().bottomSheet.setOnHideListener(onDismissListener);
+        public AxAlertBuilder setOnPreDismissListener(OnDismissListener onDismissListener) {
+            axBuilder.getBuilder().bottomSheet.setOnHideListener(onDismissListener);
             return this;
         }
 

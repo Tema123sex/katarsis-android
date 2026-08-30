@@ -53,8 +53,8 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
-import tw.nekomimi.nekogram.NekoConfig;
-import xyz.nextalone.nagram.NaConfig;
+import one.axgram.core.AxCoreConfig;
+import one.axgram.extra.AxConfig;
 
 public class SenderSelectPopup extends ActionBarPopupWindow {
     public final static float SPRING_STIFFNESS = 750f;
@@ -156,7 +156,7 @@ public class SenderSelectPopup extends ActionBarPopupWindow {
 
         List<TLRPC.TL_sendAsPeer> peers = sendAsPeers.peers;
 
-        if (NaConfig.INSTANCE.getQuickToggleAnonymous().Bool() && chatFull != null) {
+        if (AxConfig.INSTANCE.getQuickToggleAnonymous().Bool() && chatFull != null) {
             var chat = messagesController.getChat(chatFull.id);
             if (chat != null && ChatObject.isMegagroup(chat) && chat.creator) {
                 if (peers.stream().noneMatch(peer -> peer.peer.channel_id == chat.id)) {
@@ -257,7 +257,7 @@ public class SenderSelectPopup extends ActionBarPopupWindow {
                 return;
             }
             if (peerObj.premium_required && !UserConfig.getInstance(UserConfig.selectedAccount).isPremium()) {
-                if (!NekoConfig.disableVibration.Bool()) {
+                if (!AxCoreConfig.disableVibration.Bool()) {
                     try {
                         view.performHapticFeedback(HapticFeedbackConstants.KEYBOARD_TAP, HapticFeedbackConstants.FLAG_IGNORE_GLOBAL_SETTING);
                     } catch (Exception ignored) {}

@@ -250,26 +250,26 @@ import java.util.zip.ZipInputStream;
 import cn.hutool.core.util.StrUtil;
 import kotlin.Unit;
 import kotlin.text.StringsKt;
-import tw.nekomimi.nekogram.helpers.SettingsHelper;
-import tw.nekomimi.nekogram.helpers.remote.ChatExtraButtonsHelper;
-import tw.nekomimi.nekogram.helpers.remote.EmojiHelper;
-import tw.nekomimi.nekogram.helpers.remote.InlineBotRulesHelper;
-import tw.nekomimi.nekogram.helpers.remote.PagePreviewRulesHelper;
-import tw.nekomimi.nekogram.helpers.remote.PeerColorHelper;
-import tw.nekomimi.nekogram.helpers.remote.UpdateHelper;
-import tw.nekomimi.nekogram.helpers.remote.WallpaperHelper;
-import tw.nekomimi.nekogram.settings.NekoGhostModeActivity;
-import tw.nekomimi.nekogram.ui.BottomBuilder;
-import tw.nekomimi.nekogram.NekoConfig;
-import tw.nekomimi.nekogram.NekoXConfig;
-import tw.nekomimi.nekogram.settings.NekoSettingsActivity;
-import tw.nekomimi.nekogram.utils.AlertUtil;
-//import tw.nekomimi.nekogram.utils.MonetHelper;
-import tw.nekomimi.nekogram.utils.ProxyUtil;
-import tw.nekomimi.nekogram.utils.UIUtil;
-import tw.nekomimi.nekogram.utils.UpdateUtil;
-import xyz.nextalone.nagram.NaConfig;
-import xyz.nextalone.nagram.helper.ExternalStickerCacheHelper;
+import one.axgram.core.helpers.SettingsHelper;
+import one.axgram.core.helpers.remote.ChatExtraButtonsHelper;
+import one.axgram.core.helpers.remote.EmojiHelper;
+import one.axgram.core.helpers.remote.InlineBotRulesHelper;
+import one.axgram.core.helpers.remote.PagePreviewRulesHelper;
+import one.axgram.core.helpers.remote.PeerColorHelper;
+import one.axgram.core.helpers.remote.UpdateHelper;
+import one.axgram.core.helpers.remote.WallpaperHelper;
+import one.axgram.core.settings.AxGhostModeActivity;
+import one.axgram.core.ui.BottomBuilder;
+import one.axgram.core.AxCoreConfig;
+import one.axgram.core.AxLegacyConfig;
+import one.axgram.core.settings.AxSettingsActivity;
+import one.axgram.core.utils.AlertUtil;
+//import one.axgram.core.utils.MonetHelper;
+import one.axgram.core.utils.ProxyUtil;
+import one.axgram.core.utils.UIUtil;
+import one.axgram.core.utils.UpdateUtil;
+import one.axgram.extra.AxConfig;
+import one.axgram.extra.helper.ExternalStickerCacheHelper;
 
 public class LaunchActivity extends BasePermissionsActivity implements INavigationLayout.INavigationLayoutDelegate, NotificationCenter.NotificationCenterDelegate, DialogsActivity.DialogsActivityDelegate, IPipActivity {
     public final static String EXTRA_FORCE_NOT_INTERNAL_APPS = "force_not_internal_apps";
@@ -792,7 +792,7 @@ public class LaunchActivity extends BasePermissionsActivity implements INavigati
                             locked = false;
                         }
 
-                        if (AndroidUtilities.isTablet() || NaConfig.INSTANCE.getDisablePredictiveBackAnimation().Bool()) {
+                        if (AndroidUtilities.isTablet() || AxConfig.INSTANCE.getDisablePredictiveBackAnimation().Bool()) {
                             onBackPressed();
                             return;
                         }
@@ -813,7 +813,7 @@ public class LaunchActivity extends BasePermissionsActivity implements INavigati
                     }
 
                     private void onBackStartedInternal(BackEvent backEvent) {
-                        if (AndroidUtilities.isTablet() || NaConfig.INSTANCE.getDisablePredictiveBackAnimation().Bool()) return;
+                        if (AndroidUtilities.isTablet() || AxConfig.INSTANCE.getDisablePredictiveBackAnimation().Bool()) return;
                         if (!onBackPressed(false)) return;
                         if (actionBarLayout != null) {
                             boolean started = actionBarLayout.onBackStarted(backEvent.getTouchX(), backEvent.getTouchY());
@@ -840,7 +840,7 @@ public class LaunchActivity extends BasePermissionsActivity implements INavigati
 
                         final float fixedProgress = Math.max(0, progress - LAZY_START) / (1 - LAZY_START);
 
-                        if (AndroidUtilities.isTablet() || NaConfig.INSTANCE.getDisablePredictiveBackAnimation().Bool()) return;
+                        if (AndroidUtilities.isTablet() || AxConfig.INSTANCE.getDisablePredictiveBackAnimation().Bool()) return;
                         if (actionBarLayout != null) {
                             actionBarLayout.onBackProgress(fixedProgress);
                         }
@@ -855,7 +855,7 @@ public class LaunchActivity extends BasePermissionsActivity implements INavigati
                             locked = false;
                         }
 
-                        if (AndroidUtilities.isTablet() || NaConfig.INSTANCE.getDisablePredictiveBackAnimation().Bool()) return;
+                        if (AndroidUtilities.isTablet() || AxConfig.INSTANCE.getDisablePredictiveBackAnimation().Bool()) return;
                         if (actionBarLayout != null) {
                             actionBarLayout.onBackCancelled();
                         }
@@ -2165,14 +2165,14 @@ public class LaunchActivity extends BasePermissionsActivity implements INavigati
                                                 conferenceSlug = path.replace("call/", "");
                                             } else if (path.startsWith("addemoji/")) {
                                                 emoji = path.replace("addemoji/", "");
-                                            } else if (path.startsWith("nasettings/")) {
+                                            } else if (path.startsWith("axsettings/")) {
                                                 SettingsHelper.processDeepLink(this, data, fragment -> {
                                                     AndroidUtilities.runOnUIThread(() -> presentFragment(fragment, false, false));
                                                     if (AndroidUtilities.isTablet()) {
                                                         actionBarLayout.showLastFragment();
                                                         rightActionBarLayout.showLastFragment();
                                                     }
-                                                }, () -> showBulletin(factory -> factory.createErrorBulletin(LocaleController.getString("UnknownNekoSettingsOption", R.string.UnknownNekoSettingsOption))));
+                                                }, () -> showBulletin(factory -> factory.createErrorBulletin(LocaleController.getString("UnknownAxSettingsOption", R.string.UnknownAxSettingsOption))));
                                             } else if (path.startsWith("msg/") || path.startsWith("share/")) {
                                                 message = data.getQueryParameter("url");
                                                 if (message == null) {
@@ -2730,8 +2730,8 @@ public class LaunchActivity extends BasePermissionsActivity implements INavigati
                                             FileLog.e(e);
                                         }
                                         checkAppUpdate(true, null, updateAlways);
-                                    } else if (url.startsWith("tg:neko") || url.startsWith("tg://neko")) {
-                                        url = url.replace("tg:neko", "tg://t.me/nasettings").replace("tg://neko", "tg://t.me/nasettings");
+                                    } else if (url.startsWith("tg:ax") || url.startsWith("tg://ax")) {
+                                        url = url.replace("tg:ax", "tg://t.me/axsettings").replace("tg://ax", "tg://t.me/axsettings");
                                         data = Uri.parse(url);
                                         SettingsHelper.processDeepLink(this, data, fragment -> {
                                             AndroidUtilities.runOnUIThread(() -> presentFragment(fragment, false, false));
@@ -2739,7 +2739,7 @@ public class LaunchActivity extends BasePermissionsActivity implements INavigati
                                                 actionBarLayout.showLastFragment();
                                                 rightActionBarLayout.showLastFragment();
                                             }
-                                        }, () -> showBulletin(factory -> factory.createErrorBulletin(LocaleController.getString("UnknownNekoSettingsOption", R.string.UnknownNekoSettingsOption))));
+                                        }, () -> showBulletin(factory -> factory.createErrorBulletin(LocaleController.getString("UnknownAxSettingsOption", R.string.UnknownAxSettingsOption))));
                                     } else if ((url.startsWith("tg:search") || url.startsWith("tg://search"))) {
                                         url = url.replace("tg:search", "tg://telegram.org").replace("tg://search", "tg://telegram.org");
                                         data = Uri.parse(url);
@@ -3278,7 +3278,7 @@ public class LaunchActivity extends BasePermissionsActivity implements INavigati
 
                     fragment = null;
                 } else if (open_settings == 100) {
-                    fragment = new NekoSettingsActivity();
+                    fragment = new AxSettingsActivity();
                 } else if (ApplicationLoader.applicationLoaderInstance != null) {
                     fragment = ApplicationLoader.applicationLoaderInstance.openSettings(open_settings);
                 } else {
@@ -4111,7 +4111,7 @@ public class LaunchActivity extends BasePermissionsActivity implements INavigati
                 NotificationCenter.getGlobalInstance().postNotificationName(NotificationCenter.didReceiveSmsCode, code);
             } else {
                 AlertDialog.Builder builder = new AlertDialog.Builder(LaunchActivity.this);
-                builder.setTitle(LocaleController.getString(R.string.NekoX));
+                builder.setTitle(LocaleController.getString(R.string.AxGram));
                 builder.setMessage(AndroidUtilities.replaceTags(LocaleController.formatString(R.string.OtherLoginCode, code)));
                 builder.setPositiveButton(LocaleController.getString(R.string.OK), null);
                 showAlertDialog(builder);
@@ -5078,7 +5078,7 @@ public class LaunchActivity extends BasePermissionsActivity implements INavigati
                             }
                         } else {
                             AlertDialog.Builder builder = new AlertDialog.Builder(LaunchActivity.this);
-                            builder.setTitle(LocaleController.getString(R.string.NekoX));
+                            builder.setTitle(LocaleController.getString(R.string.AxGram));
                             if (error.text.startsWith("FLOOD_WAIT")) {
                                 builder.setMessage(LocaleController.getString(R.string.FloodWait));
                             } else if (error.text.startsWith("INVITE_HASH_EXPIRED")) {
@@ -5135,7 +5135,7 @@ public class LaunchActivity extends BasePermissionsActivity implements INavigati
                                 }
                             } else {
                                 AlertDialog.Builder builder = new AlertDialog.Builder(LaunchActivity.this);
-                                builder.setTitle(LocaleController.getString(R.string.NekoX));
+                                builder.setTitle(LocaleController.getString(R.string.AxGram));
                                 if (error.text.startsWith("FLOOD_WAIT")) {
                                     builder.setMessage(LocaleController.getString(R.string.FloodWait));
                                 } else if (error.text.equals("USERS_TOO_MUCH")) {
@@ -6074,6 +6074,10 @@ public class LaunchActivity extends BasePermissionsActivity implements INavigati
     }
 
     public void checkAppUpdate(boolean force, Browser.Progress progress, boolean updateAlways) {
+        // AxGram: never auto-check for Nagram updates (no recurring update popups / bottom bar).
+        if (!force) {
+            return;
+        }
 //        if (!ApplicationLoader.isStandaloneBuild() && !ApplicationLoader.isBetaBuild()) {
 //            return;
 //        }
@@ -6102,7 +6106,7 @@ public class LaunchActivity extends BasePermissionsActivity implements INavigati
             return;
         }
         long updateCheckDelay;
-        if (NekoXConfig.autoUpdateReleaseChannel == 3) {
+        if (AxLegacyConfig.autoUpdateReleaseChannel == 3) {
             updateCheckDelay = 30 * 60 * 1000;
         } else {
             updateCheckDelay = 24 * 60 * 60 * 1000;
@@ -7152,7 +7156,7 @@ public class LaunchActivity extends BasePermissionsActivity implements INavigati
             }
         }
 
-        if (NaConfig.INSTANCE.getDisableProxyWhenVpnEnabled().Bool()) {
+        if (AxConfig.INSTANCE.getDisableProxyWhenVpnEnabled().Bool()) {
             if (SharedConfig.isProxyEnabled() && ProxyUtil.isVPNEnabled()) {
                 SharedConfig.setProxyEnable(false);
             } else if (!ProxyUtil.isVPNEnabled()) {
@@ -7178,7 +7182,7 @@ public class LaunchActivity extends BasePermissionsActivity implements INavigati
         }
         if (UserConfig.getInstance(UserConfig.selectedAccount).unacceptedTermsOfService != null) {
             showTosActivity(UserConfig.selectedAccount, UserConfig.getInstance(UserConfig.selectedAccount).unacceptedTermsOfService);
-        } else if (SharedConfig.pendingAppUpdate != null && SharedConfig.pendingAppUpdate.can_not_skip) {
+        } else if (false && SharedConfig.pendingAppUpdate != null && SharedConfig.pendingAppUpdate.can_not_skip) { // AxGram: no forced update screen
             showUpdateActivity(UserConfig.selectedAccount, SharedConfig.pendingAppUpdate, true);
         }
         checkAppUpdate(false, null);
@@ -7347,7 +7351,7 @@ public class LaunchActivity extends BasePermissionsActivity implements INavigati
             }
 
             AlertDialog.Builder builder = new AlertDialog.Builder(this);
-            builder.setTitle(LocaleController.getString(R.string.NekoX));
+            builder.setTitle(LocaleController.getString(R.string.AxGram));
             if (fragment != null) {
                 Map<String, Integer> colorsReplacement = new HashMap<>();
                 colorsReplacement.put("info1.**", fragment.getThemedColor(Theme.key_dialogTopBackground));
@@ -7414,7 +7418,7 @@ public class LaunchActivity extends BasePermissionsActivity implements INavigati
         } else if (id == NotificationCenter.wasUnableToFindCurrentLocation) {
             final HashMap<String, MessageObject> waitingForLocation = (HashMap<String, MessageObject>) args[0];
             AlertDialog.Builder builder = new AlertDialog.Builder(this);
-            builder.setTitle(LocaleController.getString(R.string.NekoX));
+            builder.setTitle(LocaleController.getString(R.string.AxGram));
             builder.setPositiveButton(LocaleController.getString(R.string.OK), null);
             builder.setNegativeButton(LocaleController.getString(R.string.ShareYouLocationUnableManually), (dialogInterface, i) -> {
                 if (mainFragmentsStack.isEmpty()) {

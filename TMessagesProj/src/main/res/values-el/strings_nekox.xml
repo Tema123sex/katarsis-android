@@ -23,7 +23,7 @@
     <string name="CheckUpdate">Έλεγχος ενημέρωσης</string>
     <string name="UpdateAvailable">Διαθέσιμη νέα ενημέρωση</string>
     <string name="Install">Εγκατάσταση</string>
-    <string name="NekoXUpdatesChannel">Κανάλι ενημερώσεων NekoX</string>
+    <string name="AxUpdatesChannel">Κανάλι ενημερώσεων AxGram</string>
     <string name="CustomBackendProduction">Επίσημο Κέντρο Δεδομένων Παραγωγής</string>
     <string name="UpdateDownloaded">Μόλις έγινε λήψη μιας ενημέρωσης.</string>
     <string name="GoogleCloudTransKeyNotice">Εάν ρυθμίσετε ένα κλειδί Google Cloud Trans, θα καλείται το API της μετάφρασης cloud αντί να υποβάλλετε μια ψεύτικη φόρμα στην έκδοση web κατά τη μετάφραση (ταχύτερη, σταθερότερη και εξοικονόμηση κίνησης).</string>
@@ -60,7 +60,7 @@
     <string name="PrivacyNotice">Προειδοποίηση απορρήτου</string>
     <string name="FilterNameUsers">Χρήστες</string>
     <string name="FilterNameUnreadDescription">Μόνο μη αναγνωσμένα μηνύματα</string>
-    <string name="NekoXProxy">Δημόσιος Proxy NekoX</string>
+    <string name="AxProxy">Δημόσιος Proxy AxGram</string>
     <string name="FilterNameUnmutedDescription">Μόνο μηνύματα από συνομιλίες χωρίς σίγαση</string>
     <string name="RemoveTitleEmoji">Αφαίρεση emoji στον τίτλο</string>
     <string name="FilterNameUnmuted">Χωρίς σίγαση</string>
@@ -86,7 +86,7 @@
     <string name="ImportProxyFromClipboard">Εισαγωγή από το Πρόχειρο</string>
     <string name="ProxySubDetails">Λεπτομέρειες συνδρομής</string>
     <string name="OpenPGPApp">Πάροχος OpenPGP</string>
-    <string name="EnablePushAlert">Ενεργ/στε την υπηρεσία προώθησης NekoX</string>
+    <string name="EnablePushAlert">Ενεργ/στε την υπηρεσία προώθησης AxGram</string>
     <string name="RetestPing">Επανέλεγχος ping για όλους τους διακομιστές</string>
     <string name="SubscriptionUrls">URLs</string>
     <string name="ImportStickersList">Εισαγωγή αυτοκόλλητων</string>
@@ -98,7 +98,7 @@
     <string name="LoginSettings">Ρυθμίσεις σύνδεσης</string>
     <string name="SortByUnmuted">Κατά Μη σε Σίγαση</string>
     <string name="InvalidProxyFile">Μη έγκυρο αρχείο λίστας proxy:</string>
-    <string name="NekoXFaq">Συχνές ερωτήσεις Nagram</string>
+    <string name="AxFaq">Συχνές ερωτήσεις AxGram</string>
     <string name="BrokenLink">Άγνωστο / Σφάλμα συνδέσμου</string>
     <string name="ProxyInfoSS">Ρυθμίσεις Proxy Shadowsocks</string>
     <string name="ReorderByPing">Αναδιάταξη servers βάσει ping</string>
@@ -129,7 +129,7 @@
     <string name="DisableSystemAccount">Απενεργ/ση Λογ/σμού Συστήματος</string>
     <string name="PGPImportPrivate">Εισαγωγή ιδιωτικού κλειδιού</string>
     <string name="SortByContacts">Ταξινόμηση κατά επαφές</string>
-    <string name="NekoXPushService">Υπηρεσία NekoX Push</string>
+    <string name="AxPushService">Υπηρεσία AxGram Push</string>
     <string name="MinApi23Required">Συγγνώμη, χρειάζεστε τουλάχιστον Android 6 (επίπεδο API 23).</string>
     <string name="TransSite">Πλατφόρμα Μετάφρασης</string>
     <string name="OpenKayChain">Πελάτης OpenPGP</string>
@@ -157,7 +157,7 @@
     <string name="ImportedProxies">Εισαγόμενοι διακομιστές μεσολάβησης:</string>
     <string name="ExportStickers">Εξαγωγή αυτοκόλλητων</string>
     <string name="SSPassword">Κωδικός</string>
-    <string name="DisablePushAlert">Απενεργ/στε την υπηρεσία προώθησης NekoX</string>
+    <string name="DisablePushAlert">Απενεργ/στε την υπηρεσία προώθησης AxGram</string>
     <string name="VmessRequestHost">Αίτημα Host / Ασφάλεια QUIC</string>
     <string name="ProxyInfoTrojan">Ρυθμίσεις Trojan Proxy</string>
     <string name="ImportProxies">Εισαγωγή διακομιστών από αρχείο</string>
@@ -207,7 +207,7 @@
     <string name="WsPayload">Payload</string>
     <string name="DisableInstantCamera">Απενεργ/ση άμεσης κάμερας</string>
     <string name="showSeconds">Εμφάνιση χρονικής σήμανσης σε δευτ.</string>
-    <string name="NekoXUpdateTranslationHint">Πατήστε για να μεταφράσετε το changelog</string>
+    <string name="AxUpdateTranslationHint">Πατήστε για να μεταφράσετε το changelog</string>
     <string name="AutoCheckUpdatePreview">Προεπισκόπηση (Ασταθής)</string>
     <string name="CCHK">Παραδοσιακά κινέζικα (Χονγκ Κονγκ)</string>
     <string name="AppLinkFDroid">F-Droid</string>
@@ -243,7 +243,7 @@
 \nΜεγάλο avatar</string>
     <string name="AcceptSecretChat">Αποδοχή νέας απόρρητης συνομιλίας</string>
     <string name="customPublicProxyIPNotice">Σε ορισμένες περιοχές, ο προσδιορισμός της IP ενός δημόσιου CDN μεσολάβησης (π.χ. Cloudflare) μπορεί να επιταχύνει την πρόσβαση.</string>
-    <string name="AppUpdateNekoX">Ενημέρωση Nekogram X</string>
+    <string name="AppUpdateAxGram">Ενημέρωση AxGram</string>
     <string name="setChannelAliasName">Ορισμός ψευδωνύμου</string>
     <string name="UnpinMessagesAll">Ξεκαρφίτσωμα όλων των μηνυμάτων</string>
     <string name="UnpinSticker">Ξεκαρφίτσωμα</string>
@@ -260,7 +260,7 @@
     <string name="DeleteDownloadedFileConfirm">Διαγραφή αυτού του αρχείου από την τοπική μνήμη cache;</string>
     <string name="labelChannelUserDetails">Εάν ο αποστολέας του μηνύματος είναι το \"Κανάλι\", θα έχει την ένδειξη \"Κανάλι\".</string>
     <string name="InteractionSettings">Αλληλεπίδραση</string>
-    <string name="nekoxPremiumGiftRemoved">Το Premium Gift αφαιρέθηκε στο NekoX.</string>
+    <string name="axPremiumGiftRemoved">Το Premium Gift αφαιρέθηκε στο AxGram.</string>
     <string name="AutoCheckUpdateOFF">OFF</string>
     <string name="CCSP">Απλοποιημένα κινέζικα (Κίνα)</string>
     <string name="SetPinnedSuffix">(Καρφιτσωμένο)</string>
@@ -279,5 +279,5 @@
     <string name="AutoCheckUpdateSwitch">Αυτόματη ενημέρωση</string>
     <string name="AutoCheckUpdateStable">Σταθερή</string>
     <string name="AutoCheckUpdateRc">Υποψήφια έκδοση</string>
-    <string name="nekoXPaymentRemovedToast">Η λειτουργία πληρωμής έχει αφαιρεθεί.</string>
+    <string name="axPaymentRemovedToast">Η λειτουργία πληρωμής έχει αφαιρεθεί.</string>
 </resources>

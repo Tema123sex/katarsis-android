@@ -8,9 +8,8 @@ import org.telegram.ui.Components.Paint.PersistColorPalette;
 
 import java.util.concurrent.ConcurrentHashMap;
 
-import tw.nekomimi.nekogram.helpers.CloudStorageHelper;
-import tw.nekomimi.nekogram.helpers.UserHelper;
-import tw.nekomimi.nekogram.ui.MessageHelper;
+import one.axgram.core.helpers.UserHelper;
+import one.axgram.core.ui.MessageHelper;
 
 public class AccountInstance {
 
@@ -111,10 +110,6 @@ public class AccountInstance {
 
     public UserHelper getUserHelper() {
         return UserHelper.getInstance(currentAccount);
-    }
-
-    public CloudStorageHelper getCloudStorageHelper() {
-        return CloudStorageHelper.getInstance(currentAccount);
     }
 
     public MemberRequestsController getMemberRequestsController() {

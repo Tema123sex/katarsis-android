@@ -121,11 +121,11 @@ import java.util.List;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
-import tw.nekomimi.nekogram.NekoConfig;
-import tw.nekomimi.nekogram.utils.ProxyUtil;
-import xyz.nextalone.nagram.NaConfig;
-import xyz.nextalone.nagram.helper.ExternalStickerCacheHelper;
-import xyz.nextalone.nagram.helper.StickerSetHelper;
+import one.axgram.core.AxCoreConfig;
+import one.axgram.core.utils.ProxyUtil;
+import one.axgram.extra.AxConfig;
+import one.axgram.extra.helper.ExternalStickerCacheHelper;
+import one.axgram.extra.helper.StickerSetHelper;
 
 public class StickersAlert extends BottomSheet implements NotificationCenter.NotificationCenterDelegate {
 
@@ -1150,7 +1150,7 @@ public class StickersAlert extends BottomSheet implements NotificationCenter.Not
         optionsButton.addSubItem(2, R.drawable.msg_link, LocaleController.getString(R.string.CopyLink));
         optionsButton.addSubItem(menu_qrcode, R.drawable.msg_qrcode, LocaleController.getString(R.string.ShareQRCode));
         optionsButton.addSubItem(menu_archive, R.drawable.msg_archive, LocaleController.getString(R.string.Archive));
-        if (!NaConfig.INSTANCE.getExternalStickerCache().String().isBlank()) {
+        if (!AxConfig.INSTANCE.getExternalStickerCache().String().isBlank()) {
             optionsButton.addSubItem(menuRefreshExternalCache, R.drawable.menu_views_reposts, LocaleController.getString(R.string.ExternalStickerCacheRefresh));
             optionsButton.addSubItem(menuDeleteExternalCache, R.drawable.msg_delete, LocaleController.getString(R.string.ExternalStickerCacheDelete));
         }

@@ -20,11 +20,11 @@
     <string name="SendReactions">Gửi phản hồi biểu tượng cảm xúc</string>
     <string name="ShowReactions">Hiển thị trình đơn phản hồi biểu tượng cảm xúc</string>
     <string name="CustomTitle">Tùy chỉnh tiêu đề</string>
-    <string name="CustomTitleHint">Để trống để sử dụng Nagram</string>
+    <string name="CustomTitleHint">Để trống để sử dụng AxGram</string>
     <string name="CodeSyntaxHighlight">Làm nổi bật mã cú pháp</string>
     <string name="CreateMono">Tạo phông chữ đơn cách</string>
     <string name="CreateMonoLanguage">Mã ngôn ngữ</string>
-    <string name="CodeSyntaxHighlightDetails">Cảm ơn prismjs và Nekogram</string>
+    <string name="CodeSyntaxHighlightDetails">Cảm ơn prismjs và AxGram</string>
     <string name="UseSystemUnlock">Mã khóa để mở khóa bằng giao diện hệ thống</string>
     <string name="CopyPhoto">Sao chép ảnh</string>
     <string name="PhotoCopied">Đã sao chép hình ảnh vào bảng nhớ tạm</string>
@@ -75,7 +75,7 @@
     <string name="IconDecoration">Trang trí biểu tượng</string>
     <string name="NotificationIcon">Kiểu biểu tượng thông báo</string>
     <string name="Official">Chính thức</string>
-    <string name="Nekogram">Nekogram</string>
+    <string name="AxGramLegacy">AxGram</string>
     <string name="HalloWeen">Halloween</string>
     <string name="ShowOnlineStatus">Hiển thị trạng thái trực tuyến của người dùng</string>
     <string name="ShowOnlineStatusNotice">Hiển thị trạng thái trực tuyến ở góc dưới bên phải hình đại diện của người dùng khi trò chuyện nhóm</string>
@@ -90,7 +90,7 @@
     <string name="ShowForumAsNormalChat">Mở nhóm chế độ chủ đề ở chế độ hội thoại thông thường</string>
     <string name="DecorationNone">Không</string>
     <string name="ChatDecoration">Trang trí trò chuyện</string>
-    <string name="NeedChangeNekoSettings">Cài đặt này đã bị ghi đè bởi Cài đặt-N và không thể sửa đổi được</string>
+    <string name="NeedChangeAxSettings">Cài đặt này đã bị ghi đè bởi Cài đặt-N và không thể sửa đổi được</string>
     <string name="DoNotUnarchiveBySwipe">Vô hiệu hóa thao tác vuốt để hủy lưu trữ</string>
     <string name="DoNotShareMyPhoneNumber">Vô hiệu hóa việc chia sẻ số điện thoại di động của tôi</string>
     <string name="DefaultDeleteMenu">Xóa trình đơn theo mặc định</string>

@@ -70,7 +70,7 @@ import org.telegram.ui.PaymentFormActivity;
 
 import java.util.ArrayList;
 
-import tw.nekomimi.nekogram.NekoConfig;
+import one.axgram.core.AxCoreConfig;
 
 @SuppressWarnings("FieldCanBeLocal")
 @Deprecated // use Bulletin instead
@@ -491,7 +491,7 @@ public class UndoView extends FrameLayout {
         timeLeft = 5000;
         currentInfoObject = infoObject;
 
-        if (NekoConfig.disableUndo.Bool() && !isTooltipAction()) {
+        if (AxCoreConfig.disableUndo.Bool() && !isTooltipAction()) {
             if (actionRunnable != null) actionRunnable.run();
             return;
         }
@@ -1178,7 +1178,7 @@ public class UndoView extends FrameLayout {
             leftImageView.playAnimation();
             if (hapticDelay > 0) {
                 leftImageView.postDelayed(() -> {
-                    if (!NekoConfig.disableVibration.Bool()) {
+                    if (!AxCoreConfig.disableVibration.Bool()) {
                         try {
                             leftImageView.performHapticFeedback(HapticFeedbackConstants.KEYBOARD_TAP, HapticFeedbackConstants.FLAG_IGNORE_GLOBAL_SETTING);
                         } catch (Exception ignored) {}

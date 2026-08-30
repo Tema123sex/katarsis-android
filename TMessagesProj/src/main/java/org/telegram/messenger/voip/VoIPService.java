@@ -166,9 +166,9 @@ import java.util.concurrent.TimeUnit;
 import java.util.concurrent.atomic.AtomicInteger;
 
 import kotlin.Unit;
-import tw.nekomimi.nekogram.NekoConfig;
-import tw.nekomimi.nekogram.ui.BottomBuilder;
-import tw.nekomimi.nekogram.utils.VibrateUtil;
+import one.axgram.core.AxCoreConfig;
+import one.axgram.core.ui.BottomBuilder;
+import one.axgram.core.utils.VibrateUtil;
 
 @SuppressLint("NewApi")
 public class VoIPService extends Service implements SensorEventListener, AudioManager.OnAudioFocusChangeListener, VoIPController.ConnectionStateListener, NotificationCenter.NotificationCenterDelegate, VoIPServiceState {
@@ -4771,7 +4771,7 @@ public class VoIPService extends Service implements SensorEventListener, AudioMa
 	}
 
 	private void loadResources() {
-		if (NekoConfig.useMediaStreamInVoip.Bool()) {
+		if (AxCoreConfig.useMediaStreamInVoip.Bool()) {
 			currentStreamType = AudioManager.STREAM_MUSIC;
 			if (Build.VERSION.SDK_INT >= 21)
 				WebRtcAudioTrack.setAudioTrackUsageAttribute(AudioAttributes.USAGE_MEDIA);

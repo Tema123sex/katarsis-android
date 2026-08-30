@@ -71,12 +71,11 @@ import org.telegram.ui.bots.BotWebViewAttachedSheet;
 
 import java.util.ArrayList;
 
-import tw.nekomimi.nekogram.NekoConfig;
-import tw.nekomimi.nekogram.helpers.CloudStorageHelper;
-import tw.nekomimi.nekogram.helpers.UserHelper;
-import tw.nekomimi.nekogram.utils.VibrateUtil;
-import tw.nekomimi.nekogram.ui.MessageHelper;
-import xyz.nextalone.nagram.NaConfig;
+import one.axgram.core.AxCoreConfig;
+import one.axgram.core.helpers.UserHelper;
+import one.axgram.core.utils.VibrateUtil;
+import one.axgram.core.ui.MessageHelper;
+import one.axgram.extra.AxConfig;
 
 public abstract class BaseFragment {
 
@@ -355,7 +354,7 @@ public abstract class BaseFragment {
     public void setParentFragment(BaseFragment fragment) {
         setParentLayout(fragment.parentLayout);
         fragmentView = createView(parentLayout.getView().getContext());
-        if (NekoConfig.disableVibration.Bool()) {
+        if (AxCoreConfig.disableVibration.Bool()) {
             VibrateUtil.disableHapticFeedback(fragmentView);
         }
     }
@@ -952,10 +951,6 @@ public abstract class BaseFragment {
         return getAccountInstance().getUserHelper();
     }
 
-    public CloudStorageHelper getCloudStorageHelper() {
-        return getAccountInstance().getCloudStorageHelper();
-    }
-
     public void saveKeyboardPositionBeforeTransition() {
 
     }
@@ -1430,7 +1425,7 @@ public abstract class BaseFragment {
 
     public boolean isSupportEdgeToEdge() {
         // warn: overridden method must return a constant
-        return NaConfig.INSTANCE.getForceEdgeToEdge().Bool();
+        return AxConfig.INSTANCE.getForceEdgeToEdge().Bool();
     }
 
     public boolean drawEdgeNavigationBar() {

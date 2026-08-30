@@ -57,12 +57,12 @@ import java.util.concurrent.CopyOnWriteArraySet;
 import java.util.stream.Collectors;
 
 import cn.hutool.core.util.StrUtil;
-import tw.nekomimi.nekogram.NekoConfig;
-import tw.nekomimi.nekogram.utils.AlertUtil;
-import tw.nekomimi.nekogram.utils.EnvUtil;
-import tw.nekomimi.nekogram.utils.FileUtil;
-import tw.nekomimi.nekogram.utils.UIUtil;
-import xyz.nextalone.nagram.NaConfig;
+import one.axgram.core.AxCoreConfig;
+import one.axgram.core.utils.AlertUtil;
+import one.axgram.core.utils.EnvUtil;
+import one.axgram.core.utils.FileUtil;
+import one.axgram.core.utils.UIUtil;
+import one.axgram.extra.AxConfig;
 
 import java.util.List;
 import java.util.Locale;
@@ -865,6 +865,7 @@ public class SharedConfig {
     }
 
     public static boolean isAppUpdateAvailable() {
+        if (true) return false; // AxGram: no in-app updater (Nagram update prompts disabled)
         if (pendingAppUpdate == null || pendingAppUpdate.document == null || !ApplicationLoader.isStandaloneBuild()) {
             return false;
         }
@@ -1847,7 +1848,7 @@ public class SharedConfig {
         int cpuCount = ConnectionsManager.CPU_COUNT;
         int memoryClass = ((ActivityManager) ApplicationLoader.applicationContext.getSystemService(Context.ACTIVITY_SERVICE)).getMemoryClass();
 
-        if (NaConfig.INSTANCE.getFakeHighPerformanceDevice().Bool()) {
+        if (AxConfig.INSTANCE.getFakeHighPerformanceDevice().Bool()) {
             return PERFORMANCE_CLASS_HIGH;
         }
 
@@ -1946,11 +1947,11 @@ public class SharedConfig {
     }
 
     public static boolean canBlurChat() {
-        return getDevicePerformanceClass() >= (Build.VERSION.SDK_INT >= 31 ? PERFORMANCE_CLASS_AVERAGE : PERFORMANCE_CLASS_HIGH) || BuildVars.DEBUG_PRIVATE_VERSION || NekoConfig.forceBlurInChat.Bool();
+        return getDevicePerformanceClass() >= (Build.VERSION.SDK_INT >= 31 ? PERFORMANCE_CLASS_AVERAGE : PERFORMANCE_CLASS_HIGH) || BuildVars.DEBUG_PRIVATE_VERSION || AxCoreConfig.forceBlurInChat.Bool();
     }
 
     public static boolean chatBlurEnabled() {
-        return (canBlurChat() && LiteMode.isEnabled(LiteMode.FLAG_CHAT_BLUR)) || NekoConfig.forceBlurInChat.Bool();
+        return (canBlurChat() && LiteMode.isEnabled(LiteMode.FLAG_CHAT_BLUR)) || AxCoreConfig.forceBlurInChat.Bool();
     }
 
     public static class BackgroundActivityPrefs {

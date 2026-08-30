@@ -17,7 +17,7 @@ import org.telegram.messenger.ImageReceiver;
 import org.telegram.tgnet.TLObject;
 import org.telegram.ui.ActionBar.Theme;
 
-import xyz.nextalone.nagram.NaConfig;
+import one.axgram.extra.AxConfig;
 
 public class SimpleAvatarView extends View {
     public final static int SELECT_ANIMATION_DURATION = 200;
@@ -72,7 +72,7 @@ public class SimpleAvatarView extends View {
         selectPaint.setAlpha((int) (Color.alpha(selectPaint.getColor()) * selectProgress));
         float stroke = selectPaint.getStrokeWidth();
         AndroidUtilities.rectTmp.set(stroke, stroke, getWidth() - stroke, getHeight() - stroke);
-        if (NaConfig.INSTANCE.getShowSquareAvatar().Bool()) {
+        if (AxConfig.INSTANCE.getShowSquareAvatar().Bool()) {
             final float w = selectPaint.getStrokeWidth();
             canvas.drawRect(w, w, getWidth() - w, getHeight() - w, selectPaint);
         } else {

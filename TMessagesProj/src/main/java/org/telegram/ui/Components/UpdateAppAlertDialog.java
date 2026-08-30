@@ -33,7 +33,7 @@ import org.telegram.tgnet.TLRPC;
 import org.telegram.ui.ActionBar.BottomSheet;
 import org.telegram.ui.ActionBar.Theme;
 
-import tw.nekomimi.nekogram.TextViewEffects;
+import one.axgram.core.TextViewEffects;
 
 public class UpdateAppAlertDialog extends BottomSheet {
 
@@ -254,7 +254,7 @@ public class UpdateAppAlertDialog extends BottomSheet {
         textView.setTextColor(Theme.getColor(Theme.key_dialogTextBlack));
         textView.setSingleLine(true);
         textView.setEllipsize(TextUtils.TruncateAt.END);
-        textView.setText(LocaleController.getString(R.string.AppUpdate).replace("Telegram", LocaleController.getString(R.string.NekoX)));
+        textView.setText(LocaleController.getString(R.string.AppUpdate).replace("Telegram", LocaleController.getString(R.string.AxGram)));
         linearLayout.addView(textView, LayoutHelper.createLinear(LayoutHelper.WRAP_CONTENT, LayoutHelper.WRAP_CONTENT, Gravity.TOP | Gravity.CENTER_HORIZONTAL, 23, 16, 23, 0));
 
         TextView messageTextView = new TextView(getContext());

@@ -32,7 +32,7 @@ import java.util.Arrays;
 import java.util.Locale;
 import java.util.concurrent.CountDownLatch;
 
-import xyz.nextalone.nagram.NaConfig;
+import one.axgram.extra.AxConfig;
 
 @Keep
 public class PushListenerController {
@@ -112,7 +112,7 @@ public class PushListenerController {
         if (TextUtils.isEmpty(token)) {
             return;
         }
-        NaConfig.INSTANCE.getPushServiceTypeUnifiedSimple().setConfigString(token);
+        AxConfig.INSTANCE.getPushServiceTypeUnifiedSimple().setConfigString(token);
         Utilities.stageQueue.postRunnable(() -> {
             for (int a = 0; a < UserConfig.MAX_ACCOUNT_COUNT; a++) {
                 UserConfig userConfig = UserConfig.getInstance(a);
@@ -129,8 +129,8 @@ public class PushListenerController {
         // Capture the token BEFORE clearing: the runnable is async on stageQueue, so reading
         // SharedConfig.pushStringSimple there would see the already-cleared empty value and
         // the unregisterDevice request would never be sent.
-        String token = NaConfig.INSTANCE.getPushServiceTypeUnifiedSimple().String();
-        NaConfig.INSTANCE.getPushServiceTypeUnifiedSimple().setConfigString("");
+        String token = AxConfig.INSTANCE.getPushServiceTypeUnifiedSimple().String();
+        AxConfig.INSTANCE.getPushServiceTypeUnifiedSimple().setConfigString("");
         if (TextUtils.isEmpty(token)) {
             return;
         }
@@ -1742,7 +1742,7 @@ public class PushListenerController {
     public static IPushListenerServiceProvider getProvider() {
         if (instance != null)
             return instance;
-        switch (NaConfig.INSTANCE.getPushServiceType().Int()) {
+        switch (AxConfig.INSTANCE.getPushServiceType().Int()) {
             case 1:
             case 3: {
                 instance = new GooglePushListenerServiceProvider();

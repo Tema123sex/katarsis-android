@@ -24,7 +24,7 @@
     <string name="CodeSyntaxHighlight">Підсвітка синтаксису коду</string>
     <string name="CreateMono">Створити Monospace</string>
     <string name="CreateMonoLanguage">Кодова мова</string>
-    <string name="CodeSyntaxHighlightDetails">Завдяки prismjs та Nekogram</string>
+    <string name="CodeSyntaxHighlightDetails">Завдяки prismjs та AxGram</string>
     <string name="UseSystemUnlock">Розблокування секретним кодом використання системи ui</string>
     <string name="CopyPhoto">Копіювати фото</string>
     <string name="PhotoCopied">Фото скопійовано до буфера обміну</string>
@@ -75,7 +75,7 @@
     <string name="IconDecoration">Оформлення іконки</string>
     <string name="NotificationIcon">Іконка сповіщення</string>
     <string name="Official">Офіційний</string>
-    <string name="Nekogram">Nekogram</string>
+    <string name="AxGramLegacy">AxGram</string>
     <string name="HalloWeen">HalloWeen</string>
     <string name="ShowOnlineStatus">Відображати онлайн-статус</string>
     <string name="ShowOnlineStatusNotice">Показувати онлайн-статус інших людей поруч із фотографією профілю в групах</string>
@@ -90,7 +90,7 @@
     <string name="ShowForumAsNormalChat">Показувати форум як звичайний чат</string>
     <string name="DecorationNone">Без ефекту</string>
     <string name="ChatDecoration">Прикраса Чату</string>
-    <string name="NeedChangeNekoSettings">Необхідно змінити параметри N-Settings</string>
+    <string name="NeedChangeAxSettings">Необхідно змінити параметри N-Settings</string>
     <string name="DoNotUnarchiveBySwipe">Зробити не архівування свайпом</string>
     <string name="DoNotShareMyPhoneNumber">Не ділитися моїм номером телефону</string>
     <string name="DefaultDeleteMenu">Видалити меню за замовчуванням</string>

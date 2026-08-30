@@ -50,9 +50,9 @@ import androidx.collection.LongSparseArray;
 import androidx.core.graphics.ColorUtils;
 
 import top.qwq2333.nullgram.utils.StringUtils;
-import xyz.nextalone.nagram.NaConfig;
-import xyz.nextalone.nagram.helper.MessageHelper;
-import xyz.nextalone.nagram.ui.syntaxhighlight.SyntaxHighlight;
+import one.axgram.extra.AxConfig;
+import one.axgram.extra.helper.MessageHelper;
+import one.axgram.extra.ui.syntaxhighlight.SyntaxHighlight;
 
 import org.telegram.PhoneFormat.PhoneFormat;
 import org.telegram.messenger.browser.Browser;
@@ -129,8 +129,8 @@ import java.util.regex.Pattern;
 import me.vkryl.core.BitwiseUtils;
 
 import cn.hutool.core.util.StrUtil;
-import tw.nekomimi.nekogram.NekoConfig;
-import tw.nekomimi.nekogram.NekoXConfig;
+import one.axgram.core.AxCoreConfig;
+import one.axgram.core.AxLegacyConfig;
 
 public class MessageObject {
 
@@ -224,6 +224,7 @@ public class MessageObject {
     public int dateKeyInt;
     public String monthKey;
     public boolean deleted;
+    public boolean axDeleted; // AxGram: message was deleted by someone but kept visible (anti-delete)
     public boolean deletedByThanos;
     public float audioProgress;
     public float forceSeekTo = -1;
@@ -263,7 +264,7 @@ public class MessageObject {
     public boolean expandedExplanation;
     public boolean forceShowPollResults;
 
-    public boolean isSpoilersRevealed = NekoConfig.showSpoilersDirectly.Bool();
+    public boolean isSpoilersRevealed = AxCoreConfig.showSpoilersDirectly.Bool();
     public boolean isMediaSpoilersRevealed;
     public boolean isMediaSpoilersRevealedInSharedMedia;
     public boolean revealingMediaSpoilers;
@@ -643,7 +644,7 @@ public class MessageObject {
     }
 
     public boolean hasMediaSpoilers() {
-        if (NekoConfig.showSpoilersDirectly.Bool()) return false;
+        if (AxCoreConfig.showSpoilersDirectly.Bool()) return false;
         return !isRepostPreview && (messageOwner.media != null && messageOwner.media.spoiler || needDrawBluredPreview()) || isHiddenSensitive();
     }
 
@@ -1907,7 +1908,7 @@ public class MessageObject {
             fromUser = getUser(users, sUsers, message.from_id.user_id);
         }
 
-        if (generateLayout && messageOwner.message != null && NaConfig.INSTANCE.getEnablePanguOnReceiving().Bool()) {
+        if (generateLayout && messageOwner.message != null && AxConfig.INSTANCE.getEnablePanguOnReceiving().Bool()) {
             var pair = StringUtils.spacingText(messageOwner.message, messageOwner.entities);
             messageOwner.message = pair.getFirst();
             messageOwner.entities = pair.getSecond();
@@ -5869,7 +5870,7 @@ public class MessageObject {
         } else {
             isRestrictedMessage = false;
             String restrictionReason = MessagesController.getInstance(currentAccount).getRestrictionReason(messageOwner.restriction_reason);
-            if (!TextUtils.isEmpty(restrictionReason) && !NekoConfig.ignoreContentRestrictions.Bool()) {
+            if (!TextUtils.isEmpty(restrictionReason) && !AxCoreConfig.ignoreContentRestrictions.Bool()) {
                 messageText = restrictionReason;
                 isRestrictedMessage = true;
             } else if (!isMediaEmpty() && !isSponsored()) {
@@ -9536,7 +9537,7 @@ public class MessageObject {
     }
 
     public static boolean shouldEncryptPhotoOrVideo(int currentAccount, TLRPC.Message message) {
-        if (NekoXConfig.disableFlagSecure) {
+        if (AxLegacyConfig.disableFlagSecure) {
             return false;
         }
         if (message != null && message.media != null && (isVoiceDocument(getDocument(message)) || isRoundVideoMessage(message)) && message.media.ttl_seconds == 0x7FFFFFFF) {
@@ -9560,7 +9561,7 @@ public class MessageObject {
     }
 
     public static boolean isSecretPhotoOrVideo(TLRPC.Message message) {
-        if (NekoXConfig.disableFlagSecure) {
+        if (AxLegacyConfig.disableFlagSecure) {
             return false;
         }
         if (message instanceof TLRPC.TL_message_secret) {
@@ -9572,7 +9573,7 @@ public class MessageObject {
     }
 
     public static boolean isSecretMedia(TLRPC.Message message) {
-        if (NekoXConfig.disableFlagSecure) {
+        if (AxLegacyConfig.disableFlagSecure) {
             return false;
         }
         if (message instanceof TLRPC.TL_message_secret) {
@@ -9584,7 +9585,7 @@ public class MessageObject {
     }
 
     public boolean needDrawBluredPreview() {
-        if (NekoXConfig.disableFlagSecure) {
+        if (AxLegacyConfig.disableFlagSecure) {
             return false;
         }
         if (isRepostPreview) {
@@ -9606,7 +9607,7 @@ public class MessageObject {
     }
 
     public boolean isSecretMedia() {
-        if (NekoXConfig.disableFlagSecure) {
+        if (AxLegacyConfig.disableFlagSecure) {
             return false;
         }
         if (messageOwner instanceof TLRPC.TL_message_secret) {
@@ -10700,10 +10701,16 @@ public class MessageObject {
     }
 
     public boolean isVoiceOnce() {
+        if (AxLegacyConfig.disableFlagSecure) {
+            return false; // AxGram: treat view-once voice as a normal voice message (show/save, no self-destruct)
+        }
         return isVoice() && messageOwner != null && messageOwner.media != null && messageOwner.media.ttl_seconds == 0x7FFFFFFF;
     }
 
     public boolean isRoundOnce() {
+        if (AxLegacyConfig.disableFlagSecure) {
+            return false; // AxGram: treat view-once round video as a normal circle (show/save, no self-destruct)
+        }
         return isRoundVideo() && messageOwner != null && messageOwner.media != null && messageOwner.media.ttl_seconds == 0x7FFFFFFF;
     }
 
@@ -10948,7 +10955,7 @@ public class MessageObject {
                     }
                     try {
                         String query = TextUtils.isEmpty(performer) ? title : performer + " - " + title;
-                        String custom_api = NaConfig.INSTANCE.getCustomArtworkApi().String();
+                        String custom_api = AxConfig.INSTANCE.getCustomArtworkApi().String();
                         if (!Objects.equals(custom_api, "")) {
                             return custom_api + URLEncoder.encode(query, "UTF-8");
                         }
@@ -11137,7 +11144,8 @@ public class MessageObject {
     public boolean canForwardMessage() {
         if (isQuickReply()) return false;
         if (type == TYPE_GIFT_STARS || type == TYPE_GIFT_THEME_UPDATE || type == TYPE_SUGGEST_BIRTHDAY || type == TYPE_GIFT_OFFER || type == TYPE_SHARING_OFFER) return false;
-        return !(messageOwner instanceof TLRPC.TL_message_secret) && !needDrawBluredPreview() && !isLiveLocation() && type != MessageObject.TYPE_PHONE_CALL && !isSponsored() && !messageOwner.noforwards;
+        // AxGram: ignore per-message noforwards so forward/save works everywhere (like desktop)
+        return !(messageOwner instanceof TLRPC.TL_message_secret) && !needDrawBluredPreview() && !isLiveLocation() && type != MessageObject.TYPE_PHONE_CALL && !isSponsored();
     }
 
     public boolean canEditMedia() {

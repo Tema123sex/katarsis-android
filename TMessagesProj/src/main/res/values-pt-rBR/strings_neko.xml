@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <string name="NekoSettings">Configurações Neko</string>
+    <string name="AxSettings">Configurações AxGram</string>
     <string name="IPv6">Conexão via IPv6</string>
     <string name="MessageMenu">Menu de mensagens</string>
     <string name="HidePhone">Ocultar meu número de telefone</string>
@@ -25,7 +25,7 @@
     <string name="TransparentStatusBar">Barra de status transparente</string>
     <string name="EnableResidentNotification">Exibir notificação persistente</string>
     <string name="DisableResidentNotification">Desativar notificação persistente</string>
-    <string name="NekogramRunning">Nekogram está em execução</string>
+    <string name="AxGramRunning">AxGram está em execução</string>
     <string name="EventType">Pacote de ícones da barra lateral</string>
     <string name="ChristmasHat">Mostrar chapéu de papai noel todos os dias</string>
     <string name="ActionBarDecoration">Decoração da barra de título</string>
@@ -122,7 +122,7 @@
     <string name="disableChoosingSticker">Envie \"digitando\" em vez de \"escolhendo sticker\"</string>
     <string name="disableRemoteEmojiInteractions">Desativar interações de emoji remotamente</string>
     <string name="hideGroupSticker">Ocultar sticker do grupo</string>
-    <string name="enablePublicProxy">Proxy Público do NekoX</string>
+    <string name="enablePublicProxy">Proxy Público do AxGram</string>
     <string name="autoUpdateSubInfo">Atualizar proxies automaticamente</string>
     <string name="hideSendAsChannel">Ocultar enviar como canal</string>
     <string name="disableDoubleTabReactions">Desativar reações de toque duplo</string>
@@ -133,7 +133,7 @@
     <string name="SaveToDownloadCount_zero">Salvando %1$d arquivos para downloads</string>
     <string name="SaveToDownloadCount_few">Salvando %1$d arquivos para downloads</string>
     <string name="SaveToDownloadCount_many">Salvando %1$d arquivos para downloads</string>
-    <string name="NekoGeneralNotification">Notificação</string>
+    <string name="AxGeneralNotification">Notificação</string>
     <string name="disableNotificationBubbles">Desativar notificações em bolha</string>
     <string name="ReactionsDisabled">Desativar</string>
     <string name="customSavePath">Caminho de Armazenamento Personalizado</string>

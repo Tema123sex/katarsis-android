@@ -121,7 +121,7 @@ import java.util.zip.ZipEntry;
 import java.util.zip.ZipInputStream;
 
 import top.qwq2333.nullgram.utils.StringUtils;
-import xyz.nextalone.nagram.NaConfig;
+import one.axgram.extra.AxConfig;
 
 public class SendMessagesHelper extends BaseController implements NotificationCenter.NotificationCenterDelegate {
 
@@ -2133,7 +2133,7 @@ public class SendMessagesHelper extends BaseController implements NotificationCe
 
                         var messageText = msgObj.messageText.toString();
                         var entities = msgObj.messageOwner.entities;
-                        if (!msgObj.isForwarded() && NaConfig.INSTANCE.getEnablePanguOnSending().Bool()) {
+                        if (!msgObj.isForwarded() && AxConfig.INSTANCE.getEnablePanguOnSending().Bool()) {
                             var pair = StringUtils.spacingText(messageText, msgObj.messageOwner.entities);
                             messageText = pair.getFirst();
                             entities = pair.getSecond();
@@ -2309,7 +2309,7 @@ public class SendMessagesHelper extends BaseController implements NotificationCe
                     newMsg.message = "";
                 }
 
-                if (!((newMsg.params.containsKey("fwd_id") || newMsg.params.containsKey("fwd_peer")) || msgObj.isForwarded() || MessageObject.isForwardedMessage(newMsg)) && NaConfig.INSTANCE.getEnablePanguOnSending().Bool()) {
+                if (!((newMsg.params.containsKey("fwd_id") || newMsg.params.containsKey("fwd_peer")) || msgObj.isForwarded() || MessageObject.isForwardedMessage(newMsg)) && AxConfig.INSTANCE.getEnablePanguOnSending().Bool()) {
                     var pair = StringUtils.spacingText(newMsg.message, msgObj.messageOwner.entities);
                     newMsg.message = pair.getFirst();
                     newMsg.entities = pair.getSecond();
@@ -4105,7 +4105,7 @@ public class SendMessagesHelper extends BaseController implements NotificationCe
         PollSendParams pollSendParams = sendMessageParams.pollSendParams;
 
         boolean canSendGames = sendMessageParams.canSendGames;
-        boolean canUsePangu = sendMessageParams.canUsePangu == null ? NaConfig.INSTANCE.getEnablePanguOnSending().Bool() : sendMessageParams.canUsePangu;
+        boolean canUsePangu = sendMessageParams.canUsePangu == null ? AxConfig.INSTANCE.getEnablePanguOnSending().Bool() : sendMessageParams.canUsePangu;
         if (user != null && user.phone == null) {
             return;
         }
@@ -10425,7 +10425,7 @@ public class SendMessagesHelper extends BaseController implements NotificationCe
                             videoEditedInfo = info.videoEditedInfo != null ? info.videoEditedInfo : createCompressionSettings(info.path, info.livePhotoVideoOffset);
                         }
 
-                        if (NaConfig.INSTANCE.getSendMp4DocumentAsVideo().Bool() || (!forceDocument && (videoEditedInfo != null || info.path.endsWith("mp4")) || info.isLivePhoto)) {
+                        if (AxConfig.INSTANCE.getSendMp4DocumentAsVideo().Bool() || (!forceDocument && (videoEditedInfo != null || info.path.endsWith("mp4")) || info.isLivePhoto)) {
                             if (info.path == null && info.searchImage != null) {
                                 if (info.searchImage.photo instanceof TLRPC.TL_photo) {
                                     info.path = FileLoader.getInstance(accountInstance.getCurrentAccount()).getPathToAttach(info.searchImage.photo, true).getAbsolutePath();

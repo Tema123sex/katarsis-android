@@ -47,7 +47,7 @@
     <string name="TransToLang">زبان ترجمه مقصد</string>
     <string name="TransInputToLang">زبان ترجمه پیام ورودی</string>
     <string name="More">بیشتر</string>
-    <string name="NekoXUpdatesChannel">کانال بروزرسانی NekoX</string>
+    <string name="AxUpdatesChannel">کانال بروزرسانی AxGram</string>
     <string name="ShowIdAndDc">نمایش ID / DC در پروفایل کاربر</string>
     <string name="UseDefaultTheme">استفاده از تم پیشفرض *</string>
     <string name="NightMode">حالت شب</string>
@@ -59,7 +59,7 @@
     <string name="ApplySuggestion">باشه، اعمال کن</string>
     <string name="DoNotRemindAgain">دیگر یادآوری نشود</string>
     <string name="RemoveTitleEmoji">حذف ایموجی در عنوان</string>
-    <string name="NekoXProxy">پروکسی عمومی NekoX</string>
+    <string name="AxProxy">پروکسی عمومی AxGram</string>
     <string name="PublicPrefix">عمومی</string>
     <string name="DisableChatAction">عدم ارسال وضعیت ورودی</string>
     <string name="FakeScreenshot">تظاهر کردن اسکرین‌شات</string>
@@ -87,9 +87,9 @@
     <string name="SortByUnmuted">ترتیب بر اساس صدا دار</string>
     <string name="SortByUser">ترتیب بر اساس کاربر</string>
     <string name="SortByContacts">ترتیب بر اساس مخاطبین</string>
-    <string name="NekoXPushService">خدمات ارسال اعلان NekoX</string>
-    <string name="EnablePushAlert">لطفا خدمات ارسال اعلان NekoX را فعال کنید</string>
-    <string name="DisablePushAlert">لطفا خدمات ارسال اعلان NekoX را غیرفعال کنید</string>
+    <string name="AxPushService">خدمات ارسال اعلان AxGram</string>
+    <string name="EnablePushAlert">لطفا خدمات ارسال اعلان AxGram را فعال کنید</string>
+    <string name="DisablePushAlert">لطفا خدمات ارسال اعلان AxGram را غیرفعال کنید</string>
     <string name="DisableUndo">غیرفعال کردن واگرد</string>
     <string name="DisableSystemAccount">غیرفعال کردن حساب سیستم</string>
     <string name="FilterMenu">منوی فیلتر گفتگوها</string>
@@ -170,7 +170,7 @@
     <string name="DisableDeveloperMode">غیرفعالسازی حالت توسعه‌دهنده</string>
     <string name="DeveloperSettings">تنظیمات توسعه‌دهنده</string>
     <string name="LoginSettings">تنظیمات ورود</string>
-    <string name="NekoXFaq">پرسش‌های متداول Nagram</string>
+    <string name="AxFaq">پرسش‌های متداول AxGram</string>
     <string name="TransSite">پلتفرم ترجمه</string>
     <string name="OpenKayChain">OpenPGP Client</string>
     <string name="OpenPGPApp">OpenPGP Provider</string>
@@ -236,7 +236,7 @@
     <string name="AddProxyWs">افزودن رله WebSocket</string>
     <string name="BackupSettings">پشتیبان‌گیری از تنظیمات</string>
     <string name="AutoLockImmediately">بلافاصله</string>
-    <string name="nekoXPaymentRemovedToast">سیستم پرداخت حذف شده است.</string>
+    <string name="axPaymentRemovedToast">سیستم پرداخت حذف شده است.</string>
     <string name="ImportSettingsAlert">آیا از بازنویسی تنظیمات اطمینان دارید؟ وارد کردن تنظیمات از منابع ناشناس ممکن است باعث بازنویسی پین کد، درنتیجه باعث قفل‌شدن برنامه شود.</string>
     <string name="ImportSettings">وارد کردن تنظیمات</string>
     <string name="AutoCheckUpdateRc">کاندیدای انتشار</string>
@@ -270,8 +270,8 @@
     <string name="repeatConfirm">پرسیدن قبل از تکرار پیام</string>
     <string name="showSeconds">نمایش ثانیه حین نمایش زمان</string>
     <string name="AutoCheckUpdatePreview">پیش‌نمایش (ناپایدار)</string>
-    <string name="AppUpdateNekoX">به‌روزرسانی نکوگرام ایکس</string>
-    <string name="NekoXUpdateTranslationHint">برای ترجمه تغییرات انگشتتان را روی آن نگهدارید</string>
+    <string name="AppUpdateAxGram">به‌روزرسانی نکوگرام ایکس</string>
+    <string name="AxUpdateTranslationHint">برای ترجمه تغییرات انگشتتان را روی آن نگهدارید</string>
     <string name="Name">نام</string>
     <string name="channelAlias">برچسب کانال</string>
     <string name="channelAliasDetails">لازم است علامت‌گذاری کاربر کانال فعال شود.</string>
@@ -281,5 +281,5 @@
     <string name="StickerSettings">استیکر</string>
     <string name="ConfirmSettings">تاییدیه</string>
     <string name="InteractionSettings">فعالیت</string>
-    <string name="nekoxPremiumGiftRemoved">هدیه دادن پرمیوم در نکوایکس حذف شده.</string>
+    <string name="axPremiumGiftRemoved">هدیه دادن پرمیوم در نکوایکس حذف شده.</string>
 </resources>

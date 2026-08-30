@@ -252,14 +252,14 @@ import me.vkryl.android.animator.BoolAnimator;
 import me.vkryl.android.animator.FactorAnimator;
 import me.vkryl.core.BitwiseUtils;
 
-import tw.nekomimi.nekogram.NekoConfig;
-import tw.nekomimi.nekogram.NekoXConfig;
+import one.axgram.core.AxCoreConfig;
+import one.axgram.core.AxLegacyConfig;
 
-import tw.nekomimi.nekogram.helpers.TimeStringHelper;
-import tw.nekomimi.nekogram.utils.NeteaseEmbed;
-import xyz.nextalone.nagram.NaConfig;
+import one.axgram.core.helpers.TimeStringHelper;
+import one.axgram.core.utils.NeteaseEmbed;
+import one.axgram.extra.AxConfig;
 
-import static xyz.nextalone.nagram.helper.MessageHelper.showForwardDate;
+import static one.axgram.extra.helper.MessageHelper.showForwardDate;
 
 public class ChatMessageCell extends BaseCell implements SeekBar.SeekBarDelegate, ImageReceiver.ImageReceiverDelegate,
         DownloadController.FileDownloadProgressListener, TextSelectionHelper.SelectableView,
@@ -409,7 +409,7 @@ public class ChatMessageCell extends BaseCell implements SeekBar.SeekBarDelegate
     }
 
     public boolean hasSpoilers() {
-        if (NekoConfig.showSpoilersDirectly.Bool()) return false;
+        if (AxCoreConfig.showSpoilersDirectly.Bool()) return false;
 
         if (captionLayout != null && captionLayout.textLayoutBlocks != null) {
             for (MessageObject.TextLayoutBlock bl : captionLayout.textLayoutBlocks) {
@@ -1881,7 +1881,7 @@ public class ChatMessageCell extends BaseCell implements SeekBar.SeekBarDelegate
     private boolean needHideMessage() {
         return currentMessageObject.messageOwner.hide ||
                 MessagesController.getInstance(currentAccount).blockePeers.indexOfKey(currentMessageObject.getFromChatId()) >= 0 &&
-                        NekoConfig.ignoreBlocked.Bool() && !(getParent() != null && getParent().getClass().getName().contains("ChannelAdminLogActivity"));
+                        AxCoreConfig.ignoreBlocked.Bool() && !(getParent() != null && getParent().getClass().getName().contains("ChannelAdminLogActivity"));
     }
 
     public ChatMessageCell(Context context, int currentAccount) {
@@ -1998,12 +1998,12 @@ public class ChatMessageCell extends BaseCell implements SeekBar.SeekBarDelegate
 
     public void drawStatusWithImage(Canvas canvas, ImageReceiver imageReceiver, int radius) {
         String formatUserStatus = currentUser != null ? LocaleController.formatUserStatus(this.currentAccount, currentUser) : "";
-        if (!NaConfig.INSTANCE.getShowOnlineStatus().Bool() || currentUser == null || currentUser.bot) {
+        if (!AxConfig.INSTANCE.getShowOnlineStatus().Bool() || currentUser == null || currentUser.bot) {
             imageReceiver.draw(canvas);
             return;
         }
         int diff = -60 * 60 - 1;
-        if (NaConfig.INSTANCE.getShowRecentOnlineStatus().Bool()) {
+        if (AxConfig.INSTANCE.getShowRecentOnlineStatus().Bool()) {
             if (currentUser != null && currentUser.status != null) {
                 diff = currentUser.status.expires - ConnectionsManager.getInstance(currentAccount).getCurrentTime();
             }
@@ -4230,7 +4230,7 @@ public class ChatMessageCell extends BaseCell implements SeekBar.SeekBarDelegate
             }
             float p = a / 360f;
             if (Math.abs(currentMessageObject.audioProgress - p) > 0.9f) {
-                if (roundSeekbarOutAlpha == 0 && !NekoConfig.disableVibration.Bool()) {
+                if (roundSeekbarOutAlpha == 0 && !AxCoreConfig.disableVibration.Bool()) {
                     try {
                         performHapticFeedback(HapticFeedbackConstants.KEYBOARD_TAP);
                     } catch (Exception ignored) {}
@@ -5545,7 +5545,7 @@ public class ChatMessageCell extends BaseCell implements SeekBar.SeekBarDelegate
         final PollButton button = pollButtons.get(index);
         if (delegate.didPressToDoButton(this, button.task, !button.chosen)) {
             try {
-                if (vibrate && !NekoConfig.disableVibration.Bool()) performHapticFeedback(HapticFeedbackConstants.KEYBOARD_TAP, HapticFeedbackConstants.FLAG_IGNORE_GLOBAL_SETTING);
+                if (vibrate && !AxCoreConfig.disableVibration.Bool()) performHapticFeedback(HapticFeedbackConstants.KEYBOARD_TAP, HapticFeedbackConstants.FLAG_IGNORE_GLOBAL_SETTING);
             } catch (Exception ignored) {}
             final long dialogId = currentMessageObject.getDialogId();
             final long send_as = ChatObject.getSendAsPeerId(MessagesController.getInstance(currentAccount).getChat(dialogId), MessagesController.getInstance(currentAccount).getChatFull(dialogId), true);
@@ -6802,6 +6802,7 @@ public class ChatMessageCell extends BaseCell implements SeekBar.SeekBarDelegate
             this.lastInChatList = lastInChatList;
             pinnedTop = topNear;
             currentMessageObject = messageObject;
+            setAlpha(messageObject != null && messageObject.axDeleted ? 0.75f : 1.0f); // AxGram: dim deleted messages (like desktop semiTransparentDeletedMessages)
             currentMessagesGroup = groupedMessages;
             wasAllChats = isAllChats;
             lastTime = -2;
@@ -6880,7 +6881,7 @@ public class ChatMessageCell extends BaseCell implements SeekBar.SeekBarDelegate
                 drawSideButton = checkNeedDrawShareButton(messageObject) ? 2 : 0;
             } else if (messageObject.searchType == ChatActivity.SEARCH_MY_MESSAGES) {
                 drawSideButton = 0;
-            } else if (MessagesController.getInstance(currentAccount).isPeerNoForwards(messageObject.getDialogId()) || (messageObject.messageOwner != null && messageObject.messageOwner.noforwards && !NekoXConfig.disableFlagSecure)) {
+            } else if (MessagesController.getInstance(currentAccount).isPeerNoForwards(messageObject.getDialogId()) || (messageObject.messageOwner != null && messageObject.messageOwner.noforwards && !AxLegacyConfig.disableFlagSecure)) {
                 drawSideButton = 0;
                 if (isPinnedChat && !isRepliesChat && !messageObject.isSponsored()) {
                     if (currentMessagesGroup != null && currentPosition != null) {
@@ -9470,9 +9471,9 @@ public class ChatMessageCell extends BaseCell implements SeekBar.SeekBarDelegate
                             currentMapProvider = -1;
                         }
                     } else {
-                        if (NekoConfig.mapPreviewProvider.Int() == 0) {
+                        if (AxCoreConfig.mapPreviewProvider.Int() == 0) {
                             currentMapProvider = 2;
-                        } else if (NekoConfig.mapPreviewProvider.Int() == 1) {
+                        } else if (AxCoreConfig.mapPreviewProvider.Int() == 1) {
                             currentMapProvider = 1;
                         } else {
                             currentMapProvider = -1;
@@ -9575,10 +9576,10 @@ public class ChatMessageCell extends BaseCell implements SeekBar.SeekBarDelegate
                     float maxHeight;
                     int maxWidth;
                     if (AndroidUtilities.isTablet()) {
-                        maxHeight = AndroidUtilities.getMinTabletSide() * (0.4f + (NekoConfig.stickerSize.Float() - 14.0f) / 40);
+                        maxHeight = AndroidUtilities.getMinTabletSide() * (0.4f + (AxCoreConfig.stickerSize.Float() - 14.0f) / 40);
                         maxWidth = (int) maxHeight;
                     } else {
-                        maxHeight = Math.min(getParentWidth(), AndroidUtilities.displaySize.y) * (0.5f + (NekoConfig.stickerSize.Float() - 14.0f) / 30);
+                        maxHeight = Math.min(getParentWidth(), AndroidUtilities.displaySize.y) * (0.5f + (AxCoreConfig.stickerSize.Float() - 14.0f) / 30);
                         maxWidth = (int) maxHeight;
                     }
                     String filter;
@@ -9867,7 +9868,7 @@ public class ChatMessageCell extends BaseCell implements SeekBar.SeekBarDelegate
                         w = h = dp(150);
                     }
 
-                    if (NaConfig.INSTANCE.getShowSmallGIF().Bool() && messageObject.type == MessageObject.TYPE_GIF) {
+                    if (AxConfig.INSTANCE.getShowSmallGIF().Bool() && messageObject.type == MessageObject.TYPE_GIF) {
                         w = h = AndroidUtilities.dp(120);
                     }
 
@@ -11474,7 +11475,7 @@ public class ChatMessageCell extends BaseCell implements SeekBar.SeekBarDelegate
         }
 
         int maxVote = 0;
-        if (!animatePollAnswer && pollVoteInProgress && vibrateOnPollVote && !NekoConfig.disableVibration.Bool()) {
+        if (!animatePollAnswer && pollVoteInProgress && vibrateOnPollVote && !AxCoreConfig.disableVibration.Bool()) {
             try {
                 performHapticFeedback(HapticFeedbackConstants.KEYBOARD_TAP, HapticFeedbackConstants.FLAG_IGNORE_GLOBAL_SETTING);
             } catch (Exception ignored) {}
@@ -11565,7 +11566,7 @@ public class ChatMessageCell extends BaseCell implements SeekBar.SeekBarDelegate
                     }
                 }
 
-                boolean forceShowVote = NaConfig.INSTANCE.getShowVoteCountBeforeVote().Bool() && !(pollVoted || pollClosed);
+                boolean forceShowVote = AxConfig.INSTANCE.getShowVoteCountBeforeVote().Bool() && !(pollVoted || pollClosed);
                 String text = pollAnswer.text.text;
 
                 if (forceShowVote && media.results.total_voters > 0 && a < media.results.results.size()) {
@@ -11999,7 +12000,7 @@ public class ChatMessageCell extends BaseCell implements SeekBar.SeekBarDelegate
             Window window = activity == null ? null : activity.getWindow();
             if (window != null) {
                 flagSecure = new FlagSecureReason(window, () ->
-                        !NekoXConfig.disableFlagSecure && currentMessageObject != null && currentMessageObject.messageOwner != null && (
+                        !AxLegacyConfig.disableFlagSecure && currentMessageObject != null && currentMessageObject.messageOwner != null && (
                         currentMessageObject.type == MessageObject.TYPE_PAID_MEDIA && (groupMedia == null || !groupMedia.hidden) ||
                         currentMessageObject.messageOwner.noforwards ||
                         currentMessageObject.isVoiceOnce() ||
@@ -13476,7 +13477,7 @@ public class ChatMessageCell extends BaseCell implements SeekBar.SeekBarDelegate
             } else if (drawInstantViewType == 20) {
                 str = getString(R.string.OpenGift);
             } else if (drawInstantViewType == 21) {
-                str = getString(R.string.AppUpdate).replace("Telegram", LocaleController.getString(R.string.NekoX));
+                str = getString(R.string.AppUpdate).replace("Telegram", LocaleController.getString(R.string.AxGram));
             } else if (drawInstantViewType == 23) {
                 str = getString(R.string.OpenStickerSet);
             } else if (drawInstantViewType == 24) {
@@ -18472,7 +18473,7 @@ public class ChatMessageCell extends BaseCell implements SeekBar.SeekBarDelegate
         } else if (currentMessageObject.isRepostPreview) {
             timeString = LocaleController.formatSmallDateChat(messageObject.messageOwner.date) + ", " + LocaleController.getInstance().getFormatterDay().format((long) (messageObject.messageOwner.date) * 1000);
         } else if (edited) {
-            String customStr = NaConfig.INSTANCE.getCustomEditedMessage().String();
+            String customStr = AxConfig.INSTANCE.getCustomEditedMessage().String();
             timeString = (customStr.equals("") ? getString(R.string.EditedMessage) : customStr) + " " + LocaleController.getInstance().getFormatterDay().format((long) (messageObject.messageOwner.date) * 1000);
         } else if (currentMessageObject.isSaved && currentMessageObject.messageOwner.fwd_from != null && (currentMessageObject.messageOwner.fwd_from.date != 0 || currentMessageObject.messageOwner.fwd_from.saved_date != 0)) {
             int date = currentMessageObject.messageOwner.fwd_from.saved_date;
@@ -18483,16 +18484,22 @@ public class ChatMessageCell extends BaseCell implements SeekBar.SeekBarDelegate
         } else {
             timeString = LocaleController.getInstance().getFormatterDay().format((long) (messageObject.messageOwner.date) * 1000);
         }
+        if (currentMessageObject.axDeleted) {
+            timeString = "🗑 " + timeString; // AxGram: mark anti-deleted messages
+        }
+        if (currentMessageObject.messageOwner != null && currentMessageObject.messageOwner.media != null && currentMessageObject.messageOwner.media.ttl_seconds != 0) {
+            timeString = "🔥 " + timeString; // AxGram: mark one-time / self-destruct / timed media
+        }
         if (currentMessageObject.messageOwner.video_processing_pending) {
             timeString = formatString(R.string.ScheduledTimeApprox, timeString);
         }
-        if (NaConfig.INSTANCE.getShowMessageID().Bool() && messageObject.messageOwner != null && (isChat || isMegagroup || ChatObject.isChannel(currentChat))) {
+        if (AxConfig.INSTANCE.getShowMessageID().Bool() && messageObject.messageOwner != null && (isChat || isMegagroup || ChatObject.isChannel(currentChat))) {
             timeString = timeString + " | " + messageObject.messageOwner.id;
         }
         if (messageObject.messageOwner != null && messageObject.messageOwner.translated) {
             timeString = timeString + " | " + LocaleController.getString(R.string.Translate);
         }
-        if (messageObject.isAnyKindOfSticker() && NaConfig.INSTANCE.getRealHideTimeForSticker().Bool()) {
+        if (messageObject.isAnyKindOfSticker() && AxConfig.INSTANCE.getRealHideTimeForSticker().Bool()) {
             timeString = "";
         }
         if (signString != null) {
@@ -18846,11 +18853,11 @@ public class ChatMessageCell extends BaseCell implements SeekBar.SeekBarDelegate
                 adminWidth = (int) staticLayout.getLineWidth(0);
                 if (isAdmin || isOwner) adminWidth += dp(12);
                 nameWidth -= adminWidth;
-            } else if (NekoConfig.labelChannelUser.Bool() && isMegagroup && currentChat != null && currentMessageObject.isSenderChannel()) {
-                final String channelStr = NaConfig.INSTANCE.getCustomChannelLabel().String();
+            } else if (AxCoreConfig.labelChannelUser.Bool() && isMegagroup && currentChat != null && currentMessageObject.isSenderChannel()) {
+                final String channelStr = AxConfig.INSTANCE.getCustomChannelLabel().String();
                 adminString = new SpannableStringBuilder();
-                if (NekoConfig.channelAlias.Bool()) {
-                    String aliasName = NekoXConfig.getChannelAlias(currentMessageObject.messageOwner.from_id.channel_id);
+                if (AxCoreConfig.channelAlias.Bool()) {
+                    String aliasName = AxLegacyConfig.getChannelAlias(currentMessageObject.messageOwner.from_id.channel_id);
                     if (aliasName != null) {
                         adminString.append(aliasName + " ★");
                     } else {
@@ -19742,7 +19749,7 @@ public class ChatMessageCell extends BaseCell implements SeekBar.SeekBarDelegate
     }
 
     private Object getAuthorStatus() {
-        if (!NaConfig.INSTANCE.getShowPremiumStarInChat().Bool()) {
+        if (!AxConfig.INSTANCE.getShowPremiumStarInChat().Bool()) {
             return null;
         }
         if (currentUser != null) {
@@ -20274,9 +20281,9 @@ public class ChatMessageCell extends BaseCell implements SeekBar.SeekBarDelegate
         }
         boolean should_draw_time = true;
         if (currentMessageObject.isAnyKindOfSticker()) {
-            if (NekoConfig.hideTimeForSticker.Bool()) {
+            if (AxCoreConfig.hideTimeForSticker.Bool()) {
                 should_draw_time = false;
-            } else if (NaConfig.INSTANCE.getRealHideTimeForSticker().Bool() && !currentMessageObject.isOut()) {
+            } else if (AxConfig.INSTANCE.getRealHideTimeForSticker().Bool() && !currentMessageObject.isOut()) {
                 should_draw_time = false;
             }
         }
@@ -22087,6 +22094,11 @@ public class ChatMessageCell extends BaseCell implements SeekBar.SeekBarDelegate
                     color = getThemedColor(Theme.key_chat_stickerReplyNameText);
                 } else if (currentMessageObject.isOutOwner()) {
                     color = getThemedColor(isDrawSelectionBackground() ? Theme.key_chat_outAdminSelectedText : Theme.key_chat_outAdminText);
+                } else if (AxConfig.INSTANCE.getColoredAdminTitle().Bool()) {
+                    // AxGram: звание администратора рисуется цветом имени отправителя.
+                    // Настройка существовала в исходном форке, но её значение нигде
+                    // не читалось — переключатель ничего не делал.
+                    color = Theme.chat_namePaint.getColor();
                 } else {
                     if (adminLayoutIsOwner) {
                         color = getThemedColor(Theme.key_chat_tagCreator);
@@ -27614,6 +27626,14 @@ public class ChatMessageCell extends BaseCell implements SeekBar.SeekBarDelegate
 
     @Override
     public void setAlpha(float alpha) {
+        // AxGram: удалённые сообщения показываются приглушёнными. Прозрачность
+        // ставится при привязке сообщения, но аниматор списка по завершении
+        // вставки нового сбрасывает её в единицу у всех ячеек — удалённые на миг
+        // становились как обычные. Ловим сброс здесь, в единственной точке, через
+        // которую он проходит. Анимации на другие значения не затрагиваются.
+        if (alpha == 1f && currentMessageObject != null && currentMessageObject.axDeleted) {
+            alpha = 0.75f;
+        }
         if ((alpha == 1f) != (getAlpha() == 1)) {
             invalidate();
         }
@@ -28163,7 +28183,7 @@ public class ChatMessageCell extends BaseCell implements SeekBar.SeekBarDelegate
                 }
             }
             if (edited && !lastDrawingEdited && timeLayout != null) {
-                String customStr = NaConfig.INSTANCE.getCustomEditedMessage().String();
+                String customStr = AxConfig.INSTANCE.getCustomEditedMessage().String();
                 String editedStr = customStr.equals("") ? getString("EditedMessage", R.string.EditedMessage) : customStr;
                 CharSequence text = timeLayout.getText();
                 int i = text.toString().indexOf(editedStr);

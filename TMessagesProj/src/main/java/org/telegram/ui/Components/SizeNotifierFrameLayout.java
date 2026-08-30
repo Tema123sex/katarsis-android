@@ -58,8 +58,8 @@ import org.telegram.ui.ChatBackgroundDrawable;
 import java.util.ArrayList;
 import java.util.HashSet;
 
-import tw.nekomimi.nekogram.NekoConfig;
-import xyz.nextalone.nagram.NaConfig;
+import one.axgram.core.AxCoreConfig;
+import one.axgram.extra.AxConfig;
 
 public class SizeNotifierFrameLayout extends FrameLayout implements Theme.Colorable {
 
@@ -561,7 +561,7 @@ public class SizeNotifierFrameLayout extends FrameLayout implements Theme.Colora
     }
 
     private void checkSnowflake(Canvas canvas) {
-        if (((backgroundView != null && Theme.canStartHolidayAnimation() && LiteMode.isEnabled(LiteMode.FLAG_CHAT_BACKGROUND)) || NaConfig.INSTANCE.getChatDecoration().Int() == 1) && NaConfig.INSTANCE.getChatDecoration().Int() != 2) {
+        if (((backgroundView != null && Theme.canStartHolidayAnimation() && LiteMode.isEnabled(LiteMode.FLAG_CHAT_BACKGROUND)) || AxConfig.INSTANCE.getChatDecoration().Int() == 1) && AxConfig.INSTANCE.getChatDecoration().Int() != 2) {
             if (snowflakesEffect == null) {
                 snowflakesEffect = new SnowflakesEffect(1);
                 snowflakesEffect.setForcedColor(0xFFFFFFFF);
@@ -616,7 +616,7 @@ public class SizeNotifierFrameLayout extends FrameLayout implements Theme.Colora
         }
 
         int blurAlpha = Color.alpha(Theme.getColor(Theme.key_chat_BlurAlphaSlow));
-        if (NekoConfig.forceBlurInChat.Bool()) blurAlpha = NekoConfig.chatBlueAlphaValue.Int();
+        if (AxCoreConfig.forceBlurInChat.Bool()) blurAlpha = AxCoreConfig.chatBlueAlphaValue.Int();
         if (blurAlpha == 255) {
             return;
         }
@@ -977,7 +977,7 @@ public class SizeNotifierFrameLayout extends FrameLayout implements Theme.Colora
     }
 
     public void drawBlurRect(Canvas canvas, float y, Rect rectTmp, Paint blurScrimPaint, boolean top, int blurAlpha) {
-        if (NekoConfig.forceBlurInChat.Bool()) blurAlpha = NekoConfig.chatBlueAlphaValue.Int();
+        if (AxCoreConfig.forceBlurInChat.Bool()) blurAlpha = AxCoreConfig.chatBlueAlphaValue.Int();
         if (!SharedConfig.chatBlurEnabled()) {
             canvas.drawRect(rectTmp, blurScrimPaint);
             return;

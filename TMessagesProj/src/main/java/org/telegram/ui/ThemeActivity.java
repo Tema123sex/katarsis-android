@@ -123,8 +123,8 @@ import java.util.List;
 import java.util.Locale;
 import java.util.concurrent.atomic.AtomicReference;
 
-import tw.nekomimi.nekogram.NekoConfig;
-import xyz.nextalone.nagram.helper.Dialogs;
+import one.axgram.core.AxCoreConfig;
+import one.axgram.extra.helper.Dialogs;
 
 public class ThemeActivity extends BaseFragment implements NotificationCenter.NotificationCenterDelegate {
 
@@ -1375,7 +1375,7 @@ public class ThemeActivity extends BaseFragment implements NotificationCenter.No
                 builder.setNegativeButton(getString("Cancel", R.string.Cancel), null);
                 showDialog(builder.create());
             } else if (position == chatBlurRow) {
-                if (NekoConfig.forceBlurInChat.Bool()) {
+                if (AxCoreConfig.forceBlurInChat.Bool()) {
                     Dialogs.createNeedChangeNekoSettingsAlert(getContext());
                 } else {
                     SharedConfig.toggleChatBlur();

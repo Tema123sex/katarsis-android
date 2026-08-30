@@ -58,8 +58,8 @@ import org.telegram.ui.Stories.recorder.HintView2;
 
 import java.util.ArrayList;
 
-import xyz.nextalone.nagram.NaConfig;
-import xyz.nextalone.nagram.TabStyle;
+import one.axgram.extra.AxConfig;
+import one.axgram.extra.TabStyle;
 
 public class ViewPagerFixed extends FrameLayout {
 
@@ -1598,7 +1598,7 @@ public class ViewPagerFixed extends FrameLayout {
             super(context);
             this.resourcesProvider = resourcesProvider;
 
-            if (NaConfig.INSTANCE.getTabStyle().Int() >= TabStyle.PILLS.getValue()) {
+            if (AxConfig.INSTANCE.getTabStyle().Int() >= TabStyle.PILLS.getValue()) {
                 tabsSelectorType = SELECTOR_TYPE_BUBBLE_STYLE;
             }
 

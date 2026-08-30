@@ -83,8 +83,8 @@ import java.util.HashMap;
 import java.util.Iterator;
 import java.util.LinkedHashMap;
 
-import tw.nekomimi.nekogram.helpers.InlineBotRulesRepository;
-import tw.nekomimi.nekogram.helpers.remote.InlineBotRulesHelper;
+import one.axgram.core.helpers.InlineBotRulesRepository;
+import one.axgram.core.helpers.remote.InlineBotRulesHelper;
 
 public class MentionsAdapter extends RecyclerListView.SelectionAdapter implements NotificationCenter.NotificationCenterDelegate {
 

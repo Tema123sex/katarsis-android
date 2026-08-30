@@ -74,8 +74,8 @@ import java.util.ArrayList;
 
 import me.vkryl.android.animator.ReplaceAnimator;
 
-import tw.nekomimi.nekogram.NekoConfig;
-import xyz.nextalone.nagram.NaConfig;
+import one.axgram.core.AxCoreConfig;
+import one.axgram.extra.AxConfig;
 
 public class ActionBar extends FrameLayout implements Theme.Colorable {
 
@@ -362,18 +362,18 @@ public class ActionBar extends FrameLayout implements Theme.Colorable {
                     }
                 }
             }
-            if (NekoConfig.actionBarDecoration.Int() == 3) {
+            if (AxCoreConfig.actionBarDecoration.Int() == 3) {
                 if (snowflakesEffect != null) {
                     snowflakesEffect = null;
                 }
                 if (fireworksEffect != null) {
                     fireworksEffect = null;
                 }
-            } else if (NekoConfig.actionBarDecoration.Int() == 2) {
+            } else if (AxCoreConfig.actionBarDecoration.Int() == 2) {
                 if (fireworksEffect == null) {
                     fireworksEffect = new FireworksEffect();
                 }
-            } else if (NekoConfig.actionBarDecoration.Int() == 1 || Theme.canStartHolidayAnimation()) {
+            } else if (AxCoreConfig.actionBarDecoration.Int() == 1 || Theme.canStartHolidayAnimation()) {
                 if (snowflakesEffect == null) {
                     snowflakesEffect = new SnowflakesEffect(0);
                 }
@@ -491,7 +491,7 @@ public class ActionBar extends FrameLayout implements Theme.Colorable {
         }
     }
 
-    private boolean isCenterTitle = NaConfig.INSTANCE.getCenterActionBarTitle().Bool();
+    private boolean isCenterTitle = AxConfig.INSTANCE.getCenterActionBarTitle().Bool();
 
     public void centerTitle(boolean isCenterTitle) {
         this.isCenterTitle = isCenterTitle;
@@ -2093,7 +2093,7 @@ public class ActionBar extends FrameLayout implements Theme.Colorable {
     }
 
     public void unreadBadgeSetCount(int count) {
-        if (backButtonImageView != null && NekoConfig.unreadBadgeOnBackButton.Bool()) {
+        if (backButtonImageView != null && AxCoreConfig.unreadBadgeOnBackButton.Bool()) {
             backButtonImageView.setUnread(count);
         }
     }

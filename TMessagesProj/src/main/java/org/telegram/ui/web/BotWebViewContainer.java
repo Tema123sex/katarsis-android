@@ -172,7 +172,7 @@ import java.util.Objects;
 import java.util.concurrent.atomic.AtomicBoolean;
 import java.util.regex.Pattern;
 
-import xyz.nextalone.nagram.NaConfig;
+import one.axgram.extra.AxConfig;
 
 public abstract class BotWebViewContainer extends FrameLayout implements NotificationCenter.NotificationCenterDelegate {
     private final static String DURGER_KING_USERNAME = "DurgerKingBot";
@@ -4042,7 +4042,7 @@ public abstract class BotWebViewContainer extends FrameLayout implements Notific
                     Uri uriNew = Uri.parse(url);
 
                     // ----- Nagram Hook start -----
-                    String urlPatternStr = NaConfig.INSTANCE.getOpenUrlOutBotWebViewRegex().String();
+                    String urlPatternStr = AxConfig.INSTANCE.getOpenUrlOutBotWebViewRegex().String();
                     if (botWebViewContainer != null && !urlPatternStr.isEmpty()) {
                         Pattern urlPattern = Pattern.compile(urlPatternStr, Pattern.MULTILINE | Pattern.CASE_INSENSITIVE);
                         if (urlPattern.matcher(url).find()) {

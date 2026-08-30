@@ -67,7 +67,7 @@ import java.util.ArrayList;
 import java.util.HashMap;
 
 import kotlin.Unit;
-import tw.nekomimi.nekogram.ui.BottomBuilder;
+import one.axgram.core.ui.BottomBuilder;
 
 public class ImageUpdater implements NotificationCenter.NotificationCenterDelegate, PhotoCropActivity.PhotoEditActivityDelegate {
     private final static int ID_TAKE_PHOTO = 0,
@@ -268,7 +268,7 @@ public class ImageUpdater implements NotificationCenter.NotificationCenterDelega
             openAttachMenu(onDismiss);
             return;
         }
-        BottomSheet.NekoXBuilder builder = new BottomSheet.NekoXBuilder(parentFragment.getParentActivity());
+        BottomSheet.AxAlertBuilder builder = new BottomSheet.AxAlertBuilder(parentFragment.getParentActivity());
 
         if (type == TYPE_SET_PHOTO_FOR_USER) {
             builder.setTitle(LocaleController.formatString("SetPhotoFor", R.string.SetPhotoFor, user.first_name), true);

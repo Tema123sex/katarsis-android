@@ -135,9 +135,9 @@ import java.util.Map;
 
 import androidx.core.graphics.ColorUtils;
 
-import tw.nekomimi.nekogram.NekoXConfig;
-import tw.nekomimi.nekogram.NekoConfig;
-import xyz.nextalone.nagram.NaConfig;
+import one.axgram.core.AxLegacyConfig;
+import one.axgram.core.AxCoreConfig;
+import one.axgram.extra.AxConfig;
 
 @SuppressLint("ViewConstructor")
 public class ChatAttachAlertPhotoLayout extends ChatAttachAlert.AttachAlertLayout implements NotificationCenter.NotificationCenterDelegate {
@@ -751,7 +751,7 @@ public class ChatAttachAlertPhotoLayout extends ChatAttachAlert.AttachAlertLayou
     public ChatAttachAlertPhotoLayout(ChatAttachAlert alert, Context context, boolean forceDarkTheme, boolean needCamera_, Theme.ResourcesProvider resourcesProvider) {
         super(alert, context, resourcesProvider);
         this.forceDarkTheme = forceDarkTheme;
-        boolean needCamera = needCamera_ && !NaConfig.INSTANCE.getHideInstantCamera().Bool();
+        boolean needCamera = needCamera_ && !AxConfig.INSTANCE.getHideInstantCamera().Bool();
         this.needCamera = needCamera;
         NotificationCenter.getGlobalInstance().addObserver(this, NotificationCenter.albumsDidLoad);
         NotificationCenter.getGlobalInstance().addObserver(this, NotificationCenter.cameraInitied);
@@ -948,7 +948,7 @@ public class ChatAttachAlertPhotoLayout extends ChatAttachAlert.AttachAlertLayou
                 } else if (noGalleryPermissions && position != 0) {
                     try {
                         if (position == adapter.itemsCount - 2) {
-                            menu.onItemClick(open_in); // NekoX: Use system photo picker
+                            menu.onItemClick(open_in); // AxGram: Use system photo picker
                         } else {
                             if (Build.VERSION.SDK_INT >= 33) {
                                 fragment.getParentActivity().requestPermissions(new String[]{Manifest.permission.READ_MEDIA_VIDEO, Manifest.permission.READ_MEDIA_IMAGES}, BasePermissionsActivity.REQUEST_CODE_EXTERNAL_STORAGE);
@@ -1557,7 +1557,7 @@ public class ChatAttachAlertPhotoLayout extends ChatAttachAlert.AttachAlertLayou
 
     private void openCameraByClick() {
         if (SharedConfig.inappCamera) {
-            if (NekoConfig.disableInstantCamera.Bool()) {
+            if (AxCoreConfig.disableInstantCamera.Bool()) {
                 showCamera();
             }
             openCamera(true);
@@ -2175,7 +2175,7 @@ public class ChatAttachAlertPhotoLayout extends ChatAttachAlert.AttachAlertLayou
 
             @Override
             public boolean cancelButtonPressed() {
-                if (cameraOpened && cameraView != null && !NekoConfig.disableInstantCamera.Bool()) {
+                if (cameraOpened && cameraView != null && !AxCoreConfig.disableInstantCamera.Bool()) {
                     AndroidUtilities.runOnUIThread(() -> {
                         if (cameraView != null && !parentAlert.isDismissed()) {
                             cameraView.setSystemUiVisibility(View.SYSTEM_UI_FLAG_LAYOUT_FULLSCREEN | View.SYSTEM_UI_FLAG_FULLSCREEN);
@@ -2475,7 +2475,7 @@ public class ChatAttachAlertPhotoLayout extends ChatAttachAlert.AttachAlertLayou
                 deviceHasGoodCamera = CameraController.getInstance().isCameraInitied();
             }
         }
-        if (deviceHasGoodCamera && NekoConfig.disableInstantCamera.Bool()) {
+        if (deviceHasGoodCamera && AxCoreConfig.disableInstantCamera.Bool()) {
             // Clear cached bitmap
             File file = new File(ApplicationLoader.getFilesDirFixed(), "cthumb.jpg");
             if (file.exists()) file.delete();
@@ -2483,7 +2483,7 @@ public class ChatAttachAlertPhotoLayout extends ChatAttachAlert.AttachAlertLayou
         if ((old != deviceHasGoodCamera || old2 != noCameraPermissions) && adapter != null) {
             adapter.notifyDataSetChanged();
         }
-        if (!parentAlert.destroyed && parentAlert.isShowing() && deviceHasGoodCamera && parentAlert.getBackDrawable().getAlpha() != 0 && !cameraOpened && !NekoConfig.disableInstantCamera.Bool()) {
+        if (!parentAlert.destroyed && parentAlert.isShowing() && deviceHasGoodCamera && parentAlert.getBackDrawable().getAlpha() != 0 && !cameraOpened && !AxCoreConfig.disableInstantCamera.Bool()) {
             showCamera();
         }
     }
@@ -2742,7 +2742,7 @@ public class ChatAttachAlertPhotoLayout extends ChatAttachAlert.AttachAlertLayou
     }
 
     private void saveLastCameraBitmap() {
-        if (!canSaveCameraPreview || NekoConfig.disableInstantCamera.Bool()) {
+        if (!canSaveCameraPreview || AxCoreConfig.disableInstantCamera.Bool()) {
             return;
         }
         try {
@@ -3945,7 +3945,7 @@ public class ChatAttachAlertPhotoLayout extends ChatAttachAlert.AttachAlertLayou
     private void resumeCameraPreview() {
         try {
             checkCamera(false);
-            if (cameraView != null && !NekoConfig.disableInstantCamera.Bool()) {
+            if (cameraView != null && !AxCoreConfig.disableInstantCamera.Bool()) {
                 CameraController.getInstance().startPreview(cameraView.getCameraSessionObject());
             }
         } catch (Exception e) {
@@ -3984,7 +3984,7 @@ public class ChatAttachAlertPhotoLayout extends ChatAttachAlert.AttachAlertLayou
 //                    afterCameraInitRunnable = null;
 //                    isCameraFrontfaceBeforeEnteringEditMode = null;
 //                };
-                if (!NekoConfig.disableInstantCamera.Bool()) {
+                if (!AxCoreConfig.disableInstantCamera.Bool()) {
                     showCamera();
                 }
             }
@@ -4604,7 +4604,7 @@ public class ChatAttachAlertPhotoLayout extends ChatAttachAlert.AttachAlertLayou
             }
             if (noGalleryPermissions && this == adapter) {
                 count++;
-                count++; // NekoX: Additional Open In picker
+                count++; // AxGram: Additional Open In picker
             }
             photosStartRow = count;
             if (!noGalleryPermissions) {

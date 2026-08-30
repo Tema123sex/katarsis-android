@@ -51,8 +51,8 @@ import java.util.concurrent.ConcurrentHashMap;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
-import tw.nekomimi.nekogram.NekoConfig;
-import xyz.nextalone.nagram.helper.MessageHelper;
+import one.axgram.core.AxCoreConfig;
+import one.axgram.extra.helper.MessageHelper;
 
 import androidx.collection.LongSparseArray;
 
@@ -402,7 +402,7 @@ public class ContactsController extends BaseController {
             AccountManager am = AccountManager.get(ApplicationLoader.applicationContext);
             if (getUserConfig().isClientActivated()) {
                 readContacts();
-                if (systemAccount == null && !NekoConfig.disableSystemAccount.Bool()) {
+                if (systemAccount == null && !AxCoreConfig.disableSystemAccount.Bool()) {
                     try {
                         TLRPC.User user = getUserConfig().getCurrentUser();
                         systemAccount = new Account(formatName(user.first_name, user.last_name), BuildConfig.APPLICATION_ID);
@@ -422,7 +422,7 @@ public class ContactsController extends BaseController {
             Account[] accounts = am.getAccountsByType(BuildConfig.APPLICATION_ID);
             for (int a = 0; a < accounts.length; a++) {
                 Account acc = accounts[a];
-                if (NekoConfig.disableSystemAccount.Bool()) {
+                if (AxCoreConfig.disableSystemAccount.Bool()) {
                     try {
                         am.removeAccount(accounts[a], null, null);
                     } catch (Exception ignore) {
@@ -3053,7 +3053,7 @@ public class ContactsController extends BaseController {
             lastName = lastName.trim();
         }
         StringBuilder result = new StringBuilder((firstName != null ? firstName.length() : 0) + (lastName != null ? lastName.length() : 0) + 1);
-        if (NekoConfig.nameOrder.Int() == 1) {
+        if (AxCoreConfig.nameOrder.Int() == 1) {
             if (firstName != null && firstName.length() > 0) {
                 if (maxLength > 0 && firstName.length() > maxLength + 2) {
                     return firstName.substring(0, maxLength) + "…";

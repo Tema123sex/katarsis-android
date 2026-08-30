@@ -352,29 +352,29 @@ import cn.hutool.core.thread.ThreadUtil;
 import cn.hutool.core.util.RuntimeUtil;
 import cn.hutool.core.util.StrUtil;
 import kotlin.Unit;
-import tw.nekomimi.nekogram.BackButtonMenuRecent;
-import tw.nekomimi.nekogram.helpers.ProfileDateHelper;
-import tw.nekomimi.nekogram.helpers.SettingsHelper;
-import tw.nekomimi.nekogram.helpers.SettingsSearchResult;
-import tw.nekomimi.nekogram.settings.RegexFiltersSettingActivity;
-import tw.nekomimi.nekogram.transtale.popupwrapper.AutoTranslatePopupWrapper;
-import tw.nekomimi.nekogram.transtale.popupwrapper.CustomForumTabsPopupWrapper;
-import tw.nekomimi.nekogram.transtale.popupwrapper.ShareTargetPopupWrapper;
-import tw.nekomimi.nekogram.DatacenterActivity;
-import tw.nekomimi.nekogram.NekoConfig;
-import tw.nekomimi.nekogram.NekoXConfig;
-import tw.nekomimi.nekogram.parts.DialogTransKt;
-import tw.nekomimi.nekogram.settings.NekoSettingsActivity;
-import tw.nekomimi.nekogram.utils.AlertUtil;
-import tw.nekomimi.nekogram.utils.EnvUtil;
-import tw.nekomimi.nekogram.utils.FileUtil;
-import tw.nekomimi.nekogram.utils.LangsKt;
-import tw.nekomimi.nekogram.utils.ProxyUtil;
-import tw.nekomimi.nekogram.utils.ShareUtil;
-import tw.nekomimi.nekogram.utils.UIUtil;
-import xyz.nextalone.nagram.NaConfig;
-import xyz.nextalone.nagram.helper.MessageHelper;
-import xyz.nextalone.nagram.ui.ItemOptionsPatch;
+import one.axgram.core.BackButtonMenuRecent;
+import one.axgram.core.helpers.ProfileDateHelper;
+import one.axgram.core.helpers.SettingsHelper;
+import one.axgram.core.helpers.SettingsSearchResult;
+import one.axgram.core.settings.RegexFiltersSettingActivity;
+import one.axgram.core.transtale.popupwrapper.AutoTranslatePopupWrapper;
+import one.axgram.core.transtale.popupwrapper.CustomForumTabsPopupWrapper;
+import one.axgram.core.transtale.popupwrapper.ShareTargetPopupWrapper;
+import one.axgram.core.DatacenterActivity;
+import one.axgram.core.AxCoreConfig;
+import one.axgram.core.AxLegacyConfig;
+import one.axgram.core.parts.DialogTransKt;
+import one.axgram.core.settings.AxSettingsActivity;
+import one.axgram.core.utils.AlertUtil;
+import one.axgram.core.utils.EnvUtil;
+import one.axgram.core.utils.FileUtil;
+import one.axgram.core.utils.LangsKt;
+import one.axgram.core.utils.ProxyUtil;
+import one.axgram.core.utils.ShareUtil;
+import one.axgram.core.utils.UIUtil;
+import one.axgram.extra.AxConfig;
+import one.axgram.extra.helper.MessageHelper;
+import one.axgram.extra.ui.ItemOptionsPatch;
 
 public class ProfileActivity extends BaseFragment implements NotificationCenter.NotificationCenterDelegate, DialogsActivity.DialogsActivityDelegate, SharedMediaLayout.SharedMediaPreloaderDelegate, ImageUpdater.ImageUpdaterDelegate, SharedMediaLayout.Delegate, MainTabsActivity.TabFragmentDelegate {
     private final static int PHONE_OPTION_CALL = 0,
@@ -3783,7 +3783,7 @@ public class ProfileActivity extends BaseFragment implements NotificationCenter.
         int initialTab = -1;
         if (openCommonChats) {
             initialTab = SharedMediaLayout.TAB_COMMON_GROUPS;
-        } else if (!NaConfig.INSTANCE.getDisableGifts().Bool() && openGifts && (userInfo != null && userInfo.stargifts_count > 0 || chatInfo != null && chatInfo.stargifts_count > 0)) {
+        } else if (!AxConfig.INSTANCE.getDisableGifts().Bool() && openGifts && (userInfo != null && userInfo.stargifts_count > 0 || chatInfo != null && chatInfo.stargifts_count > 0)) {
             initialTab = SharedMediaLayout.TAB_GIFTS;
             openedGifts = true;
         } else if (openSimilar) {
@@ -3826,7 +3826,7 @@ public class ProfileActivity extends BaseFragment implements NotificationCenter.
                 avatarContainer2.setPivotX(avatarContainer2.getMeasuredWidth() / 2f);
                 AndroidUtilities.updateViewVisibilityAnimated(avatarContainer2, !expanded, 0.95f, true);
 
-                if (Math.min(1f, extraHeight / AndroidUtilities.dp(88f)) > 0.85 && !searchMode && NekoConfig.showIdAndDc.Bool())
+                if (Math.min(1f, extraHeight / AndroidUtilities.dp(88f)) > 0.85 && !searchMode && AxCoreConfig.showIdAndDc.Bool())
                     idTextView.setVisibility(expanded ? INVISIBLE : VISIBLE);
 
                 callItem.setVisibility(expanded || !callItemVisible ? GONE : INVISIBLE);
@@ -4644,13 +4644,14 @@ public class ProfileActivity extends BaseFragment implements NotificationCenter.
             } else if (position == devicesRow) {
                 presentFragment(new SessionsActivity(0));
             } else if (position == nekoRow) {
-                presentFragment(new NekoSettingsActivity());
+                presentFragment(new AxSettingsActivity());
             } else if (position == questionRow) {
-                Browser.openUrl(getParentActivity(), "https://t.me/NekogramX");
+                Browser.openUrl(getParentActivity(),
+                        one.axgram.core.utils.UpdateUtil.getTipsUrl());
             } else if (position == faqRow) {
-                Browser.openUrl(getParentActivity(), NekoXConfig.FAQ_URL);
+                Browser.openUrl(getParentActivity(), AxLegacyConfig.FAQ_URL);
             } else if (position == policyRow) {
-                Browser.openUrl(getParentActivity(), "https://github.com/NekoX-Dev/NekoX/wiki/Privacy-Policy");
+                Browser.openUrl(getParentActivity(), "https://github.com/aevornyx/axgram-android");
             } else if (position == sendLogsRow) {
                 sendLogs(getParentActivity(), false);
             } else if (position == sendLastLogsRow) {
@@ -4803,7 +4804,7 @@ public class ProfileActivity extends BaseFragment implements NotificationCenter.
                     updateListAnimated(false);
                 });
                 o.add(R.drawable.msg_retry, LocaleController.getString(R.string.SwitchVersion), () -> {
-                    Browser.openUrl(ProfileActivity.this.getParentActivity(), "https://github.com/NextAlone/Nagram/releases");
+                    Browser.openUrl(ProfileActivity.this.getParentActivity(), "https://github.com/aevornyx/axgram-android/releases");
                 });
 
                 o.add(R.drawable.msg_search, LocaleController.getString(R.string.CheckUpdate), () -> {
@@ -4811,7 +4812,7 @@ public class ProfileActivity extends BaseFragment implements NotificationCenter.
                 });
 
                 String currentChannel = " - ";
-                switch (NekoXConfig.autoUpdateReleaseChannel) {
+                switch (AxLegacyConfig.autoUpdateReleaseChannel) {
                     case 0:
                         currentChannel += LocaleController.getString(R.string.AutoCheckUpdateOFF);
                         break;
@@ -4830,20 +4831,20 @@ public class ProfileActivity extends BaseFragment implements NotificationCenter.
                     ItemOptions switchOptions = ItemOptions.makeOptions(this, view);
                     switchOptions.setScrimViewBackground(listView.getClipBackground(view));
                     ItemOptionsPatch.addTitle(switchOptions, LocaleController.getString(R.string.AutoCheckUpdateSwitch), null);
-                    ItemOptionsPatch.addRadioItem(switchOptions, LocaleController.getString(R.string.AutoCheckUpdateOFF), NekoXConfig.autoUpdateReleaseChannel == 0, null, radioButtonCell -> {
-                        NekoXConfig.setAutoUpdateReleaseChannel(0);
+                    ItemOptionsPatch.addRadioItem(switchOptions, LocaleController.getString(R.string.AutoCheckUpdateOFF), AxLegacyConfig.autoUpdateReleaseChannel == 0, null, radioButtonCell -> {
+                        AxLegacyConfig.setAutoUpdateReleaseChannel(0);
                         ItemOptionsPatch.doRadioCheck(switchOptions, radioButtonCell);
                     });
-                    ItemOptionsPatch.addRadioItem(switchOptions, LocaleController.getString(R.string.AutoCheckUpdateStable), NekoXConfig.autoUpdateReleaseChannel == 1, null, radioButtonCell -> {
-                        NekoXConfig.setAutoUpdateReleaseChannel(1);
+                    ItemOptionsPatch.addRadioItem(switchOptions, LocaleController.getString(R.string.AutoCheckUpdateStable), AxLegacyConfig.autoUpdateReleaseChannel == 1, null, radioButtonCell -> {
+                        AxLegacyConfig.setAutoUpdateReleaseChannel(1);
                         ItemOptionsPatch.doRadioCheck(switchOptions, radioButtonCell);
                     });
-                    ItemOptionsPatch.addRadioItem(switchOptions, LocaleController.getString(R.string.AutoCheckUpdateRc), NekoXConfig.autoUpdateReleaseChannel == 2, null, radioButtonCell -> {
-                        NekoXConfig.setAutoUpdateReleaseChannel(2);
+                    ItemOptionsPatch.addRadioItem(switchOptions, LocaleController.getString(R.string.AutoCheckUpdateRc), AxLegacyConfig.autoUpdateReleaseChannel == 2, null, radioButtonCell -> {
+                        AxLegacyConfig.setAutoUpdateReleaseChannel(2);
                         ItemOptionsPatch.doRadioCheck(switchOptions, radioButtonCell);
                     });
-                    ItemOptionsPatch.addRadioItem(switchOptions, LocaleController.getString(R.string.AutoCheckUpdatePreview), NekoXConfig.autoUpdateReleaseChannel == 3, null, radioButtonCell -> {
-                        NekoXConfig.setAutoUpdateReleaseChannel(3);
+                    ItemOptionsPatch.addRadioItem(switchOptions, LocaleController.getString(R.string.AutoCheckUpdatePreview), AxLegacyConfig.autoUpdateReleaseChannel == 3, null, radioButtonCell -> {
+                        AxLegacyConfig.setAutoUpdateReleaseChannel(3);
                         ItemOptionsPatch.doRadioCheck(switchOptions, radioButtonCell);
                     });
                     switchOptions.show();
@@ -4937,7 +4938,7 @@ public class ProfileActivity extends BaseFragment implements NotificationCenter.
                 if (position == versionRow) {
                     pressCount++;
                     if (pressCount >= 5) {
-                        NaConfig.INSTANCE.getShowHiddenFeature().toggleConfigBool();
+                        AxConfig.INSTANCE.getShowHiddenFeature().toggleConfigBool();
                         Toast.makeText(getParentActivity(), LocaleController.getString("ErrorOccurred", R.string.ErrorOccurred), Toast.LENGTH_SHORT).show();
                     }
                     if (pressCount >= 2 || BuildVars.DEBUG_PRIVATE_VERSION) {
@@ -7228,7 +7229,7 @@ public class ProfileActivity extends BaseFragment implements NotificationCenter.
                 }
                 PhotoViewer.getInstance().openPhotoWithVideo(fileLocation, carouselImageLocation, videoLocation, provider);
             } else {
-                // NekoX: move openMenu from avatarImage.setOnClickListener to here.
+                // AxGram: move openMenu from avatarImage.setOnClickListener to here.
                 // avatarImage's onClick event should call this openAvatar method.
                 if (userId == UserConfig.getInstance(currentAccount).getClientUserId() && imageUpdater != null) {
                     imageUpdater.openMenu(false, () -> MessagesController.getInstance(currentAccount).deleteUserPhoto(null), dialog -> {
@@ -8031,8 +8032,8 @@ public class ProfileActivity extends BaseFragment implements NotificationCenter.
         editText.setTextColor(getThemedColor(Theme.key_dialogTextBlack));
         editText.setHintText(
                 LocaleController.getString("Name", R.string.Name));
-        if (NekoXConfig.getChannelAlias(getCurrentChat().id) != null) {
-            editText.setText(NekoXConfig.getChannelAlias(getCurrentChat().id));
+        if (AxLegacyConfig.getChannelAlias(getCurrentChat().id) != null) {
+            editText.setText(AxLegacyConfig.getChannelAlias(getCurrentChat().id));
         }
         editText.setHeaderHintColor(getThemedColor(Theme.key_windowBackgroundWhiteBlueHeader));
         editText.setSingleLine(true);
@@ -8050,9 +8051,9 @@ public class ProfileActivity extends BaseFragment implements NotificationCenter.
         builder.setPositiveButton(LocaleController.getString("OK", R.string.OK),
                 (dialogInterface, i) -> {
                     if (editText.getText().toString().trim().equals("")) {
-                        NekoXConfig.emptyChannelAlias(getCurrentChat().id);
+                        AxLegacyConfig.emptyChannelAlias(getCurrentChat().id);
                     } else {
-                        NekoXConfig.setChannelAlias(getCurrentChat().id, editText.getText().toString());
+                        AxLegacyConfig.setChannelAlias(getCurrentChat().id, editText.getText().toString());
                     }
                 });
         builder.setNegativeButton(LocaleController.getString("Cancel", R.string.Cancel), null);
@@ -9217,7 +9218,7 @@ public class ProfileActivity extends BaseFragment implements NotificationCenter.
                 mediaCounterTextView.setTranslationY(onlineY);
                 updateCollectibleHint();
 
-                if (diff > 0.85 && !searchMode && NekoConfig.showIdAndDc.Bool()) {
+                if (diff > 0.85 && !searchMode && AxCoreConfig.showIdAndDc.Bool()) {
                     idTextView.setVisibility(View.VISIBLE);
                 } else {
                     idTextView.setVisibility(View.GONE);
@@ -11002,7 +11003,7 @@ public class ProfileActivity extends BaseFragment implements NotificationCenter.
         if (!hasMedia && userInfo != null && userInfo.bot_info != null) {
             hasMedia = userInfo.bot_info.has_preview_medias;
         }
-        if (!NaConfig.INSTANCE.getDisableGifts().Bool() && !hasMedia && (userInfo != null && userInfo.stargifts_count > 0 || chatInfo != null && chatInfo.stargifts_count > 0)) {
+        if (!AxConfig.INSTANCE.getDisableGifts().Bool() && !hasMedia && (userInfo != null && userInfo.stargifts_count > 0 || chatInfo != null && chatInfo.stargifts_count > 0)) {
             hasMedia = true;
         }
         if (!hasMedia && chatInfo != null) {
@@ -12758,7 +12759,7 @@ public class ProfileActivity extends BaseFragment implements NotificationCenter.
                         otherItem.addSubItem(share, R.drawable.msg_shareout, LocaleController.getString(R.string.BotShare));
                         shareAction = !chat.creator;
                     }
-                    if (NekoConfig.channelAlias.Bool()){
+                    if (AxCoreConfig.channelAlias.Bool()){
                         otherItem.addSubItem(aliasChannelName, R.drawable.profile_admin, LocaleController.getString( R.string.setChannelAliasName));
                     }
                     if (!BuildVars.IS_BILLING_UNAVAILABLE && !getMessagesController().premiumPurchaseBlocked()) {
@@ -13035,7 +13036,7 @@ public class ProfileActivity extends BaseFragment implements NotificationCenter.
     }
 
     private void createMessageFilterItem() {
-        if (!NaConfig.INSTANCE.getRegexFiltersEnabled().Bool()) {
+        if (!AxConfig.INSTANCE.getRegexFiltersEnabled().Bool()) {
             return;
         }
         otherItem.addSubItem(message_filter, R.drawable.hide_title, LocaleController.getString("RegexFilters", R.string.RegexFilters));
@@ -13166,7 +13167,7 @@ public class ProfileActivity extends BaseFragment implements NotificationCenter.
         nameTextView[1].setVisibility(View.VISIBLE);
         onlineTextView[1].setVisibility(View.VISIBLE);
         onlineTextView[3].setVisibility(View.VISIBLE);
-        if (Math.min(1f, extraHeight / AndroidUtilities.dp(88f)) > 0.85 && !searchMode && NekoConfig.showIdAndDc.Bool())
+        if (Math.min(1f, extraHeight / AndroidUtilities.dp(88f)) > 0.85 && !searchMode && AxCoreConfig.showIdAndDc.Bool())
             idTextView.setVisibility(View.VISIBLE);
 
         actionBar.onSearchFieldVisibilityChanged(searchTransitionProgress > 0.5f);
@@ -13502,7 +13503,7 @@ public class ProfileActivity extends BaseFragment implements NotificationCenter.
                     return;
                 }
 
-                File logcatFile = new File(dir, "NekoX-" + System.currentTimeMillis() + ".log");
+                File logcatFile = new File(dir, "AxGram-" + System.currentTimeMillis() + ".log");
                 try {
                     RuntimeUtil.exec("logcat", "-df", logcatFile.getPath()).waitFor();
                     RuntimeUtil.exec("logcat", "-c").waitFor();
@@ -13998,7 +13999,7 @@ public class ProfileActivity extends BaseFragment implements NotificationCenter.
                             text = LocaleController.getString(R.string.PhoneHidden);
                             phoneNumber = null;
                         }
-                        if (NekoConfig.hidePhone.Bool() && (myProfile || (user != null && user.self))) {
+                        if (AxCoreConfig.hidePhone.Bool() && (myProfile || (user != null && user.self))) {
                             text = LocaleController.getString(R.string.PhoneHidden);
                         }
                         isFragmentPhoneNumber = phoneNumber != null && phoneNumber.matches("888\\d{8}");
@@ -14109,7 +14110,7 @@ public class ProfileActivity extends BaseFragment implements NotificationCenter.
                     } else if (position == numberRow) {
                         TLRPC.User user = UserConfig.getInstance(currentAccount).getCurrentUser();
                         String value = LocaleController.getString(R.string.NumberUnknown);
-                        if (!NekoConfig.hidePhone.Bool()) {
+                        if (!AxCoreConfig.hidePhone.Bool()) {
                             if (user != null && user.phone != null && user.phone.length() != 0) {
                                 value = PhoneFormat.getInstance().format("+" + user.phone);
                             }
@@ -14360,15 +14361,15 @@ public class ProfileActivity extends BaseFragment implements NotificationCenter.
                     } else if (position == stickersRow) {
                         textCell.setTextAndIcon(LocaleController.getString(R.string.StickersAndMasks), R.drawable.msg_sticker, true);
                     } else if (position == nekoRow) {
-                        textCell.setTextAndIcon(LocaleController.getString(R.string.NekoSettings), R.drawable.msg_settings, true);
+                        textCell.setTextAndIcon(LocaleController.getString(R.string.AxSettings), R.drawable.msg_settings, true);
                     } else if (position == filtersRow) {
                         textCell.setTextAndIcon(LocaleController.getString(R.string.Filters), R.drawable.msg_folders, true);
                     } else if (position == liteModeRow) {
                         textCell.setTextAndIcon(LocaleController.getString(R.string.PowerUsage), R.drawable.msg2_battery, true);
                     } else if (position == questionRow) {
-                        textCell.setTextAndIcon(LocaleController.getString(R.string.NekoXUpdatesChannel), R.drawable.menu_channel_ny, true);
+                        textCell.setTextAndIcon(LocaleController.getString(R.string.AxUpdatesChannel), R.drawable.menu_channel_ny, true);
                     } else if (position == faqRow) {
-                        textCell.setTextAndIcon(LocaleController.getString(R.string.NekoXFaq), R.drawable.msg_help, true);
+                        textCell.setTextAndIcon(LocaleController.getString(R.string.AxFaq), R.drawable.msg_help, true);
                     } else if (position == policyRow) {
                         textCell.setTextAndIcon(LocaleController.getString(R.string.PrivacyPolicy), R.drawable.msg_policy, true);
                     } else if (position == sendLogsRow) {

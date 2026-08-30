@@ -2,8 +2,8 @@
 // Created by xtao on 2024/11/10.
 //
 
-#ifndef NAGRAM_READ_CERT_H
-#define NAGRAM_READ_CERT_H
+#ifndef AXGRAM_READ_CERT_H
+#define AXGRAM_READ_CERT_H
 
 #include <string>
 #include <sys/syscall.h>
@@ -40,4 +40,4 @@ std::string read_certificate(int fd);
 
 bool more_check(int fd, const char* path);
 
-#endif //NAGRAM_READ_CERT_H
+#endif //AXGRAM_READ_CERT_H

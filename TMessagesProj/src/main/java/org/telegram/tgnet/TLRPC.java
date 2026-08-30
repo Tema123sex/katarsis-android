@@ -54,7 +54,7 @@ import java.util.List;
 
 import moe.hx030.momogram.maplibre.GeoUtils;
 import cn.hutool.core.util.ArrayUtil;
-import tw.nekomimi.nekogram.NekoXConfig;
+import one.axgram.core.AxLegacyConfig;
 
 @SuppressWarnings("unchecked")
 public class TLRPC {
@@ -22332,7 +22332,7 @@ public class TLRPC {
         public int fromMessageId; //custom
 
         public boolean verifiedExtended() {
-            return verified || (ArrayUtil.contains(NekoXConfig.developers, id) && NekoXConfig.isDeveloper());
+            return verified || (ArrayUtil.contains(AxLegacyConfig.developers, id) && AxLegacyConfig.isDeveloper());
         }
 
         public static User TLdeserialize(InputSerializedData stream, int constructor, boolean exception) {
@@ -43424,7 +43424,7 @@ public class TLRPC {
         public ArrayList<TL_username> usernames = new ArrayList<>();
 
         public boolean verifiedExtended() {
-            return verified ||( ArrayUtil.contains(NekoXConfig.officialChats, id) && NekoXConfig.isDeveloper());
+            return verified ||( ArrayUtil.contains(AxLegacyConfig.officialChats, id) && AxLegacyConfig.isDeveloper());
         }
 
         public static Chat TLdeserialize(InputSerializedData stream, int constructor, boolean exception) {

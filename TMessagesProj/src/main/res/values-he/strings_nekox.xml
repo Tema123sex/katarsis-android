@@ -47,7 +47,7 @@
     <string name="TransToLang">שפת יעד לתרגום</string>
     <string name="TransInputToLang">שפת יעד קלט לתרגום</string>
     <string name="More">יותר</string>
-    <string name="NekoXUpdatesChannel">ערוץ עדכוני NekoX</string>
+    <string name="AxUpdatesChannel">ערוץ עדכוני AxGram</string>
     <string name="ShowIdAndDc">הצג ID / DC בפרופיל</string>
     <string name="UseDefaultTheme">השתמש בערכת ברירת המחדל *</string>
     <string name="NightMode">מצב לילה</string>
@@ -59,7 +59,7 @@
     <string name="ApplySuggestion">אוקיי, החל אותו</string>
     <string name="DoNotRemindAgain">אל תזכיר שוב</string>
     <string name="RemoveTitleEmoji">הסר אמוג\'י בכותרת</string>
-    <string name="NekoXProxy">פרוקסי ציבור NekoX</string>
+    <string name="AxProxy">פרוקסי ציבור AxGram</string>
     <string name="PublicPrefix">ציבורי</string>
     <string name="DisableChatAction">אל תשלח את סטטוס הקלט שלי</string>
     <string name="FakeScreenshot">העמד פנים כמו צילום מסך</string>
@@ -87,9 +87,9 @@
     <string name="SortByUnmuted">מיין לפי Unmute</string>
     <string name="SortByUser">מיין לפי משתמש</string>
     <string name="SortByContacts">מיין לפי אנשי קשר</string>
-    <string name="NekoXPushService">שירות דחיפה של NekoX</string>
-    <string name="EnablePushAlert">אנא אפשר את \"שירות הדחיפה של NekoX\"</string>
-    <string name="DisablePushAlert">אנא השבת את \"שירות הדחיפה של NekoX\"</string>
+    <string name="AxPushService">שירות דחיפה של AxGram</string>
+    <string name="EnablePushAlert">אנא אפשר את \"שירות הדחיפה של AxGram\"</string>
+    <string name="DisablePushAlert">אנא השבת את \"שירות הדחיפה של AxGram\"</string>
     <string name="DisableUndo">השבת בטל</string>
     <string name="DisableSystemAccount">השבת חשבון מערכת</string>
     <string name="FilterMenu">תפריט מסנן דיאלוגים</string>
@@ -170,7 +170,7 @@
     <string name="DisableDeveloperMode">השבת את מצב המפתחים</string>
     <string name="DeveloperSettings">הגדרות מפתחים</string>
     <string name="LoginSettings">הגדרות כניסה</string>
-    <string name="NekoXFaq">שאלות נפוצות על Nagram</string>
+    <string name="AxFaq">שאלות נפוצות על AxGram</string>
     <string name="TransSite">תרגם פלטפורמה</string>
     <string name="OpenKayChain">לקוח OpenPGP</string>
     <string name="OpenPGPApp">ספק OpenPGP</string>
@@ -233,7 +233,7 @@
 \nנא להוריד ידנית מ־GitHub.</string>
     <string name="VersionUpdateConfirm">עדכון</string>
     <string name="VersionUpdateTitle">קיימת גרסה חדשה</string>
-    <string name="nekoXPaymentRemovedToast">יכולת התשלום הוסרה.</string>
+    <string name="axPaymentRemovedToast">יכולת התשלום הוסרה.</string>
     <string name="ImportSettings">ייבוא הגדות</string>
     <string name="ImportSettingsAlert">לשכתב את ההגדרות\? ייבוא הגדרות ממקורות לא ידועים עלול לשכתב את הקוד הסודי ולהוביל לנעילת היישום.</string>
     <string name="BackupSettings">הגדרות גיבוי</string>
@@ -269,9 +269,9 @@
     <string name="repeatConfirmText">לחזור\?</string>
     <string name="hideSponsoredMessage">הסתרת הודעות פרסומיות</string>
     <string name="ShareMessages">שיתוף</string>
-    <string name="NekoXUpdateTranslationHint">לחיצה תתרגם את יומן השינויים</string>
+    <string name="AxUpdateTranslationHint">לחיצה תתרגם את יומן השינויים</string>
     <string name="AutoCheckUpdatePreview">תצוגה מקדימה (לא יציב)</string>
-    <string name="AppUpdateNekoX">עדכון Nagram</string>
+    <string name="AppUpdateAxGram">עדכון AxGram</string>
     <string name="Name">שם</string>
     <string name="channelAlias">כינוי ערוץ</string>
     <string name="channelAliasDetails">דרישת הוספת תווית על משתמשים בערוצים פעילה.</string>

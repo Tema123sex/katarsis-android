@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <string name="NekoSettings">Налаштування Neko</string>
+    <string name="AxSettings">Налаштування AxGram</string>
     <string name="IPv6">Підключення через IPv6</string>
     <string name="MessageMenu">Меню повідомлень</string>
     <string name="HidePhone">Сховати мій номер телефону</string>
@@ -25,7 +25,7 @@
     <string name="TransparentStatusBar">Прозорий рядок стану</string>
     <string name="EnableResidentNotification">Показувати сповіщення редактора</string>
     <string name="DisableResidentNotification">Вимкнути сповіщення резидента</string>
-    <string name="NekogramRunning">Некограм працює</string>
+    <string name="AxGramRunning">Некограм працює</string>
     <string name="EventType">Набір іконок бічної панелі</string>
     <string name="ChristmasHat">Шапка Санти щодня</string>
     <string name="ActionBarDecoration">Прикраса заголовка</string>
@@ -110,7 +110,7 @@
     <string name="ProviderMicrosoftTranslator">Microsoft Translator</string>
     <string name="ProviderYouDao">YouDao Translate</string>
     <string name="pressTitleToOpenAllChats">Натисніть на заголовок, щоб відкрити теку \"Всі чати\"</string>
-    <string name="enablePublicProxy">Загальнодоступний проксі NekoX</string>
+    <string name="enablePublicProxy">Загальнодоступний проксі AxGram</string>
     <string name="autoUpdateSubInfo">Оновлювати проксі автоматично</string>
     <string name="hideSendAsChannel">Сховати надсилання як канал</string>
     <string name="DontSendGreetingSticker">Не слати вітальної наліпки</string>
@@ -126,7 +126,7 @@
     <string name="disableChoosingSticker">Стан \"пише\" замість \"вибирає наліпку\"</string>
     <string name="disableRemoteEmojiInteractions">Нехтувати взаємодією інших з емодзі</string>
     <string name="SaveToDownloadCount_many">Зберігання %1$d файлів до завантажень</string>
-    <string name="NekoGeneralNotification">Сповіщення</string>
+    <string name="AxGeneralNotification">Сповіщення</string>
     <string name="doubleTapSendReactions">Надсилати (типово)</string>
     <string name="doubleTapShowReactions">Лише показувати</string>
     <string name="ReactionsDisabled">Вимкнути</string>

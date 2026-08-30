@@ -15,7 +15,7 @@ import android.os.Build;
 
 import java.io.File;
 
-import tw.nekomimi.nekogram.utils.FileUtil;
+import one.axgram.core.utils.FileUtil;
 
 public class NativeLoader {
 

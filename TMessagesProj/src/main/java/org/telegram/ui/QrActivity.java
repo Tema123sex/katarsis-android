@@ -115,7 +115,7 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 
-import tw.nekomimi.nekogram.NekoConfig;
+import one.axgram.core.AxCoreConfig;
 
 public class QrActivity extends BaseFragment {
 
@@ -1147,7 +1147,7 @@ public class QrActivity extends BaseFragment {
                                 }
                             } catch (Exception ignore) {
                                 try {
-                                    if (!NekoConfig.disableVibration.Bool())
+                                    if (!AxCoreConfig.disableVibration.Bool())
                                     performHapticFeedback(HapticFeedbackConstants.LONG_PRESS, HapticFeedbackConstants.FLAG_IGNORE_GLOBAL_SETTING);
                                 } catch (Exception ignore2) {}
                             }

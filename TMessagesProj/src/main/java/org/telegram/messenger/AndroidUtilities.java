@@ -243,11 +243,11 @@ import java.util.zip.GZIPOutputStream;
 
 import me.vkryl.core.BitwiseUtils;
 
-import tw.nekomimi.nekogram.NekoConfig;
-import tw.nekomimi.nekogram.utils.EnvUtil;
-import tw.nekomimi.nekogram.utils.FileUtil;
-import tw.nekomimi.nekogram.utils.TelegramUtil;
-import xyz.nextalone.nagram.helper.ColorOsHelper;
+import one.axgram.core.AxCoreConfig;
+import one.axgram.core.utils.EnvUtil;
+import one.axgram.core.utils.FileUtil;
+import one.axgram.core.utils.TelegramUtil;
+import one.axgram.extra.helper.ColorOsHelper;
 
 public class AndroidUtilities {
     public final static int LIGHT_STATUS_BAR_OVERLAY = 0x0f000000, DARK_STATUS_BAR_OVERLAY = 0x33000000;
@@ -1847,7 +1847,7 @@ public class AndroidUtilities {
             if (pathString.matches(Pattern.quote(new File(ApplicationLoader.applicationContext.getCacheDir(), "voip_logs").getAbsolutePath()) + "/\\d+\\.log")) {
                 return false;
             }
-            // NekoX: Allow send media
+            // AxGram: Allow send media
             if (pathString.startsWith(EnvUtil.getTelegramPath().toString())) {
                 return false;
             }
@@ -2392,7 +2392,7 @@ public class AndroidUtilities {
 
     public static Typeface getTypeface(String assetPath) {
         synchronized (typefaceCache) {
-            if (NekoConfig.typeface.Bool() && Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
+            if (AxCoreConfig.typeface.Bool() && Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
                 if (assetPath.contains("medium") && assetPath.contains("italic")) {
                     return Typeface.create("sans-serif-medium", Typeface.ITALIC);
                 }
@@ -2811,7 +2811,7 @@ public class AndroidUtilities {
                 provider = 1;
             }
         } else {
-            if (NekoConfig.mapPreviewProvider.Int() == 1) {
+            if (AxCoreConfig.mapPreviewProvider.Int() == 1) {
                 provider = 1;
             }
         }
@@ -2905,7 +2905,7 @@ public class AndroidUtilities {
             if (ApplicationLoader.applicationContext == null) {
                 return isTablet = false;
             }
-            switch (NekoConfig.tabletMode.Int()) {
+            switch (AxCoreConfig.tabletMode.Int()) {
                 case 0:
                     isTablet = isTabletForce();
                     break;
@@ -2949,8 +2949,8 @@ public class AndroidUtilities {
     }
 
     public static boolean isSmallTablet() {
-        if (NekoConfig.tabletMode.Int() == 1) return false;
-        if (NekoConfig.tabletMode.Int() == 3) return true;
+        if (AxCoreConfig.tabletMode.Int() == 1) return false;
+        if (AxCoreConfig.tabletMode.Int() == 3) return true;
         float minSide = Math.min(displaySize.x, displaySize.y) / density;
         return minSide <= 690;
     }
@@ -3623,7 +3623,7 @@ public class AndroidUtilities {
         }
         File storageDir = null;
         if (Environment.MEDIA_MOUNTED.equals(Environment.getExternalStorageState())) {
-            storageDir = new File(Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_PICTURES), "Nagram");
+            storageDir = new File(Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_PICTURES), "AxGram");
             if (!storageDir.mkdirs()) {
                 if (!storageDir.exists()) {
                     if (BuildVars.LOGS_ENABLED) {
@@ -5532,7 +5532,7 @@ public class AndroidUtilities {
     }
 
     public static boolean shouldShowUrlInAlert(String url) {
-        if (NekoConfig.skipOpenLinkConfirm.Bool()) {
+        if (AxCoreConfig.skipOpenLinkConfirm.Bool()) {
             return false;
         }
         try {
@@ -6517,7 +6517,7 @@ public class AndroidUtilities {
             if (view == null || view.getContext() == null) return;
             if (Build.VERSION.SDK_INT < Build.VERSION_CODES.O) return;
             if (!((Vibrator) view.getContext().getSystemService(Context.VIBRATOR_SERVICE)).hasAmplitudeControl()) return;
-            if (NekoConfig.disableVibration.Bool()) return;
+            if (AxCoreConfig.disableVibration.Bool()) return;
             view.performHapticFeedback(HapticFeedbackConstants.TEXT_HANDLE_MOVE, HapticFeedbackConstants.FLAG_IGNORE_VIEW_SETTING);
         } catch (Exception ignore) {}
     }
@@ -6527,7 +6527,7 @@ public class AndroidUtilities {
             if (view == null || view.getContext() == null) return;
             if (Build.VERSION.SDK_INT < Build.VERSION_CODES.O) return;
             if (!((Vibrator) view.getContext().getSystemService(Context.VIBRATOR_SERVICE)).hasAmplitudeControl()) return;
-            if (NekoConfig.disableVibration.Bool()) return;
+            if (AxCoreConfig.disableVibration.Bool()) return;
             view.performHapticFeedback(HapticFeedbackConstants.KEYBOARD_TAP, HapticFeedbackConstants.FLAG_IGNORE_VIEW_SETTING);
         } catch (Exception ignore) {}
     }
@@ -6668,7 +6668,7 @@ public class AndroidUtilities {
 
     public static String getBuildVersionInfo() {
         String[] abi = Build.SUPPORTED_ABIS[0].toLowerCase(Locale.ROOT).split("-");
-        return "Nagram v" + BuildConfig.VERSION_NAME + " (" + BuildConfig.BUILD_TIMESTAMP + ") " + abi[abi.length - 1];
+        return "AxGram v" + BuildConfig.VERSION_NAME + " (" + BuildConfig.BUILD_TIMESTAMP + ") " + abi[abi.length - 1];
 //        try {
 //            PackageInfo pInfo = ApplicationLoader.applicationContext.getPackageManager().getPackageInfo(ApplicationLoader.applicationContext.getPackageName(), 0);
 //            int code = pInfo.versionCode / 10;
