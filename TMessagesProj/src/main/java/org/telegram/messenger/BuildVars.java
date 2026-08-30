@@ -57,7 +57,12 @@ public class BuildVars {
 
         if (ApplicationLoader.applicationContext != null) {
             SharedPreferences sharedPreferences = ApplicationLoader.applicationContext.getSharedPreferences("systemConfig", Context.MODE_PRIVATE);
-            LOGS_ENABLED = DEBUG_VERSION || sharedPreferences.getBoolean("logsEnabled", DEBUG_VERSION);
+            // AxGram: логи выключены по умолчанию. Тип сборки называется "debug"
+            // по техническим причинам (нативная часть собирается только для него),
+            // но сборка распространяется пользователям — писать их переписку
+            // в журнал на диске без спроса нельзя. Включается вручную:
+            // Профиль → нажать на версию → «Включить логи».
+            LOGS_ENABLED = sharedPreferences.getBoolean("logsEnabled", false);
             if (LOGS_ENABLED) {
                 final Thread.UncaughtExceptionHandler pastHandler = Thread.getDefaultUncaughtExceptionHandler();
                 Thread.setDefaultUncaughtExceptionHandler((thread, exception) -> {

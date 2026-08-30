@@ -202,8 +202,12 @@ android {
     buildTypes {
         debug {
             isDefault true
-            debuggable true
-            jniDebuggable true
+            // AxGram: сборка распространяется пользователям, поэтому отладка
+            // выключена. С debuggable=true данные приложения — включая сессию
+            // Telegram и переписку — читаются с устройства через USB-отладку
+            // командой run-as, без рута.
+            debuggable false
+            jniDebuggable false
             multiDexEnabled true
             zipAlignEnabled true
             signingConfig signingConfigs.release
@@ -244,6 +248,10 @@ android {
     }
 
     tasks.configureEach { task ->
+        // Нативные задачи собираются только для Debug: полная сборка release
+        // требует COMPILE_NATIVE и многочасовой компиляции ffmpeg/boringssl/tgnet.
+        // Поэтому распространяется вариант debug — но с снятым флагом отладки,
+        // см. buildTypes.debug ниже.
         if (((task.name.endsWith("Ndk") || task.name.startsWith("generateJsonModel") || task.name.startsWith("externalNativeBuild"))) && !task.name.contains("Debug")) {
             task.enabled = false
         }
