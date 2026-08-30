@@ -270,7 +270,9 @@ android {
     applicationVariants.configureEach { variant ->
         variant.outputs.configureEach { output ->
             String gramName = "AxGram"
-            String first = String.format("%s-v%s(%s)", gramName, versionName, versionCode)
+            // AxGram: без скобок — GitHub запрещает их в именах файлов релиза
+            // и молча заменяет точками, из-за чего апдейтер не узнаёт свой файл.
+            String first = String.format("%s-v%s-%s", gramName, versionName, versionCode)
             String name = outputFileName.replace("TMessagesProj", first)
             name = name.replace("-release", "")
             outputFileName = name

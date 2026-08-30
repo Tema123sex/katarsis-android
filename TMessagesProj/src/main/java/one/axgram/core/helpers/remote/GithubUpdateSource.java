@@ -33,9 +33,16 @@ public class GithubUpdateSource {
     private static final int TIMEOUT_MS = 15_000;
     private static final int MAX_BODY_BYTES = 512 * 1024;
 
-    /** AxGram-v<версия>(<код>)-<abi>[-debug].apk */
+    /**
+     * AxGram-v<версия>(<код>)-<abi>[-debug].apk
+     *
+     * Разделителем может быть скобка, точка или дефис: GitHub запрещает
+     * скобки в именах файлов релиза и заменяет их точками, поэтому
+     * AxGram-v12.7.3(1238)-arm64-v8a.apk приезжает как
+     * AxGram-v12.7.3.1238.-arm64-v8a.apk.
+     */
     private static final Pattern APK_NAME = Pattern.compile(
-            "^AxGram-v([0-9.]+)\\((\\d+)\\)-(.+?)(?:-debug)?\\.apk$");
+            "^AxGram-v(\\d+\\.\\d+(?:\\.\\d+)?)[.(_-]+(\\d+)[.)_-]+(.+?)(?:-debug)?\\.apk$");
     private static final DispatchQueue queue = new DispatchQueue("AxUpdateCheck");
 
     public interface Callback {
