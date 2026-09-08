@@ -155,6 +155,7 @@
     <string name="disablePremiumStickerAnimation">Отключить анимацию премиум стикеров</string>
     <string name="localPremium">Локальный премиум (только в приложении)</string>
     <string name="localPremiumInfo">Снимает ограничения, которые приложение накладывает само, — например блокировку папок сверх лимита. Ограничения, которые проверяет сервер Telegram, так снять нельзя.</string>
+    <string name="enableLogs">Записывать логи</string>
     <string name="showAxPromo">Напоминать о канале и поддержке</string>
     <string name="useOSMDroidMap">Используйте карту OSMDroid</string>
     <string name="mapDriftingFixForGoogleMaps">Исправить дрейф Карт Google в Китае</string>

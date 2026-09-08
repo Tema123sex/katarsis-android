@@ -592,11 +592,11 @@ public class FiltersSetupActivity extends BaseFragment implements NotificationCe
             }
             filtersSectionEnd = items.size();
 
-            if (listView != null) listView.forcedSections.add(AndroidUtilities.pack(filtersSectionStart, filtersSectionEnd - 1 + (dialogFilters.size() < getMessagesController().dialogFiltersLimitPremium ? 1 : 0)));
+            if (listView != null) listView.forcedSections.add(AndroidUtilities.pack(filtersSectionStart, filtersSectionEnd - 1 + (dialogFilters.size() < MAX_TOTAL_FILTERS ? 1 : 0)));
         } else {
             filtersSectionStart = filtersSectionEnd = -1;
         }
-        if (dialogFilters.size() < getMessagesController().dialogFiltersLimitPremium) {
+        if (dialogFilters.size() < MAX_TOTAL_FILTERS) {
             items.add(ItemInner.asButton(LocaleController.getString(R.string.CreateNewFilter)));
         }
         items.add(ItemInner.asShadow(null));
@@ -624,11 +624,8 @@ public class FiltersSetupActivity extends BaseFragment implements NotificationCe
             getNotificationCenter().postNotificationName(NotificationCenter.dialogFiltersUpdated);
             getMessagesStorage().saveDialogFiltersOrder();
             TLRPC.TL_messages_updateDialogFiltersOrder req = new TLRPC.TL_messages_updateDialogFiltersOrder();
-            ArrayList<MessagesController.DialogFilter> filters = getMessagesController().getDialogFilters();
-            for (int a = 0, N = filters.size(); a < N; a++) {
-                MessagesController.DialogFilter filter = filters.get(a);
-                req.order.add(filter.id);
-            }
+            // AxGram: локальные папки на сервере не существуют — в порядок не попадают.
+            req.order.addAll(getMessagesController().getRemoteFiltersOrder());
             getConnectionsManager().sendRequest(req, (response, error) -> {
 
             });
@@ -732,13 +729,24 @@ public class FiltersSetupActivity extends BaseFragment implements NotificationCe
         return fragmentView;
     }
 
+    /** Разумный потолок для локальных папок: список чатов не резиновый. */
+    private static final int MAX_TOTAL_FILTERS = 30;
+
     public void createFolder(INavigationLayout navigationLayout) {
         final int count = getMessagesController().getDialogFilters().size();
-        if (
-            count - 1 >= getMessagesController().dialogFiltersLimitDefault && !getUserConfig().isPremium() ||
-            count >= getMessagesController().dialogFiltersLimitPremium
-        ) {
-            showDialog(new LimitReachedBottomSheet(this, getContext(), LimitReachedBottomSheet.TYPE_FOLDERS, currentAccount, null));
+        // AxGram: окно «лимит достигнут» больше не нужно — папки сверх серверного
+        // лимита создаются локальными. Ограничение осталось одно: общее число
+        // папок, чтобы список не разрастался бесконтрольно.
+        if (count >= MAX_TOTAL_FILTERS) {
+            // Предлагать здесь Premium нечестно: он этот потолок не поднимает.
+            if (getContext() != null) {
+                AlertDialog.Builder builder = new AlertDialog.Builder(getContext());
+                builder.setTitle("Больше папок не поместится");
+                builder.setMessage("В AxGram можно держать до " + MAX_TOTAL_FILTERS
+                        + " папок. Удали ненужную, чтобы освободить место.");
+                builder.setPositiveButton(LocaleController.getString(R.string.OK), null);
+                showDialog(builder.create());
+            }
         } else if (navigationLayout != null) {
             navigationLayout.presentFragment(new FilterCreateActivity());
         }
@@ -939,6 +947,19 @@ public class FiltersSetupActivity extends BaseFragment implements NotificationCe
                                     progressDialog.show();
                                 }
                                 final AlertDialog progressDialogFinal = progressDialog;
+                                // AxGram: локальную папку удаляем только у себя.
+                                if (MessagesController.isLocalFilter(filter)) {
+                                    if (progressDialogFinal != null) {
+                                        try {
+                                            progressDialogFinal.dismiss();
+                                        } catch (Exception e) {
+                                            FileLog.e(e);
+                                        }
+                                    }
+                                    getMessagesController().removeFilter(filter);
+                                    getMessagesStorage().deleteDialogFilter(filter);
+                                    return;
+                                }
                                 TLRPC.TL_messages_updateDialogFilter req = new TLRPC.TL_messages_updateDialogFilter();
                                 req.id = filter.id;
                                 getConnectionsManager().sendRequest(req, (response, error) -> AndroidUtilities.runOnUIThread(() -> {

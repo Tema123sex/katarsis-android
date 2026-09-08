@@ -2671,6 +2671,7 @@ public class MessagesStorage extends BaseController {
                     }
                     return 0;
                 });
+                FileLog.d("AxGram папки: загружено из базы [" + axDumpFilters(dialogFilters) + "]");
 
                 if (updateCounters) {
                     calcUnreadCounters(true);
@@ -3245,6 +3246,12 @@ public class MessagesStorage extends BaseController {
                 SparseArray<MessagesController.DialogFilter> filtersToDelete = new SparseArray<>();
                 for (int a = 0, N = dialogFilters.size(); a < N; a++) {
                     MessagesController.DialogFilter filter = dialogFilters.get(a);
+                    // AxGram: локальные папки на сервере не существуют, поэтому
+                    // их нет и в присланном списке. Без этой проверки они
+                    // попадали бы в удаление при каждой синхронизации.
+                    if (MessagesController.isLocalFilter(filter.id)) {
+                        continue;
+                    }
                     filtersToDelete.put(filter.id, filter);
                 }
                 ArrayList<Integer> filtersOrder = new ArrayList<>();
@@ -3574,11 +3581,71 @@ public class MessagesStorage extends BaseController {
             anythingChanged = true;
         }
         boolean orderChanged = false;
-        for (int a = 0, N = dialogFilters.size(); a < N; a++) {
-            MessagesController.DialogFilter filter = dialogFilters.get(a);
-            int order = filtersOrder.indexOf(filter.id);
-            if (filter.order != order) {
-                filter.order = order;
+        // AxGram: локальных папок в присланном порядке нет — сервер о них не знает.
+        // Просто отправить их в конец было бы неудобно: пользователь перетащил
+        // папку в середину, а следующая синхронизация её оттуда унесла. Поэтому
+        // запоминаем, за какой серверной папкой стоит каждая локальная, и после
+        // применения серверного порядка возвращаем их на свои места.
+        ArrayList<MessagesController.DialogFilter> currentOrder = new ArrayList<>(dialogFilters);
+        Collections.sort(currentOrder, (o1, o2) -> Integer.compare(o1.order, o2.order));
+        ArrayList<MessagesController.DialogFilter> localsAtStart = new ArrayList<>();
+        HashMap<Integer, ArrayList<MessagesController.DialogFilter>> localsAfter = new HashMap<>();
+        Integer anchorId = null;
+        for (int a = 0, N = currentOrder.size(); a < N; a++) {
+            MessagesController.DialogFilter filter = currentOrder.get(a);
+            if (MessagesController.isLocalFilter(filter.id)) {
+                if (anchorId == null) {
+                    localsAtStart.add(filter);
+                } else {
+                    ArrayList<MessagesController.DialogFilter> tail = localsAfter.get(anchorId);
+                    if (tail == null) {
+                        tail = new ArrayList<>();
+                        localsAfter.put(anchorId, tail);
+                    }
+                    tail.add(filter);
+                }
+            } else {
+                anchorId = filter.id;
+            }
+        }
+
+        ArrayList<MessagesController.DialogFilter> arranged = new ArrayList<>();
+        arranged.addAll(localsAtStart);
+        for (int a = 0, N = currentOrder.size(); a < N; a++) {
+            // «Все чаты» сервер в порядке не присылает — она всегда первой.
+            MessagesController.DialogFilter filter = currentOrder.get(a);
+            if (filter.isDefault()) {
+                arranged.add(0, filter);
+                ArrayList<MessagesController.DialogFilter> tail = localsAfter.get(filter.id);
+                if (tail != null) {
+                    arranged.addAll(1, tail);
+                }
+                break;
+            }
+        }
+        for (int a = 0, N = filtersOrder.size(); a < N; a++) {
+            int id = filtersOrder.get(a);
+            MessagesController.DialogFilter filter = dialogFiltersMap.get(id);
+            if (filter == null || arranged.contains(filter)) {
+                continue;
+            }
+            arranged.add(filter);
+            ArrayList<MessagesController.DialogFilter> tail = localsAfter.get(id);
+            if (tail != null) {
+                arranged.addAll(tail);
+            }
+        }
+        for (int a = 0, N = currentOrder.size(); a < N; a++) {
+            // Подстраховка: ничего не должно потеряться.
+            MessagesController.DialogFilter filter = currentOrder.get(a);
+            if (!arranged.contains(filter)) {
+                arranged.add(filter);
+            }
+        }
+        for (int a = 0, N = arranged.size(); a < N; a++) {
+            MessagesController.DialogFilter filter = arranged.get(a);
+            if (filter.order != a) {
+                filter.order = a;
                 anythingChanged = true;
                 orderChanged = true;
             }
@@ -3594,6 +3661,8 @@ public class MessagesStorage extends BaseController {
             });
             saveDialogFiltersOrderInternal();
         }
+        FileLog.d("AxGram папки: синхронизация, сервер прислал " + filtersOrder
+                + ", получилось [" + axDumpFilters(dialogFilters) + "]");
         int remote = anythingChanged ? 1 : 2;
         calcUnreadCounters(true);
         getMessagesController().processLoadedDialogFilters(new ArrayList<>(dialogFilters), pinnedDialogs, pinnedRemoteDialogs, users, chats, null, remote, onDone);
@@ -3635,6 +3704,22 @@ public class MessagesStorage extends BaseController {
         });
     }
 
+    /** AxGram: печатает папки как «id:порядок» — чтобы видеть, где рушится порядок. */
+    private static String axDumpFilters(java.util.List<MessagesController.DialogFilter> list) {
+        StringBuilder sb = new StringBuilder();
+        for (int a = 0; a < list.size(); a++) {
+            MessagesController.DialogFilter f = list.get(a);
+            if (a > 0) {
+                sb.append(", ");
+            }
+            sb.append(f.id).append(':').append(f.order);
+            if (MessagesController.isLocalFilter(f.id)) {
+                sb.append("(лок)");
+            }
+        }
+        return sb.toString();
+    }
+
     public void saveDialogFiltersOrderInternal() {
         SQLitePreparedStatement state = null;
         try {
@@ -3649,6 +3734,7 @@ public class MessagesStorage extends BaseController {
             }
             state.dispose();
             state = null;
+            FileLog.d("AxGram папки: записываю порядок [" + axDumpFilters(dialogFilters) + "]");
         } catch (Exception e) {
             checkSQLException(e);
         } finally {
@@ -4380,27 +4466,31 @@ public class MessagesStorage extends BaseController {
             // всего диалога целиком, а не список идентификаторов сообщений. Без
             // этого перехвата вся история просто исчезала, хотя анти-удаление
             // включено. Сохраняем сообщения до того, как их сотрут.
-            try {
-                org.telegram.SQLite.SQLiteCursor axCursor =
-                        database.queryFinalized("SELECT data FROM messages_v2 WHERE uid = " + did);
-                int axSaved = 0;
-                while (axCursor.next()) {
-                    NativeByteBuffer axData = axCursor.byteBufferValue(0);
-                    if (axData != null) {
-                        TLRPC.Message axMsg = TLRPC.Message.TLdeserialize(axData, axData.readInt32(false), false);
-                        axData.reuse();
-                        if (axMsg != null) {
-                            one.axgram.core.AxDeletedMessages.getInstance().saveMessage(currentAccount, did, axMsg);
-                            axSaved++;
+            // Режим 3 — уборка пустых диалогов, там ничего не удаляют; архивировать
+            // живую переписку в этом случае нельзя.
+            if (messagesOnly != 3) {
+                try {
+                    org.telegram.SQLite.SQLiteCursor axCursor =
+                            database.queryFinalized("SELECT data FROM messages_v2 WHERE uid = " + did);
+                    int axSaved = 0;
+                    while (axCursor.next()) {
+                        NativeByteBuffer axData = axCursor.byteBufferValue(0);
+                        if (axData != null) {
+                            TLRPC.Message axMsg = TLRPC.Message.TLdeserialize(axData, axData.readInt32(false), false);
+                            axData.reuse();
+                            if (axMsg != null) {
+                                one.axgram.core.AxDeletedMessages.getInstance().saveMessage(currentAccount, did, axMsg);
+                                axSaved++;
+                            }
                         }
                     }
+                    axCursor.dispose();
+                    if (axSaved > 0) {
+                        FileLog.d("AxGram: сохранено " + axSaved + " сообщений перед очисткой истории " + did);
+                    }
+                } catch (Throwable axError) {
+                    FileLog.e("AxGram clear-history: " + axError);
                 }
-                axCursor.dispose();
-                if (axSaved > 0) {
-                    FileLog.d("AxGram: сохранено " + axSaved + " сообщений перед очисткой истории " + did);
-                }
-            } catch (Throwable axError) {
-                FileLog.e("AxGram clear-history: " + axError);
             }
             // === end AxGram ===
             SQLiteCursor cursor = null;
@@ -4442,7 +4532,12 @@ public class MessagesStorage extends BaseController {
                     cursor = null;
                     deleteFromDownloadQueue(idsToDelete, true);
                     AndroidUtilities.runOnUIThread(() -> getFileLoader().cancelLoadFiles(namesToDelete));
-                    getFileLoader().deleteFiles(filesToDelete, messagesOnly);
+                    // AxGram: сами файлы не трогаем — сообщения уже уехали в архив, и без
+                    // вложений от них остались бы пустые пузыри. Для секретных чатов
+                    // поведение прежнее: там удаление должно быть настоящим.
+                    if (DialogObject.isEncryptedDialog(did)) {
+                        getFileLoader().deleteFiles(filesToDelete, messagesOnly);
+                    }
                 }
 
                 if (messagesOnly == 0 || messagesOnly == 3) {
@@ -14571,6 +14666,32 @@ public class MessagesStorage extends BaseController {
     private ArrayList<Long> markMessagesAsDeletedInternal(long channelId, int mid, boolean deleteFiles) {
         SQLiteCursor cursor = null;
         SQLitePreparedStatement state = null;
+        // === AxGram anti-delete: канал обрезает историю целиком, не по списку id ===
+        // Этот путь идёт мимо перехвата в markMessagesAsDeletedInternal(список),
+        // поэтому старые посты канала пропадали без следа. Сохраняем их заранее.
+        try {
+            org.telegram.SQLite.SQLiteCursor axCursor = database.queryFinalized(
+                    String.format(Locale.US, "SELECT data FROM messages_v2 WHERE uid = %d AND mid <= %d", -channelId, mid));
+            int axSaved = 0;
+            while (axCursor.next()) {
+                NativeByteBuffer axData = axCursor.byteBufferValue(0);
+                if (axData != null) {
+                    TLRPC.Message axMsg = TLRPC.Message.TLdeserialize(axData, axData.readInt32(false), false);
+                    axData.reuse();
+                    if (axMsg != null) {
+                        one.axgram.core.AxDeletedMessages.getInstance().saveMessage(currentAccount, -channelId, axMsg);
+                        axSaved++;
+                    }
+                }
+            }
+            axCursor.dispose();
+            if (axSaved > 0) {
+                FileLog.d("AxGram: сохранено " + axSaved + " сообщений перед обрезкой истории канала " + (-channelId));
+            }
+        } catch (Throwable axError) {
+            FileLog.e("AxGram channel-truncate: " + axError);
+        }
+        // === end AxGram ===
         try {
             ArrayList<Long> dialogsIds = new ArrayList<>();
             LongSparseArray<Integer[]> dialogsToUpdate = new LongSparseArray<>();

@@ -50,6 +50,11 @@ public class AxCoreConfig {
     public static ConfigItem disableInstantCamera = addConfig("DisableInstantCamera", configTypeBool, false);
     public static ConfigItem showSeconds = addConfig("showSeconds", configTypeBool, false);
 
+    // AxGram: запись логов. Выключена по умолчанию — сборка распространяется
+    // пользователям, и писать их переписку в журнал без спроса нельзя.
+    // Нужна, когда просишь человека прислать логи по ошибке.
+    public static ConfigItem enableLogs = addConfig("enableLogs", configTypeBool, false);
+
     // AxGram: напоминания о канале и боте поддержки (плашка внизу списка чатов)
     public static ConfigItem showAxPromo = addConfig("showAxPromo", configTypeBool, true);
     public static ConfigItem enablePublicProxy = addConfig("enablePublicProxy", configTypeBool, true);

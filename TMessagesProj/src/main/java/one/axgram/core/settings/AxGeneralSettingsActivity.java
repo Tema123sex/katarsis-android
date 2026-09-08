@@ -119,6 +119,7 @@ public class AxGeneralSettingsActivity extends BaseAxLegacySettingsActivity {
     private final AbstractConfigCell dividerSummarize = cellGroup.appendCell(new ConfigCellDivider());
 
     private final AbstractConfigCell headerMap = cellGroup.appendCell(new ConfigCellHeader("Map"));
+    private final AbstractConfigCell enableLogsRow = cellGroup.appendCell(new ConfigCellTextCheck(AxCoreConfig.enableLogs));
     private final AbstractConfigCell showAxPromoRow = cellGroup.appendCell(new ConfigCellTextCheck(AxCoreConfig.showAxPromo));
     private final AbstractConfigCell useOSMDroidMapRow = cellGroup.appendCell(new ConfigCellTextCheck(AxCoreConfig.useOSMDroidMap));
     private final AbstractConfigCell mapDriftingFixForGoogleMapsRow = cellGroup.appendCell(new ConfigCellTextCheck(AxCoreConfig.mapDriftingFixForGoogleMaps));

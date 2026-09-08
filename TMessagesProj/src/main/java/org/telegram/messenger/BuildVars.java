@@ -62,7 +62,8 @@ public class BuildVars {
             // но сборка распространяется пользователям — писать их переписку
             // в журнал на диске без спроса нельзя. Включается вручную:
             // Профиль → нажать на версию → «Включить логи».
-            LOGS_ENABLED = sharedPreferences.getBoolean("logsEnabled", false);
+            LOGS_ENABLED = one.axgram.core.AxCoreConfig.enableLogs.Bool()
+                    || sharedPreferences.getBoolean("logsEnabled", false);
             if (LOGS_ENABLED) {
                 final Thread.UncaughtExceptionHandler pastHandler = Thread.getDefaultUncaughtExceptionHandler();
                 Thread.setDefaultUncaughtExceptionHandler((thread, exception) -> {

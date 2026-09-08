@@ -29,7 +29,7 @@ import java.util.List;
 public class AxDeletedMessages extends SQLiteOpenHelper {
 
     private static final String DB_NAME = "axgram_deleted.db";
-    private static final int DB_VERSION = 1;
+    private static final int DB_VERSION = 2;
     private static final String TABLE = "deleted_messages";
 
     private static volatile AxDeletedMessages instance;
@@ -60,6 +60,7 @@ public class AxDeletedMessages extends SQLiteOpenHelper {
                 + "date INTEGER NOT NULL,"
                 + "deleted_at INTEGER NOT NULL,"
                 + "text TEXT,"
+                + "dialog_title TEXT,"
                 + "data BLOB NOT NULL,"
                 + "UNIQUE(account, dialog_id, message_id) ON CONFLICT IGNORE"
                 + ")");
@@ -68,7 +69,15 @@ public class AxDeletedMessages extends SQLiteOpenHelper {
 
     @Override
     public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion) {
-        // v1 only for now
+        if (oldVersion < 2) {
+            // AxGram: храним название чата рядом с сообщением. Без него после
+            // удаления самого чата показать в просмотре было бы нечего —
+            // Telegram уже забыл, как он назывался.
+            try {
+                db.execSQL("ALTER TABLE " + TABLE + " ADD COLUMN dialog_title TEXT");
+            } catch (Throwable ignore) {
+            }
+        }
     }
 
     /**
@@ -99,12 +108,78 @@ public class AxDeletedMessages extends SQLiteOpenHelper {
             cv.put("date", message.date);
             cv.put("deleted_at", System.currentTimeMillis() / 1000L);
             cv.put("text", message.message != null ? message.message : "");
+            cv.put("dialog_title", resolveDialogTitle(account, dialogId));
             cv.put("data", blob);
 
             getWritableDatabase().insertWithOnConflict(TABLE, null, cv, SQLiteDatabase.CONFLICT_IGNORE);
         } catch (Throwable e) {
             FileLog.e("AxDeletedMessages.saveMessage", e);
         }
+    }
+
+    /**
+     * Название чата на момент сохранения. Запрашивается у Telegram, пока чат
+     * ещё существует: после его удаления имя взять будет неоткуда.
+     */
+    private static String resolveDialogTitle(int account, long dialogId) {
+        try {
+            org.telegram.messenger.MessagesController controller =
+                    org.telegram.messenger.MessagesController.getInstance(account);
+            if (dialogId > 0) {
+                TLRPC.User user = controller.getUser(dialogId);
+                if (user != null) {
+                    return org.telegram.messenger.UserObject.getUserName(user);
+                }
+            } else {
+                TLRPC.Chat chat = controller.getChat(-dialogId);
+                if (chat != null && chat.title != null) {
+                    return chat.title;
+                }
+            }
+        } catch (Throwable ignore) {
+        }
+        return null;
+    }
+
+    /** Сводка по чату для списка: сколько сохранено и когда последнее. */
+    public static class DialogSummary {
+        public long dialogId;
+        public String title;
+        public int count;
+        public int lastDate;
+        public String lastText;
+    }
+
+    /**
+     * Чаты, по которым что-то сохранено, свежие сверху. Включая те, которых
+     * в Telegram уже нет — ради них и заведена колонка с названием.
+     */
+    public List<DialogSummary> getDialogSummaries(int account) {
+        ArrayList<DialogSummary> out = new ArrayList<>();
+        try {
+            Cursor c = getReadableDatabase().rawQuery(
+                    "SELECT t.dialog_id, COUNT(*), MAX(t.date), "
+                            + "MAX(COALESCE(t.dialog_title,'')), "
+                            + "(SELECT x.text FROM " + TABLE + " x WHERE x.account=t.account "
+                            + "AND x.dialog_id=t.dialog_id ORDER BY x.date DESC LIMIT 1) "
+                            + "FROM " + TABLE + " t WHERE t.account=? "
+                            + "GROUP BY t.dialog_id ORDER BY MAX(t.date) DESC",
+                    new String[]{String.valueOf(account)});
+            while (c.moveToNext()) {
+                DialogSummary d = new DialogSummary();
+                d.dialogId = c.getLong(0);
+                d.count = c.getInt(1);
+                d.lastDate = c.getInt(2);
+                String t = c.getString(3);
+                d.title = (t == null || t.isEmpty()) ? null : t;
+                d.lastText = c.getString(4);
+                out.add(d);
+            }
+            c.close();
+        } catch (Throwable e) {
+            FileLog.e("AxDeletedMessages.getDialogSummaries", e);
+        }
+        return out;
     }
 
     public int getCount(int account, long dialogId) {
@@ -251,6 +326,69 @@ public class AxDeletedMessages extends SQLiteOpenHelper {
             java.util.LinkedHashMap<Integer, MessageObject> m = sessionCache.get(dialogId);
             if (m == null || m.isEmpty()) return new ArrayList<>();
             return new ArrayList<>(m.values());
+        }
+    }
+
+    /** Сохранённое одного чата, старые сверху — как в обычной переписке. */
+    public List<Entry> getDialogEntries(int account, long dialogId) {
+        ArrayList<Entry> result = new ArrayList<>();
+        Cursor c = null;
+        try {
+            c = getReadableDatabase().rawQuery(
+                    "SELECT dialog_id, sender_id, date, deleted_at, data FROM " + TABLE
+                            + " WHERE account=? AND dialog_id=? ORDER BY date ASC, message_id ASC",
+                    new String[]{String.valueOf(account), String.valueOf(dialogId)});
+            while (c.moveToNext()) {
+                TLRPC.Message m = deserialize(c.getBlob(4));
+                if (m == null) {
+                    continue;
+                }
+                Entry e = new Entry();
+                e.dialogId = c.getLong(0);
+                e.senderId = c.getLong(1);
+                e.date = c.getInt(2);
+                e.deletedAt = c.getLong(3);
+                e.message = m;
+                result.add(e);
+            }
+        } catch (Throwable e) {
+            FileLog.e("AxDeletedMessages.getDialogEntries", e);
+        } finally {
+            if (c != null) {
+                try {
+                    c.close();
+                } catch (Throwable ignore) {
+                }
+            }
+        }
+        return result;
+    }
+
+    /** Сколько места занимает архив на диске, в байтах. */
+    public long getDatabaseSize() {
+        try {
+            java.io.File file = new java.io.File(getReadableDatabase().getPath());
+            return file.exists() ? file.length() : 0;
+        } catch (Throwable e) {
+            return 0;
+        }
+    }
+
+    /**
+     * Проставляет название чата записям, сохранённым до появления этой колонки —
+     * пока чат ещё существует и спросить его имя есть у кого.
+     */
+    public void setDialogTitle(int account, long dialogId, String title) {
+        if (title == null || title.isEmpty()) {
+            return;
+        }
+        try {
+            getWritableDatabase().execSQL(
+                    "UPDATE " + TABLE + " SET dialog_title=? WHERE account=? AND dialog_id=? "
+                            + "AND (dialog_title IS NULL OR dialog_title='')",
+                    new Object[]{title, account, dialogId});
+        } catch (Throwable e) {
+            FileLog.e("AxDeletedMessages.setDialogTitle", e);
         }
     }
 

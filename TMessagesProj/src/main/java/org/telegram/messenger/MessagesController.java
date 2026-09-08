@@ -281,6 +281,97 @@ public class MessagesController extends BaseController implements NotificationCe
 
     public SparseIntArray businessFeaturesTypesToPosition = new SparseIntArray();
     
+    /**
+     * AxGram: папки, существующие только на этом устройстве.
+     *
+     * Telegram ограничивает число папок на стороне сервера и отвечает
+     * DIALOG_FILTERS_TOO_MUCH при попытке создать лишнюю. Обойти это нельзя:
+     * решение принимает сервер. Поэтому папки сверх лимита создаются
+     * локальными — они не отправляются на сервер и живут в базе устройства.
+     *
+     * Идентификаторы сервера умещаются в 2..255, поэтому локальные начинаются
+     * с 1000 — пересечься не могут.
+     *
+     * Цена: такие папки не появятся на других устройствах и в официальном
+     * клиенте, и потеряются при переустановке без экспорта настроек.
+     */
+    public static final int LOCAL_FILTER_MIN_ID = 1000;
+
+    public static boolean isLocalFilter(int id) {
+        return id >= LOCAL_FILTER_MIN_ID;
+    }
+
+    public static boolean isLocalFilter(DialogFilter filter) {
+        return filter != null && isLocalFilter(filter.id);
+    }
+
+    /** Сколько папок уже синхронизируется с сервером (локальные не в счёт). */
+    public int getRemoteFiltersCount() {
+        int count = 0;
+        for (int a = 0, N = dialogFilters.size(); a < N; a++) {
+            if (!isLocalFilter(dialogFilters.get(a).id)) {
+                count++;
+            }
+        }
+        return count;
+    }
+
+    /**
+     * Сколько папок сервер реально соглашается хранить.
+     *
+     * Значение из appConfig бывает больше настоящего: сервер отвечал
+     * DIALOG_FILTERS_TOO_MUCH при 10 папках, хотя dialog_filters_limit_default
+     * присылал больше. Поэтому настоящий предел запоминается по первому отказу
+     * и дальше используется как потолок — обречённые запросы больше не уходят.
+     */
+    public int getEffectiveFiltersLimit() {
+        boolean premium = hasRealPremium();
+        int configLimit = premium ? dialogFiltersLimitPremium : dialogFiltersLimitDefault;
+        int learned = mainPreferences.getInt(axLearnedLimitKey(premium), Integer.MAX_VALUE);
+        return Math.min(configLimit, learned);
+    }
+
+    /**
+     * Настоящий Premium, а не «локальный» из настроек AxGram: сервер считает
+     * папки по нему, и подставлять сюда isPremium() нельзя — иначе клиент решит,
+     * что места ещё много, и получит отказ.
+     */
+    public boolean hasRealPremium() {
+        TLRPC.User user = getUserConfig().getCurrentUser();
+        return user != null && user.premium;
+    }
+
+    /** Выученный предел разный для Premium и без него — купят Premium, попробуем заново. */
+    private static String axLearnedLimitKey(boolean premium) {
+        return premium ? "axLearnedFiltersLimitPremium" : "axLearnedFiltersLimit";
+    }
+
+    /** Запоминает предел, на котором сервер отказал. */
+    public void rememberFiltersLimitReached() {
+        boolean premium = hasRealPremium();
+        String key = axLearnedLimitKey(premium);
+        int reached = Math.max(1, getRemoteFiltersCount() - 1);
+        int known = mainPreferences.getInt(key, Integer.MAX_VALUE);
+        if (reached < known) {
+            mainPreferences.edit().putInt(key, reached).apply();
+            FileLog.d("AxGram папки: сервер отказал на " + reached + " папках, запомнил этот предел"
+                    + (premium ? " (с Premium)" : ""));
+        }
+    }
+
+    /** Порядок папок для сервера: локальных он не знает, их пропускаем. */
+    public ArrayList<Integer> getRemoteFiltersOrder() {
+        ArrayList<Integer> order = new ArrayList<>();
+        for (int a = 0, N = dialogFilters.size(); a < N; a++) {
+            DialogFilter filter = dialogFilters.get(a);
+            if (isLocalFilter(filter)) {
+                continue;
+            }
+            order.add(filter.isDefault() ? 0 : filter.id);
+        }
+        return order;
+    }
+
     public ArrayList<DialogFilter> dialogFilters = new ArrayList<>();
     public ArrayList<DialogFilter> frozenDialogFilters = null;
     public ArrayList<Long> hiddenUndoChats = new ArrayList<>();
@@ -883,22 +974,24 @@ public class MessagesController extends BaseController implements NotificationCe
 
     public void lockFiltersInternal() {
         boolean changed = false;
-        if (!getUserConfig().isPremium() && dialogFilters.size() - 1 > dialogFiltersLimitDefault) {
-            int n = dialogFilters.size() - 1 - dialogFiltersLimitDefault;
-            ArrayList<DialogFilter> filtersSortedById = new ArrayList<>(dialogFilters);
-            Collections.reverse(filtersSortedById);
-            for (int i = 0; i < filtersSortedById.size(); i++) {
-                if (i < n) {
-                    if (!filtersSortedById.get(i).locked) {
-                        changed = true;
-                    }
-                    filtersSortedById.get(i).locked = true;
-                } else {
-                    if (filtersSortedById.get(i).locked) {
-                        changed = true;
-                    }
-                    filtersSortedById.get(i).locked = false;
-                }
+        // AxGram: локальные папки хранятся только на устройстве, серверного лимита
+        // не занимают и замка получать не должны. Считаем превышение по обычным
+        // папкам и пропускаем локальные при развешивании замков.
+        int overLimit = getUserConfig().isPremium()
+                ? 0
+                : Math.max(0, getRemoteFiltersCount() - 1 - dialogFiltersLimitDefault);
+        ArrayList<DialogFilter> filtersSortedById = new ArrayList<>(dialogFilters);
+        Collections.reverse(filtersSortedById);
+        for (int i = 0; i < filtersSortedById.size(); i++) {
+            DialogFilter dialogFilter = filtersSortedById.get(i);
+            boolean lock = false;
+            if (overLimit > 0 && !isLocalFilter(dialogFilter)) {
+                lock = true;
+                overLimit--;
+            }
+            if (dialogFilter.locked != lock) {
+                dialogFilter.locked = lock;
+                changed = true;
             }
         }
         if (changed) {

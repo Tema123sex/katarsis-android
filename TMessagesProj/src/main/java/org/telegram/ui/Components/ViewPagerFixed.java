@@ -2248,11 +2248,8 @@ public class ViewPagerFixed extends FrameLayout {
             if (!isEditing && orderChanged) {
                 MessagesStorage.getInstance(UserConfig.selectedAccount).saveDialogFiltersOrder();
                 TLRPC.TL_messages_updateDialogFiltersOrder req = new TLRPC.TL_messages_updateDialogFiltersOrder();
-                ArrayList<MessagesController.DialogFilter> filters = MessagesController.getInstance(UserConfig.selectedAccount).dialogFilters;
-                for (int a = 0, N = filters.size(); a < N; a++) {
-                    MessagesController.DialogFilter filter = filters.get(a);
-                    req.order.add(filters.get(a).id);
-                }
+                // AxGram: локальные папки на сервере не существуют — в порядок не попадают.
+                req.order.addAll(MessagesController.getInstance(UserConfig.selectedAccount).getRemoteFiltersOrder());
                 ConnectionsManager.getInstance(UserConfig.selectedAccount).sendRequest(req, (response, error) -> {
 
                 });

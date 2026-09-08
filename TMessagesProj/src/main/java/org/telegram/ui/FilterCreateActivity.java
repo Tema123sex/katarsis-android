@@ -198,10 +198,20 @@ public class FilterCreateActivity extends BaseFragment {
         filter = dialogFilter;
         if (filter == null) {
             filter = new MessagesController.DialogFilter();
-            filter.id = 2;
-            while (getMessagesController().dialogFiltersById.get(filter.id) != null) {
+            final MessagesController controller = getMessagesController();
+            // AxGram: пока не упёрлись в серверный лимит — обычная папка,
+            // которая синхронизируется. Дальше создаём локальную: сервер
+            // отверг бы её с DIALOG_FILTERS_TOO_MUCH.
+            int serverLimit = controller.getEffectiveFiltersLimit();
+            int remoteCount = controller.getRemoteFiltersCount() - 1;
+            boolean local = remoteCount >= serverLimit;
+            filter.id = local ? MessagesController.LOCAL_FILTER_MIN_ID : 2;
+            while (controller.dialogFiltersById.get(filter.id) != null) {
                 filter.id++;
             }
+            FileLog.d("AxGram папки: новая папка id=" + filter.id + (local ? " (локальная)" : " (серверная)")
+                    + ", серверных сейчас " + remoteCount + ", предел " + serverLimit
+                    + ", настоящий Premium=" + controller.hasRealPremium());
             filter.name = "";
             filter.color = (int) (Math.random() * 8);
             creatingNew = true;
@@ -237,7 +247,8 @@ public class FilterCreateActivity extends BaseFragment {
         if (loadingInvites) {
             return;
         }
-        if (filter == null || !filter.isChatlist()) {
+        // AxGram: локальная папка серверу неизвестна, ссылок у неё быть не может.
+        if (filter == null || !filter.isChatlist() || MessagesController.isLocalFilter(filter)) {
             return;
         }
         loadingInvites = true;
@@ -298,7 +309,12 @@ public class FilterCreateActivity extends BaseFragment {
         }));
         nameRow = items.size();
         items.add(ItemInner.asEdit());
-        items.add(ItemInner.asShadow(null));
+        // AxGram: честно предупреждаем, что папка сверх лимита живёт только здесь —
+        // иначе пользователь будет искать её на другом устройстве и не найдёт.
+        items.add(ItemInner.asShadow(MessagesController.isLocalFilter(filter)
+                ? "Эта папка хранится только на этом устройстве: Telegram не даёт синхронизировать больше "
+                        + getMessagesController().dialogFiltersLimitDefault + " папок без Premium."
+                : null));
         items.add(ItemInner.asHeader(LocaleController.getString(R.string.FilterInclude)));
         items.add(ItemInner.asButton(R.drawable.msg2_chats_add, LocaleController.getString(R.string.FilterAddChats), false).whenClicked(v -> selectChatsFor(true)));
 
@@ -370,7 +386,11 @@ public class FilterCreateActivity extends BaseFragment {
             items.add(ItemInner.asShadow(LocaleController.getString(R.string.FolderTagColorInfo)));
         }
 
-        if (invites.isEmpty()) {
+        // AxGram: локальную папку поделить нельзя — она есть только на этом устройстве.
+        boolean canShareFolder = !MessagesController.isLocalFilter(filter);
+        if (!canShareFolder) {
+            // раздел со ссылками пропускаем целиком
+        } else if (invites.isEmpty()) {
             items.add(ItemInner.asHeader(LocaleController.getString(R.string.FilterShareFolder), true));
             items.add(ItemInner.asButton(R.drawable.msg2_link2, LocaleController.getString(R.string.FilterShareFolderButton), false));
             items.add(ItemInner.asShadow(LocaleController.getString(R.string.FilterInviteLinksHintNew)));
@@ -819,6 +839,20 @@ public class FilterCreateActivity extends BaseFragment {
                     progressDialog.show();
                 }
                 final AlertDialog progressDialogFinal = progressDialog;
+                // AxGram: локальную папку удаляем только у себя — сервер о ней не знает.
+                if (MessagesController.isLocalFilter(filter)) {
+                    if (progressDialogFinal != null) {
+                        try {
+                            progressDialogFinal.dismiss();
+                        } catch (Exception e) {
+                            FileLog.e(e);
+                        }
+                    }
+                    getMessagesController().removeFilter(filter);
+                    getMessagesStorage().deleteDialogFilter(filter);
+                    finishFragment();
+                    return;
+                }
                 TLRPC.TL_messages_updateDialogFilter req = new TLRPC.TL_messages_updateDialogFilter();
                 req.id = filter.id;
                 getConnectionsManager().sendRequest(req, (response, error) -> AndroidUtilities.runOnUIThread(() -> {
@@ -1080,10 +1114,8 @@ public class FilterCreateActivity extends BaseFragment {
         fragment.getMessagesStorage().saveDialogFilter(filter, atBegin, true);
         if (atBegin) {
             TLRPC.TL_messages_updateDialogFiltersOrder req = new TLRPC.TL_messages_updateDialogFiltersOrder();
-            ArrayList<MessagesController.DialogFilter> filters = fragment.getMessagesController().getDialogFilters();
-            for (int a = 0, N = filters.size(); a < N; a++) {
-                req.order.add(filters.get(a).id);
-            }
+            // AxGram: локальные папки на сервере не существуют — в порядок не попадают.
+            req.order.addAll(fragment.getMessagesController().getRemoteFiltersOrder());
             fragment.getConnectionsManager().sendRequest(req, null);
         }
         if (onFinish != null) {
@@ -1103,6 +1135,23 @@ public class FilterCreateActivity extends BaseFragment {
         } else {
             progressDialog = null;
         }
+        // AxGram: локальная папка на сервер не отправляется — сервер о ней не знает
+        // и отверг бы запрос лимитом. Сразу применяем изменения и пишем в базу.
+        if (MessagesController.isLocalFilter(filter)) {
+            if (progressDialog != null) {
+                try {
+                    progressDialog.dismiss();
+                } catch (Exception e) {
+                    FileLog.e(e);
+                }
+            }
+            processAddFilter(filter, newFilterFlags, newFilterEmoticon, newFilterName,
+                    newFilterNameEntities, newFilterNoanimate, newFilterColor, newAlwaysShow,
+                    newNeverShow, creatingNew, atBegin, hasUserChanged, resetUnreadCounter,
+                    fragment, onFinish);
+            return;
+        }
+
         TLRPC.TL_messages_updateDialogFilter req = new TLRPC.TL_messages_updateDialogFilter();
         req.id = filter.id;
         req.flags |= 1;
@@ -1198,6 +1247,39 @@ public class FilterCreateActivity extends BaseFragment {
             }
         }
         fragment.getConnectionsManager().sendRequest(req, (response, error) -> AndroidUtilities.runOnUIThread(() -> {
+            // AxGram: сервер отказал по лимиту папок. Раньше папка всё равно
+            // создавалась, но с серверным идентификатором — и при следующей
+            // синхронизации молча исчезала. Теперь она становится локальной.
+            if (error != null && error.text != null && error.text.contains("DIALOG_FILTERS_TOO_MUCH")
+                    && creatingNew && !MessagesController.isLocalFilter(filter)) {
+                try {
+                    if (progressDialog != null) {
+                        progressDialog.dismiss();
+                    }
+                } catch (Exception e) {
+                    FileLog.e(e);
+                }
+                MessagesController controller = fragment.getMessagesController();
+                controller.rememberFiltersLimitReached();
+                if (controller.dialogFiltersById.get(filter.id) == filter) {
+                    controller.removeFilter(filter);
+                    fragment.getMessagesStorage().deleteDialogFilter(filter);
+                }
+                int localId = MessagesController.LOCAL_FILTER_MIN_ID;
+                while (controller.dialogFiltersById.get(localId) != null) {
+                    localId++;
+                }
+                filter.id = localId;
+                FileLog.d("AxGram папки: сервер отказал, пересоздаю папку локальной с id=" + localId);
+                processAddFilter(filter, newFilterFlags, newFilterEmoticon, newFilterName, newFilterNameEntities, newFilterNoanimate, newFilterColor, newAlwaysShow, newNeverShow, true, atBegin, hasUserChanged, resetUnreadCounter, fragment, onFinish);
+                if (fragment.getParentActivity() != null) {
+                    BulletinFactory.of(fragment).createSimpleBulletin(
+                            R.raw.folder_in,
+                            "Папка создана только на этом устройстве",
+                            "На сервере Telegram больше папок не помещается").show();
+                }
+                return;
+            }
             if (progress) {
                 try {
                     if (progressDialog != null) {

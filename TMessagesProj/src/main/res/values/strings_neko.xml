@@ -164,6 +164,7 @@
     <string name="enhancedFileLoader">Enhance Upload and Download speed</string>
     <string name="mapDriftingFixForGoogleMaps">Fix Google Maps drifting in China</string>
     <string name="localPremiumInfo">Removes restrictions the app imposes itself, for example locked folders beyond the limit. Limits enforced by Telegram servers cannot be lifted this way.</string>
+    <string name="enableLogs">Enable logs</string>
     <string name="showAxPromo">Remind about the channel and support</string>
     <string name="useOSMDroidMap">Use OSMDroid Map</string>
     <string name="UnknownAxSettingsOption">There is no such AxGram Settings option.</string>

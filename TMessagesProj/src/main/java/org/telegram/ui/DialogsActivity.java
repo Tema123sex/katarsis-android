@@ -3633,9 +3633,12 @@ public class DialogsActivity extends BaseFragment implements NotificationCenter.
                         builder.setMessage(LocaleController.getString(R.string.FilterDeleteAlert));
                         builder.setNegativeButton(LocaleController.getString(R.string.Cancel), null);
                         builder.setPositiveButton(LocaleController.getString(R.string.Delete), (dialog2, which2) -> {
-                            TLRPC.TL_messages_updateDialogFilter req = new TLRPC.TL_messages_updateDialogFilter();
-                            req.id = dialogFilter.id;
-                            getConnectionsManager().sendRequest(req, null);
+                            // AxGram: локальную папку сервер не знает — не спрашиваем его.
+                            if (!MessagesController.isLocalFilter(dialogFilter)) {
+                                TLRPC.TL_messages_updateDialogFilter req = new TLRPC.TL_messages_updateDialogFilter();
+                                req.id = dialogFilter.id;
+                                getConnectionsManager().sendRequest(req, null);
+                            }
                             getMessagesController().removeFilter(dialogFilter);
                             getMessagesStorage().deleteDialogFilter(dialogFilter);
                         });
