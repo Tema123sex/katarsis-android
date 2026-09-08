@@ -59,6 +59,8 @@
     <string name="QuickToggleAnonymous">Alternador rápido anônimo</string>
     <string name="QuickToggleAnonymousNotice">Se você é o proprietário do grupo</string>
     <string name="RealHideTimeForSticker">Ocultar tempo real para adesivos</string>
+    <string name="ResetSettings">Redefinir configurações</string>
+    <string name="ResetSettingsAlert">Tem certeza de que deseja redefinir todas as N-Configurações?</string>
     <string name="HideTitle">Ocultar o título</string>
     <string name="IgnoreFolderCount">Ignorar contador de pastas</string>
     <string name="SendWithoutMarkdown">Enviar sem markdown</string>
@@ -100,6 +102,7 @@
     <string name="HideFilterMuteAll">Ocultar silenciamento do filtro</string>
     <string name="UseLocalQuoteColor">Usar cor de cotação local</string>
     <string name="ShowSquareAvatar">Mostrar avatar quadrado</string>
+    <string name="DisableProfileAvatarBlur">Desabilitar perfil de desfoque</string>
     <string name="DisableCustomWallpaperUser">Desativar plano de fundo personalizado do usuário</string>
     <string name="DisableCustomWallpaperChannel">Desabilitar plano de fundo personalizado do canal</string>
     <string name="CopyPhotoAsSticker">Copiar Foto como Adesivo</string>
@@ -219,6 +222,8 @@
     <string name="NavigationAnimationSpring">Animação de mola de navegação</string>
     <string name="ForceEdgeToEdge">Força a aresta a aresta</string>
     <string name="ForceEdgeToEdgeDesc">Pode resultar no layout da página, sobreposição de conteúdo e falha na ação de ações de clique.</string>
+    <string name="UseSystemPhotoPicker">Compatibilidade com fotos do sistema</string>
+    <string name="UseSystemPhotoPickerDesc">No Android 13 e posterior, use o seletor de fotos do sistema para anexos da galeria sem solicitar acesso completo a fotos e vídeos.</string>
     <string name="TabStyle">Tab Style</string>
     <string name="TabStylePure">Puro</string>
     <string name="TabStylePills">Pílulas</string>
@@ -264,11 +269,15 @@
     <string name="LLMApiKeys">Chaves LM API</string>
     <string name="LLMModelName">Nome do Modelo</string>
     <string name="LLMSystemPrompt">Solicitação de Sistema</string>
+    <string name="LLMTranslationPrompt">Solicitação de tradução</string>
+    <string name="LLMUseContext">Usar Mensagens Recentes como Contexto</string>
+    <string name="LLMUseContextNotice">Use até cinco mensagens anteriores para resolver a ambiguidade.</string>
     <string name="LLMTemperature">Temperatura</string>
     <string name="LLMApiKeyNotice">Digite sua chave de API. Você pode separar várias chaves com vírgulas para rotacionamento.</string>
     <string name="LLMApiUrlNotice">Digite a URL base da API (por exemplo, https://api.openai.com/v1)</string>
     <string name="LLMModelNameNotice">Digite o nome do modelo (por exemplo, gpt-4o-mini)</string>
     <string name="LLMSystemPromptNotice">Custom system prompt para tradução. Deixe em branco para usar o padrão.</string>
+    <string name="LLMTranslationPromptNotice">Use @toLang e @text placeholders; deixe em branco para usar o padrão.</string>
     <string name="LLMApiFormat">API Format</string>
     <string name="LLMApiFormatOpenAIChat">OpenAI (Chat)</string>
     <string name="LLMApiFormatOpenAIResponse">OpenAI (resposta)</string>
@@ -289,6 +298,7 @@
     <string name="LLMTesting">Testando…</string>
     <string name="MainTabsStyle">Estilo das abas principais</string>
     <string name="MainTabsStyleTextFree">Nenhum texto</string>
+    <string name="HideTabBarPermissionWarnings">Ocultar avisos de permissão da barra de abas</string>
     <string name="ShowRecentChatsOnTabLongPress">Mostrar bate-papos recentes na aba do chat</string>
     <string name="CustomIpStrategy">Estratégia de Ip Personalizada</string>
     <string name="CustomIpStrategyIPV4">Apenas IPV4</string>
@@ -335,4 +345,16 @@
     <string name="FixUrlAutoInlineBotSkipMediaPreviewDesc">Só se aplica aos resultados do bot inline de URL automático. Um bot embutido regular ainda abre a pré-visualização.</string>
     <string name="TabletModeSmall">Tablet Pequeno</string>
     <string name="TabletModeBig">Tablet Grande</string>
+    <string name="ShowRecentForwardTab">Mostrar aba de bate-papos recentes ao encaminhar</string>
+    <string name="ProviderVolcengineTranslate">Traduzir Volcengine</string>
+    <string name="DisableAiEditor">Desabilitar Editor Ai</string>
+    <string name="DisableGlareEffects">Desativar efeitos de brilho</string>
+    <string name="ShowEditedIcon">Mostrar ícone em vez de \"editado\"</string>
+    <string name="DeleteCloudBackup">Limpar dados na nuvem</string>
+    <string name="DeleteCloudBackupFailed">Falha ao limpar dados na nuvem</string>
+    <string name="DeleteCloudBackupSuccess">Dados da nuvem apagados</string>
+    <string name="CloudConfigNoBackupToDelete">Não há dados para limpar</string>
+    <string name="LiquidGlassAngle">Ângulo de Vidro Líquido</string>
+    <string name="LiquidGlassIntensity">Intensidade de Vidro Líquido</string>
+    <string name="DisableGooeyAvatarAnimation">Desativar animação do avatar \"Gooey\"</string>
 </resources>

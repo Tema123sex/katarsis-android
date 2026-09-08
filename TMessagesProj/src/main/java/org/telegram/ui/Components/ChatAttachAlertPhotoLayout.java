@@ -142,7 +142,7 @@ import one.axgram.extra.AxConfig;
 @SuppressLint("ViewConstructor")
 public class ChatAttachAlertPhotoLayout extends ChatAttachAlert.AttachAlertLayout implements NotificationCenter.NotificationCenterDelegate {
 
-    private static final float RADIUS = 11f;
+    private static final float RADIUS = 16f;
     private static final int VIEW_TYPE_AVATAR_CONSTRUCTOR = 4;
     private static final int SHOW_FAST_SCROLL_MIN_COUNT = 30;
     private final boolean needCamera;
@@ -209,6 +209,7 @@ public class ChatAttachAlertPhotoLayout extends ChatAttachAlert.AttachAlertLayou
     private boolean mediaEnabled;
     private boolean videoEnabled;
     private boolean photoEnabled;
+    private boolean includeVideosInGallery;
     private boolean documentsEnabled;
 
     private float pinchStartDistance;
@@ -767,7 +768,7 @@ public class ChatAttachAlertPhotoLayout extends ChatAttachAlert.AttachAlertLayou
             }
         };
         dropDownContainer.setSubMenuOpenSide(1);
-        FrameLayout.LayoutParams flp = LayoutHelper.createFrame(LayoutHelper.WRAP_CONTENT, LayoutHelper.MATCH_PARENT, Gravity.TOP | Gravity.LEFT, AndroidUtilities.isTablet() ? 64 : 56, 0, 40, 0);
+        FrameLayout.LayoutParams flp = LayoutHelper.createFrame(LayoutHelper.WRAP_CONTENT, LayoutHelper.MATCH_PARENT, Gravity.TOP | Gravity.LEFT, 60, 0, 40, 0);
         flp.topMargin = AndroidUtilities.statusBarHeight;
         parentAlert.actionBar.addView(dropDownContainer, 0, flp);
         dropDownContainer.setOnClickListener(view -> dropDownContainer.toggleSubMenu());
@@ -784,7 +785,7 @@ public class ChatAttachAlertPhotoLayout extends ChatAttachAlert.AttachAlertLayou
         dropDown.setTypeface(AndroidUtilities.bold());
         dropDownDrawable = context.getResources().getDrawable(R.drawable.ic_arrow_drop_down).mutate();
         dropDownDrawable.setColorFilter(new PorterDuffColorFilter(getThemedColor(Theme.key_dialogTextBlack), PorterDuff.Mode.MULTIPLY));
-        dropDown.setCompoundDrawablePadding(dp(4));
+        // dropDown.setCompoundDrawablePadding(dp(2));
         dropDown.setPadding(0, 0, dp(10), 0);
         dropDownContainer.addView(dropDown, LayoutHelper.createFrame(LayoutHelper.WRAP_CONTENT, LayoutHelper.WRAP_CONTENT, Gravity.CENTER_VERTICAL, 16, 0, 0, 0));
 
@@ -1533,6 +1534,9 @@ public class ChatAttachAlertPhotoLayout extends ChatAttachAlert.AttachAlertLayou
 
 
     private void requestGalleryPermission() {
+        if (AxConfig.INSTANCE.getUseSystemPhotoPicker().Bool() && openSystemPhotoPicker()) {
+            return;
+        }
         try {
             if (Build.VERSION.SDK_INT >= 33) {
                 parentAlert.baseFragment.getParentActivity().requestPermissions(new String[]{Manifest.permission.READ_MEDIA_VIDEO, Manifest.permission.READ_MEDIA_IMAGES}, BasePermissionsActivity.REQUEST_CODE_EXTERNAL_STORAGE);
@@ -1540,6 +1544,45 @@ public class ChatAttachAlertPhotoLayout extends ChatAttachAlert.AttachAlertLayou
                 parentAlert.baseFragment.getParentActivity().requestPermissions(new String[]{Manifest.permission.READ_EXTERNAL_STORAGE}, BasePermissionsActivity.REQUEST_CODE_EXTERNAL_STORAGE);
             }
         } catch (Exception ignore) {}
+    }
+
+    boolean openSystemPhotoPicker() {
+        if (Build.VERSION.SDK_INT < 33 || !photoEnabled && !videoEnabled) {
+            return false;
+        }
+        BaseFragment fragment = parentAlert.baseFragment;
+        if (!isSystemPhotoPickerContext(fragment)) {
+            return false;
+        }
+        Activity activity = fragment != null ? fragment.getParentActivity() : null;
+        if (!canUseSystemPhotoPicker(activity)) {
+            return false;
+        }
+        try {
+            Intent intent = new Intent(MediaStore.ACTION_PICK_IMAGES);
+            if (photoEnabled != videoEnabled) {
+                intent.setType(photoEnabled ? "image/*" : "video/*");
+            }
+            if (parentAlert.maxSelectedPhotos != 1) {
+                int systemLimit = MediaStore.getPickImagesMaxLimit();
+                int max = parentAlert.maxSelectedPhotos > 1 ? Math.min(parentAlert.maxSelectedPhotos, systemLimit) : systemLimit;
+                intent.putExtra(MediaStore.EXTRA_PICK_IMAGES_MAX, max);
+            }
+            fragment.startActivityForResult(intent, ChatActivity.REQUEST_CODE_SYSTEM_PHOTO_PICKER);
+            parentAlert.dismiss(true);
+            return true;
+        } catch (Exception e) {
+            FileLog.e(e);
+            return false;
+        }
+    }
+
+    private boolean canUseSystemPhotoPicker(Activity activity) {
+        return Build.VERSION.SDK_INT >= 33 && activity != null && new Intent(MediaStore.ACTION_PICK_IMAGES).resolveActivity(activity.getPackageManager()) != null;
+    }
+
+    private boolean isSystemPhotoPickerContext(BaseFragment fragment) {
+        return fragment instanceof ChatActivity && parentAlert.avatarPicker == 0 && !parentAlert.isPhotoPicker && !parentAlert.isStickerMode && !parentAlert.isPollAttach && !parentAlert.storyMediaPicker;
     }
 
     private void openCameraWithPermissionCheck() {
@@ -1776,7 +1819,7 @@ public class ChatAttachAlertPhotoLayout extends ChatAttachAlert.AttachAlertLayou
 
     private int maxCount() {
         if (parentAlert.baseFragment instanceof ChatActivity && ((ChatActivity) parentAlert.baseFragment).getChatMode() == ChatActivity.MODE_QUICK_REPLIES) {
-            return parentAlert.baseFragment.getMessagesController().quickReplyMessagesLimit - ((ChatActivity) parentAlert.baseFragment).messages.size();
+            return parentAlert.baseFragment.getMessagesController().config.quickReplyMessagesLimit.get() - ((ChatActivity) parentAlert.baseFragment).messages.size();
         }
         return Integer.MAX_VALUE;
     }
@@ -2607,8 +2650,12 @@ public class ChatAttachAlertPhotoLayout extends ChatAttachAlert.AttachAlertLayou
         }
     }
 
+    public void setIncludeVideosInGallery(boolean includeVideosInGallery) {
+        this.includeVideosInGallery = includeVideosInGallery;
+    }
+
     private boolean shouldLoadAllMedia() {
-        return !parentAlert.isPhotoPicker && (parentAlert.baseFragment instanceof ChatActivity || parentAlert.storyMediaPicker || parentAlert.avatarPicker == 2);
+        return includeVideosInGallery || !parentAlert.isPhotoPicker && (parentAlert.baseFragment instanceof ChatActivity || parentAlert.storyMediaPicker || parentAlert.avatarPicker == 2);
     }
 
     public void showCamera() {
@@ -2637,7 +2684,7 @@ public class ChatAttachAlertPhotoLayout extends ChatAttachAlert.AttachAlertLayou
                         AndroidUtilities.rectTmp.set(animationClipLeft + cameraViewOffsetX * (1f - cameraOpenProgress), animationClipTop + cameraViewOffsetY * (1f - cameraOpenProgress), animationClipRight, animationClipBottom);
                         outline.setRect((int) AndroidUtilities.rectTmp.left, (int) AndroidUtilities.rectTmp.top, (int) AndroidUtilities.rectTmp.right, Math.min(maxY, (int) AndroidUtilities.rectTmp.bottom));
                     } else if (!cameraAnimationInProgress && !cameraOpened) {
-                        int rad = dp(RADIUS * parentAlert.cornerRadius);
+                        int rad = dp(RADIUS);
                         outline.setRoundRect((int) cameraViewOffsetX, (int) cameraViewOffsetY, view.getMeasuredWidth() + rad, Math.min(maxY, view.getMeasuredHeight()) + rad, rad);
                     } else {
                         outline.setRect(0, 0, view.getMeasuredWidth(), Math.min(maxY, view.getMeasuredHeight()));
@@ -2757,7 +2804,7 @@ public class ChatAttachAlertPhotoLayout extends ChatAttachAlert.AttachAlertLayou
                     if (lastBitmap != bitmap) {
                         bitmap.recycle();
                     }
-                    Utilities.blurBitmap(lastBitmap, 7, 1, lastBitmap.getWidth(), lastBitmap.getHeight(), lastBitmap.getRowBytes());
+                    Utilities.blurBitmap(lastBitmap, 7);
                     File file = new File(ApplicationLoader.getFilesDirFixed(), "cthumb.jpg");
                     FileOutputStream stream = new FileOutputStream(file);
                     lastBitmap.compress(Bitmap.CompressFormat.JPEG, 87, stream);
@@ -3233,8 +3280,11 @@ public class ChatAttachAlertPhotoLayout extends ChatAttachAlert.AttachAlertLayou
 
     private boolean isNoGalleryPermissions() {
         Activity activity = AndroidUtilities.findActivity(getContext());
-        if (activity == null) {
+        if (activity == null && parentAlert.baseFragment != null) {
             activity = parentAlert.baseFragment.getParentActivity();
+        }
+        if (AxConfig.INSTANCE.getUseSystemPhotoPicker().Bool() && isSystemPhotoPickerContext(parentAlert.baseFragment) && canUseSystemPhotoPicker(activity)) {
+            return true;
         }
         return Build.VERSION.SDK_INT >= 23 && (
             activity == null ||
@@ -3415,8 +3465,11 @@ public class ChatAttachAlertPhotoLayout extends ChatAttachAlert.AttachAlertLayou
                 parentAlert.getPhotoPreviewLayout().invalidateGroupsView();
             }
         } else if (id == open_in) {
+            if (AxConfig.INSTANCE.getUseSystemPhotoPicker().Bool() && openSystemPhotoPicker()) {
+                return;
+            }
             try {
-                if (parentAlert.baseFragment instanceof ChatActivity || parentAlert.avatarPicker == 2) {
+                if (shouldLoadAllMedia()) {
                     Intent videoPickerIntent = new Intent();
                     videoPickerIntent.setType("video/*");
                     videoPickerIntent.setAction(Intent.ACTION_GET_CONTENT);
@@ -3895,7 +3948,7 @@ public class ChatAttachAlertPhotoLayout extends ChatAttachAlert.AttachAlertLayou
     }
 
     public void setCheckCameraWhenShown(boolean checkCameraWhenShown) {
-        this.checkCameraWhenShown = checkCameraWhenShown;
+        this.checkCameraWhenShown = checkCameraWhenShown && !AxCoreConfig.disableInstantCamera.Bool();
     }
 
     @Override
@@ -4079,7 +4132,7 @@ public class ChatAttachAlertPhotoLayout extends ChatAttachAlert.AttachAlertLayou
         if (gridView.getPaddingTop() != paddingTop || gridView.getPaddingBottom() != listPaddingBottom) {
             gridView.setPadding(dp(PADDING), paddingTop, dp(PADDING), listPaddingBottom + dp(48));
         }
-        dropDown.setTextSize(!AndroidUtilities.isTablet() && AndroidUtilities.displaySize.x > AndroidUtilities.displaySize.y ? 18 : 20);
+        dropDown.setTextSize(17);
         ignoreLayout = false;
     }
 
@@ -4111,7 +4164,7 @@ public class ChatAttachAlertPhotoLayout extends ChatAttachAlert.AttachAlertLayou
 
     @Override
     public void onOpenAnimationEnd() {
-        checkCamera(parentAlert != null && parentAlert.baseFragment instanceof ChatActivity);
+        checkCamera(parentAlert != null && parentAlert.baseFragment instanceof ChatActivity && !AxCoreConfig.disableInstantCamera.Bool());
     }
 
     @Override
@@ -4336,6 +4389,29 @@ public class ChatAttachAlertPhotoLayout extends ChatAttachAlert.AttachAlertLayou
             }
         }
 
+        private boolean isInFastScroll;
+
+        @Override
+        public void onStartFastScroll() {
+            super.onStartFastScroll();
+            isInFastScroll = true;
+        }
+
+        @Override
+        public void onFinishFastScroll(RecyclerListView listView) {
+            super.onFinishFastScroll(listView);
+            isInFastScroll = false;
+            if (listView != null) {
+                for (int a = 0, N = listView.getChildCount(); a < N; a++) {
+                    listView.getChildAt(a).invalidate();
+                }
+            }
+        }
+
+        public boolean isInFastScroll() {
+            return isInFastScroll;
+        }
+
         public RecyclerListView.Holder createHolder() {
             PhotoAttachPhotoCell cell = new PhotoAttachPhotoCell(mContext, resourcesProvider);
             if (this == adapter) {
@@ -4354,10 +4430,10 @@ public class ChatAttachAlertPhotoLayout extends ChatAttachAlert.AttachAlertLayou
                             position++;
                         }
                         if (position == 0) {
-                            int rad = dp(RADIUS * parentAlert.cornerRadius);
+                            int rad = dp(RADIUS);
                             outline.setRoundRect(0, 0, view.getMeasuredWidth() + rad, view.getMeasuredHeight() + rad, rad);
                         } else if (position == itemsPerRow - 1) {
-                            int rad = dp(RADIUS * parentAlert.cornerRadius);
+                            int rad = dp(RADIUS);
                             outline.setRoundRect(-rad, 0, view.getMeasuredWidth(), view.getMeasuredHeight() + rad, rad);
                         } else {
                             outline.setRect(0, 0, view.getMeasuredWidth(), view.getMeasuredHeight());
@@ -4366,6 +4442,7 @@ public class ChatAttachAlertPhotoLayout extends ChatAttachAlert.AttachAlertLayou
                 });
                 cell.setClipToOutline(true);
             }
+            cell.setFastScrollDelegate(this::isInFastScroll);
             cell.setDelegate(v -> {
                 if (!mediaEnabled || parentAlert.avatarPicker != 0 || parentAlert.isPollAttach) {
                     return;
@@ -4376,7 +4453,7 @@ public class ChatAttachAlertPhotoLayout extends ChatAttachAlert.AttachAlertLayou
                     return;
                 }
                 if (selectedPhotos.size() + 1 > maxCount()) {
-                    BulletinFactory.of(parentAlert.sizeNotifierFrameLayout, resourcesProvider).createErrorBulletin(AndroidUtilities.replaceTags(LocaleController.formatPluralString("BusinessRepliesToastLimit", parentAlert.baseFragment.getMessagesController().quickReplyMessagesLimit))).show();
+                    BulletinFactory.of(parentAlert.sizeNotifierFrameLayout, resourcesProvider).createErrorBulletin(AndroidUtilities.replaceTags(LocaleController.formatPluralString("BusinessRepliesToastLimit", parentAlert.baseFragment.getMessagesController().config.quickReplyMessagesLimit.get()))).show();
                     return;
                 }
                 boolean added = !selectedPhotos.containsKey(photoEntry.imageId);
@@ -4547,6 +4624,9 @@ public class ChatAttachAlertPhotoLayout extends ChatAttachAlert.AttachAlertLayou
                     emptyView.setLayoutParams(new RecyclerView.LayoutParams(LayoutHelper.MATCH_PARENT, dp(400)));
                     emptyView.setGravity(Gravity.CENTER);
                     emptyView.isClickable();
+                    if (AxConfig.INSTANCE.getUseSystemPhotoPicker().Bool() && isSystemPhotoPickerContext(parentAlert.baseFragment) && canUseSystemPhotoPicker(AndroidUtilities.findActivity(getContext()))) {
+                        emptyView.setGalleryAccessButtonText(getString(videoEnabled ? R.string.ChoosePhotoOrVideo : R.string.ChoosePhoto));
+                    }
                     emptyView.doOnCameraAccess(ChatAttachAlertPhotoLayout.this::openCameraWithPermissionCheck);
                     emptyView.doOnGalleryAccessClick(ChatAttachAlertPhotoLayout.this::requestGalleryPermission);
                     emptyView.doOnEmojiButton(d -> {
@@ -4811,7 +4891,7 @@ public class ChatAttachAlertPhotoLayout extends ChatAttachAlert.AttachAlertLayou
                 return;
             }
 
-            final float r = dp(RADIUS * parentAlert.cornerRadius);
+            final float r = dp(RADIUS);
             clipPath.rewind();
             clipPath.addRoundRect(left, top , right + r, bottom + r, r, r, Path.Direction.CW);
             c.save();

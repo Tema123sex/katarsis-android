@@ -59,6 +59,8 @@
     <string name="QuickToggleAnonymous">Nopea vaihtaminen anonyymi</string>
     <string name="QuickToggleAnonymousNotice">Jos olet ryhmän omistaja</string>
     <string name="RealHideTimeForSticker">Todellinen piilottaa aika tarroille</string>
+    <string name="ResetSettings">Nollaa Asetukset</string>
+    <string name="ResetSettingsAlert">Oletko varma, että haluat palauttaa kaikki N-asetukset?</string>
     <string name="HideTitle">Piilota Otsikko</string>
     <string name="IgnoreFolderCount">Ohita Kansion Määrä</string>
     <string name="SendWithoutMarkdown">Lähetä ilman merkintää</string>
@@ -100,6 +102,7 @@
     <string name="HideFilterMuteAll">Piilota suodatin mykistää kaikki</string>
     <string name="UseLocalQuoteColor">Käytä paikallista tarjouksen väriä</string>
     <string name="ShowSquareAvatar">Näytä neliön profiilikuva</string>
+    <string name="DisableProfileAvatarBlur">Poista Profiilin Avatar Blur Käytöstä</string>
     <string name="DisableCustomWallpaperUser">Poista käyttäjän oma taustakuva käytöstä</string>
     <string name="DisableCustomWallpaperChannel">Poista kanavien mukautettu taustakuva käytöstä</string>
     <string name="CopyPhotoAsSticker">Kopioi Kuva Tarraksi</string>
@@ -219,6 +222,8 @@
     <string name="NavigationAnimationSpring">Navigointijousen animaatio</string>
     <string name="ForceEdgeToEdge">Pakota reuna reunaan</string>
     <string name="ForceEdgeToEdgeDesc">Voi johtaa sivujen ulkoasun epäsäännöllisyyksiin, sisällön päällekkäisyyteen ja napsautuksen epäonnistumiseen.</string>
+    <string name="UseSystemPhotoPicker">Järjestelmän valokuvanvalitsimen yhteensopivuus</string>
+    <string name="UseSystemPhotoPickerDesc">Android-laitteessa 13 ja myöhemmin, käytä järjestelmän valokuvien kerääjää gallerian liitteisiin pyytämättä täydellistä valokuvien ja videoiden käyttöoikeutta.</string>
     <string name="TabStyle">Tab Style</string>
     <string name="TabStylePure">Puhdas</string>
     <string name="TabStylePills">Pillereitä</string>
@@ -264,11 +269,15 @@
     <string name="LLMApiKeys">LLM API -avaimet</string>
     <string name="LLMModelName">Mallin Nimi</string>
     <string name="LLMSystemPrompt">Järjestelmän Nopeus</string>
+    <string name="LLMTranslationPrompt">Nopea Käännös</string>
+    <string name="LLMUseContext">Käytä viimeisimpiä viestejä kontekstina</string>
+    <string name="LLMUseContextNotice">Käytä jopa viittä aikaisempaa viestiä epäselvyyksien ratkaisemiseksi.</string>
     <string name="LLMTemperature">Lämpötila</string>
     <string name="LLMApiKeyNotice">Syötä API-avain. Voit erottaa useita avaimia pilkuilla kiertoa varten.</string>
     <string name="LLMApiUrlNotice">Syötä API base URL (esim. https://api.openai.com/v1)</string>
     <string name="LLMModelNameNotice">Anna mallin nimi (esim. gpt-4o-mini)</string>
-    <string name="LLMSystemPromptNotice">Mukautettu järjestelmäkehotus käännökseen. Jätä tyhjäksi käyttääksesi oletusta.</string>
+    <string name="LLMSystemPromptNotice">Mukautetut järjestelmäohjeet. Jätä tyhjäksi käyttääksesi turvallista oletusasetusta.</string>
+    <string name="LLMTranslationPromptNotice">Käytä @toLang ja @text paikkamerkkejä; jätä tyhjäksi käyttääksesi oletusta.</string>
     <string name="LLMApiFormat">API Format</string>
     <string name="LLMApiFormatOpenAIChat">OpenAI (Chat)</string>
     <string name="LLMApiFormatOpenAIResponse">OpenAI (vastaus)</string>
@@ -289,6 +298,7 @@
     <string name="LLMTesting">Testataan…</string>
     <string name="MainTabsStyle">Päävälilehtien tyyli</string>
     <string name="MainTabsStyleTextFree">Ei tekstiä</string>
+    <string name="HideTabBarPermissionWarnings">Piilota välilehti oikeudet varoitukset</string>
     <string name="ShowRecentChatsOnTabLongPress">Näytä viimeaikaiset keskustelut chat-välilehdessä pitkään</string>
     <string name="CustomIpStrategy">Mukautettu IP-strategia</string>
     <string name="CustomIpStrategyIPV4">Vain IPV4</string>
@@ -335,4 +345,16 @@
     <string name="FixUrlAutoInlineBotSkipMediaPreviewDesc">Koskee vain automaattista URL inline bot tuloksia. Säännöllinen inline bot media avaa edelleen esikatselun.</string>
     <string name="TabletModeSmall">Pieni Tabletti</string>
     <string name="TabletModeBig">Iso Tabletti</string>
+    <string name="ShowRecentForwardTab">Näytä viimeaikaiset chatit välilehdessä</string>
+    <string name="ProviderVolcengineTranslate">Volcengine Käännä</string>
+    <string name="DisableAiEditor">Poista Ai Editori Käytöstä</string>
+    <string name="DisableGlareEffects">Poista häikäisytehosteet käytöstä</string>
+    <string name="ShowEditedIcon">Näytä kuvake \"muokattu\" sijasta</string>
+    <string name="DeleteCloudBackup">Tyhjennä pilven tiedot</string>
+    <string name="DeleteCloudBackupFailed">Pilvitietojen tyhjentäminen epäonnistui</string>
+    <string name="DeleteCloudBackupSuccess">Pilven tiedot tyhjennetty</string>
+    <string name="CloudConfigNoBackupToDelete">Ei tyhjentäviä tietoja</string>
+    <string name="LiquidGlassAngle">Nestemäinen lasikulma</string>
+    <string name="LiquidGlassIntensity">Nestemäisen lasin voimakkuus</string>
+    <string name="DisableGooeyAvatarAnimation">Poista \"Gooey\" profiilianimaatio käytöstä</string>
 </resources>

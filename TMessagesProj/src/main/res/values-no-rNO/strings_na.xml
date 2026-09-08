@@ -59,6 +59,8 @@
     <string name="QuickToggleAnonymous">Hurtigveksle anonym</string>
     <string name="QuickToggleAnonymousNotice">Hvis du er eier av gruppen</string>
     <string name="RealHideTimeForSticker">Sannsynlig tid for klistremerker</string>
+    <string name="ResetSettings">Tilbakestill innstillinger</string>
+    <string name="ResetSettingsAlert">Er du sikker på at du vil tilbakestille alle N-innstillinger?</string>
     <string name="HideTitle">Skjul tittel</string>
     <string name="IgnoreFolderCount">Ignorer mappetelling</string>
     <string name="SendWithoutMarkdown">Send uten markdown</string>
@@ -100,6 +102,7 @@
     <string name="HideFilterMuteAll">Skjul demping av filtre</string>
     <string name="UseLocalQuoteColor">Bruk lokal sitattfarge</string>
     <string name="ShowSquareAvatar">Vis firkantet profilbilde</string>
+    <string name="DisableProfileAvatarBlur">Deaktivere profilbilde blur</string>
     <string name="DisableCustomWallpaperUser">Deaktivere brukerdefinert bakgrunn</string>
     <string name="DisableCustomWallpaperChannel">Deaktiver kanaltilpasset bakgrunnsbilde</string>
     <string name="CopyPhotoAsSticker">Kopier Bilde som klistremerke</string>
@@ -219,6 +222,8 @@
     <string name="NavigationAnimationSpring">Navigasjon fjæranimasjon</string>
     <string name="ForceEdgeToEdge">Tving kant til kant</string>
     <string name="ForceEdgeToEdgeDesc">Kan resultere i uregelmessigheter i sideoppsett, overlapping og svikt på handlinger.</string>
+    <string name="UseSystemPhotoPicker">System foto sin kompatibilitet</string>
+    <string name="UseSystemPhotoPickerDesc">På Android 13 og senere kan du bruke systembilde-velgeren for bildegalleriet vedlegg uten å be om full foto og videotilgang.</string>
     <string name="TabStyle">Tab Style</string>
     <string name="TabStylePure">Botemiddel</string>
     <string name="TabStylePills">Pølser</string>
@@ -264,11 +269,15 @@
     <string name="LLMApiKeys">LLM API-nøkler</string>
     <string name="LLMModelName">Modell navn</string>
     <string name="LLMSystemPrompt">System prompt</string>
+    <string name="LLMTranslationPrompt">Ledetekst for oversettelse</string>
+    <string name="LLMUseContext">Bruk siste meldinger som kontekst</string>
+    <string name="LLMUseContextNotice">Bruk opptil fem tidligere meldinger for å løse uklarhet.</string>
     <string name="LLMTemperature">Temperatur</string>
     <string name="LLMApiKeyNotice">Skriv inn API-nøkkel. Du kan skille flere nøkler med komma for rotasjon.</string>
     <string name="LLMApiUrlNotice">Angi API base URL (f.eks.https://api.openai.com/v1)</string>
     <string name="LLMModelNameNotice">Angi modellnavnet (f.eks., gpt-4o-mini)</string>
-    <string name="LLMSystemPromptNotice">Egendefinert system ledetekst for oversettelse. La stå tom for å bruke standard.</string>
+    <string name="LLMSystemPromptNotice">Egendefinert system instruksjoner. La stå tom for å bruke sikker standard.</string>
+    <string name="LLMTranslationPromptNotice">Bruk @toLang og @text placeholders; la stå tom for å bruke standard.</string>
     <string name="LLMApiFormat">API Format</string>
     <string name="LLMApiFormatOpenAIChat">OpenAI (chat)</string>
     <string name="LLMApiFormatOpenAIResponse">OpenAI (svar)</string>
@@ -289,6 +298,7 @@
     <string name="LLMTesting">Tester…</string>
     <string name="MainTabsStyle">Hovedsidemerker stil</string>
     <string name="MainTabsStyleTextFree">Ingen tekst</string>
+    <string name="HideTabBarPermissionWarnings">Skjul tillatelsesadvarsler for fanelinjen</string>
     <string name="ShowRecentChatsOnTabLongPress">Vis nylige sludringer på chat fanens lang-trykk</string>
     <string name="CustomIpStrategy">Egendefinert Ip strategi</string>
     <string name="CustomIpStrategyIPV4">Kun IPV4</string>
@@ -335,4 +345,16 @@
     <string name="FixUrlAutoInlineBotSkipMediaPreviewDesc">Bare gjelder automatisk URL inline bot resultat. Normal inline bot media åpner fortsatt forhåndsvisning.</string>
     <string name="TabletModeSmall">Lite nettbrett</string>
     <string name="TabletModeBig">Stor nettbrett</string>
+    <string name="ShowRecentForwardTab">Vis nylige sludringer fane ved videresending</string>
+    <string name="ProviderVolcengineTranslate">Volcengine Oversett</string>
+    <string name="DisableAiEditor">Deaktiver Ai Editor</string>
+    <string name="DisableGlareEffects">Deaktiver Gjenstandseffekter</string>
+    <string name="ShowEditedIcon">Vis ikon i stedet for \"redigert\"</string>
+    <string name="DeleteCloudBackup">Slett Cloud-data</string>
+    <string name="DeleteCloudBackupFailed">Kunne ikke slette sky-data</string>
+    <string name="DeleteCloudBackupSuccess">Data fra skyen er fjernet</string>
+    <string name="CloudConfigNoBackupToDelete">Ingen data å rydde</string>
+    <string name="LiquidGlassAngle">Vinkel i flytende glass</string>
+    <string name="LiquidGlassIntensity">Flytende Glassintensitet</string>
+    <string name="DisableGooeyAvatarAnimation">Deaktiver \"Gooey\" avatar animasjon</string>
 </resources>

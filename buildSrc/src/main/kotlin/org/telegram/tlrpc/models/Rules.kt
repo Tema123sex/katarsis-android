@@ -8,7 +8,7 @@ object RULES {
             "UserFull", "ChatFull",
             "StarsTransaction", "StarGift",
             "SavedStarGift", "InputStorePaymentPurpose", //, "ChatTheme"
-            "ForumTopic"
+            "ForumTopic", "EphemeralMessage"
         ),
         ignoredTypes = setOf(
             "True",
@@ -37,6 +37,7 @@ object RULES {
             "InputClientProxy",
             "InputStarsTransaction",
             "InputStickerSetItem",
+            "bots.AccessSettings"
         ),
         ignoredConstructors = mapOf(
             "Update" to setOf(
@@ -62,7 +63,8 @@ object RULES {
                 "updateInlineBotCallbackQuery",
                 "updatePtsChanged",
                 "updateSmsJob",
-                "updateBotGuestChatQuery"
+                "updateBotGuestChatQuery",
+                "updateBotStarsSubscription"
             ),
             "MessageAction" to setOf(
                 "messageActionRequestedPeerSentMe",
@@ -72,13 +74,14 @@ object RULES {
                 "inputTakeoutFileLocation",
                 "inputPhotoLegacyFileLocation"
             ),
-            "KeyboardButton" to setOf("inputKeyboardButtonRequestPeer"),
             "InputPaymentCredentials" to setOf("inputPaymentCredentialsApplePay"),
             "InputStickerSet" to setOf("inputStickerSetAnimatedEmojiAnimations"),
             "InputWebFileLocation" to setOf("inputWebFileAudioAlbumThumbLocation"),
             "InputInvoice" to setOf("inputInvoiceBusinessBotTransferStars"),
             "InputBotInlineMessageID" to setOf("inputBotInlineMessageID64"),
             "InputPasskeyCredential" to setOf("inputPasskeyCredentialFirebasePNV"),
+            "InputRichMessage" to setOf("inputRichMessageHTML", "inputRichMessageMarkdown"),
+            "SendMessageAction" to setOf("inputSendMessageRichMessageDraftAction")
         )
     )
 }

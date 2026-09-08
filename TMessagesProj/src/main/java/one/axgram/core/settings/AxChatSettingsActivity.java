@@ -79,6 +79,7 @@ public class AxChatSettingsActivity extends BaseAxLegacySettingsActivity impleme
     private final AbstractConfigCell emojiSetsRow = cellGroup.appendCell(new ConfigCellCustom("EmojiSet", ConfigCellCustom.CUSTOM_ITEM_EmojiSet, true));
     private final AbstractConfigCell unreadBadgeOnBackButton = cellGroup.appendCell(new ConfigCellTextCheck(AxCoreConfig.unreadBadgeOnBackButton));
     private final AbstractConfigCell sendCommentAfterForwardRow = cellGroup.appendCell(new ConfigCellTextCheck(AxCoreConfig.sendCommentAfterForward));
+    private final AbstractConfigCell showRecentForwardTabRow = cellGroup.appendCell(new ConfigCellTextCheck(AxConfig.INSTANCE.getShowRecentForwardTab()));
     private final AbstractConfigCell useChatAttachMediaMenuRow = cellGroup.appendCell(new ConfigCellTextCheck(AxCoreConfig.useChatAttachMediaMenu, LocaleController.getString("UseChatAttachEnterMenuNotice")));
     private final AbstractConfigCell disableLinkPreviewByDefaultRow = cellGroup.appendCell(new ConfigCellTextCheck(AxCoreConfig.disableLinkPreviewByDefault, LocaleController.getString("DisableLinkPreviewByDefaultNotice")));
     private final AbstractConfigCell takeGIFasVideoRow = cellGroup.appendCell(new ConfigCellTextCheck(AxCoreConfig.takeGIFasVideo));
@@ -98,6 +99,7 @@ public class AxChatSettingsActivity extends BaseAxLegacySettingsActivity impleme
             add(new ConfigCellTextCheck(AxConfig.INSTANCE.getDefaultDeleteMenuBanUsers()));
             add(new ConfigCellTextCheck(AxConfig.INSTANCE.getDefaultDeleteMenReportSpam()));
             add(new ConfigCellTextCheck(AxConfig.INSTANCE.getDefaultDeleteMenuDeleteAll()));
+            add(new ConfigCellTextCheck(AxConfig.INSTANCE.getDefaultDeleteMenuDeleteAllReactions()));
             add(new ConfigCellTextCheck(AxConfig.INSTANCE.getDefaultDeleteMenuDoActionsInCommonGroups()));
         }}));
     }));
@@ -113,6 +115,7 @@ public class AxChatSettingsActivity extends BaseAxLegacySettingsActivity impleme
     }));
     private final AbstractConfigCell customGreatRow = cellGroup.appendCell(new ConfigCellTextInput(null, AxConfig.INSTANCE.getCustomGreat(), LocaleController.getString(R.string.CustomGreatHint), null,(input) -> input.isEmpty() ? (String) AxConfig.INSTANCE.getCustomGreat().defaultValue : input));
     private final AbstractConfigCell customPoorRow = cellGroup.appendCell(new ConfigCellTextInput(null, AxConfig.INSTANCE.getCustomPoor(), LocaleController.getString(R.string.CustomPoorHint), null,(input) -> input.isEmpty() ? (String) AxConfig.INSTANCE.getCustomPoor().defaultValue : input));
+    private final AbstractConfigCell showEditedIconRow = cellGroup.appendCell(new ConfigCellTextCheck(AxConfig.INSTANCE.getShowEditedIcon()));
     private final AbstractConfigCell customEditedMessageRow = cellGroup.appendCell(new ConfigCellTextInput(null, AxConfig.INSTANCE.getCustomEditedMessage(), "", null));
     private final AbstractConfigCell showServicesTime = cellGroup.appendCell(new ConfigCellTextCheck(AxConfig.INSTANCE.getShowServicesTime()));
 //    private final AbstractConfigCell combineMessageRow = cellGroup.appendCell(new ConfigCellSelectBox(null, AxConfig.INSTANCE.getCombineMessage(), new String[]{
@@ -512,6 +515,7 @@ public class AxChatSettingsActivity extends BaseAxLegacySettingsActivity impleme
                 AxConfig.INSTANCE.getDefaultDeleteMenReportSpam().Bool(),
                 AxConfig.INSTANCE.getDefaultDeleteMenuDeleteAll().Bool(),
                 AxConfig.INSTANCE.getDefaultDeleteMenuDoActionsInCommonGroups().Bool(),
+                AxConfig.INSTANCE.getDefaultDeleteMenuDeleteAllReactions().Bool(),
         };
     }
 

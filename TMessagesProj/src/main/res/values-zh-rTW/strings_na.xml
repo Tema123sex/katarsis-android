@@ -59,6 +59,8 @@
     <string name="QuickToggleAnonymous">快速切換匿名發言</string>
     <string name="QuickToggleAnonymousNotice">如果你是頻道的持有者則可以使用頻道匿名發言</string>
     <string name="RealHideTimeForSticker">真正的隱藏貼圖傳送時間</string>
+    <string name="ResetSettings">重置設定</string>
+    <string name="ResetSettingsAlert">您確定要重置所有 N-設定 嗎？</string>
     <string name="HideTitle">隱藏標題和頭像</string>
     <string name="IgnoreFolderCount">忽略資料夾標籤上的未讀計數</string>
     <string name="SendWithoutMarkdown">禁用 Markdown</string>
@@ -100,6 +102,7 @@
     <string name="HideFilterMuteAll">隱藏文件夾中的\"全部取消靜音\</string>
     <string name="UseLocalQuoteColor">本地名稱顏色</string>
     <string name="ShowSquareAvatar">顯示方形頭像</string>
+    <string name="DisableProfileAvatarBlur">Disable Profile Avatar Blur</string>
     <string name="DisableCustomWallpaperUser">禁用私聊的自定義背景</string>
     <string name="DisableCustomWallpaperChannel">禁用頻道的自定義背景</string>
     <string name="CopyPhotoAsSticker">復製圖片但是貼紙</string>
@@ -219,6 +222,8 @@
     <string name="NavigationAnimationSpring">Navigation spring animation</string>
     <string name="ForceEdgeToEdge">Force edge to edge</string>
     <string name="ForceEdgeToEdgeDesc">May result in page layout irregularities, content overlapping, and failure of click actions.</string>
+    <string name="UseSystemPhotoPicker">系統照片選擇器相容模式</string>
+    <string name="UseSystemPhotoPickerDesc">在 Android 13 及以上版本中，傳送相簿附件時使用系統照片選擇器，無需授予完整的照片和影片存取權限。</string>
     <string name="TabStyle">Tab Style</string>
     <string name="TabStylePure">Pure</string>
     <string name="TabStylePills">Pills</string>
@@ -264,11 +269,15 @@
     <string name="LLMApiKeys">LLM API 金鑰</string>
     <string name="LLMModelName">模型名稱</string>
     <string name="LLMSystemPrompt">系統提示詞</string>
+    <string name="LLMTranslationPrompt">翻譯提示詞</string>
+    <string name="LLMUseContext">使用近期訊息作為上下文</string>
+    <string name="LLMUseContextNotice">使用此前最多五條訊息消除歧義。</string>
     <string name="LLMTemperature">溫度參數</string>
     <string name="LLMApiKeyNotice">輸入您的 API 金鑰。可以用逗號分隔多個金鑰以實現輪換。</string>
     <string name="LLMApiUrlNotice">輸入 API 基礎網址（例如：https://api.openai.com/v1）</string>
     <string name="LLMModelNameNotice">輸入模型名稱（例如：gpt-4o-mini）</string>
-    <string name="LLMSystemPromptNotice">自訂翻譯系統提示詞。留空則使用預設提示詞。</string>
+    <string name="LLMSystemPromptNotice">自訂系統指令。留空則使用安全預設值。</string>
+    <string name="LLMTranslationPromptNotice">支援 @toLang 和 @text 佔位符；留空則使用預設提示詞。</string>
     <string name="LLMApiFormat">API 格式</string>
     <string name="LLMApiFormatOpenAIChat">OpenAI (Chat)</string>
     <string name="LLMApiFormatOpenAIResponse">OpenAI (Response)</string>
@@ -289,6 +298,7 @@
     <string name="LLMTesting">測試中…</string>
     <string name="MainTabsStyle">Main tabs style</string>
     <string name="MainTabsStyleTextFree">No text</string>
+    <string name="HideTabBarPermissionWarnings">隱藏標籤列權限警告</string>
     <string name="ShowRecentChatsOnTabLongPress">長按聊天標籤顯示最近會話</string>
     <string name="CustomIpStrategy">Custom Ip Strategy</string>
     <string name="CustomIpStrategyIPV4">IPV4 Only</string>
@@ -335,4 +345,16 @@
     <string name="FixUrlAutoInlineBotSkipMediaPreviewDesc">Only applies to automatic URL inline bot results. Regular inline bot media still opens the preview.</string>
     <string name="TabletModeSmall">Small Tablet</string>
     <string name="TabletModeBig">Big Tablet</string>
+    <string name="ShowRecentForwardTab">轉發時顯示最近會話</string>
+    <string name="ProviderVolcengineTranslate">Volcengine Translate</string>
+    <string name="DisableAiEditor">Disable Ai Editor</string>
+    <string name="DisableGlareEffects">Disable Glare effects</string>
+    <string name="ShowEditedIcon">Show icon instead of \"edited\"</string>
+    <string name="DeleteCloudBackup">Clear cloud data</string>
+    <string name="DeleteCloudBackupFailed">Failed to clear cloud data</string>
+    <string name="DeleteCloudBackupSuccess">Cloud data cleared</string>
+    <string name="CloudConfigNoBackupToDelete">No data to clear</string>
+    <string name="LiquidGlassAngle">Liquid Glass angle</string>
+    <string name="LiquidGlassIntensity">Liquid Glass intensity</string>
+    <string name="DisableGooeyAvatarAnimation">Disable \"Gooey\" avatar animation</string>
 </resources>

@@ -65,6 +65,10 @@ interface Translator {
 
     suspend fun doTranslate(from: String, to: String, query: String): String
 
+    suspend fun doTranslate(from: String, to: String, query: String, context: List<String>): String {
+        return doTranslate(from, to, query)
+    }
+
     companion object {
 
         @Throws(Exception::class)
@@ -74,10 +78,10 @@ interface Translator {
 
         const val providerGoogle = 1
         const val providerGoogleCN = 2
-        const val providerYandex = 3
+        const val providerGoogle2 = 3
         const val providerLingo = 4
         const val providerMicrosoft = 5
-        const val providerYouDao = 6
+        const val providerVolcengine = 6
         const val providerDeepL = 7
         const val providerTelegram = 8
         const val providerTranSmart = 9
@@ -86,7 +90,10 @@ interface Translator {
         const val providerDeepLFree = 12
 
         @Throws(Exception::class)
-        suspend fun translate(to: Locale, query: String): String {
+        suspend fun translate(to: Locale, query: String): String = translate(to, query, emptyList())
+
+        @Throws(Exception::class)
+        suspend fun translate(to: Locale, query: String, context: List<String>): String {
 
             var language = to.language
             var country = to.country
@@ -96,20 +103,19 @@ interface Translator {
 
             val provider = AxCoreConfig.translationProvider.Int()
             when (provider) {
-                providerYouDao -> if (language == "zh") {
-                    language = "zh-CHS"
-                }
                 providerDeepL,
                 providerDeepLOfficial,
                 providerDeepLFree -> language = AbstractDeepLTranslator.convertLanguageCode(language, country)
+                providerVolcengine,
                 providerMicrosoft,
                 providerGoogle,
+                providerGoogle2,
                 providerGoogleCN -> if (language == "zh") {
                     val countryUpperCase = country.uppercase()
                     if (countryUpperCase == "CN" || countryUpperCase == "DUANG") {
                         language = if (provider == providerMicrosoft) "zh-Hans" else "zh-CN"
                     } else if (countryUpperCase == "TW" || countryUpperCase == "HK") {
-                        language = if (provider == providerMicrosoft) "zh-HanT" else "zh-TW"
+                        language = if (provider == providerMicrosoft) "zh-Hant" else "zh-TW"
                     }
                 }
                 providerTelegram -> language = TelegramAPITranslator.convertLanguageCode(language, country)
@@ -117,10 +123,10 @@ interface Translator {
             }
             val translator = when (provider) {
                 providerGoogle, providerGoogleCN -> GoogleAppTranslator
-                providerYandex -> YandexTranslator
+                providerGoogle2 -> GoogleCloud2Translator
                 providerLingo -> LingoTranslator
                 providerMicrosoft -> MicrosoftTranslator
-                providerYouDao -> YouDaoTranslator
+                providerVolcengine -> VolcengineTranslator
                 providerDeepL -> DeepLXTranslator
                 providerDeepLOfficial -> DeepLTranslator
                 providerDeepLFree -> DeepLFreeTranslator
@@ -132,10 +138,10 @@ interface Translator {
 
             // FileLog.d("[Trans] use provider ${translator.javaClass.simpleName}, toLang: $toLang, query: $query")
 
-            val result =  translator.doTranslate("auto", language, query).also {
-
-                to.transDb.save(query, it)
-
+            val result = translator.doTranslate("auto", language, query, context).also {
+                if (context.isEmpty()) {
+                    to.transDb.save(query, it)
+                }
             }
 
             if (language == "zh") {

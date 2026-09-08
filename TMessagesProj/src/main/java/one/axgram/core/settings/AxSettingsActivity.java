@@ -5,7 +5,6 @@ import static one.axgram.core.utils.UpdateUtil.channelUsernameTips;
 
 import android.app.Activity;
 import android.content.Context;
-import android.content.Intent;
 import android.content.SharedPreferences;
 import android.view.View;
 
@@ -15,7 +14,6 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.google.gson.JsonElement;
 import com.google.gson.JsonObject;
 import com.google.gson.JsonPrimitive;
-import com.jakewharton.processphoenix.ProcessPhoenix;
 
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -29,13 +27,15 @@ import org.telegram.ui.Cells.HeaderCell;
 import org.telegram.ui.Cells.TextCell;
 import org.telegram.ui.Cells.TextSettingsCell;
 import org.telegram.ui.DocumentSelectActivity;
-import org.telegram.ui.LaunchActivity;
 
 import java.io.File;
 import java.text.DateFormat;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Date;
+import java.util.HashSet;
 import java.util.Map;
+import java.util.Set;
 import java.util.function.Function;
 
 import kotlin.text.StringsKt;
@@ -48,8 +48,15 @@ import one.axgram.core.utils.FileUtil;
 import one.axgram.core.utils.GsonUtil;
 import one.axgram.core.utils.ShareUtil;
 import one.axgram.extra.network.NetworkLogActivity;
+import one.axgram.core.helpers.AppRestartHelper;
+import one.axgram.extra.NkmrConfig;
 
 public class AxSettingsActivity extends BaseAxSettingsActivity {
+
+    private static final Set<String> EXCLUDED_NKMR_CONFIG_KEYS = new HashSet<>(Arrays.asList(
+            "ExtendedFeatureUnlockedToken",
+            "ShowHiddenFeature"
+    ));
 
     private int categoriesRow;
     private int generalRow;
@@ -57,6 +64,7 @@ public class AxSettingsActivity extends BaseAxSettingsActivity {
     private int chatRow;
     private int passcodeRow;
     private int experimentRow;
+    private int debugRow;
     private int categories2Row;
 
     private int aboutRow;
@@ -72,6 +80,7 @@ public class AxSettingsActivity extends BaseAxSettingsActivity {
     private int settingsRow;
     private int importSettingsRow;
     private int exportSettingsRow;
+    private int resetSettingsRow;
     private int settings2Row;
 
     @Override
@@ -97,6 +106,8 @@ public class AxSettingsActivity extends BaseAxSettingsActivity {
             presentFragment(new AxPasscodeSettingsActivity());
         } else if (position == experimentRow) {
             presentFragment(new AxExperimentalSettingsActivity());
+        } else if (position == debugRow) {
+            presentFragment(new AxDebugSettingsActivity());
         } else if (position == channelRow) {
             getMessagesController().openByUserName(channelUsername, this, 1);
         } else if (position == channelTipsRow) {
@@ -114,6 +125,18 @@ public class AxSettingsActivity extends BaseAxSettingsActivity {
         }  else if (position == importSettingsRow) {
             DocumentSelectActivity activity = getDocumentSelectActivity(getParentActivity());
             presentFragment(activity);
+        } else if (position == resetSettingsRow) {
+            AlertUtil.showConfirm(getParentActivity(),
+                    LocaleController.getString(R.string.ResetSettingsAlert),
+                    R.drawable.msg_reset,
+                    LocaleController.getString(R.string.Reset),
+                    true,
+                    () -> {
+                        ApplicationLoader.applicationContext.getSharedPreferences("nekocloud", Activity.MODE_PRIVATE).edit().clear().commit();
+                        ApplicationLoader.applicationContext.getSharedPreferences("nekox_config", Activity.MODE_PRIVATE).edit().clear().commit();
+                        NkmrConfig.clear();
+                        AppRestartHelper.triggerRebirth();
+                    });
         } else if (position == exportSettingsRow) {
             backupSettings();
         }
@@ -126,7 +149,7 @@ public class AxSettingsActivity extends BaseAxSettingsActivity {
 
     @Override
     protected String getActionBarTitle() {
-        return LocaleController.getString(R.string.AxSettings);
+        return LocaleController.getString(R.string.N_Config);
     }
 
     @Override
@@ -148,6 +171,7 @@ public class AxSettingsActivity extends BaseAxSettingsActivity {
             passcodeRow = -1;
         }
         experimentRow = addRow("experiment");
+        debugRow = addRow("debug");
         categories2Row = addRow();
 
         aboutRow = addRow("about");
@@ -163,6 +187,7 @@ public class AxSettingsActivity extends BaseAxSettingsActivity {
         settingsRow = addRow("settings");
         importSettingsRow = addRow("importSettings");
         exportSettingsRow = addRow("exportSettings");
+        resetSettingsRow = addRow("resetSettings");
         settings2Row = addRow();
     }
 
@@ -195,6 +220,8 @@ public class AxSettingsActivity extends BaseAxSettingsActivity {
                         textCell.setText(LocaleController.getString(R.string.ImportSettings), divider);
                     } else if (position == exportSettingsRow) {
                         textCell.setText(LocaleController.getString(R.string.BackupSettings), divider);
+                    } else if (position == resetSettingsRow) {
+                        textCell.setText(LocaleController.getString(R.string.ResetSettings), divider);
                     }
                     break;
                 }
@@ -205,7 +232,7 @@ public class AxSettingsActivity extends BaseAxSettingsActivity {
                     } else if (position == aboutRow) {
                         headerCell.setText(LocaleController.getString(R.string.About));
                     } else if (position == settingsRow) {
-                        headerCell.setText(LocaleController.getString(R.string.AxSettings));
+                        headerCell.setText(LocaleController.getString(R.string.N_Config));
                     }
                     break;
                 }
@@ -221,6 +248,8 @@ public class AxSettingsActivity extends BaseAxSettingsActivity {
                         textCell.setTextAndIcon(LocaleController.getString(R.string.PasscodeAx), R.drawable.msg_secret, divider);
                     } else if (position == experimentRow) {
                         textCell.setTextAndIcon(LocaleController.getString(R.string.Experiment), R.drawable.msg_fave, divider);
+                    } else if (position == debugRow) {
+                        textCell.setTextAndIcon(LocaleController.getString(R.string.DebugMenu), R.drawable.msg_info, divider);
                     }
                     break;
                 }
@@ -334,7 +363,7 @@ public class AxSettingsActivity extends BaseAxSettingsActivity {
         spToJSON("mainconfig", configJson, mainconfig::contains);
         spToJSON("themeconfig", configJson, null);
 
-        spToJSON("nkmrcfg", configJson, null);
+        spToJSON("nkmrcfg", configJson, key -> shouldTransferPreference("nkmrcfg", key));
         spToJSON("nekodialogconfig", configJson, null);
 
         return indentSpaces > 0 ? configJson.toString(indentSpaces): configJson.toString();
@@ -354,6 +383,10 @@ public class AxSettingsActivity extends BaseAxSettingsActivity {
             jsonConfig.put(key, entry.getValue());
         }
         object.put(sp, jsonConfig);
+    }
+
+    private static boolean shouldTransferPreference(String preferencesName, String key) {
+        return !"nkmrcfg".equals(preferencesName) || !EXCLUDED_NKMR_CONFIG_KEYS.contains(key);
     }
 
     private DocumentSelectActivity getDocumentSelectActivity(Activity parent) {
@@ -398,7 +431,7 @@ public class AxSettingsActivity extends BaseAxSettingsActivity {
             AlertDialog restart = new AlertDialog(context, 0);
             restart.setTitle(LocaleController.getString(R.string.AxGram));
             restart.setMessage(LocaleController.getString(R.string.RestartAppToTakeEffect));
-            restart.setPositiveButton(LocaleController.getString(R.string.OK), (__, ___) -> ProcessPhoenix.triggerRebirth(context, new Intent(context, LaunchActivity.class)));
+            restart.setPositiveButton(LocaleController.getString(R.string.OK), (__, ___) -> AppRestartHelper.triggerRebirth());
             restart.show();
         } catch (Exception e) {
             AlertUtil.showSimpleAlert(context, e);
@@ -408,10 +441,20 @@ public class AxSettingsActivity extends BaseAxSettingsActivity {
 
     public static void importSettings(JsonObject configJson) throws JSONException {
         for (Map.Entry<String, JsonElement> element : configJson.entrySet()) {
-            SharedPreferences preferences = ApplicationLoader.applicationContext.getSharedPreferences(element.getKey(), Activity.MODE_PRIVATE);
+            String preferencesName = element.getKey();
+            SharedPreferences preferences = ApplicationLoader.applicationContext.getSharedPreferences(preferencesName, Activity.MODE_PRIVATE);
             SharedPreferences.Editor editor = preferences.edit();
             for (Map.Entry<String, JsonElement> config : ((JsonObject) element.getValue()).entrySet()) {
                 String key = config.getKey();
+                String preferenceKey = key;
+                if (preferenceKey.endsWith("_long")) {
+                    preferenceKey = StringsKt.substringBeforeLast(preferenceKey, "_long", preferenceKey);
+                } else if (preferenceKey.endsWith("_float")) {
+                    preferenceKey = StringsKt.substringBeforeLast(preferenceKey, "_float", preferenceKey);
+                }
+                if (!shouldTransferPreference(preferencesName, preferenceKey)) {
+                    continue;
+                }
                 JsonPrimitive value = (JsonPrimitive) config.getValue();
                 if (value.isBoolean()) {
                     editor.putBoolean(key, value.getAsBoolean());
@@ -438,5 +481,6 @@ public class AxSettingsActivity extends BaseAxSettingsActivity {
             }
             editor.commit();
         }
+        NkmrConfig.compact();
     }
 }

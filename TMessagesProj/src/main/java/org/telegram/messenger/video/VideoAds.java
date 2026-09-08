@@ -75,6 +75,8 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Objects;
 
+import one.axgram.core.AxCoreConfig;
+
 public class VideoAds {
 
     private final int currentAccount;
@@ -110,6 +112,11 @@ public class VideoAds {
 
 //    private static LruCache<VideoAdsLocation, VideoAds> cached = new LruCache<>(3);
     private static HashMap<VideoAdsLocation, VideoAds> cached = new HashMap<>();
+
+    public static void dropCache() {
+        cached.clear();
+    }
+
     public static VideoAds make(
         int currentAccount,
         long dialogId,
@@ -302,7 +309,7 @@ public class VideoAds {
         closeDrawable.setColor(Theme.getColor(Theme.key_featuredStickers_addButton, bulletinFactory.getResourcesProvider()));
         layout.buttonView.setImageDrawable(closeDrawable);
         layout.buttonView.setOnClickListener(v -> {
-            if (closeDrawable.isCrossAvailable()) {
+            if (AxCoreConfig.hideSponsoredMessage.Bool() || closeDrawable.isCrossAvailable()) {
                 if (bulletin != null) {
                     bulletin.hide();
                 }

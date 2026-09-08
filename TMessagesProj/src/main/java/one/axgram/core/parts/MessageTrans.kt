@@ -15,9 +15,29 @@ import one.axgram.core.utils.UIUtil
 import one.axgram.core.utils.uDismiss
 import one.axgram.core.utils.uUpdate
 import one.axgram.extra.AxConfig
+import one.axgram.extra.helper.MessageHelper
 import java.util.*
 import java.util.concurrent.atomic.AtomicBoolean
 import java.util.concurrent.atomic.AtomicInteger
+
+private fun translationContext(message: MessageObject, timeline: List<MessageObject>): List<String> {
+    if (AxCoreConfig.translationProvider.Int() != Translator.providerLLM || !AxConfig.llmUseContext.Bool()) {
+        return emptyList()
+    }
+    val index = timeline.indexOf(message)
+    if (index < 0) return emptyList()
+
+    return timeline.asSequence()
+        .drop(index + 1)
+        .filter {
+            it.messageOwner.id != 0 && !it.isDateObject && !it.isSponsored &&
+                MessageHelper.isMessageObjectAutoTranslatable(it)
+        }
+        .take(5)
+        .mapNotNull { MessageHelper.getMessagePlainText(it)?.takeIf { text -> text.isNotBlank() } }
+        .toList()
+        .asReversed()
+}
 
 fun MessageObject.translateFinished(locale: Locale): Int {
 
@@ -110,9 +130,11 @@ fun ChatActivity.translateMessages(
         }
     }
 
+    val timeline = this.messages.toList()
     GlobalScope.launch(Dispatchers.IO) {
         messages.forEach { selectedObject ->
-            when (selectedObject.translateFinished(target)) {
+            val context = translationContext(selectedObject, timeline)
+            when (if (context.isEmpty()) selectedObject.translateFinished(target) else 0) {
                 1 -> next()
                 2 -> {
                     next()
@@ -122,7 +144,7 @@ fun ChatActivity.translateMessages(
                     }
                 }
                 else -> deferreds.add(async(transPool) {
-                    translateMessage(selectedObject, target, cancel, status)
+                    translateMessage(selectedObject, target, context, cancel, status)
                     if (!cancel.get()) {
                         selectedObject.messageOwner.translated = true
                         next()
@@ -144,30 +166,32 @@ fun ChatActivity.translateMessages(
 private suspend fun ChatActivity.translateMessage(
     message: MessageObject,
     target: Locale,
+    context: List<String>,
     cancel: AtomicBoolean,
     status: AlertDialog?
 ) {
     val db = TranslateDb.forLocale(target)
     if (message.isPoll) {
-        translatePoll(message, target, db, cancel, status)
+        translatePoll(message, target, context, db, cancel, status)
     } else {
-        translateText(message, target, db, cancel, status)
+        translateText(message, target, context, db, cancel, status)
     }
 }
 
 private suspend fun ChatActivity.translatePoll(
     message: MessageObject,
     target: Locale,
+    context: List<String>,
     db: TranslateDb,
     cancel: AtomicBoolean,
     status: AlertDialog?
 ) {
     val pool = (message.messageOwner.media as TLRPC.TL_messageMediaPoll).poll
-    var question = db.query(pool.question.text)
+    var question = if (context.isEmpty()) db.query(pool.question.text) else null
     if (question == null) {
         if (cancel.get()) return
         question = runCatching {
-            Translator.translate(target, pool.question.text)
+            Translator.translate(target, pool.question.text, context)
         }.getOrElse {
             handleError(target, it, cancel, status)
             return
@@ -181,11 +205,11 @@ private suspend fun ChatActivity.translatePoll(
     }
 
     translatedPoll.answers.forEach {
-        var answer = db.query(it.text.text)
+        var answer = if (context.isEmpty()) db.query(it.text.text) else null
         if (answer == null) {
             if (cancel.get()) return@forEach
             answer = runCatching {
-                Translator.translate(target, it.text.text)
+                Translator.translate(target, it.text.text, context)
             }.getOrElse { e ->
                 handleError(target, e, cancel, status)
                 return@forEach
@@ -198,11 +222,11 @@ private suspend fun ChatActivity.translatePoll(
     }
 
     translatedPoll.solution?.let { solution ->
-        var translatedSolution = db.query(solution.text)
+        var translatedSolution = if (context.isEmpty()) db.query(solution.text) else null
         if (translatedSolution == null) {
             if (cancel.get()) return
             translatedSolution = runCatching {
-                Translator.translate(target, solution.text)
+                Translator.translate(target, solution.text, context)
             }.getOrElse {
                 handleError(target, it, cancel, status)
                 return
@@ -220,14 +244,15 @@ private suspend fun ChatActivity.translatePoll(
 private suspend fun ChatActivity.translateText(
     message: MessageObject,
     target: Locale,
+    context: List<String>,
     db: TranslateDb,
     cancel: AtomicBoolean,
     status: AlertDialog?
 ) {
-    var text = db.query(message.messageOwner.message)
+    var text = if (context.isEmpty()) db.query(message.messageOwner.message) else null
     if (text == null) {
         text = runCatching {
-            Translator.translate(target, message.messageOwner.message)
+            Translator.translate(target, message.messageOwner.message, context)
         }.getOrElse {
             handleError(target, it, cancel, status)
             return

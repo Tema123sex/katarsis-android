@@ -22,6 +22,13 @@
 | [Nekogram](https://gitlab.com/Nekogram/Nekogram) | Nekogram | форк Telegram |
 | [NekoX](https://github.com/NekoX-Dev/NekoX) | NekoX Dev | форк Nekogram |
 | [Nagram](https://github.com/NextAlone/Nagram) | NextAlone | форк NekoX, прямой предок |
+
+> Nagram отдельно оговаривает, что имя, логотипы и иконки проекта — это
+> бренд-активы, на которые GPL прав не даёт, и требует, чтобы форки
+> использовали собственный бренд
+> ([BRANDING.md](https://github.com/NextAlone/Nagram/blob/main/BRANDING.md)).
+> AxGram это требование выполняет: имя, иконки и айдентика собственные,
+> заимствований бренд-активов Nagram в сборке нет.
 | **AxGram** | aevornyx | этот репозиторий |
 
 Отдельные куски позаимствованы из других форков и оставлены в своих пакетах

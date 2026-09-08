@@ -2,7 +2,6 @@ package one.axgram.core;
 
 import android.annotation.SuppressLint;
 import android.app.Activity;
-import android.content.Context;
 import android.content.SharedPreferences;
 
 import org.telegram.messenger.ApplicationLoader;
@@ -18,13 +17,14 @@ import java.util.HashSet;
 import java.util.Set;
 
 import one.axgram.core.config.ConfigItem;
+import one.axgram.extra.NkmrConfig;
 
 import static one.axgram.core.config.ConfigItem.*;
 
 @SuppressLint("ApplySharedPref")
 public class AxCoreConfig {
 
-    public static final SharedPreferences preferences = ApplicationLoader.applicationContext.getSharedPreferences("nkmrcfg", Context.MODE_PRIVATE);
+    public static final SharedPreferences preferences = NkmrConfig.preferences;
     public static final Object sync = new Object();
     public static boolean sendReadMessagePackets;
     public static boolean sendOnlinePackets;
@@ -290,6 +290,7 @@ public class AxCoreConfig {
             // ~ Ghost other options
             showGhostToggleInDrawer = preferences.getBoolean("showGhostToggleInDrawer", false);
 
+            NkmrConfig.compact();
             configLoaded = true;
         }
     }

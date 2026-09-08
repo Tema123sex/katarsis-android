@@ -194,11 +194,11 @@ public class BaseAxLegacySettingsActivity extends BaseFragment {
                         (dialogInterface, i) -> {
                             switch (i) {
                                 case 0:
-                                    AndroidUtilities.addToClipboard(String.format(Locale.getDefault(), "https://%s/axsettings/%s?r=%s", getMessagesController().linkPrefix, prefix, key));
+                                    AndroidUtilities.addToClipboard(String.format(Locale.getDefault(), BaseAxSettingsActivity.settingsPrefix, getMessagesController().linkPrefix, prefix, key));
                                     BulletinFactory.of(fragment).createCopyLinkBulletin().show();
                                     break;
                                 case 1:
-                                    AndroidUtilities.addToClipboard(String.format(Locale.getDefault(), "https://%s/axsettings/%s?r=%s&v=%s", getMessagesController().linkPrefix, prefix, key, value));
+                                    AndroidUtilities.addToClipboard(String.format(Locale.getDefault(), BaseAxSettingsActivity.settingsPrefix + "&v=%s", getMessagesController().linkPrefix, prefix, key, value));
                                     BulletinFactory.of(fragment).createCopyLinkBulletin().show();
                                     break;
                             }
@@ -229,6 +229,7 @@ public class BaseAxLegacySettingsActivity extends BaseFragment {
                 config.changed(new_value);
                 config.saveConfig();
                 updateRows();
+                listAdapter.notifyDataSetChanged();
                 scrollToRow(key, unknown);
             });
             builder.show();

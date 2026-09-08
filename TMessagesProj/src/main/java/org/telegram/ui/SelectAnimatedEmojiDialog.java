@@ -66,7 +66,7 @@ import androidx.core.math.MathUtils;
 import androidx.recyclerview.widget.DefaultItemAnimator;
 import androidx.recyclerview.widget.DiffUtil;
 import androidx.recyclerview.widget.GridLayoutManager;
-import androidx.recyclerview.widget.LinearSmoothScrollerCustom;
+import org.telegram.ui.recyclerview.LinearSmoothScrollerCustom;
 import androidx.recyclerview.widget.RecyclerView;
 
 import org.telegram.messenger.AndroidUtilities;
@@ -92,6 +92,7 @@ import org.telegram.messenger.SvgHelper;
 import org.telegram.messenger.UserConfig;
 import org.telegram.messenger.UserObject;
 import org.telegram.messenger.Utilities;
+import org.telegram.messenger.utils.ViewOutlineProviderImpl;
 import org.telegram.tgnet.ConnectionsManager;
 import org.telegram.tgnet.TLRPC;
 import org.telegram.tgnet.tl.TL_account;
@@ -128,7 +129,6 @@ import org.telegram.ui.Components.RecyclerAnimationScrollHelper;
 import org.telegram.ui.Components.RecyclerListView;
 import org.telegram.ui.Components.SearchStateDrawable;
 import org.telegram.ui.Components.StickerCategoriesListView;
-import org.telegram.ui.Components.Text;
 import org.telegram.ui.Stars.StarsController;
 import org.telegram.ui.Stars.StarsReactionsSheet;
 
@@ -140,7 +140,6 @@ import java.util.HashMap;
 import java.util.HashSet;
 import java.util.LinkedHashSet;
 import java.util.List;
-import java.util.Locale;
 import java.util.Objects;
 
 import one.axgram.core.AxCoreConfig;
@@ -680,7 +679,7 @@ public class SelectAnimatedEmojiDialog extends FrameLayout implements Notificati
 //                        index--;
                     }
                     int position = 0;
-                    int f = 1 + (isGiftsVisible() ? 1 : 0);
+                    int f = 1 + (giftsTab != null ? 1 : 0);
                     if (isGiftsVisible() && index == 1) {
                         position = giftsSectionRow;
                     } else if (type == TYPE_AVATAR_CONSTRUCTOR && index == 0) {
@@ -1288,7 +1287,7 @@ public class SelectAnimatedEmojiDialog extends FrameLayout implements Notificati
                     }
                     final int count = pack.expanded ? pack.documents.size() : Math.min(maxlen, pack.documents.size());
                     if (position > startPosition && position <= startPosition + 1 + count) {
-                        emojiTabs.select((emojiTabs.recentTab != null ? 1 : 0) + (emojiTabs.isGiftsVisible() ? 1 : 0) + index);
+                        emojiTabs.select((emojiTabs.recentTab != null ? 1 : 0) + (emojiTabs.giftsTab != null ? 1 : 0) + index);
                         return;
                     }
                 }
@@ -2699,7 +2698,12 @@ public class SelectAnimatedEmojiDialog extends FrameLayout implements Notificati
                     Drawable drawable = emojiGridView.animatedEmojiDrawables.get(imageView.span.getDocumentId());
 
                     if (drawable == null) {
-                        drawable = AnimatedEmojiDrawable.make(currentAccount, getCacheType(), imageView.span.getDocumentId());
+                        int cacheType = getCacheType();
+                        if (cacheType == AnimatedEmojiDrawable.CACHE_TYPE_ALERT_PREVIEW && currentReaction.sticker) {
+                            cacheType = AnimatedEmojiDrawable.CACHE_TYPE_ALERT_PREVIEW_LARGE_50;
+                        }
+
+                        drawable = AnimatedEmojiDrawable.make(currentAccount, cacheType, imageView.span.getDocumentId());
                         emojiGridView.animatedEmojiDrawables.put(imageView.span.getDocumentId(), (AnimatedEmojiDrawable) drawable);
                     }
                     imageView.setDrawable(drawable);
@@ -5131,7 +5135,7 @@ public class SelectAnimatedEmojiDialog extends FrameLayout implements Notificati
         }
     }
 
-    public class SearchBox extends FrameLayout {
+    public class SearchBox extends FrameLayout implements Theme.Colorable {
         private FrameLayout box;
         private ImageView search;
         private ImageView clear;
@@ -5154,12 +5158,7 @@ public class SelectAnimatedEmojiDialog extends FrameLayout implements Notificati
             }
             box.setBackground(Theme.createRoundRectDrawable(dp(18), Theme.getColor(Theme.key_chat_emojiPanelBackground, resourcesProvider)));
             box.setClipToOutline(true);
-            box.setOutlineProvider(new ViewOutlineProvider() {
-                @Override
-                public void getOutline(View view, Outline outline) {
-                    outline.setRoundRect(0, 0, view.getWidth(), view.getHeight(), (int) dp(18));
-                }
-            });
+            box.setOutlineProvider(ViewOutlineProviderImpl.boundsWithPaddingRoundRect(0, dp(18)));
             addView(box, LayoutHelper.createFrame(LayoutHelper.MATCH_PARENT, 36, Gravity.TOP | Gravity.FILL_HORIZONTAL, 8, 8 + 4, 8, 8));
 
             search = new ImageView(context);
@@ -5466,6 +5465,23 @@ public class SelectAnimatedEmojiDialog extends FrameLayout implements Notificati
                 return;
             }
             super.invalidate();
+        }
+
+        private boolean useCustomBackground;
+
+        public void setUseCustomBackground() {
+            useCustomBackground = true;
+            setBackground(null);
+            updateColors();
+            invalidate();
+        }
+
+        @Override
+        public void updateColors() {
+            if (useCustomBackground) {
+                box.setBackground(Theme.createRoundRectDrawable(dp(18),
+                    Theme.multAlpha(Theme.getColor(Theme.key_actionBarDefaultSubmenuItem, resourcesProvider), 0.06f)));
+            }
         }
     }
 

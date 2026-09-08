@@ -3,8 +3,23 @@ apply plugin: "kotlin-android"
 apply plugin: "org.jetbrains.kotlin.plugin.serialization"
 apply plugin: "io.objectbox"
 
+apply plugin: 'org.telegram.lottie-meta'
+apply plugin: 'idea'
+
+idea {
+    module {
+        excludeDirs += [
+                file('jni/third_party'),
+                file('jni/ffmpeg'),
+                file('jni/tlottie'),
+                file('jni/boringssl'),
+                file('jni/sqlite')
+        ]
+    }
+}
+
 def verName = APP_VERSION_NAME
-def verCode = 1238
+def verCode = 1246
 
 
 def officialVer = APP_VERSION_NAME
@@ -59,6 +74,7 @@ if (properties != null) {
 keystorePwd = keystorePwd ?: System.getenv("KEYSTORE_PASS")
 alias = alias ?: System.getenv("ALIAS_NAME")
 pwd = pwd ?: System.getenv("ALIAS_PASS")
+
 
 def targetTask = ""
 if (!gradle.startParameter.taskNames.isEmpty()) {
@@ -308,6 +324,10 @@ dependencies {
     implementation ("androidx.mediarouter:mediarouter:1.7.0") {
         exclude group: 'androidx.recyclerview', module: "recyclerview"
     }
+    implementation 'com.google.zxing:core:3.5.4'
+
+    implementation 'androidx.car.app:app:1.7.0'
+    implementation 'androidx.car.app:app-projected:1.7.0'
     implementation 'org.nanohttpd:nanohttpd:2.3.1'
 
     compileOnly 'org.checkerframework:checker-qual:2.5.2'
@@ -340,7 +360,10 @@ dependencies {
     implementation "io.noties.markwon:ext-tables:4.6.2"
     implementation "io.noties.markwon:html:4.6.2"
     implementation "io.noties.markwon:inline-parser:4.6.2"
-    implementation "io.noties.markwon:ext-latex:4.6.2"
+    implementation("io.noties.markwon:ext-latex:4.6.2") {
+        exclude group: 'ru.noties', module: 'jlatexmath-android'
+    }
+    api project(':jlatexmath')
 
 //    implementation 'com.google.mlkit:translate:17.0.3'
 
@@ -379,7 +402,6 @@ dependencies {
     implementation "cn.hutool:hutool-core:5.8.42"
     implementation "cn.hutool:hutool-crypto:5.8.42"
     implementation 'cn.hutool:hutool-http:5.8.42'
-    implementation "com.jakewharton:process-phoenix:3.0.0"
     // openpgp
     implementation project(":openpgp-api")
 

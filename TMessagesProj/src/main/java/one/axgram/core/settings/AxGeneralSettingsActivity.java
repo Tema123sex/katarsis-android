@@ -80,6 +80,8 @@ public class AxGeneralSettingsActivity extends BaseAxLegacySettingsActivity {
     private final CellGroup a = cellGroup = new CellGroup(this);
 
     private final AbstractConfigCell showSquareAvatarRow = cellGroup.appendCell(new ConfigCellTextCheck(AxConfig.INSTANCE.getShowSquareAvatar()));
+    private final AbstractConfigCell disableProfileAvatarBlurRow = cellGroup.appendCell(new ConfigCellTextCheck(AxConfig.INSTANCE.getDisableProfileAvatarBlur()));
+    private final AbstractConfigCell disableGooeyAvatarAnimationRow = cellGroup.appendCell(new ConfigCellTextCheck(AxConfig.INSTANCE.getDisableGooeyAvatarAnimation()));
     private final AbstractConfigCell hidePhoneRow = cellGroup.appendCell(new ConfigCellTextCheck(AxCoreConfig.hidePhone));
     private final AbstractConfigCell divider0 = cellGroup.appendCell(new ConfigCellDivider());
 
@@ -109,14 +111,15 @@ public class AxGeneralSettingsActivity extends BaseAxLegacySettingsActivity {
     private final AbstractConfigCell autoTranslateRow = cellGroup.appendCell(new ConfigCellTextCheck(AxConfig.INSTANCE.getAutoTranslate(), LocaleController.getString("AutoTranslateAbout")));
     private final AbstractConfigCell dividerTranslation = cellGroup.appendCell(new ConfigCellDivider());
 
-    private final AbstractConfigCell headerSummarize = cellGroup.appendCell(new ConfigCellHeader(LocaleController.getString(R.string.SummarizeText)));
+    private final AbstractConfigCell headerAiTools = cellGroup.appendCell(new ConfigCellHeader(LocaleController.getString(R.string.PremiumPreviewAIEditor)));
     private final AbstractConfigCell summarizeTextButtonRow = cellGroup.appendCell(new ConfigCellSelectBox(null, AxConfig.INSTANCE.getSummarizeTextButton(),
             new String[]{
                     LocaleController.getString(R.string.Default),
                     LocaleController.getString(R.string.SummarizeTextButtonDisable),
                     LocaleController.getString(R.string.SummarizeTextButtonAlways),
             }, null));
-    private final AbstractConfigCell dividerSummarize = cellGroup.appendCell(new ConfigCellDivider());
+    private final AbstractConfigCell disableAiEditorRow = cellGroup.appendCell(new ConfigCellTextCheck(AxConfig.INSTANCE.getDisableAiEditor()));
+    private final AbstractConfigCell dividerAiTools = cellGroup.appendCell(new ConfigCellDivider());
 
     private final AbstractConfigCell headerMap = cellGroup.appendCell(new ConfigCellHeader("Map"));
     private final AbstractConfigCell enableLogsRow = cellGroup.appendCell(new ConfigCellTextCheck(AxCoreConfig.enableLogs));
@@ -244,6 +247,7 @@ private final AbstractConfigCell defaultHlsVideoQualityRow = cellGroup.appendCel
                     LocaleController.getString(R.string.MainTabsStyleTextFree),
                     LocaleController.getString(R.string.Disable),
             }, null));
+    private final AbstractConfigCell hideTabBarPermissionWarningsRow = cellGroup.appendCell(new ConfigCellTextCheck(AxConfig.INSTANCE.getHideTabBarPermissionWarnings()));
     private final AbstractConfigCell showRecentChatsOnTabLongPressRow = cellGroup.appendCell(new ConfigCellTextCheck(AxConfig.INSTANCE.getShowRecentChatsOnTabLongPress()));
     private final AbstractConfigCell customDialogsMenuRow = cellGroup.appendCell(new ConfigCellSelectBox(AxConfig.INSTANCE.getCustomDialogsMenu().getKey(), null, null, () -> {
         if (getParentActivity() == null) return;
@@ -305,6 +309,13 @@ private final AbstractConfigCell defaultHlsVideoQualityRow = cellGroup.appendCel
     private final AbstractConfigCell win32Row = cellGroup.appendCell(new ConfigCellTextCheck(AxCoreConfig.disableAutoDownloadingWin32Executable));
     private final AbstractConfigCell archiveRow = cellGroup.appendCell(new ConfigCellTextCheck(AxCoreConfig.disableAutoDownloadingArchive));
     private final AbstractConfigCell dividerAutoDownload = cellGroup.appendCell(new ConfigCellDivider());
+
+    // blur
+    private final AbstractConfigCell headerBlur = cellGroup.appendCell(new ConfigCellHeader(LocaleController.getString(R.string.LiteOptionsBlur2)));
+    private final AbstractConfigCell disableGlareEffectsRow = cellGroup.appendCell(new ConfigCellTextCheck(AxConfig.INSTANCE.getDisableGlareEffects()));
+    private final AbstractConfigCell liquidGlassAngleRow = cellGroup.appendCell(new ConfigCellCustom("LiquidGlassAngle", ConfigCellCustom.CUSTOM_ITEM_LiquidGlassAngle, true));
+    private final AbstractConfigCell liquidGlassIntensityRow = cellGroup.appendCell(new ConfigCellCustom("LiquidGlassIntensity", ConfigCellCustom.CUSTOM_ITEM_LiquidGlassIntensity, true));
+    private final AbstractConfigCell dividerBlur = cellGroup.appendCell(new ConfigCellDivider());
 
     private ChatBlurAlphaSeekBar chatBlurAlphaSeekbar;
 
@@ -392,15 +403,15 @@ private final AbstractConfigCell defaultHlsVideoQualityRow = cellGroup.appendCel
                     PopupBuilder builder = new PopupBuilder(view);
 
                     builder.setItems(new String[]{
-                            LocaleController.getString("ProviderGoogleTranslate", R.string.ProviderGoogleTranslate),
-                            LocaleController.getString("ProviderGoogleTranslateCN", R.string.ProviderGoogleTranslateCN),
-                            LocaleController.getString("ProviderYandexTranslate", R.string.ProviderYandexTranslate),
-                            LocaleController.getString("ProviderLingocloud", R.string.ProviderLingocloud),
-                            LocaleController.getString("ProviderMicrosoftTranslator", R.string.ProviderMicrosoftTranslator),
-                            LocaleController.getString("ProviderMicrosoftTranslator", R.string.ProviderYouDao),
+                            LocaleController.getString(R.string.ProviderGoogleTranslate),
+                            LocaleController.getString(R.string.ProviderGoogleTranslateCN),
+                            LocaleController.getString(R.string.ProviderGoogleTranslate) + " 2",
+                            LocaleController.getString(R.string.ProviderLingocloud),
+                            LocaleController.getString(R.string.ProviderMicrosoftTranslator),
+                            LocaleController.getString(R.string.ProviderVolcengineTranslate),
                             LocaleController.getString(R.string.ProviderDeepLxTranslate),
-                            LocaleController.getString("ProviderTelegramAPI", R.string.ProviderTelegramAPI),
-                            LocaleController.getString("ProviderTranSmartTranslate", R.string.ProviderTranSmartTranslate),
+                            LocaleController.getString(R.string.ProviderTelegramAPI),
+                            LocaleController.getString(R.string.ProviderTranSmartTranslate),
                             LocaleController.getString(R.string.ProviderLLMTranslate),
                             LocaleController.getString(R.string.ProviderDeepLTranslate),
                             LocaleController.getString(R.string.ProviderDeepLFreeTranslate),
@@ -681,31 +692,31 @@ private final AbstractConfigCell defaultHlsVideoQualityRow = cellGroup.appendCel
                             String value;
                             switch (AxCoreConfig.translationProvider.Int()) {
                                 case Translator.providerGoogle:
-                                    value = LocaleController.getString("ProviderGoogleTranslate", R.string.ProviderGoogleTranslate);
+                                    value = LocaleController.getString(R.string.ProviderGoogleTranslate);
                                     break;
                                 case Translator.providerGoogleCN:
-                                    value = LocaleController.getString("ProviderGoogleTranslateCN", R.string.ProviderGoogleTranslateCN);
+                                    value = LocaleController.getString(R.string.ProviderGoogleTranslateCN);
                                     break;
-                                case Translator.providerYandex:
-                                    value = LocaleController.getString("ProviderYandexTranslate", R.string.ProviderYandexTranslate);
+                                case Translator.providerGoogle2:
+                                    value = LocaleController.getString(R.string.ProviderGoogleTranslate) + " 2";
                                     break;
                                 case Translator.providerLingo:
-                                    value = LocaleController.getString("ProviderLingocloud", R.string.ProviderLingocloud);
+                                    value = LocaleController.getString(R.string.ProviderLingocloud);
                                     break;
                                 case Translator.providerMicrosoft:
-                                    value = LocaleController.getString("ProviderMicrosoftTranslator", R.string.ProviderMicrosoftTranslator);
+                                    value = LocaleController.getString(R.string.ProviderMicrosoftTranslator);
                                     break;
-                                case Translator.providerYouDao:
-                                    value = LocaleController.getString("ProviderYouDao", R.string.ProviderYouDao);
+                                case Translator.providerVolcengine:
+                                    value = LocaleController.getString(R.string.ProviderVolcengineTranslate);
                                     break;
                                 case Translator.providerDeepL:
                                     value = LocaleController.getString(R.string.ProviderDeepLxTranslate);
                                     break;
                                 case Translator.providerTelegram:
-                                    value = LocaleController.getString("ProviderTelegramAPI", R.string.ProviderTelegramAPI);
+                                    value = LocaleController.getString(R.string.ProviderTelegramAPI);
                                     break;
                                 case Translator.providerTranSmart:
-                                    value = LocaleController.getString("ProviderTranSmartTranslate", R.string.ProviderTranSmartTranslate);
+                                    value = LocaleController.getString(R.string.ProviderTranSmartTranslate);
                                     break;
                                 case Translator.providerLLM:
                                     value = LocaleController.getString(R.string.ProviderLLMTranslate);
@@ -746,6 +757,11 @@ private final AbstractConfigCell defaultHlsVideoQualityRow = cellGroup.appendCel
             if (viewType == ConfigCellCustom.CUSTOM_ITEM_CharBlurAlpha) {
                 view = chatBlurAlphaSeekbar = new ChatBlurAlphaSeekBar(mContext);
                 chatBlurAlphaSeekbar.setEnabled(AxCoreConfig.forceBlurInChat.Bool());
+            }
+            if (viewType == ConfigCellCustom.CUSTOM_ITEM_LiquidGlassAngle) {
+                view = new LiquidGlassSeekBar(mContext, true);
+            } else if (viewType == ConfigCellCustom.CUSTOM_ITEM_LiquidGlassIntensity) {
+                view = new LiquidGlassSeekBar(mContext, false);
             }
             if (view != null) {
                 return view;
@@ -900,6 +916,52 @@ private final AbstractConfigCell defaultHlsVideoQualityRow = cellGroup.appendCel
             sizeBar.setAlpha(enabled ? 1.0f : 0.5f);
             textPaint.setAlpha((int) ((enabled ? 1.0f : 0.3f) * 255));
             this.invalidate();
+        }
+    }
+
+    private class LiquidGlassSeekBar extends FrameLayout {
+        private final SeekBarView bar;
+        private final TextPaint textPaint = new TextPaint(Paint.ANTI_ALIAS_FLAG);
+        private final boolean angle;
+
+        LiquidGlassSeekBar(Context context, boolean angle) {
+            super(context);
+            this.angle = angle;
+            setWillNotDraw(false);
+            textPaint.setTextSize(AndroidUtilities.dp(14));
+            bar = new SeekBarView(context);
+            bar.setReportChanges(true);
+            bar.setDelegate(new SeekBarView.SeekBarViewDelegate() {
+                @Override
+                public void onSeekBarDrag(boolean stop, float progress) {
+                    if (angle) {
+                        AxConfig.INSTANCE.getLiquidGlassAngle().setConfigInt(Math.round(progress * 360f));
+                    } else {
+                        AxConfig.INSTANCE.getLiquidGlassIntensity().setConfigInt(Math.round(progress * 150f));
+                    }
+                    invalidate();
+                }
+
+                @Override
+                public void onSeekBarPressed(boolean pressed) {}
+            });
+            addView(bar, LayoutHelper.createFrame(LayoutHelper.MATCH_PARENT, 38, Gravity.LEFT | Gravity.TOP, 12, 23, 52, 5));
+        }
+
+        @Override
+        protected void onDraw(Canvas canvas) {
+            textPaint.setColor(Theme.getColor(Theme.key_windowBackgroundWhiteBlackText));
+            canvas.drawText(LocaleController.getString(angle ? R.string.LiquidGlassAngle : R.string.LiquidGlassIntensity), AndroidUtilities.dp(21), AndroidUtilities.dp(20), textPaint);
+            textPaint.setColor(Theme.getColor(Theme.key_windowBackgroundWhiteValueText));
+            String value = angle ? AxConfig.INSTANCE.getLiquidGlassAngle().Int() + "°" : AxConfig.INSTANCE.getLiquidGlassIntensity().Int() + "%";
+            canvas.drawText(value, getMeasuredWidth() - AndroidUtilities.dp(47), AndroidUtilities.dp(47), textPaint);
+        }
+
+        @Override
+        protected void onMeasure(int widthMeasureSpec, int heightMeasureSpec) {
+            super.onMeasure(widthMeasureSpec, MeasureSpec.makeMeasureSpec(AndroidUtilities.dp(66), MeasureSpec.EXACTLY));
+            float value = angle ? AxConfig.INSTANCE.getLiquidGlassAngle().Int() / 360f : AxConfig.INSTANCE.getLiquidGlassIntensity().Int() / 150f;
+            bar.setProgress(value);
         }
     }
 }

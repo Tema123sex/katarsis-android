@@ -59,6 +59,8 @@
     <string name="QuickToggleAnonymous">クイック匿名の切り替え</string>
     <string name="QuickToggleAnonymousNotice">あなたがグループの所有者である場合</string>
     <string name="RealHideTimeForSticker">ステッカーをリアルタイムに隠す</string>
+    <string name="ResetSettings">設定をリセット</string>
+    <string name="ResetSettingsAlert">「N-設定」をリセットしますか？</string>
     <string name="HideTitle">タイトルを隠す</string>
     <string name="IgnoreFolderCount">フォルダ数を無視</string>
     <string name="SendWithoutMarkdown">マークダウンなしで送信</string>
@@ -100,6 +102,7 @@
     <string name="HideFilterMuteAll">フィルターミュートをすべて隠す</string>
     <string name="UseLocalQuoteColor">ローカルクオートカラーを使用する</string>
     <string name="ShowSquareAvatar">四角いアバターを表示</string>
+    <string name="DisableProfileAvatarBlur">プロフィールアバターのぼかしを無効にする</string>
     <string name="DisableCustomWallpaperUser">ユーザーのカスタム壁紙を無効にする</string>
     <string name="DisableCustomWallpaperChannel">チャンネルのカスタム壁紙を無効にする</string>
     <string name="CopyPhotoAsSticker">写真をステッカーとしてコピー</string>
@@ -219,6 +222,8 @@
     <string name="NavigationAnimationSpring">ナビゲーションスプリングアニメーション</string>
     <string name="ForceEdgeToEdge">エッジを強制する</string>
     <string name="ForceEdgeToEdgeDesc">ページレイアウトの不規則性、コンテンツの重複、クリックアクションの失敗を引き起こす可能性があります。</string>
+    <string name="UseSystemPhotoPicker">システム写真ピッカーの互換性</string>
+    <string name="UseSystemPhotoPickerDesc">Android 13以降では、完全な写真とビデオアクセスを要求せずに、ギャラリーの添付ファイルにシステムフォトピッカーを使用します。</string>
     <string name="TabStyle">Tab Style</string>
     <string name="TabStylePure">純粋な</string>
     <string name="TabStylePills">ピル数</string>
@@ -264,11 +269,15 @@
     <string name="LLMApiKeys">LLM API キー</string>
     <string name="LLMModelName">モデル名</string>
     <string name="LLMSystemPrompt">システムのプロンプト表示</string>
+    <string name="LLMTranslationPrompt">翻訳の促し</string>
+    <string name="LLMUseContext">最近のメッセージをコンテキストとして使用</string>
+    <string name="LLMUseContextNotice">Use up to five earlier messages to resolve ambiguity.</string>
     <string name="LLMTemperature">温度</string>
     <string name="LLMApiKeyNotice">APIキーを入力します。複数のキーをコンマで区切って回転できます。</string>
     <string name="LLMApiUrlNotice">API ベース URL を入力してください。(例: https://api.openai.com/v1)</string>
     <string name="LLMModelNameNotice">モデル名を入力してください（例：gpt-4o-mini）</string>
     <string name="LLMSystemPromptNotice">翻訳のためのカスタムシステムプロンプト。デフォルトを使用するには空のままにします。</string>
+    <string name="LLMTranslationPromptNotice">\@toLang と @text プレースホルダを使用します。空白のままにするとデフォルトを使用します。</string>
     <string name="LLMApiFormat">API Format</string>
     <string name="LLMApiFormatOpenAIChat">OpenAI (チャット)</string>
     <string name="LLMApiFormatOpenAIResponse">OpenAI (レスポンス)</string>
@@ -289,6 +298,7 @@
     <string name="LLMTesting">Testing…</string>
     <string name="MainTabsStyle">メインタブのスタイル</string>
     <string name="MainTabsStyleTextFree">テキストがありません</string>
+    <string name="HideTabBarPermissionWarnings">タブバーの権限警告を非表示</string>
     <string name="ShowRecentChatsOnTabLongPress">チャットタブの長押しで最近のチャットを表示</string>
     <string name="CustomIpStrategy">カスタムIp戦略</string>
     <string name="CustomIpStrategyIPV4">IPV4のみ</string>
@@ -335,4 +345,16 @@
     <string name="FixUrlAutoInlineBotSkipMediaPreviewDesc">自動URLインラインボットの結果にのみ適用されます。正規インラインボットメディアはプレビューを開きます。</string>
     <string name="TabletModeSmall">小さいタブレット</string>
     <string name="TabletModeBig">大きなタブレット</string>
+    <string name="ShowRecentForwardTab">転送時に最近のチャットタブを表示する</string>
+    <string name="ProviderVolcengineTranslate">Volcengine翻訳</string>
+    <string name="DisableAiEditor">Ai エディターを無効にする</string>
+    <string name="DisableGlareEffects">グレア効果を無効にする</string>
+    <string name="ShowEditedIcon">「編集」の代わりにアイコンを表示する</string>
+    <string name="DeleteCloudBackup">クラウドデータをクリア</string>
+    <string name="DeleteCloudBackupFailed">クラウドデータの消去に失敗しました</string>
+    <string name="DeleteCloudBackupSuccess">クラウドデータを消去しました</string>
+    <string name="CloudConfigNoBackupToDelete">クリアするデータがありません</string>
+    <string name="LiquidGlassAngle">液体ガラスの角度</string>
+    <string name="LiquidGlassIntensity">液体ガラスの強度</string>
+    <string name="DisableGooeyAvatarAnimation">「Gooey」アバターアニメーションを無効にする</string>
 </resources>

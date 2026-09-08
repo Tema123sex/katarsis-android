@@ -1,10 +1,8 @@
 package one.axgram.extra
 
-import android.content.Context
 import android.content.SharedPreferences
 import android.net.Uri
 import android.util.Base64
-import org.telegram.messenger.ApplicationLoader
 import org.telegram.messenger.LocaleController
 import org.telegram.messenger.R
 import one.axgram.core.config.ConfigItem
@@ -18,10 +16,7 @@ object AxConfig {
     const val TAG =
         "NextAlone"
     val preferences: SharedPreferences =
-        ApplicationLoader.applicationContext.getSharedPreferences(
-            "nkmrcfg",
-            Context.MODE_PRIVATE
-        )
+        NkmrConfig.preferences
     val sync =
         Any()
     private var configLoaded =
@@ -321,6 +316,12 @@ object AxConfig {
             ConfigItem.configTypeString,
             ""
         )
+    val showEditedIcon =
+        addConfig(
+            "ShowEditedIcon",
+            ConfigItem.configTypeBool,
+            false
+        )
     val disableProxyWhenVpnEnabled =
         addConfig(
             "DisableProxyWhenVpnEnabled",
@@ -449,6 +450,13 @@ object AxConfig {
             "DoActionsInCommonGroups",
             defaultDeleteMenu,
             0,
+            false
+        )
+    val defaultDeleteMenuDeleteAllReactions =
+        addConfig(
+            "DeleteAllReactionsFromUsers",
+            defaultDeleteMenu,
+            4,
             false
         )
     val disableSuggestionView =
@@ -975,6 +983,12 @@ object AxConfig {
             ConfigItem.configTypeBool,
             false
         )
+    val useSystemPhotoPicker =
+        addConfig(
+            "UseSystemPhotoPicker",
+            ConfigItem.configTypeBool,
+            false
+        )
     var tabStyle =
         addConfig(
             "TabStyle",
@@ -1161,6 +1175,18 @@ object AxConfig {
             ConfigItem.configTypeString,
             ""
         )
+    val llmTranslationPrompt =
+        addConfig(
+            "LLMTranslationPrompt",
+            ConfigItem.configTypeString,
+            ""
+        )
+    val llmUseContext =
+        addConfig(
+            "LLMUseContext",
+            ConfigItem.configTypeBool,
+            false
+        )
     val llmTemperature =
         addConfig(
             "LLMTemperature",
@@ -1172,6 +1198,12 @@ object AxConfig {
             "MainTabsStyle",
             ConfigItem.configTypeInt,
             0
+        )
+    val hideTabBarPermissionWarnings =
+        addConfig(
+            "HideTabBarPermissionWarnings",
+            ConfigItem.configTypeBool,
+            false
         )
     val showRecentChatsOnTabLongPress =
         addConfig(
@@ -1189,7 +1221,7 @@ object AxConfig {
         addConfig(
             "CustomDialogsMenu",
             ConfigItem.configTypeInt,
-            0
+            59
         )
     val customDialogsMenuTheme =
         addConfig(
@@ -1263,6 +1295,54 @@ object AxConfig {
             "HiddenMessageMenuOptions",
             ConfigItem.configTypeString,
             ""
+        )
+    val showRecentForwardTab =
+        addConfig(
+            "ShowRecentForwardTab",
+            ConfigItem.configTypeBool,
+            false
+        )
+    val disableProfileAvatarBlur =
+        addConfig(
+            "DisableProfileAvatarBlur",
+            ConfigItem.configTypeBool,
+            false
+        )
+    val extendedFeatureUnlockedToken =
+        addConfig(
+            "ExtendedFeatureUnlockedToken",
+            ConfigItem.configTypeString,
+            ""
+        )
+    val disableAiEditor =
+        addConfig(
+            "DisableAiEditor",
+            ConfigItem.configTypeBool,
+            false
+        )
+    val disableGlareEffects =
+        addConfig(
+            "DisableGlareEffects",
+            ConfigItem.configTypeBool,
+            false
+        )
+    val liquidGlassAngle =
+        addConfig(
+            "LiquidGlassAngle",
+            ConfigItem.configTypeInt,
+            0
+    )
+    val liquidGlassIntensity =
+        addConfig(
+            "LiquidGlassIntensity",
+            ConfigItem.configTypeInt,
+            75
+        )
+    val disableGooeyAvatarAnimation =
+        addConfig(
+            "DisableGooeyAvatarAnimation",
+            ConfigItem.configTypeBool,
+            false
         )
 
     private fun addConfig(
@@ -1402,7 +1482,7 @@ object AxConfig {
                 }
                 if (o.type == ConfigItem.configTypeBoolLinkInt) {
                     o as ConfigItemKeyLinked
-                    o.changedFromKeyLinked(preferences.getInt(o.keyLinked.key, 0))
+                    o.changedFromKeyLinked(o.keyLinked.Int())
                 }
             }
             configLoaded =

@@ -59,6 +59,8 @@
     <string name="QuickToggleAnonymous">Cambio rápido a anónimo</string>
     <string name="QuickToggleAnonymousNotice">Si eres el dueño del grupo</string>
     <string name="RealHideTimeForSticker">Tiempo de ocultación real para stickers</string>
+    <string name="ResetSettings">Restablecer Ajustes</string>
+    <string name="ResetSettingsAlert">¿Está seguro de que desea restablecer todos los N-Ajustes?</string>
     <string name="HideTitle">Ocultar el título</string>
     <string name="IgnoreFolderCount">Ignorar contador de carpetas</string>
     <string name="SendWithoutMarkdown">Enviar sin markdown</string>
@@ -100,6 +102,7 @@
     <string name="HideFilterMuteAll">Ocultar el filtro silenciar todo</string>
     <string name="UseLocalQuoteColor">Usar color local de citado</string>
     <string name="ShowSquareAvatar">Mostrar avatar cuadrado</string>
+    <string name="DisableProfileAvatarBlur">Desactivar perfil Avatar Blur</string>
     <string name="DisableCustomWallpaperUser">Desactivar fondo de pantalla personalizado del usuario</string>
     <string name="DisableCustomWallpaperChannel">Desactivar fondo de pantalla personalizado del canal</string>
     <string name="CopyPhotoAsSticker">Copiar foto como sticker</string>
@@ -219,6 +222,8 @@
     <string name="NavigationAnimationSpring">Animación de primavera de navegación</string>
     <string name="ForceEdgeToEdge">Forzar borde a borde</string>
     <string name="ForceEdgeToEdgeDesc">Puede resultar en irregularidades en el diseño de páginas, superposición de contenido y fallo en las acciones de clic.</string>
+    <string name="UseSystemPhotoPicker">Compatibilidad del selector de fotos del sistema</string>
+    <string name="UseSystemPhotoPickerDesc">En Android 13 y posterior, use el selector de fotos del sistema para archivos adjuntos de galería sin solicitar acceso completo a fotos y vídeo.</string>
     <string name="TabStyle">Tab Style</string>
     <string name="TabStylePure">Puro</string>
     <string name="TabStylePills">Pastillas</string>
@@ -264,11 +269,15 @@
     <string name="LLMApiKeys">Llaves API LLM</string>
     <string name="LLMModelName">Nombre del modelo</string>
     <string name="LLMSystemPrompt">Prompt del sistema</string>
+    <string name="LLMTranslationPrompt">Prompt de traducción</string>
+    <string name="LLMUseContext">Usar mensajes recientes como contexto</string>
+    <string name="LLMUseContextNotice">Use hasta cinco mensajes anteriores para resolver la ambigüedad.</string>
     <string name="LLMTemperature">Temperatura</string>
     <string name="LLMApiKeyNotice">Introduzca su clave API. Puede separar varias claves con comas para rotación.</string>
     <string name="LLMApiUrlNotice">Introduzca la URL base de API (por ejemplo, https://api.openai.com/v1)</string>
     <string name="LLMModelNameNotice">Introduzca el nombre del modelo (por ejemplo, gpt-4o-mini)</string>
     <string name="LLMSystemPromptNotice">Pedido personalizado del sistema de traducción. Dejar vacío para usar el valor predeterminado.</string>
+    <string name="LLMTranslationPromptNotice">Usar marcadores de posición @toLang y @texto; dejar vacío para usar el valor predeterminado.</string>
     <string name="LLMApiFormat">API Format</string>
     <string name="LLMApiFormatOpenAIChat">OpenAI (chat)</string>
     <string name="LLMApiFormatOpenAIResponse">OpenAI (respuesta)</string>
@@ -289,6 +298,7 @@
     <string name="LLMTesting">Testing…</string>
     <string name="MainTabsStyle">Estilo de pestañas principales</string>
     <string name="MainTabsStyleTextFree">Sin texto</string>
+    <string name="HideTabBarPermissionWarnings">Ocultar aviso de permiso de la barra de pestañas</string>
     <string name="ShowRecentChatsOnTabLongPress">Mostrar chats recientes al pulsar la pestaña de chat</string>
     <string name="CustomIpStrategy">Estrategia Ip personalizada</string>
     <string name="CustomIpStrategyIPV4">Sólo IPV4</string>
@@ -335,4 +345,16 @@
     <string name="FixUrlAutoInlineBotSkipMediaPreviewDesc">Sólo se aplica a los resultados del bot inline URL automática. Los medios de bot inline regulares todavía abren la vista previa.</string>
     <string name="TabletModeSmall">Pestaña pequeña</string>
     <string name="TabletModeBig">Tablet Grande</string>
+    <string name="ShowRecentForwardTab">Mostrar pestaña de chats recientes al reenviar</string>
+    <string name="ProviderVolcengineTranslate">Volcengine Traducir</string>
+    <string name="DisableAiEditor">Desactivar editor Ai</string>
+    <string name="DisableGlareEffects">Desactivar efectos de Glare</string>
+    <string name="ShowEditedIcon">Mostrar icono en lugar de \"editado\"</string>
+    <string name="DeleteCloudBackup">Borrar datos de la nube</string>
+    <string name="DeleteCloudBackupFailed">Error al borrar los datos de la nube</string>
+    <string name="DeleteCloudBackupSuccess">Datos de la nube borrados</string>
+    <string name="CloudConfigNoBackupToDelete">No hay datos para borrar</string>
+    <string name="LiquidGlassAngle">Ángulo de cristal líquido</string>
+    <string name="LiquidGlassIntensity">Intensidad del vidrio líquido</string>
+    <string name="DisableGooeyAvatarAnimation">Desactivar animación de avatar \"Gooey\"</string>
 </resources>

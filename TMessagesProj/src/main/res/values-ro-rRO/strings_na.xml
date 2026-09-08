@@ -59,6 +59,8 @@
     <string name="QuickToggleAnonymous">Comutare rapidă anonimă</string>
     <string name="QuickToggleAnonymousNotice">Dacă sunteți proprietarul grupului</string>
     <string name="RealHideTimeForSticker">Timp real ascuns pentru stickere</string>
+    <string name="ResetSettings">Resetare setări</string>
+    <string name="ResetSettingsAlert">Sunteţi sigur că doriţi să resetaţi toate setările N-?</string>
     <string name="HideTitle">Ascunde titlul</string>
     <string name="IgnoreFolderCount">Ignoră numărul de dosare</string>
     <string name="SendWithoutMarkdown">Trimite fără marcaj</string>
@@ -100,6 +102,7 @@
     <string name="HideFilterMuteAll">Ascunde filtrele mute toate</string>
     <string name="UseLocalQuoteColor">Folosește culoarea ofertei locale</string>
     <string name="ShowSquareAvatar">Arată avatarul pătrat</string>
+    <string name="DisableProfileAvatarBlur">Dezactivează Blur Avatar de profil</string>
     <string name="DisableCustomWallpaperUser">Dezactivează imaginea de fundal personalizată a utilizatorului</string>
     <string name="DisableCustomWallpaperChannel">Dezactivează fundal personalizat pentru canale</string>
     <string name="CopyPhotoAsSticker">Copiază fotografia ca Sticker</string>
@@ -219,6 +222,8 @@
     <string name="NavigationAnimationSpring">Animație primăvară de navigare</string>
     <string name="ForceEdgeToEdge">Forțează marginea la margine</string>
     <string name="ForceEdgeToEdgeDesc">Poate duce la nereguli în aspectul paginii, la suprapunerea conținutului și la acțiuni eșuate pentru click.</string>
+    <string name="UseSystemPhotoPicker">Compatibilitate selector poze de sistem</string>
+    <string name="UseSystemPhotoPickerDesc">Pe Android 13 și mai târziu, utilizați selectorul de fotografii de sistem pentru fișierele atașate galerie fără a solicita o fotografie completă și acces video.</string>
     <string name="TabStyle">Tab Style</string>
     <string name="TabStylePure">Pur</string>
     <string name="TabStylePills">Comprimate</string>
@@ -264,11 +269,15 @@
     <string name="LLMApiKeys">Chei API LLM</string>
     <string name="LLMModelName">Nume model</string>
     <string name="LLMSystemPrompt">Solicitare sistem</string>
+    <string name="LLMTranslationPrompt">Solicitare traducere</string>
+    <string name="LLMUseContext">Utilizați mesajele recente ca context</string>
+    <string name="LLMUseContextNotice">Utilizați până la cinci mesaje anterioare pentru a rezolva ambiguitatea.</string>
     <string name="LLMTemperature">Temperatură</string>
     <string name="LLMApiKeyNotice">Introduceți cheia API. Puteți separa mai multe chei cu virgula pentru rotație.</string>
     <string name="LLMApiUrlNotice">Introduceți URL-ul de bază API (de exemplu, https://api.openai.com/v1)</string>
     <string name="LLMModelNameNotice">Introduceți numele modelului (de ex. gpt-4o-min)</string>
-    <string name="LLMSystemPromptNotice">Personalizați sistemul pentru traducere. Lăsați gol pentru a utiliza setările implicite.</string>
+    <string name="LLMSystemPromptNotice">Instrucțiuni personalizate de sistem. Lăsați gol pentru a utiliza setările implicite de siguranță.</string>
+    <string name="LLMTranslationPromptNotice">Utilizați substituenți @toLang și @text; lăsați gol pentru a utiliza setările implicite.</string>
     <string name="LLMApiFormat">API Format</string>
     <string name="LLMApiFormatOpenAIChat">OpenAI (Chat)</string>
     <string name="LLMApiFormatOpenAIResponse">OpenAI (Responză)</string>
@@ -289,6 +298,7 @@
     <string name="LLMTesting">Testare…</string>
     <string name="MainTabsStyle">Stil filă principală</string>
     <string name="MainTabsStyleTextFree">Nici un text</string>
+    <string name="HideTabBarPermissionWarnings">Ascunde avertismentele permisiunilor barei de file</string>
     <string name="ShowRecentChatsOnTabLongPress">Arată conversații recente în tab-ul de chat apăsare lungă</string>
     <string name="CustomIpStrategy">Strategie particularizată de Ip</string>
     <string name="CustomIpStrategyIPV4">Numai IPV4</string>
@@ -335,4 +345,16 @@
     <string name="FixUrlAutoInlineBotSkipMediaPreviewDesc">Se aplică doar la rezultatele automat ale botului din URL-uri. Media regulată inline încă deschide previzualizarea.</string>
     <string name="TabletModeSmall">Tabletă mică</string>
     <string name="TabletModeBig">Tabletă mare</string>
+    <string name="ShowRecentForwardTab">Arată fila conversații recente în timpul redirecționării</string>
+    <string name="ProviderVolcengineTranslate">Traducere Volcengine</string>
+    <string name="DisableAiEditor">Dezactivează Editorul Ai</string>
+    <string name="DisableGlareEffects">Dezactivează efectele Glare</string>
+    <string name="ShowEditedIcon">Arată pictograma în loc de \"editat\"</string>
+    <string name="DeleteCloudBackup">Ștergeți datele din cloud</string>
+    <string name="DeleteCloudBackupFailed">Ștergerea datelor din cloud a eșuat</string>
+    <string name="DeleteCloudBackupSuccess">Date Cloud șterse</string>
+    <string name="CloudConfigNoBackupToDelete">Nu există date de curățat</string>
+    <string name="LiquidGlassAngle">Unghiul lichid de sticlă</string>
+    <string name="LiquidGlassIntensity">Intensitatea sticlei lichide</string>
+    <string name="DisableGooeyAvatarAnimation">Dezactivați animația de avatar \"Gooey\"</string>
 </resources>

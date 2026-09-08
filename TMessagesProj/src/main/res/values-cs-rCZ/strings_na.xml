@@ -59,6 +59,8 @@
     <string name="QuickToggleAnonymous">Rychlé přepnutí anonymních</string>
     <string name="QuickToggleAnonymousNotice">Pokud jste vlastníkem skupiny</string>
     <string name="RealHideTimeForSticker">Skutečný čas skrytí samolepek</string>
+    <string name="ResetSettings">Obnovit nastavení</string>
+    <string name="ResetSettingsAlert">Jste si jisti, že chcete obnovit všechna nastavení N-?</string>
     <string name="HideTitle">Skrýt název</string>
     <string name="IgnoreFolderCount">Ignorovat počet složek</string>
     <string name="SendWithoutMarkdown">Odeslat bez markdown</string>
@@ -100,6 +102,7 @@
     <string name="HideFilterMuteAll">Skrýt ztlumit vše</string>
     <string name="UseLocalQuoteColor">Použít místní barvu citací</string>
     <string name="ShowSquareAvatar">Zobrazit čtvereční avatar</string>
+    <string name="DisableProfileAvatarBlur">Zakázat rozostření profilu</string>
     <string name="DisableCustomWallpaperUser">Zakázat uživatelskou vlastní tapetu</string>
     <string name="DisableCustomWallpaperChannel">Zakázat vlastní tapetu kanálu</string>
     <string name="CopyPhotoAsSticker">Kopírovat fotku jako nálepku</string>
@@ -219,6 +222,8 @@
     <string name="NavigationAnimationSpring">Animace pružiny navigace</string>
     <string name="ForceEdgeToEdge">Vynutit okraj k hraně</string>
     <string name="ForceEdgeToEdgeDesc">Může mít za následek nesrovnalosti rozložení stránek, překrývání obsahu a selhání akcí kliknutí.</string>
+    <string name="UseSystemPhotoPicker">Kompatibilita se zvolením systémové fotografie</string>
+    <string name="UseSystemPhotoPickerDesc">Na Androidu 13 a později použijte systémový výběr fotek pro galerie příloh bez požadavku plného přístupu k fotkám a videu.</string>
     <string name="TabStyle">Tab Style</string>
     <string name="TabStylePure">Čistá</string>
     <string name="TabStylePills">Zabití</string>
@@ -264,11 +269,15 @@
     <string name="LLMApiKeys">API klíče LLM</string>
     <string name="LLMModelName">Název modelu</string>
     <string name="LLMSystemPrompt">Systémová výzva</string>
+    <string name="LLMTranslationPrompt">Překladový požadavek</string>
+    <string name="LLMUseContext">Použít poslední zprávy jako kontext</string>
+    <string name="LLMUseContextNotice">Pro vyřešení nejednoznačnosti použijte až pět dřívějších zpráv.</string>
     <string name="LLMTemperature">Teplota</string>
     <string name="LLMApiKeyNotice">Zadejte svůj API klíč. Můžete oddělit více klíčů čárkou.</string>
     <string name="LLMApiUrlNotice">Zadejte základní URL API (např. https://api.openai.com/v1)</string>
     <string name="LLMModelNameNotice">Zadejte název modelu (např. gpt-4o-mini)</string>
-    <string name="LLMSystemPromptNotice">Vlastní systémová výzva k překladu. Nechte prázdné pro použití výchozího nastavení.</string>
+    <string name="LLMSystemPromptNotice">Vlastní systémové pokyny. Nechte prázdné pro použití bezpečného výchozího nastavení.</string>
+    <string name="LLMTranslationPromptNotice">Použijte @toLang a @text placeholders; nechte prázdné pro použití výchozí.</string>
     <string name="LLMApiFormat">API Format</string>
     <string name="LLMApiFormatOpenAIChat">OpenAI (Chat)</string>
     <string name="LLMApiFormatOpenAIResponse">OpenAI (odpověď)</string>
@@ -289,6 +298,7 @@
     <string name="LLMTesting">Testování…</string>
     <string name="MainTabsStyle">Styl hlavních panelů</string>
     <string name="MainTabsStyleTextFree">Žádný text</string>
+    <string name="HideTabBarPermissionWarnings">Skrýt upozornění oprávnění v panelu karet</string>
     <string name="ShowRecentChatsOnTabLongPress">Zobrazit nedávné chaty na kartě chatu dlouhým stiskem</string>
     <string name="CustomIpStrategy">Vlastní Ip strategie</string>
     <string name="CustomIpStrategyIPV4">Pouze IPV4</string>
@@ -335,4 +345,16 @@
     <string name="FixUrlAutoInlineBotSkipMediaPreviewDesc">Platí pouze pro automatické výsledky inline bota URL. Pravidelná média inline bota stále otevírají náhled.</string>
     <string name="TabletModeSmall">Malý tablet</string>
     <string name="TabletModeBig">Velký tablet</string>
+    <string name="ShowRecentForwardTab">Zobrazit kartu konverzace při přesměrování</string>
+    <string name="ProviderVolcengineTranslate">Volcengine překlad</string>
+    <string name="DisableAiEditor">Zakázat Ai editor</string>
+    <string name="DisableGlareEffects">Zakázat Glare efekty</string>
+    <string name="ShowEditedIcon">Zobrazit ikonu namísto \"upravených\"</string>
+    <string name="DeleteCloudBackup">Vymazat data z cloudu</string>
+    <string name="DeleteCloudBackupFailed">Vymazání dat v cloudu se nezdařilo</string>
+    <string name="DeleteCloudBackupSuccess">Data v cloudu vymazána</string>
+    <string name="CloudConfigNoBackupToDelete">Žádná data k vymazání</string>
+    <string name="LiquidGlassAngle">Úhel kapalného skla</string>
+    <string name="LiquidGlassIntensity">Intenzita tekutého skla</string>
+    <string name="DisableGooeyAvatarAnimation">Zakázat animaci avataru \"Gooey\"</string>
 </resources>

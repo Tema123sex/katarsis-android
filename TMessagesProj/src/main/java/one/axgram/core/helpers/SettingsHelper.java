@@ -25,6 +25,7 @@ import one.axgram.core.settings.AxGeneralSettingsActivity;
 import one.axgram.core.settings.AxPasscodeSettingsActivity;
 import one.axgram.core.settings.AxSettingsActivity;
 import one.axgram.extra.network.NetworkLogActivity;
+import one.axgram.core.settings.AxDebugSettingsActivity;
 
 public class SettingsHelper {
 
@@ -58,6 +59,10 @@ public class SettingsHelper {
                 case "chats":
                 case "c":
                     fragment = axFragment = new AxChatSettingsActivity();
+                    break;
+                case "debug":
+                case "d":
+                    fragment = axFragment = new AxDebugSettingsActivity();
                     break;
                 case "experimental":
                 case "e":
@@ -122,7 +127,8 @@ public class SettingsHelper {
         fragments.add(new AxGeneralSettingsActivity());
         fragments.add(new AxChatSettingsActivity());
         fragments.add(new AxExperimentalSettingsActivity());
-        String n_title = LocaleController.getString(R.string.AxSettings);
+        fragments.add(new AxDebugSettingsActivity());
+        String n_title = LocaleController.getString(R.string.N_Config);
         for (BaseAxLegacySettingsActivity fragment: fragments) {
             int uid = fragment.getBaseGuid();
             int drawable = fragment.getDrawable();

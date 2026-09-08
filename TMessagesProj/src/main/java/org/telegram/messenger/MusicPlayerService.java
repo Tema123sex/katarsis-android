@@ -49,6 +49,8 @@ import org.telegram.ui.LaunchActivity;
 
 import java.io.File;
 
+import one.axgram.extra.helper.LyricsHelper;
+
 public class MusicPlayerService extends Service implements NotificationCenter.NotificationCenterDelegate {
 
     public static final String NOTIFY_PREVIOUS = "org.telegram.android.musicplayer.previous";
@@ -94,7 +96,6 @@ public class MusicPlayerService extends Service implements NotificationCenter.No
     @Override
     public void onCreate() {
         audioManager = (AudioManager) getSystemService(AUDIO_SERVICE);
-        NotificationCenter.getGlobalInstance().addObserver(this, NotificationCenter.accountLogin);
         for (int a : SharedConfig.activeAccounts) {
             NotificationCenter.getInstance(a).addObserver(this, NotificationCenter.messagePlayingDidSeek);
             NotificationCenter.getInstance(a).addObserver(this, NotificationCenter.messagePlayingPlayStateChanged);
@@ -383,6 +384,7 @@ public class MusicPlayerService extends Service implements NotificationCenter.No
         Notification notification;
         Bitmap albumArt = null;
         Bitmap fullAlbumArt = null;
+        String lyrics = null;
         long duration = (long) (messageObject.getDuration() * 1000);
         if (messageObject.isMusic()) {
             String artworkUrl = messageObject.getArtworkUrl(true);
@@ -390,6 +392,7 @@ public class MusicPlayerService extends Service implements NotificationCenter.No
 
             albumArt = audioInfo != null ? audioInfo.getSmallCover() : null;
             fullAlbumArt = audioInfo != null ? audioInfo.getCover() : null;
+            lyrics = audioInfo != null ? audioInfo.getLyrics() : null;
 
             loadingFilePath = null;
             imageReceiver.setImageBitmap((BitmapDrawable) null);
@@ -403,6 +406,10 @@ public class MusicPlayerService extends Service implements NotificationCenter.No
             } else {
                 loadingFilePath = FileLoader.getInstance(UserConfig.selectedAccount).getPathToAttach(messageObject.getDocument()).getAbsolutePath();
             }
+            if (!TextUtils.isEmpty(lyrics)) {
+                lyrics = lyrics.replace("\\n", "\n");
+            }
+            lyrics = !TextUtils.isEmpty(lyrics) ? lyrics : LyricsHelper.getLyrics(artworkUrl);
         } else if (messageObject.isVoice() || messageObject.isRoundVideo()) {
             long senderId = messageObject.getSenderId();
             if (messageObject.isFromUser()) {
@@ -527,7 +534,9 @@ public class MusicPlayerService extends Service implements NotificationCenter.No
                 }
             }
 
-            mediaSession.setPlaybackState(playbackState.build());
+            PlaybackStateCompat currentPlaybackState = playbackState.build();
+            mediaSession.setPlaybackState(currentPlaybackState);
+            TelegramMediaSession.getInstance(this).publishPlaybackState(currentPlaybackState);
             updateRepeatMode();
             updateShuffleMode();
             MediaMetadataCompat.Builder meta = new MediaMetadataCompat.Builder()
@@ -539,8 +548,12 @@ public class MusicPlayerService extends Service implements NotificationCenter.No
             if (fullAlbumArt != null && !fullAlbumArt.isRecycled()) {
                 meta.putBitmap(MediaMetadataCompat.METADATA_KEY_ALBUM_ART, fullAlbumArt);
             }
+            if (!TextUtils.isEmpty(lyrics)) {
+                meta.putString(LyricsHelper.OPLUS_LYRIC_INFO_KEY, LyricsHelper.getLyricsInfo(contentTitle, contentText, lyrics));
+            }
 
             mediaSession.setMetadata(meta.build());
+            TelegramMediaSession.getInstance(this).publishMetadata(messageObject, audioInfo, fullAlbumArt);
 
             bldr.setVisibility(Notification.VISIBILITY_PUBLIC);
 
@@ -750,7 +763,9 @@ public class MusicPlayerService extends Service implements NotificationCenter.No
                         NOTIFY_REPEAT, LocaleController.getString(R.string.RepeatSong), repeatIcon).build());
             }
         }
-        mediaSession.setPlaybackState(playbackState.build());
+        PlaybackStateCompat currentPlaybackState = playbackState.build();
+        mediaSession.setPlaybackState(currentPlaybackState);
+        TelegramMediaSession.getInstance(this).publishPlaybackState(currentPlaybackState);
     }
 
     private void updateRepeatMode() {
@@ -823,7 +838,12 @@ public class MusicPlayerService extends Service implements NotificationCenter.No
         if (mediaSession != null) {
             mediaSession.release();
         }
-        NotificationCenter.getGlobalInstance().removeObserver(this, NotificationCenter.accountLogin);
+        TelegramMediaSession sessionHolder = TelegramMediaSession.peekInstance();
+        if (sessionHolder != null && MediaController.getInstance().getPlayingMessageObject() == null) {
+            sessionHolder.publishPlaybackState(new PlaybackStateCompat.Builder()
+                    .setState(PlaybackStateCompat.STATE_STOPPED, PlaybackStateCompat.PLAYBACK_POSITION_UNKNOWN, 0)
+                    .build());
+        }
         for (int a : SharedConfig.activeAccounts) {
             NotificationCenter.getInstance(a).removeObserver(this, NotificationCenter.messagePlayingDidSeek);
             NotificationCenter.getInstance(a).removeObserver(this, NotificationCenter.messagePlayingPlayStateChanged);
@@ -865,13 +885,6 @@ public class MusicPlayerService extends Service implements NotificationCenter.No
             if (messageObject != null && loadingFilePath != null && loadingFilePath.equals(path)) {
                 createNotification(messageObject, false);
             }
-        } else if (id == NotificationCenter.accountLogin) {
-            final Integer a = (Integer) args[0];
-            NotificationCenter.getInstance(a).addObserver(this, NotificationCenter.messagePlayingDidSeek);
-            NotificationCenter.getInstance(a).addObserver(this, NotificationCenter.messagePlayingPlayStateChanged);
-            NotificationCenter.getInstance(a).addObserver(this, NotificationCenter.httpFileDidLoad);
-//            NotificationCenter.getInstance(a).addObserver(this, NotificationCenter.fileDidLoad);
         }
     }
-
 }
