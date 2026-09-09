@@ -31,6 +31,7 @@ import java.util.ArrayList;
 import one.axgram.core.AxLegacyConfig;
 import one.axgram.core.config.CellGroup;
 import one.axgram.core.config.ConfigItem;
+import one.axgram.core.helpers.remote.AxUpdateConfig;
 import one.axgram.core.config.cell.AbstractConfigCell;
 import one.axgram.core.config.cell.ConfigCellDivider;
 import one.axgram.core.config.cell.ConfigCellHeader;
@@ -66,7 +67,9 @@ public class AxDebugSettingsActivity extends BaseAxLegacySettingsActivity {
     // 切换版本
     private final AbstractConfigCell switchVersionRow = cellGroup.appendCell(new ConfigCellText("SwitchVersion", () -> {
         if (getParentActivity() == null) return;
-        Browser.openUrl(getParentActivity(), "https://github.com/NextAlone/Nagram/releases");
+        Browser.openUrl(getParentActivity(),
+                "https://github.com/" + AxUpdateConfig.GITHUB_OWNER
+                        + "/" + AxUpdateConfig.GITHUB_REPO + "/releases");
     }));
 
     // 检查更新
