@@ -160,4 +160,5 @@
     <string name="useOSMDroidMap">Используйте карту OSMDroid</string>
     <string name="mapDriftingFixForGoogleMaps">Исправить дрейф Карт Google в Китае</string>
     <string name="enhancedFileLoader">Увеличить скорость загрузки</string>
+    <string name="ResetSettingsAlert">Сбросить все настройки AxGram?</string>
 </resources>

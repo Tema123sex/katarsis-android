@@ -149,7 +149,7 @@ public class AxSettingsActivity extends BaseAxSettingsActivity {
 
     @Override
     protected String getActionBarTitle() {
-        return LocaleController.getString(R.string.N_Config);
+        return LocaleController.getString(R.string.AxSettings);
     }
 
     @Override
@@ -232,7 +232,7 @@ public class AxSettingsActivity extends BaseAxSettingsActivity {
                     } else if (position == aboutRow) {
                         headerCell.setText(LocaleController.getString(R.string.About));
                     } else if (position == settingsRow) {
-                        headerCell.setText(LocaleController.getString(R.string.N_Config));
+                        headerCell.setText(LocaleController.getString(R.string.AxSettings));
                     }
                     break;
                 }

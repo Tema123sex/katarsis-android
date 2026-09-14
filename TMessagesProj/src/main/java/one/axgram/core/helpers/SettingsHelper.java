@@ -128,7 +128,7 @@ public class SettingsHelper {
         fragments.add(new AxChatSettingsActivity());
         fragments.add(new AxExperimentalSettingsActivity());
         fragments.add(new AxDebugSettingsActivity());
-        String n_title = LocaleController.getString(R.string.N_Config);
+        String n_title = LocaleController.getString(R.string.AxSettings);
         for (BaseAxLegacySettingsActivity fragment: fragments) {
             int uid = fragment.getBaseGuid();
             int drawable = fragment.getDrawable();
