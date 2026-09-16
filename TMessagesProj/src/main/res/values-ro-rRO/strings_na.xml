@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <string name="N_Config">N-Config</string>
+    <string name="N_Config">AxGram Config</string>
     <string name="ForceCopy">Copiere forțată</string>
     <string name="disableSecondAddress">Dezactivează cererea de adresă secundară</string>
     <string name="InvertReply">Invert</string>
@@ -60,7 +60,7 @@
     <string name="QuickToggleAnonymousNotice">Dacă sunteți proprietarul grupului</string>
     <string name="RealHideTimeForSticker">Timp real ascuns pentru stickere</string>
     <string name="ResetSettings">Resetare setări</string>
-    <string name="ResetSettingsAlert">Sunteţi sigur că doriţi să resetaţi toate setările N-?</string>
+    <string name="ResetSettingsAlert">Sunteţi sigur că doriţi să resetaţi toate setările AxGram?</string>
     <string name="HideTitle">Ascunde titlul</string>
     <string name="IgnoreFolderCount">Ignoră numărul de dosare</string>
     <string name="SendWithoutMarkdown">Trimite fără marcaj</string>
@@ -92,7 +92,7 @@
     <string name="ShowForumAsNormalChat">Arată forumul ca chat normal</string>
     <string name="DecorationNone">Niciunul</string>
     <string name="ChatDecoration">Decorație Chat</string>
-    <string name="NeedChangeAxSettings">Trebuie să modificați N-Setări</string>
+    <string name="NeedChangeAxSettings">Trebuie să modificați AxGram Setări</string>
     <string name="DoNotUnarchiveBySwipe">Nu dezarhiva prin glisare</string>
     <string name="DoNotShareMyPhoneNumber">Nu partajați numărul meu de telefon</string>
     <string name="DefaultDeleteMenu">Meniul de ștergere implicit</string>

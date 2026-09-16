@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <string name="N_Config">N-设置</string>
+    <string name="N_Config">AxGram 设置</string>
     <string name="ForceCopy">强制复制</string>
     <string name="disableSecondAddress">禁用请求备用服务器地址</string>
     <string name="InvertReply">反转</string>
@@ -60,7 +60,7 @@
     <string name="QuickToggleAnonymousNotice">如果你是群组的所有者的话</string>
     <string name="RealHideTimeForSticker">真正的隐藏贴纸发送时间</string>
     <string name="ResetSettings">重置设置</string>
-    <string name="ResetSettingsAlert">您确定要重置所有 N-设置 吗？</string>
+    <string name="ResetSettingsAlert">您确定要重置所有 AxGram 设置 吗？</string>
     <string name="HideTitle">隐藏标题和头像</string>
     <string name="IgnoreFolderCount">忽略文件夹标签上的未读计数</string>
     <string name="SendWithoutMarkdown">禁用 Markdown</string>
@@ -92,7 +92,7 @@
     <string name="ShowForumAsNormalChat">以普通对话模式打开话题模式群组</string>
     <string name="DecorationNone">无</string>
     <string name="ChatDecoration">聊天框装饰</string>
-    <string name="NeedChangeAxSettings">此设置已被 N-设置 覆盖，无法修改</string>
+    <string name="NeedChangeAxSettings">此设置已被 AxGram 设置 覆盖，无法修改</string>
     <string name="DoNotUnarchiveBySwipe">禁用滑动取消归档</string>
     <string name="DoNotShareMyPhoneNumber">禁用分享我的手机号码</string>
     <string name="DefaultDeleteMenu">默认删除菜单</string>

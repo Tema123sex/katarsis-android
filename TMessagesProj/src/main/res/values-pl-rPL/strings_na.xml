@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <string name="N_Config">N-Konfiguracja</string>
+    <string name="N_Config">AxGram Konfiguracja</string>
     <string name="ForceCopy">Wymuś kopiowanie</string>
     <string name="disableSecondAddress">Wyłącz żądanie drugiego adresu</string>
     <string name="InvertReply">Invert</string>
@@ -92,7 +92,7 @@
     <string name="ShowForumAsNormalChat">Pokaż forum jako zwykły czat</string>
     <string name="DecorationNone">Brak</string>
     <string name="ChatDecoration">Dekoracja czatu</string>
-    <string name="NeedChangeAxSettings">Musisz zmienić N-Ustawienia</string>
+    <string name="NeedChangeAxSettings">Musisz zmienić AxGram Ustawienia</string>
     <string name="DoNotUnarchiveBySwipe">Nie cofaj archiwum przesuwając palcem</string>
     <string name="DoNotShareMyPhoneNumber">Nie udostępniaj mojego numeru telefonu</string>
     <string name="DefaultDeleteMenu">Domyślne Usuń Menu</string>

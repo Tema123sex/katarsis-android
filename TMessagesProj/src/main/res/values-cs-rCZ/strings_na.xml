@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <string name="N_Config">Konfigurace N-</string>
+    <string name="N_Config">Konfigurace AxGram</string>
     <string name="ForceCopy">Vynutit kopírování</string>
     <string name="disableSecondAddress">Zakázat žádost o druhou adresu</string>
     <string name="InvertReply">Invert</string>
@@ -60,7 +60,7 @@
     <string name="QuickToggleAnonymousNotice">Pokud jste vlastníkem skupiny</string>
     <string name="RealHideTimeForSticker">Skutečný čas skrytí samolepek</string>
     <string name="ResetSettings">Obnovit nastavení</string>
-    <string name="ResetSettingsAlert">Jste si jisti, že chcete obnovit všechna nastavení N-?</string>
+    <string name="ResetSettingsAlert">Jste si jisti, že chcete obnovit všechna nastavení AxGram?</string>
     <string name="HideTitle">Skrýt název</string>
     <string name="IgnoreFolderCount">Ignorovat počet složek</string>
     <string name="SendWithoutMarkdown">Odeslat bez markdown</string>

@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <string name="N_Config">N-konfigurasjon</string>
+    <string name="N_Config">AxGram konfigurasjon</string>
     <string name="ForceCopy">Tving kopi</string>
     <string name="disableSecondAddress">Deaktiver annenstedsforespørsel</string>
     <string name="InvertReply">Invert</string>
@@ -60,7 +60,7 @@
     <string name="QuickToggleAnonymousNotice">Hvis du er eier av gruppen</string>
     <string name="RealHideTimeForSticker">Sannsynlig tid for klistremerker</string>
     <string name="ResetSettings">Tilbakestill innstillinger</string>
-    <string name="ResetSettingsAlert">Er du sikker på at du vil tilbakestille alle N-innstillinger?</string>
+    <string name="ResetSettingsAlert">Er du sikker på at du vil tilbakestille alle AxGram innstillinger?</string>
     <string name="HideTitle">Skjul tittel</string>
     <string name="IgnoreFolderCount">Ignorer mappetelling</string>
     <string name="SendWithoutMarkdown">Send uten markdown</string>
@@ -92,7 +92,7 @@
     <string name="ShowForumAsNormalChat">Vis forum som normal chat</string>
     <string name="DecorationNone">Ingen</string>
     <string name="ChatDecoration">Chat dekorasjon</string>
-    <string name="NeedChangeAxSettings">Du må endre N-innstillinger</string>
+    <string name="NeedChangeAxSettings">Du må endre AxGram innstillinger</string>
     <string name="DoNotUnarchiveBySwipe">Ikke hent vekk opptak ved å dra</string>
     <string name="DoNotShareMyPhoneNumber">Ikke del mitt telefonnummer</string>
     <string name="DefaultDeleteMenu">Standard slett menyen</string>

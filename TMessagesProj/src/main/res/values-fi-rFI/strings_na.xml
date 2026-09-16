@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <string name="N_Config">N-Config</string>
+    <string name="N_Config">AxGram Config</string>
     <string name="ForceCopy">Pakota Kopio</string>
     <string name="disableSecondAddress">Poista Toinen Osoitepyyntö Käytöstä</string>
     <string name="InvertReply">Invert</string>
@@ -60,7 +60,7 @@
     <string name="QuickToggleAnonymousNotice">Jos olet ryhmän omistaja</string>
     <string name="RealHideTimeForSticker">Todellinen piilottaa aika tarroille</string>
     <string name="ResetSettings">Nollaa Asetukset</string>
-    <string name="ResetSettingsAlert">Oletko varma, että haluat palauttaa kaikki N-asetukset?</string>
+    <string name="ResetSettingsAlert">Oletko varma, että haluat palauttaa kaikki AxGram asetukset?</string>
     <string name="HideTitle">Piilota Otsikko</string>
     <string name="IgnoreFolderCount">Ohita Kansion Määrä</string>
     <string name="SendWithoutMarkdown">Lähetä ilman merkintää</string>
@@ -92,7 +92,7 @@
     <string name="ShowForumAsNormalChat">Näytä foorumi normaalina keskusteluna</string>
     <string name="DecorationNone">Ei Mitään</string>
     <string name="ChatDecoration">Keskustelun Koristelu</string>
-    <string name="NeedChangeAxSettings">Sinun täytyy muuttaa N-asetuksia</string>
+    <string name="NeedChangeAxSettings">Sinun täytyy muuttaa AxGram asetuksia</string>
     <string name="DoNotUnarchiveBySwipe">Älä poista arkistoa pyyhkäisemällä</string>
     <string name="DoNotShareMyPhoneNumber">Älä jaa puhelinnumeroani</string>
     <string name="DefaultDeleteMenu">Poista Oletusvalikko</string>

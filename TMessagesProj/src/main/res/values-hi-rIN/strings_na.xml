@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <string name="N_Config">N-Config</string>
+    <string name="N_Config">AxGram Config</string>
     <string name="ForceCopy">Force Copy</string>
     <string name="InvertReply">Invert</string>
     <string name="Great">Great</string>
@@ -23,7 +23,7 @@
     <string name="CodeSyntaxHighlight">Code syntax highlight</string>
     <string name="CreateMono">Create Monospace</string>
     <string name="CreateMonoLanguage">Code language</string>
-    <string name="CodeSyntaxHighlightDetails">Thanks to prismjs and AxGram</string>
+    <string name="CodeSyntaxHighlightDetails">Thanks to prismjs and Nekogram</string>
     <string name="UseSystemUnlock">Passcode Unlock use system ui</string>
     <string name="CopyPhoto">Copy Photo</string>
     <string name="PhotoCopied">Photo copied to Clipboard</string>
@@ -89,7 +89,7 @@
     <string name="ShowForumAsNormalChat">Show forum as normal chat</string>
     <string name="DecorationNone">None</string>
     <string name="ChatDecoration">Chat Decoration</string>
-    <string name="NeedChangeAxSettings">You need to change N-Settings</string>
+    <string name="NeedChangeAxSettings">You need to change AxGram Settings</string>
     <string name="DoNotUnarchiveBySwipe">Do not unarchive by swipe</string>
     <string name="DoNotShareMyPhoneNumber">Do not share my phone number</string>
     <string name="DefaultDeleteMenu">Default Delete Menu</string>

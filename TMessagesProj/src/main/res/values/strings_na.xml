@@ -2,7 +2,7 @@
 <resources>
     <string name="AxDeletedMessages">Удалённые сообщения</string>
     <string name="AxOnceMessages">Исчезающие сообщения</string>
-    <string name="N_Config">N-Config</string>
+    <string name="N_Config">AxGram Config</string>
     <string name="ForceCopy">Force Copy</string>
     <string name="disableSecondAddress">Disable Second Address Request</string>
     <string name="InvertReply">Invert</string>
@@ -26,7 +26,7 @@
     <string name="CodeSyntaxHighlight">Code syntax highlight</string>
     <string name="CreateMono">Create Monospace</string>
     <string name="CreateMonoLanguage">Code language</string>
-    <string name="CodeSyntaxHighlightDetails">Thanks to prismjs and AxGram</string>
+    <string name="CodeSyntaxHighlightDetails">Thanks to prismjs and Nekogram</string>
     <string name="UseSystemUnlock">Passcode Unlock use system ui</string>
     <string name="CopyPhoto">Copy Photo</string>
     <string name="PhotoCopied">Photo copied to Clipboard</string>

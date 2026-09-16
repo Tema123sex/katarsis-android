@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <string name="N_Config">N-Konfiguration</string>
+    <string name="N_Config">AxGram Konfiguration</string>
     <string name="ForceCopy">Tvinga kopiering</string>
     <string name="disableSecondAddress">Inaktivera andra adressbegäran</string>
     <string name="InvertReply">Invert</string>
@@ -60,7 +60,7 @@
     <string name="QuickToggleAnonymousNotice">Om du är ägare till gruppen</string>
     <string name="RealHideTimeForSticker">Verklig gömtid för klistermärken</string>
     <string name="ResetSettings">Återställ inställningar</string>
-    <string name="ResetSettingsAlert">Är du säker på att du vill återställa alla N-inställningar?</string>
+    <string name="ResetSettingsAlert">Är du säker på att du vill återställa alla AxGram inställningar?</string>
     <string name="HideTitle">Dölj titel</string>
     <string name="IgnoreFolderCount">Ignorera antal mappar</string>
     <string name="SendWithoutMarkdown">Skicka utan markdown</string>
@@ -92,7 +92,7 @@
     <string name="ShowForumAsNormalChat">Visa forumet som normal chatt</string>
     <string name="DecorationNone">Ingen</string>
     <string name="ChatDecoration">Chatt dekoration</string>
-    <string name="NeedChangeAxSettings">Du måste ändra N-inställningar</string>
+    <string name="NeedChangeAxSettings">Du måste ändra AxGram inställningar</string>
     <string name="DoNotUnarchiveBySwipe">Avarkivera inte genom att svepa</string>
     <string name="DoNotShareMyPhoneNumber">Dela inte mitt telefonnummer</string>
     <string name="DefaultDeleteMenu">Standard ta bort meny</string>

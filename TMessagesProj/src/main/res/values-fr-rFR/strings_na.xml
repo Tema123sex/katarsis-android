@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <string name="N_Config">N-Configuration</string>
+    <string name="N_Config">AxGram Configuration</string>
     <string name="ForceCopy">Forcer la copie</string>
     <string name="disableSecondAddress">Désactiver la demande de deuxième adresse</string>
     <string name="InvertReply">Inverser</string>
@@ -60,7 +60,7 @@
     <string name="QuickToggleAnonymousNotice">Si vous êtes propriétaire du groupe</string>
     <string name="RealHideTimeForSticker">Temps réel pour cacher les autocollants</string>
     <string name="ResetSettings">Réinitialiser les paramètres</string>
-    <string name="ResetSettingsAlert">Êtes-vous sûr de vouloir réinitialiser tous les N-Paramètres?</string>
+    <string name="ResetSettingsAlert">Êtes-vous sûr de vouloir réinitialiser tous les AxGram Paramètres?</string>
     <string name="HideTitle">Cacher le titre</string>
     <string name="IgnoreFolderCount">Ignorer le nombre de dossiers</string>
     <string name="SendWithoutMarkdown">Envoyer sans marquage</string>
@@ -92,7 +92,7 @@
     <string name="ShowForumAsNormalChat">Afficher le forum comme la discussion normale</string>
     <string name="DecorationNone">Aucun</string>
     <string name="ChatDecoration">Décoration de Discussion</string>
-    <string name="NeedChangeAxSettings">Vous devez modifier les N-Paramètres</string>
+    <string name="NeedChangeAxSettings">Vous devez modifier les AxGram Paramètres</string>
     <string name="DoNotUnarchiveBySwipe">Ne pas désarchiver par balayage</string>
     <string name="DoNotShareMyPhoneNumber">Ne pas partager mon numéro de téléphone</string>
     <string name="DefaultDeleteMenu">Menu de suppression par défaut</string>
