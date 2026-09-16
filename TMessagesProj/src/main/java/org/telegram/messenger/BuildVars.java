@@ -28,8 +28,11 @@ public class BuildVars {
     public static int APP_ID = 4;
     public static String APP_HASH = "014b35b6184100b085b0d0572f9b5103";
 
-    // SafetyNet key for Google Identity SDK, set it to empty to disable
-    public static String SAFETYNET_KEY = "AIzaSyDqt8P-7F7CPCseMkOiVRgb1LY8RN1bvH8";
+    // AxGram: это ключ Google от исходного проекта, оставлять его в своей
+    // сборке незачем — запросы к Google шли бы под чужим ключом. Вход через
+    // firebase мы и так выключаем принудительно (LoginActivity), а пустое
+    // значение отключает SafetyNet окончательно.
+    public static String SAFETYNET_KEY = "";
     public static int BUILD_VERSION; // generated
     public static String GITHUB_RELEASE_URL = "https://github.com/aevornyx/axgram-android/releases";
 
@@ -39,8 +42,10 @@ public class BuildVars {
     public static int TGX_APP_ID = 21724;
     public static String TGX_APP_HASH = "3e0cb5efcd52300aec5994fdfc5bdc16";
 
-    // works only on official app ids, disable on your forks
-    public static boolean SUPPORTS_PASSKEYS = true;
+    // AxGram: passkey-вход сервер принимает только от официальных app id.
+    // С нашим ключом кнопка появлялась бы, но вход по ней не проходил —
+    // сам апстрим помечает это как то, что в форках надо выключать.
+    public static boolean SUPPORTS_PASSKEYS = false;
 
     static {
 
