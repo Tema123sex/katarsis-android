@@ -38,6 +38,10 @@ jobs:
 
       - name: Restore Native Libraries
         run: |
+          rm -rf TMessagesProj/jni/boringssl
+          rm -rf TMessagesProj/jni/ffmpeg
+          rm -rf TMessagesProj/jni/libvpx
+
           git clone --depth 1 https://github.com/TelegramMessenger/boringssl.git TMessagesProj/jni/boringssl
           git clone --depth 1 https://github.com/TelegramMessenger/ffmpeg.git TMessagesProj/jni/ffmpeg
           git clone --depth 1 https://github.com/webmproject/libvpx.git TMessagesProj/jni/libvpx
