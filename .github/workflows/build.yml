@@ -41,39 +41,12 @@ jobs:
           rm -rf TMessagesProj/jni/boringssl
           rm -rf TMessagesProj/jni/ffmpeg
           rm -rf TMessagesProj/jni/libvpx
+          rm -rf TMessagesProj/jni/dav1d
 
-          git config --global url."https://x-access-token:${{ secrets.GITHUB_TOKEN }}@github.com/".insteadOf "https://github.com/"
-          
-          git clone --depth 1 https://github.com/google/boringssl.git TMessagesProj/jni/boringssl
-          git clone --depth 1 https://github.com/FFmpeg/FFmpeg.git TMessagesProj/jni/ffmpeg
-          git clone --depth 1 https://github.com/webmproject/libvpx.git TMessagesProj/jni/libvpx
-          
-          cd TMessagesProj/jni/boringssl && git checkout fips-20220613 || true
-          cd ../ffmpeg && git checkout release/4.4 || true
-
-      - name: Create dummy libs for Debug build
-        run: |
-          mkdir -p TMessagesProj/jni/ffmpeg/arm64-v8a
-          mkdir -p TMessagesProj/jni/ffmpeg/armeabi-v7a
-
-          touch TMessagesProj/jni/ffmpeg/arm64-v8a/libswscale.a
-          touch TMessagesProj/jni/ffmpeg/arm64-v8a/libswresample.a
-          touch TMessagesProj/jni/ffmpeg/arm64-v8a/libavcodec.a
-          touch TMessagesProj/jni/ffmpeg/arm64-v8a/libavformat.a
-          touch TMessagesProj/jni/ffmpeg/arm64-v8a/libavutil.a
-          touch TMessagesProj/jni/ffmpeg/arm64-v8a/libavfilter.a
-          touch TMessagesProj/jni/ffmpeg/arm64-v8a/libavdevice.a
-          
-          touch TMessagesProj/jni/ffmpeg/armeabi-v7a/libswscale.a
-          touch TMessagesProj/jni/ffmpeg/armeabi-v7a/libswresample.a
-          touch TMessagesProj/jni/ffmpeg/armeabi-v7a/libavcodec.a
-          touch TMessagesProj/jni/ffmpeg/armeabi-v7a/libavformat.a
-          touch TMessagesProj/jni/ffmpeg/armeabi-v7a/libavutil.a
-          touch TMessagesProj/jni/ffmpeg/armeabi-v7a/libavfilter.a
-          touch TMessagesProj/jni/ffmpeg/armeabi-v7a/libavdevice.a
-
-          touch TMessagesProj/jni/ffmpeg/arm64-v8a/libvpx.a
-          touch TMessagesProj/jni/ffmpeg/armeabi-v7a/libvpx.a
+          # Скачиваем готовый jni из официального репозитория Telegram
+          git clone --depth 1 https://github.com/DrKLO/Telegram.git TelegramSource
+          cp -r TelegramSource/TMessagesProj/jni/* TMessagesProj/jni/
+          rm -rf TelegramSource
 
       - name: Decode keystore
         run: |
