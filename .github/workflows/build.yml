@@ -42,6 +42,8 @@ jobs:
           rm -rf TMessagesProj/jni/ffmpeg
           rm -rf TMessagesProj/jni/libvpx
 
+          git config --global url."https://x-access-token:${{ secrets.GITHUB_TOKEN }}@github.com/".insteadOf "https://github.com/"
+          
           git clone --depth 1 https://github.com/TelegramMessenger/boringssl.git TMessagesProj/jni/boringssl
           git clone --depth 1 https://github.com/TelegramMessenger/ffmpeg.git TMessagesProj/jni/ffmpeg
           git clone --depth 1 https://github.com/webmproject/libvpx.git TMessagesProj/jni/libvpx
