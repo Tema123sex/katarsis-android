@@ -56,11 +56,11 @@ import java.util.Locale;
 
 import java.util.LinkedList;
 
-import one.axgram.core.AxCoreConfig;
-import one.axgram.core.helpers.AnalyticsHelper;
-import one.axgram.core.parts.SignturesKt;
-import one.axgram.core.utils.FileUtil;
-import one.axgram.extra.AxConfig;
+import one.katarsis.core.AxCoreConfig;
+import one.katarsis.core.helpers.AnalyticsHelper;
+import one.katarsis.core.parts.SignturesKt;
+import one.katarsis.core.utils.FileUtil;
+import one.katarsis.extra.AxConfig;
 
 import static android.os.Build.VERSION.SDK_INT;
 
@@ -104,7 +104,7 @@ public class ApplicationLoader extends Application {
         } catch (Throwable ignore) {
         }
         Thread.currentThread().setUncaughtExceptionHandler((thread, error) -> {
-            Log.e("axgram", "from " + thread.toString(), error);
+            Log.e("katarsis", "from " + thread.toString(), error);
             AnalyticsHelper.captureException(error);
         });
     }
@@ -362,7 +362,7 @@ public class ApplicationLoader extends Application {
 
         AnalyticsHelper.start(this);
 
-        // AxGram: force-start the keep-alive foreground service. Telegram only auto-starts it
+        // Katarsis: force-start the keep-alive foreground service. Telegram only auto-starts it
         // when Google Play is unavailable; we want it always so the app stays connected in the
         // background and catches instant deletions (like AyuGram's resident notification).
         Utilities.stageQueue.postRunnable(() -> {
@@ -399,7 +399,7 @@ public class ApplicationLoader extends Application {
 
     private static Intent createNotificationsServiceIntent() {
         Intent intent = new Intent(applicationContext, NotificationsService.class);
-        // AxGram: always foreground → persistent notification keeps the app alive (like AyuGram)
+        // Katarsis: always foreground → persistent notification keeps the app alive (like AyuGram)
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
             intent.setAction(NotificationsService.ACTION_START_FOREGROUND);
         } else {
@@ -409,7 +409,7 @@ public class ApplicationLoader extends Application {
     }
 
     private static void startPushServiceInternal() {
-        // AxGram: keep the foreground connection alive even when Google Play push is available,
+        // Katarsis: keep the foreground connection alive even when Google Play push is available,
         // so the app stays active in the background and catches instant deletions.
         // if (PushListenerController.getProvider().hasServices()) {
         //     return;
@@ -426,7 +426,7 @@ public class ApplicationLoader extends Application {
             editor.apply();
             ConnectionsManager.getInstance(UserConfig.selectedAccount).setPushConnectionEnabled(enabled);
         }
-        // AxGram: always keep the connection alive (foreground service) so instant deletions are caught.
+        // Katarsis: always keep the connection alive (foreground service) so instant deletions are caught.
         try {
             enabled = true;
             MessagesController.getMainSettings(UserConfig.selectedAccount).edit().putBoolean("keepAliveService", true).apply();

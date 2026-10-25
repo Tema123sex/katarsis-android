@@ -135,9 +135,9 @@ import java.util.Map;
 
 import androidx.core.graphics.ColorUtils;
 
-import one.axgram.core.AxLegacyConfig;
-import one.axgram.core.AxCoreConfig;
-import one.axgram.extra.AxConfig;
+import one.katarsis.core.AxLegacyConfig;
+import one.katarsis.core.AxCoreConfig;
+import one.katarsis.extra.AxConfig;
 
 @SuppressLint("ViewConstructor")
 public class ChatAttachAlertPhotoLayout extends ChatAttachAlert.AttachAlertLayout implements NotificationCenter.NotificationCenterDelegate {
@@ -949,7 +949,7 @@ public class ChatAttachAlertPhotoLayout extends ChatAttachAlert.AttachAlertLayou
                 } else if (noGalleryPermissions && position != 0) {
                     try {
                         if (position == adapter.itemsCount - 2) {
-                            menu.onItemClick(open_in); // AxGram: Use system photo picker
+                            menu.onItemClick(open_in); // Katarsis: Use system photo picker
                         } else {
                             if (Build.VERSION.SDK_INT >= 33) {
                                 fragment.getParentActivity().requestPermissions(new String[]{Manifest.permission.READ_MEDIA_VIDEO, Manifest.permission.READ_MEDIA_IMAGES}, BasePermissionsActivity.REQUEST_CODE_EXTERNAL_STORAGE);
@@ -4684,7 +4684,7 @@ public class ChatAttachAlertPhotoLayout extends ChatAttachAlert.AttachAlertLayou
             }
             if (noGalleryPermissions && this == adapter) {
                 count++;
-                count++; // AxGram: Additional Open In picker
+                count++; // Katarsis: Additional Open In picker
             }
             photosStartRow = count;
             if (!noGalleryPermissions) {

@@ -54,7 +54,7 @@ import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
 
-import one.axgram.core.AxCoreConfig;
+import one.katarsis.core.AxCoreConfig;
 
 public class MultiContactsSelectorBottomSheet extends BottomSheetWithRecyclerListView {
     private static MultiContactsSelectorBottomSheet instance;

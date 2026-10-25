@@ -63,11 +63,11 @@ import java.util.HashSet;
 import java.util.Locale;
 import java.util.TimeZone;
 
-import one.axgram.core.AxCoreConfig;
-import one.axgram.core.parts.LocFiltersKt;
-import one.axgram.core.shamsicalendar.PersianDate;
-import one.axgram.core.utils.FileUtil;
-import one.axgram.core.utils.GsonUtil;
+import one.katarsis.core.AxCoreConfig;
+import one.katarsis.core.parts.LocFiltersKt;
+import one.katarsis.core.shamsicalendar.PersianDate;
+import one.katarsis.core.utils.FileUtil;
+import one.katarsis.core.utils.GsonUtil;
 
 public class LocaleController {
 

@@ -17,7 +17,7 @@ import org.telegram.messenger.ImageReceiver;
 import org.telegram.tgnet.TLObject;
 import org.telegram.ui.ActionBar.Theme;
 
-import one.axgram.extra.AxConfig;
+import one.katarsis.extra.AxConfig;
 
 public class SimpleAvatarView extends View {
     public final static int SELECT_ANIMATION_DURATION = 200;

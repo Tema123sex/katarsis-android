@@ -15,7 +15,7 @@ import android.view.View;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.R;
 
-import one.axgram.core.AxCoreConfig;
+import one.katarsis.core.AxCoreConfig;
 
 public class ZoomControlView extends View {
 

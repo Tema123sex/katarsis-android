@@ -55,7 +55,7 @@ import org.telegram.ui.ActionBar.Theme;
 
 import java.util.HashMap;
 
-import one.axgram.core.AxCoreConfig;
+import one.katarsis.core.AxCoreConfig;
 
 public class ScrollSlidingTabStrip extends HorizontalScrollView {
 

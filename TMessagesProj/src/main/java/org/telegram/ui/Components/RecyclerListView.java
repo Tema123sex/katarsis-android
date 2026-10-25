@@ -96,7 +96,7 @@ import java.util.HashSet;
 import java.util.List;
 import java.util.Objects;
 
-import one.axgram.core.AxCoreConfig;
+import one.katarsis.core.AxCoreConfig;
 
 @SuppressWarnings("JavaReflectionMemberAccess")
 public class RecyclerListView extends RecyclerView implements IBlur3Capture {

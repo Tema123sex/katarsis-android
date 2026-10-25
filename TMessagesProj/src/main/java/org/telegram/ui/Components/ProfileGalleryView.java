@@ -43,8 +43,8 @@ import org.telegram.ui.ProfileActivity;
 
 import java.util.ArrayList;
 
-import one.axgram.core.AxCoreConfig;
-import one.axgram.extra.AxConfig;
+import one.katarsis.core.AxCoreConfig;
+import one.katarsis.extra.AxConfig;
 
 public class ProfileGalleryView extends CircularViewPager implements NotificationCenter.NotificationCenterDelegate {
 

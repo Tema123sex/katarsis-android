@@ -116,7 +116,7 @@ def sendRelease():
         entities.append(copy)
     text += admin_resp["text"]
     text += "\n\n"
-    text += addEntity(entities, text, "text_link", "GitHub Release", f"https://github.com/aevornyx/axgram-android/releases/{VERSION_NAME}")
+    text += addEntity(entities, text, "text_link", "GitHub Release", f"https://github.com/aevornyx/katarsis-android/releases/{VERSION_NAME}")
     text += " | "
     text += addEntity(entities, text, "text_link", "Apks", f'https://t.me/{APK_CHANNEL_ID.replace("@","")}/{apk_channel_first_id}')
     text += " | "
@@ -136,7 +136,7 @@ def sendCIRelease():
     apk = os.path.join(APK_FOLDER, apks[0])
     entities = []
     message = f"CI Build\n\n{COMMIT_MESSAGE}\n\n"
-    message += addEntity(entities, message, "text_link", COMMIT_HASH[0:8], f"https://github.com/aevornyx/axgram-android/commit/{COMMIT_HASH}")
+    message += addEntity(entities, message, "text_link", COMMIT_HASH[0:8], f"https://github.com/aevornyx/katarsis-android/commit/{COMMIT_HASH}")
     sendDocument(user_id=CI_CHANNEL_ID, path = apk, message=message, )
 
 
@@ -155,7 +155,7 @@ if __name__ == '__main__':
             CI_CHANNEL_ID = BOT_TARGET
         sendCIRelease()
     elif mode == "debug":
-        # AxGram: тестовый канал исходного проекта убран. Свой задаётся
+        # Katarsis: тестовый канал исходного проекта убран. Свой задаётся
         # переменной TEST_CHANNEL_ID; без неё отладочная публикация не идёт.
         test_channel = os.environ.get("TEST_CHANNEL_ID", "")
         if not test_channel:

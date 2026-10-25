@@ -16,9 +16,9 @@ import org.telegram.PhoneFormat.PhoneFormat;
 import org.telegram.tgnet.TLRPC;
 import org.telegram.tgnet.tl.TL_account;
 
-import one.axgram.core.helpers.remote.PeerColorHelper;
-import one.axgram.extra.helper.MessageHelper;
-import one.axgram.extra.helper.LocalPeerColorHelper;
+import one.katarsis.core.helpers.remote.PeerColorHelper;
+import one.katarsis.extra.helper.MessageHelper;
+import one.katarsis.extra.helper.LocalPeerColorHelper;
 
 public class UserObject {
 

@@ -120,11 +120,11 @@ import java.util.List;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
-import one.axgram.core.AxCoreConfig;
-import one.axgram.core.utils.ProxyUtil;
-import one.axgram.extra.AxConfig;
-import one.axgram.extra.helper.ExternalStickerCacheHelper;
-import one.axgram.extra.helper.StickerSetHelper;
+import one.katarsis.core.AxCoreConfig;
+import one.katarsis.core.utils.ProxyUtil;
+import one.katarsis.extra.AxConfig;
+import one.katarsis.extra.helper.ExternalStickerCacheHelper;
+import one.katarsis.extra.helper.StickerSetHelper;
 
 public class StickersAlert extends BottomSheet implements NotificationCenter.NotificationCenterDelegate {
 

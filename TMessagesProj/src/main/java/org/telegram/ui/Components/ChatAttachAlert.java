@@ -188,13 +188,13 @@ import java.util.Locale;
 import java.util.concurrent.atomic.AtomicBoolean;
 
 import kotlin.Unit;
-import one.axgram.core.AxCoreConfig;
-import one.axgram.core.transtale.TranslateDb;
-import one.axgram.core.transtale.Translator;
-import one.axgram.core.transtale.TranslatorKt;
-import one.axgram.core.utils.AlertUtil;
-import one.axgram.core.utils.VibrateUtil;
-import one.axgram.extra.AxConfig;
+import one.katarsis.core.AxCoreConfig;
+import one.katarsis.core.transtale.TranslateDb;
+import one.katarsis.core.transtale.Translator;
+import one.katarsis.core.transtale.TranslatorKt;
+import one.katarsis.core.utils.AlertUtil;
+import one.katarsis.core.utils.VibrateUtil;
+import one.katarsis.extra.AxConfig;
 
 import java.util.Objects;
 

@@ -51,7 +51,7 @@ configurations {
 def keystorePwd = null
 def alias = null
 def pwd = null
-def axgram_build_args = System.getenv("AXGRAM_BUILD_ARGS")
+def katarsis_build_args = System.getenv("KATARSIS_BUILD_ARGS")
 def disableCMakeRelWithDebInfo = System.getenv("COMPILE_NATIVE") == null
 
 Properties properties
@@ -68,7 +68,7 @@ if (properties != null) {
     keystorePwd = properties.getProperty("KEYSTORE_PASS")
     alias = properties.getProperty("ALIAS_NAME")
     pwd = properties.getProperty("ALIAS_PASS")
-    axgram_build_args = properties.getProperty("AXGRAM_BUILD_ARGS", axgram_build_args)
+    katarsis_build_args = properties.getProperty("KATARSIS_BUILD_ARGS", katarsis_build_args)
 }
 
 keystorePwd = keystorePwd ?: System.getenv("KEYSTORE_PASS")
@@ -91,7 +91,7 @@ android {
     buildToolsVersion '35.0.0'
     ndkVersion rootProject.ext.ndkVersion // 27.2.12479018
 
-    defaultConfig.applicationId = "one.axgram.android"
+    defaultConfig.applicationId = "one.katarsis.android"
 
     sourceSets {
 
@@ -158,7 +158,7 @@ android {
     }
 
     defaultConfig {
-        // AxGram: ключ Google Maps — свой, из local.properties. Пусто = карты
+        // Katarsis: ключ Google Maps — свой, из local.properties. Пусто = карты
         // работают через провайдера Telegram, приложение не падает.
         resValue 'string', 'MAPS_V2_API', (properties?.getProperty("MAPS_V2_API") ?: System.getenv("MAPS_V2_API") ?: "")
         minSdkVersion 21
@@ -218,7 +218,7 @@ android {
     buildTypes {
         debug {
             isDefault true
-            // AxGram: сборка распространяется пользователям, поэтому отладка
+            // Katarsis: сборка распространяется пользователям, поэтому отладка
             // выключена. С debuggable=true данные приложения — включая сессию
             // Telegram и переписку — читаются с устройства через USB-отладку
             // командой run-as, без рута.
@@ -286,15 +286,15 @@ android {
             task.enabled = false
         } else if (task.name.endsWith("GoogleServices") && task.name.contains("NoGcm")) {
             task.enabled = false
-        } else if (task.name.contains("buildCMakeDebug") && axgram_build_args != null && axgram_build_args.contains("skip_buildCMakeDebug")) {
+        } else if (task.name.contains("buildCMakeDebug") && katarsis_build_args != null && katarsis_build_args.contains("skip_buildCMakeDebug")) {
             task.enabled = false
         }
     }
 
     applicationVariants.configureEach { variant ->
         variant.outputs.configureEach { output ->
-            String gramName = "AxGram"
-            // AxGram: без скобок — GitHub запрещает их в именах файлов релиза
+            String gramName = "Katarsis"
+            // Katarsis: без скобок — GitHub запрещает их в именах файлов релиза
             // и молча заменяет точками, из-за чего апдейтер не узнаёт свой файл.
             String first = String.format("%s-v%s-%s", gramName, versionName, versionCode)
             String name = outputFileName.replace("TMessagesProj", first)
@@ -421,5 +421,5 @@ dependencies {
 
 apply plugin: "com.google.gms.google-services"
 
-// AxGram: блок настроек Sentry удалён вместе с плагином —
+// Katarsis: блок настроек Sentry удалён вместе с плагином —
 // отчёты о падениях наружу не отправляются.

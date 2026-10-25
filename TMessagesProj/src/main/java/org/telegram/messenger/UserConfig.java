@@ -22,8 +22,8 @@ import org.telegram.tgnet.tl.TL_account;
 
 import java.util.Arrays;
 
-import one.axgram.core.AxCoreConfig;
-import one.axgram.core.helpers.remote.ExtendedHelper;
+import one.katarsis.core.AxCoreConfig;
+import one.katarsis.core.helpers.remote.ExtendedHelper;
 
 public class UserConfig extends BaseController {
 

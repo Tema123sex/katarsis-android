@@ -176,10 +176,10 @@ import me.vkryl.core.BitwiseUtils;
 import me.vkryl.core.reference.ReferenceList;
 
 import kotlin.Unit;
-import one.axgram.core.ui.BottomBuilder;
-import one.axgram.core.AxCoreConfig;
-import one.axgram.core.utils.AlertUtil;
-import one.axgram.core.utils.ProxyUtil;
+import one.katarsis.core.ui.BottomBuilder;
+import one.katarsis.core.AxCoreConfig;
+import one.katarsis.core.utils.AlertUtil;
+import one.katarsis.core.utils.ProxyUtil;
 
 public class ChannelAdminLogActivity extends BaseFragment implements NotificationCenter.NotificationCenterDelegate {
 

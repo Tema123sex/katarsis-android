@@ -116,10 +116,10 @@ import java.util.List;
 
 import me.vkryl.core.reference.ReferenceList;
 
-import one.axgram.core.AxCoreConfig;
-import one.axgram.core.ui.MessageHelper;
-import one.axgram.core.utils.VibrateUtil;
-import one.axgram.extra.AxConfig;
+import one.katarsis.core.AxCoreConfig;
+import one.katarsis.core.ui.MessageHelper;
+import one.katarsis.core.utils.VibrateUtil;
+import one.katarsis.extra.AxConfig;
 
 public class ContentPreviewViewer {
 

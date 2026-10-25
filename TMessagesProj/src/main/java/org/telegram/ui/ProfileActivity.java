@@ -359,29 +359,29 @@ import cn.hutool.core.thread.ThreadUtil;
 import cn.hutool.core.util.RuntimeUtil;
 import cn.hutool.core.util.StrUtil;
 import kotlin.Unit;
-import one.axgram.core.BackButtonMenuRecent;
-import one.axgram.core.helpers.ProfileDateHelper;
-import one.axgram.core.helpers.SettingsHelper;
-import one.axgram.core.helpers.SettingsSearchResult;
-import one.axgram.core.settings.RegexFiltersSettingActivity;
-import one.axgram.core.transtale.popupwrapper.AutoTranslatePopupWrapper;
-import one.axgram.core.transtale.popupwrapper.CustomForumTabsPopupWrapper;
-import one.axgram.core.transtale.popupwrapper.ShareTargetPopupWrapper;
-import one.axgram.core.DatacenterActivity;
-import one.axgram.core.AxCoreConfig;
-import one.axgram.core.AxLegacyConfig;
-import one.axgram.core.parts.DialogTransKt;
-import one.axgram.core.settings.AxSettingsActivity;
-import one.axgram.core.utils.AlertUtil;
-import one.axgram.core.utils.EnvUtil;
-import one.axgram.core.utils.FileUtil;
-import one.axgram.core.utils.LangsKt;
-import one.axgram.core.utils.ProxyUtil;
-import one.axgram.core.utils.ShareUtil;
-import one.axgram.core.utils.UIUtil;
-import one.axgram.extra.AxConfig;
-import one.axgram.extra.helper.MessageHelper;
-import one.axgram.extra.ui.ItemOptionsPatch;
+import one.katarsis.core.BackButtonMenuRecent;
+import one.katarsis.core.helpers.ProfileDateHelper;
+import one.katarsis.core.helpers.SettingsHelper;
+import one.katarsis.core.helpers.SettingsSearchResult;
+import one.katarsis.core.settings.RegexFiltersSettingActivity;
+import one.katarsis.core.transtale.popupwrapper.AutoTranslatePopupWrapper;
+import one.katarsis.core.transtale.popupwrapper.CustomForumTabsPopupWrapper;
+import one.katarsis.core.transtale.popupwrapper.ShareTargetPopupWrapper;
+import one.katarsis.core.DatacenterActivity;
+import one.katarsis.core.AxCoreConfig;
+import one.katarsis.core.AxLegacyConfig;
+import one.katarsis.core.parts.DialogTransKt;
+import one.katarsis.core.settings.AxSettingsActivity;
+import one.katarsis.core.utils.AlertUtil;
+import one.katarsis.core.utils.EnvUtil;
+import one.katarsis.core.utils.FileUtil;
+import one.katarsis.core.utils.LangsKt;
+import one.katarsis.core.utils.ProxyUtil;
+import one.katarsis.core.utils.ShareUtil;
+import one.katarsis.core.utils.UIUtil;
+import one.katarsis.extra.AxConfig;
+import one.katarsis.extra.helper.MessageHelper;
+import one.katarsis.extra.ui.ItemOptionsPatch;
 
 public class ProfileActivity extends BaseFragment implements NotificationCenter.NotificationCenterDelegate, DialogsActivity.DialogsActivityDelegate, SharedMediaLayout.SharedMediaPreloaderDelegate, ImageUpdater.ImageUpdaterDelegate, SharedMediaLayout.Delegate, MainTabsActivity.TabFragmentDelegate {
     private RecyclerListView listView;
@@ -4677,11 +4677,11 @@ public class ProfileActivity extends BaseFragment implements NotificationCenter.
                 presentFragment(new AxSettingsActivity());
             } else if (position == questionRow) {
                 Browser.openUrl(getParentActivity(),
-                        one.axgram.core.utils.UpdateUtil.getTipsUrl());
+                        one.katarsis.core.utils.UpdateUtil.getTipsUrl());
             } else if (position == faqRow) {
                 Browser.openUrl(getParentActivity(), AxLegacyConfig.FAQ_URL);
             } else if (position == policyRow) {
-                Browser.openUrl(getParentActivity(), "https://github.com/aevornyx/axgram-android");
+                Browser.openUrl(getParentActivity(), "https://github.com/aevornyx/katarsis-android");
             } else if (position == sendLogsRow) {
                 sendLogs(getParentActivity(), false);
             } else if (position == sendLastLogsRow) {
@@ -4834,7 +4834,7 @@ public class ProfileActivity extends BaseFragment implements NotificationCenter.
                     updateListAnimated(false);
                 });
                 o.add(R.drawable.msg_retry, LocaleController.getString(R.string.SwitchVersion), () -> {
-                    Browser.openUrl(ProfileActivity.this.getParentActivity(), "https://github.com/aevornyx/axgram-android/releases");
+                    Browser.openUrl(ProfileActivity.this.getParentActivity(), "https://github.com/aevornyx/katarsis-android/releases");
                 });
 
                 o.add(R.drawable.msg_search, LocaleController.getString(R.string.CheckUpdate), () -> {
@@ -7239,7 +7239,7 @@ public class ProfileActivity extends BaseFragment implements NotificationCenter.
                 }
                 PhotoViewer.getInstance().openPhotoWithVideo(fileLocation, carouselImageLocation, videoLocation, provider);
             } else {
-                // AxGram: move openMenu from avatarImage.setOnClickListener to here.
+                // Katarsis: move openMenu from avatarImage.setOnClickListener to here.
                 // avatarImage's onClick event should call this openAvatar method.
                 if (userId == UserConfig.getInstance(currentAccount).getClientUserId() && imageUpdater != null) {
                     imageUpdater.openMenu(false, () -> MessagesController.getInstance(currentAccount).deleteUserPhoto(null), dialog -> {
@@ -13625,7 +13625,7 @@ public class ProfileActivity extends BaseFragment implements NotificationCenter.
                     return;
                 }
 
-                File logcatFile = new File(dir, "AxGram-" + System.currentTimeMillis() + ".log");
+                File logcatFile = new File(dir, "Katarsis-" + System.currentTimeMillis() + ".log");
                 try {
                     RuntimeUtil.exec("logcat", "-df", logcatFile.getPath()).waitFor();
                     RuntimeUtil.exec("logcat", "-c").waitFor();

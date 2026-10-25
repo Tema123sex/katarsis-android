@@ -58,7 +58,7 @@ import kotlinx.coroutines.Dispatchers;
 import kotlinx.coroutines.GlobalScope;
 import kotlinx.coroutines.Job;
 import kotlinx.coroutines.JobCancellationException;
-import one.axgram.core.AxLegacyConfig;
+import one.katarsis.core.AxLegacyConfig;
 
 @RequiresApi(api = 28)
 public class PasskeysController {

@@ -10,7 +10,7 @@ import androidx.annotation.RequiresApi;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.R;
 
-import one.axgram.extra.AxConfig;
+import one.katarsis.extra.AxConfig;
 
 @RequiresApi(api = 33)
 public class LiquidGlassEffect {

@@ -260,27 +260,27 @@ import java.util.zip.ZipInputStream;
 import cn.hutool.core.util.StrUtil;
 import kotlin.Unit;
 import kotlin.text.StringsKt;
-import one.axgram.core.helpers.SettingsHelper;
-import one.axgram.core.helpers.remote.ChatExtraButtonsHelper;
-import one.axgram.core.helpers.remote.EmojiHelper;
-import one.axgram.core.helpers.remote.InlineBotRulesHelper;
-import one.axgram.core.helpers.remote.PagePreviewRulesHelper;
-import one.axgram.core.helpers.remote.PeerColorHelper;
-import one.axgram.core.helpers.remote.UpdateHelper;
-import one.axgram.core.helpers.remote.WallpaperHelper;
-import one.axgram.core.settings.AxGhostModeActivity;
-import one.axgram.core.ui.BottomBuilder;
-import one.axgram.core.AxCoreConfig;
-import one.axgram.core.AxLegacyConfig;
-import one.axgram.core.settings.AxSettingsActivity;
-import one.axgram.core.utils.AlertUtil;
-//import one.axgram.core.utils.MonetHelper;
-import one.axgram.core.utils.ProxyUtil;
-import one.axgram.core.utils.UIUtil;
-import one.axgram.core.utils.UpdateUtil;
-import one.axgram.extra.AxConfig;
-import one.axgram.extra.helper.ExternalStickerCacheHelper;
-import one.axgram.core.helpers.remote.ExtendedHelper;
+import one.katarsis.core.helpers.SettingsHelper;
+import one.katarsis.core.helpers.remote.ChatExtraButtonsHelper;
+import one.katarsis.core.helpers.remote.EmojiHelper;
+import one.katarsis.core.helpers.remote.InlineBotRulesHelper;
+import one.katarsis.core.helpers.remote.PagePreviewRulesHelper;
+import one.katarsis.core.helpers.remote.PeerColorHelper;
+import one.katarsis.core.helpers.remote.UpdateHelper;
+import one.katarsis.core.helpers.remote.WallpaperHelper;
+import one.katarsis.core.settings.AxGhostModeActivity;
+import one.katarsis.core.ui.BottomBuilder;
+import one.katarsis.core.AxCoreConfig;
+import one.katarsis.core.AxLegacyConfig;
+import one.katarsis.core.settings.AxSettingsActivity;
+import one.katarsis.core.utils.AlertUtil;
+//import one.katarsis.core.utils.MonetHelper;
+import one.katarsis.core.utils.ProxyUtil;
+import one.katarsis.core.utils.UIUtil;
+import one.katarsis.core.utils.UpdateUtil;
+import one.katarsis.extra.AxConfig;
+import one.katarsis.extra.helper.ExternalStickerCacheHelper;
+import one.katarsis.core.helpers.remote.ExtendedHelper;
 
 public class LaunchActivity extends BasePermissionsActivity implements INavigationLayout.INavigationLayoutDelegate, NotificationCenter.NotificationCenterDelegate, DialogsActivity.DialogsActivityDelegate, IPipActivity {
     public final static String EXTRA_FORCE_NOT_INTERNAL_APPS = "force_not_internal_apps";
@@ -4154,7 +4154,7 @@ public class LaunchActivity extends BasePermissionsActivity implements INavigati
                 NotificationCenter.getGlobalInstance().postNotificationName(NotificationCenter.didReceiveSmsCode, code);
             } else {
                 AlertDialog.Builder builder = new AlertDialog.Builder(LaunchActivity.this);
-                builder.setTitle(LocaleController.getString(R.string.AxGram));
+                builder.setTitle(LocaleController.getString(R.string.Katarsis));
                 builder.setMessage(AndroidUtilities.replaceTags(LocaleController.formatString(R.string.OtherLoginCode, code)));
                 builder.setPositiveButton(LocaleController.getString(R.string.OK), null);
                 showAlertDialog(builder);
@@ -5121,7 +5121,7 @@ public class LaunchActivity extends BasePermissionsActivity implements INavigati
                             }
                         } else {
                             AlertDialog.Builder builder = new AlertDialog.Builder(LaunchActivity.this);
-                            builder.setTitle(LocaleController.getString(R.string.AxGram));
+                            builder.setTitle(LocaleController.getString(R.string.Katarsis));
                             if (error.text.startsWith("FLOOD_WAIT")) {
                                 builder.setMessage(LocaleController.getString(R.string.FloodWait));
                             } else if (error.text.startsWith("INVITE_HASH_EXPIRED")) {
@@ -5189,7 +5189,7 @@ public class LaunchActivity extends BasePermissionsActivity implements INavigati
                                 }
                             } else {
                                 AlertDialog.Builder builder = new AlertDialog.Builder(LaunchActivity.this);
-                                builder.setTitle(LocaleController.getString(R.string.AxGram));
+                                builder.setTitle(LocaleController.getString(R.string.Katarsis));
                                 if (error.text.startsWith("FLOOD_WAIT")) {
                                     builder.setMessage(LocaleController.getString(R.string.FloodWait));
                                 } else if (error.text.equals("USERS_TOO_MUCH")) {
@@ -6128,7 +6128,7 @@ public class LaunchActivity extends BasePermissionsActivity implements INavigati
     }
 
     public void checkAppUpdate(boolean force, Browser.Progress progress, boolean updateAlways) {
-        // AxGram: never auto-check for Nagram updates (no recurring update popups / bottom bar).
+        // Katarsis: never auto-check for Nagram updates (no recurring update popups / bottom bar).
         if (!force) {
             return;
         }
@@ -7220,7 +7220,7 @@ public class LaunchActivity extends BasePermissionsActivity implements INavigati
         }
         if (UserConfig.getInstance(UserConfig.selectedAccount).unacceptedTermsOfService != null) {
             showTosActivity(UserConfig.selectedAccount, UserConfig.getInstance(UserConfig.selectedAccount).unacceptedTermsOfService);
-        } else if (false && SharedConfig.pendingAppUpdate != null && SharedConfig.pendingAppUpdate.can_not_skip) { // AxGram: no forced update screen
+        } else if (false && SharedConfig.pendingAppUpdate != null && SharedConfig.pendingAppUpdate.can_not_skip) { // Katarsis: no forced update screen
             showUpdateActivity(UserConfig.selectedAccount, SharedConfig.pendingAppUpdate, true);
         }
         checkAppUpdate(false, null);
@@ -7391,7 +7391,7 @@ public class LaunchActivity extends BasePermissionsActivity implements INavigati
             }
 
             AlertDialog.Builder builder = new AlertDialog.Builder(this);
-            builder.setTitle(LocaleController.getString(R.string.AxGram));
+            builder.setTitle(LocaleController.getString(R.string.Katarsis));
             if (fragment != null) {
                 Map<String, Integer> colorsReplacement = new HashMap<>();
                 colorsReplacement.put("info1", fragment.getThemedColor(Theme.key_dialogTopBackground));
@@ -7458,7 +7458,7 @@ public class LaunchActivity extends BasePermissionsActivity implements INavigati
         } else if (id == NotificationCenter.wasUnableToFindCurrentLocation) {
             final HashMap<String, MessageObject> waitingForLocation = (HashMap<String, MessageObject>) args[0];
             AlertDialog.Builder builder = new AlertDialog.Builder(this);
-            builder.setTitle(LocaleController.getString(R.string.AxGram));
+            builder.setTitle(LocaleController.getString(R.string.Katarsis));
             builder.setPositiveButton(LocaleController.getString(R.string.OK), null);
             builder.setNegativeButton(LocaleController.getString(R.string.ShareYouLocationUnableManually), (dialogInterface, i) -> {
                 if (mainFragmentsStack.isEmpty()) {

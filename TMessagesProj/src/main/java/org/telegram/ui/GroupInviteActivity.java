@@ -42,7 +42,7 @@ import org.telegram.ui.Components.RecyclerListView;
 
 import java.util.ArrayList;
 
-import one.axgram.core.utils.ProxyUtil;
+import one.katarsis.core.utils.ProxyUtil;
 
 public class GroupInviteActivity extends BaseFragment implements NotificationCenter.NotificationCenterDelegate {
 

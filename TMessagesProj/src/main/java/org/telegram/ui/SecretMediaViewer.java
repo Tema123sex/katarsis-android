@@ -116,7 +116,7 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Locale;
 
-import one.axgram.core.AxLegacyConfig;
+import one.katarsis.core.AxLegacyConfig;
 
 public class SecretMediaViewer implements NotificationCenter.NotificationCenterDelegate, GestureDetector.OnGestureListener, GestureDetector.OnDoubleTapListener {
 

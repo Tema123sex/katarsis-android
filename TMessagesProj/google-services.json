@@ -1,15 +1,15 @@
 {
   "project_info": {
     "project_number": "440286940747",
-    "project_id": "axgram-de00c",
-    "storage_bucket": "axgram-de00c.firebasestorage.app"
+    "project_id": "katarsis-de00c",
+    "storage_bucket": "katarsis-de00c.firebasestorage.app"
   },
   "client": [
     {
       "client_info": {
         "mobilesdk_app_id": "1:440286940747:android:b5f5e3329fc896f86047ce",
         "android_client_info": {
-          "package_name": "one.axgram.android"
+          "package_name": "one.katarsis.android"
         }
       },
       "oauth_client": [],

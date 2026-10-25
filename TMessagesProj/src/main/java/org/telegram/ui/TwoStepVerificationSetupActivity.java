@@ -85,9 +85,9 @@ import org.telegram.ui.Components.spoilers.SpoilersTextView;
 
 import java.util.ArrayList;
 
-import one.axgram.core.AxCoreConfig;
-import one.axgram.core.ui.EditTextAutoFill;
-import one.axgram.core.utils.VibrateUtil;
+import one.katarsis.core.AxCoreConfig;
+import one.katarsis.core.ui.EditTextAutoFill;
+import one.katarsis.core.utils.VibrateUtil;
 
 public class TwoStepVerificationSetupActivity extends BaseFragment {
 

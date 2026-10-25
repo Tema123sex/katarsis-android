@@ -34,13 +34,13 @@ import com.google.android.gms.maps.model.MarkerOptions;
 import org.telegram.messenger.IMapsProvider;
 import org.telegram.messenger.R;
 
-import one.axgram.extra.location.AxLocationSource;
+import one.katarsis.extra.location.AxLocationSource;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-import one.axgram.core.AxCoreConfig;
+import one.katarsis.core.AxCoreConfig;
 
 public class GoogleMapsProvider implements IMapsProvider {
 

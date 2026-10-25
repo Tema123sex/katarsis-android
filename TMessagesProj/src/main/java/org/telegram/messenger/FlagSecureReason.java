@@ -5,7 +5,7 @@ import android.view.WindowManager;
 
 import java.util.HashMap;
 
-import one.axgram.core.AxLegacyConfig;
+import one.katarsis.core.AxLegacyConfig;
 
 public class FlagSecureReason {
 

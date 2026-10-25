@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <string name="N_Config">AxGram Config</string>
+    <string name="N_Config">Katarsis Config</string>
     <string name="ForceCopy">Forza Copia</string>
     <string name="disableSecondAddress">Disabilita Richiesta Secondo Indirizzo</string>
     <string name="InvertReply">Invert</string>
@@ -24,7 +24,7 @@
     <string name="CodeSyntaxHighlight">Evidenziazione sintassi codice</string>
     <string name="CreateMono">Crea Monospace</string>
     <string name="CreateMonoLanguage">Lingua del codice</string>
-    <string name="CodeSyntaxHighlightDetails">Grazie a prismjs e AxGram</string>
+    <string name="CodeSyntaxHighlightDetails">Grazie a prismjs e Katarsis</string>
     <string name="UseSystemUnlock">Passcode Sblocca usa il sistema ui</string>
     <string name="CopyPhoto">Copia Foto</string>
     <string name="PhotoCopied">Foto copiata negli appunti</string>
@@ -77,7 +77,7 @@
     <string name="IconDecoration">Decorazione Icona</string>
     <string name="NotificationIcon">Icona Notifica</string>
     <string name="Official">Ufficiale</string>
-    <string name="AxGramLegacy">AxGram</string>
+    <string name="KatarsisLegacy">Katarsis</string>
     <string name="HalloWeen">HalloWeen</string>
     <string name="ShowOnlineStatus">Mostra Stato Online</string>
     <string name="ShowOnlineStatusNotice">Mostra lo stato online di altre persone accanto alla foto del loro profilo in gruppi</string>

@@ -225,15 +225,15 @@ import java.util.concurrent.atomic.AtomicReference;
 import cn.hutool.core.util.NumberUtil;
 import cn.hutool.core.util.StrUtil;
 import kotlin.Unit;
-import one.axgram.core.BackButtonMenuRecent;
-import one.axgram.core.AxCoreConfig;
-import one.axgram.core.AxLegacyConfig;
-import one.axgram.core.helpers.PasscodeHelper;
-import one.axgram.core.ui.BottomBuilder;
-import one.axgram.core.ui.EditTextAutoFill;
-import one.axgram.core.utils.AlertUtil;
-import one.axgram.core.utils.ProxyUtil;
-import one.axgram.core.helpers.AppRestartHelper;
+import one.katarsis.core.BackButtonMenuRecent;
+import one.katarsis.core.AxCoreConfig;
+import one.katarsis.core.AxLegacyConfig;
+import one.katarsis.core.helpers.PasscodeHelper;
+import one.katarsis.core.ui.BottomBuilder;
+import one.katarsis.core.ui.EditTextAutoFill;
+import one.katarsis.core.utils.AlertUtil;
+import one.katarsis.core.utils.ProxyUtil;
+import one.katarsis.core.helpers.AppRestartHelper;
 
 @SuppressLint("HardwareIds")
 public class LoginActivity extends BaseFragment implements NotificationCenter.NotificationCenterDelegate {
@@ -1851,7 +1851,7 @@ public class LoginActivity extends BaseFragment implements NotificationCenter.No
             return;
         }
         if (res.type instanceof TLRPC.TL_auth_sentCodeTypeFirebaseSms && !res.type.verifiedFirebase && !isRequestingFirebaseSms) {
-            // AxGram: disable SafetyNet
+            // Katarsis: disable SafetyNet
             /*
             if (PushListenerController.GooglePushListenerServiceProvider.INSTANCE.hasServices()) {
                 TLRPC.TL_auth_sentCodeTypeFirebaseSms r = (TLRPC.TL_auth_sentCodeTypeFirebaseSms) res.type;
@@ -2630,7 +2630,7 @@ public class LoginActivity extends BaseFragment implements NotificationCenter.No
 
             String country = null;
 
-            // AxGram: Remove TelephonyManager
+            // Katarsis: Remove TelephonyManager
 //            try {
 //                TelephonyManager telephonyManager = (TelephonyManager) ApplicationLoader.applicationContext.getSystemService(Context.TELEPHONY_SERVICE);
 //                if (telephonyManager != null) {
@@ -3190,7 +3190,7 @@ public class LoginActivity extends BaseFragment implements NotificationCenter.No
             settings.allow_flashcall = simcardAvailable && allowCall && allowCancelCall && allowReadCallLog;
             settings.allow_missed_call = simcardAvailable && allowCall;
             settings.allow_app_hash = settings.allow_firebase = false;
-            // AxGram: disable app_hash and firebase login
+            // Katarsis: disable app_hash and firebase login
             if (forceDisableSafetyNet || TextUtils.isEmpty(BuildVars.SAFETYNET_KEY)) {
                 settings.allow_firebase = false;
             }
@@ -3355,7 +3355,7 @@ public class LoginActivity extends BaseFragment implements NotificationCenter.No
                                                 bundle.putString("code", reqI.phone_code);
                                                 setPage(LoginActivity.VIEW_PASSWORD, true, bundle, false);
                                             } else {
-                                                needShowAlert(LocaleController.getString("AxGram", R.string.AxGram), error1.text);
+                                                needShowAlert(LocaleController.getString("Katarsis", R.string.Katarsis), error1.text);
                                             }
                                         }), ConnectionsManager.RequestFlagFailOnServerErrors | ConnectionsManager.RequestFlagWithoutLogin);
                                     } else {
@@ -3363,17 +3363,17 @@ public class LoginActivity extends BaseFragment implements NotificationCenter.No
                                         showDoneButton(false, true);
 
                                         if (errorI.text.contains("PHONE_NUMBER_INVALID")) {
-                                            needShowAlert(LocaleController.getString("AxGram", R.string.AxGram), LocaleController.getString("InvalidPhoneNumber", R.string.InvalidPhoneNumber));
+                                            needShowAlert(LocaleController.getString("Katarsis", R.string.Katarsis), LocaleController.getString("InvalidPhoneNumber", R.string.InvalidPhoneNumber));
                                         } else if (errorI.text.contains("PHONE_CODE_EMPTY") || errorI.text.contains("PHONE_CODE_INVALID")) {
-                                            needShowAlert(LocaleController.getString("AxGram", R.string.AxGram), LocaleController.getString("InvalidCode", R.string.InvalidCode));
+                                            needShowAlert(LocaleController.getString("Katarsis", R.string.Katarsis), LocaleController.getString("InvalidCode", R.string.InvalidCode));
                                         } else if (errorI.text.contains("PHONE_CODE_EXPIRED")) {
                                             onBackPressed(true);
                                             setPage(VIEW_PHONE_INPUT, true, null, true);
-                                            needShowAlert(LocaleController.getString("AxGram", R.string.AxGram), LocaleController.getString("CodeExpired", R.string.CodeExpired));
+                                            needShowAlert(LocaleController.getString("Katarsis", R.string.Katarsis), LocaleController.getString("CodeExpired", R.string.CodeExpired));
                                         } else if (errorI.text.startsWith("FLOOD_WAIT")) {
-                                            needShowAlert(LocaleController.getString("AxGram", R.string.AxGram), LocaleController.getString("FloodWait", R.string.FloodWait));
+                                            needShowAlert(LocaleController.getString("Katarsis", R.string.Katarsis), LocaleController.getString("FloodWait", R.string.FloodWait));
                                         } else {
-                                            needShowAlert(LocaleController.getString("AxGram", R.string.AxGram), LocaleController.getString("ErrorOccurred", R.string.ErrorOccurred) + "\n" + errorI.text);
+                                            needShowAlert(LocaleController.getString("Katarsis", R.string.Katarsis), LocaleController.getString("ErrorOccurred", R.string.ErrorOccurred) + "\n" + errorI.text);
                                         }
                                     }
                                 }
@@ -4288,7 +4288,7 @@ public class LoginActivity extends BaseFragment implements NotificationCenter.No
                                         mailer.putExtra(Intent.EXTRA_TEXT, body.toString());
                                         getContext().startActivity(Intent.createChooser(mailer, "Send email..."));
                                     } catch (Exception e) {
-                                        needShowAlert(getString(R.string.AxGram), getString("NoMailInstalled", R.string.NoMailInstalled));
+                                        needShowAlert(getString(R.string.Katarsis), getString("NoMailInstalled", R.string.NoMailInstalled));
                                     }
                                 })
                                 .setPositiveButton(getString(R.string.Close), null)
@@ -6153,7 +6153,7 @@ public class LoginActivity extends BaseFragment implements NotificationCenter.No
 
             addView(emailOutlineView, LayoutHelper.createLinear(LayoutHelper.MATCH_PARENT, 58, 16, 24, 16, 0));
 
-            // AxGram: Remove signInWithGoogleView.
+            // Katarsis: Remove signInWithGoogleView.
         }
 
         @Override
@@ -6231,7 +6231,7 @@ public class LoginActivity extends BaseFragment implements NotificationCenter.No
             params.putString("email", email);
             params.putBoolean("setup", true);
 
-            // AxGram: remove google account login
+            // Katarsis: remove google account login
 
             if (TextUtils.isEmpty(email)) {
                 onPasscodeError(false);
@@ -6400,7 +6400,7 @@ public class LoginActivity extends BaseFragment implements NotificationCenter.No
 
             addView(codeFieldContainer, LayoutHelper.createLinear(LayoutHelper.WRAP_CONTENT, 42, Gravity.CENTER_HORIZONTAL, 0, setup ? 48 : 32, 0, 0));
 
-            // AxGram: Remove signinWithGoogle
+            // Katarsis: Remove signinWithGoogle
 
             cantAccessEmailFrameLayout = new FrameLayout(context);
             AndroidUtilities.updateViewVisibilityAnimated(cantAccessEmailFrameLayout, activityMode != MODE_CHANGE_LOGIN_EMAIL && !isSetup, 1f, false);
@@ -8905,7 +8905,7 @@ public class LoginActivity extends BaseFragment implements NotificationCenter.No
             String token = editText.getText().toString();
 
             if (token.isEmpty()) {
-                needShowAlert(LocaleController.getString("AxGram", R.string.AxGram), LocaleController.getString("InvalidAccessToken", R.string.InvalidAccessToken));
+                needShowAlert(LocaleController.getString("Katarsis", R.string.Katarsis), LocaleController.getString("InvalidAccessToken", R.string.InvalidAccessToken));
                 return;
             }
 
@@ -8926,11 +8926,11 @@ public class LoginActivity extends BaseFragment implements NotificationCenter.No
                     }
                     if (error.text != null) {
                         if (error.text.contains("ACCESS_TOKEN_INVALID")) {
-                            needShowAlert(LocaleController.getString("AxGram", R.string.AxGram), LocaleController.getString("InvalidAccessToken", R.string.InvalidAccessToken));
+                            needShowAlert(LocaleController.getString("Katarsis", R.string.Katarsis), LocaleController.getString("InvalidAccessToken", R.string.InvalidAccessToken));
                         } else if (error.text.startsWith("FLOOD_WAIT")) {
-                            needShowAlert(LocaleController.getString("AxGram", R.string.AxGram), LocaleController.getString("FloodWait", R.string.FloodWait));
+                            needShowAlert(LocaleController.getString("Katarsis", R.string.Katarsis), LocaleController.getString("FloodWait", R.string.FloodWait));
                         } else if (error.code != -1000) {
-                            needShowAlert(LocaleController.getString("AxGram", R.string.AxGram), error.code + ": " + error.text);
+                            needShowAlert(LocaleController.getString("Katarsis", R.string.Katarsis), error.code + ": " + error.text);
                         }
                     }
                 }
@@ -10539,7 +10539,7 @@ public class LoginActivity extends BaseFragment implements NotificationCenter.No
                     bundle.putString("password", Utilities.bytesToHex(data.toByteArray()));
                     setPage(LoginActivity.VIEW_PASSWORD, true, bundle, false);
                 } else {
-                    needShowAlert(LocaleController.getString("AxGram", R.string.AxGram), error1.text);
+                    needShowAlert(LocaleController.getString("Katarsis", R.string.Katarsis), error1.text);
                 }
             }), ConnectionsManager.RequestFlagFailOnServerErrors | ConnectionsManager.RequestFlagWithoutLogin);
         } else {
@@ -10669,7 +10669,7 @@ public class LoginActivity extends BaseFragment implements NotificationCenter.No
             AxLegacyConfig.customApi = target;
             AxLegacyConfig.saveCustomApi();
             AlertDialog restart = new AlertDialog(getContext(), 0);
-            restart.setTitle(LocaleController.getString(R.string.AxGram));
+            restart.setTitle(LocaleController.getString(R.string.Katarsis));
             restart.setMessage(LocaleController.getString(R.string.RestartAppToTakeEffect));
             restart.setPositiveButton(LocaleController.getString(R.string.OK), (__, ___) -> {
                 AppRestartHelper.triggerRebirth();

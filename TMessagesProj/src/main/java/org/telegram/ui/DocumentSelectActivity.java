@@ -100,12 +100,12 @@ import java.util.concurrent.atomic.AtomicBoolean;
 
 import cn.hutool.core.collection.CollectionUtil;
 import kotlin.Unit;
-import one.axgram.core.utils.EnvUtil;
-import one.axgram.core.AxCoreConfig;
-import one.axgram.core.transtale.TranslateDb;
-import one.axgram.core.transtale.Translator;
-import one.axgram.core.transtale.TranslatorKt;
-import one.axgram.core.utils.AlertUtil;
+import one.katarsis.core.utils.EnvUtil;
+import one.katarsis.core.AxCoreConfig;
+import one.katarsis.core.transtale.TranslateDb;
+import one.katarsis.core.transtale.Translator;
+import one.katarsis.core.transtale.TranslatorKt;
+import one.katarsis.core.utils.AlertUtil;
 
 public class DocumentSelectActivity extends BaseFragment {
 
@@ -1309,7 +1309,7 @@ public class DocumentSelectActivity extends BaseFragment {
         if (getParentActivity() == null) {
             return;
         }
-        new AlertDialog.Builder(getParentActivity()).setTitle(LocaleController.getString("AxGram", R.string.AxGram)).setMessage(error).setPositiveButton(LocaleController.getString("OK", R.string.OK), null).show();
+        new AlertDialog.Builder(getParentActivity()).setTitle(LocaleController.getString("Katarsis", R.string.Katarsis)).setMessage(error).setPositiveButton(LocaleController.getString("OK", R.string.OK), null).show();
     }
 
     @SuppressLint("NewApi")

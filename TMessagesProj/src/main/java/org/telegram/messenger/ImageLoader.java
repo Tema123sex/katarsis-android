@@ -89,9 +89,9 @@ import java.util.concurrent.ConcurrentHashMap;
 import java.util.stream.Stream;
 import java.util.zip.GZIPInputStream;
 
-import one.axgram.core.utils.EnvUtil;
-import one.axgram.core.utils.FileUtil;
-import one.axgram.extra.helper.LyricsHelper;
+import one.katarsis.core.utils.EnvUtil;
+import one.katarsis.core.utils.FileUtil;
+import one.katarsis.extra.helper.LyricsHelper;
 
 /**
  * image filter types

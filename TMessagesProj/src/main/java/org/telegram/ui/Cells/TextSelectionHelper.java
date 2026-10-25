@@ -73,13 +73,13 @@ import org.telegram.ui.RestrictedLanguagesSelectActivity;
 
 import java.util.ArrayList;
 
-import one.axgram.core.AxCoreConfig;
-import one.axgram.core.transtale.TranslateDb;
-import one.axgram.core.transtale.Translator;
-import one.axgram.core.utils.AlertUtil;
-import one.axgram.core.utils.ProxyUtil;
-import one.axgram.extra.AxConfig;
-import one.axgram.extra.helper.SystemAiServiceHelper;
+import one.katarsis.core.AxCoreConfig;
+import one.katarsis.core.transtale.TranslateDb;
+import one.katarsis.core.transtale.Translator;
+import one.katarsis.core.utils.AlertUtil;
+import one.katarsis.core.utils.ProxyUtil;
+import one.katarsis.extra.AxConfig;
+import one.katarsis.extra.helper.SystemAiServiceHelper;
 
 import static com.google.zxing.common.detector.MathUtils.distance;
 import static org.telegram.ui.ActionBar.FloatingToolbar.STYLE_THEME;
@@ -1605,7 +1605,7 @@ public abstract class TextSelectionHelper<Cell extends TextSelectionHelper.Selec
                 if (pasteItem != null) {
                     pasteItem.setVisible(canPaste() && clipboardHasContent());
                 }
-                // AxGram: Merge 8.5.0, remove due to removing LanguageDetector
+                // Katarsis: Merge 8.5.0, remove due to removing LanguageDetector
                 return true;
             }
 

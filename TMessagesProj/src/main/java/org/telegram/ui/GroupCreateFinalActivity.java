@@ -78,7 +78,7 @@ import org.telegram.ui.Components.SizeNotifierFrameLayout;
 import java.util.ArrayList;
 import java.util.concurrent.CountDownLatch;
 
-import one.axgram.core.utils.VibrateUtil;
+import one.katarsis.core.utils.VibrateUtil;
 
 public class GroupCreateFinalActivity extends BaseFragment implements NotificationCenter.NotificationCenterDelegate, ImageUpdater.ImageUpdaterDelegate {
 

@@ -71,7 +71,7 @@ import java.util.Calendar;
 import java.util.Collections;
 import java.util.Objects;
 
-import one.axgram.core.helpers.PasscodeHelper;
+import one.katarsis.core.helpers.PasscodeHelper;
 
 public class UserInfoActivity extends UniversalFragment implements NotificationCenter.NotificationCenterDelegate {
 

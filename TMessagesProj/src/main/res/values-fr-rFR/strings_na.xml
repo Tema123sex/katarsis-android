@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <string name="N_Config">AxGram Configuration</string>
+    <string name="N_Config">Katarsis Configuration</string>
     <string name="ForceCopy">Forcer la copie</string>
     <string name="disableSecondAddress">Désactiver la demande de deuxième adresse</string>
     <string name="InvertReply">Inverser</string>
@@ -20,11 +20,11 @@
     <string name="SendReactions">Envoyer des réactions</string>
     <string name="ShowReactions">Afficher les réactions</string>
     <string name="CustomTitle">Titre personnalisé</string>
-    <string name="CustomTitleHint">Laisser vide pour utiliser AxGram</string>
+    <string name="CustomTitleHint">Laisser vide pour utiliser Katarsis</string>
     <string name="CodeSyntaxHighlight">Surbrillance de la syntaxe du code</string>
     <string name="CreateMono">Créer un Monospace</string>
     <string name="CreateMonoLanguage">Langue du code</string>
-    <string name="CodeSyntaxHighlightDetails">Merci a prismjs et à AxGram</string>
+    <string name="CodeSyntaxHighlightDetails">Merci a prismjs et à Katarsis</string>
     <string name="UseSystemUnlock">Déverrouiller le mot de passe en utilisant le système ui</string>
     <string name="CopyPhoto">Copier la photo</string>
     <string name="PhotoCopied">Photo copiée dans le presse-papiers</string>
@@ -60,7 +60,7 @@
     <string name="QuickToggleAnonymousNotice">Si vous êtes propriétaire du groupe</string>
     <string name="RealHideTimeForSticker">Temps réel pour cacher les autocollants</string>
     <string name="ResetSettings">Réinitialiser les paramètres</string>
-    <string name="ResetSettingsAlert">Êtes-vous sûr de vouloir réinitialiser tous les AxGram Paramètres?</string>
+    <string name="ResetSettingsAlert">Êtes-vous sûr de vouloir réinitialiser tous les Katarsis Paramètres?</string>
     <string name="HideTitle">Cacher le titre</string>
     <string name="IgnoreFolderCount">Ignorer le nombre de dossiers</string>
     <string name="SendWithoutMarkdown">Envoyer sans marquage</string>
@@ -77,7 +77,7 @@
     <string name="IconDecoration">Décoration de l\'icône</string>
     <string name="NotificationIcon">Icône de notification</string>
     <string name="Official">Officiel</string>
-    <string name="AxGramLegacy">AxGram</string>
+    <string name="KatarsisLegacy">Katarsis</string>
     <string name="HalloWeen">HalloWeen</string>
     <string name="ShowOnlineStatus">Afficher le statut en ligne</string>
     <string name="ShowOnlineStatusNotice">Afficher le statut en ligne des autres personnes à côté de leur photo de profil dans les groupes</string>
@@ -92,7 +92,7 @@
     <string name="ShowForumAsNormalChat">Afficher le forum comme la discussion normale</string>
     <string name="DecorationNone">Aucun</string>
     <string name="ChatDecoration">Décoration de Discussion</string>
-    <string name="NeedChangeAxSettings">Vous devez modifier les AxGram Paramètres</string>
+    <string name="NeedChangeAxSettings">Vous devez modifier les Katarsis Paramètres</string>
     <string name="DoNotUnarchiveBySwipe">Ne pas désarchiver par balayage</string>
     <string name="DoNotShareMyPhoneNumber">Ne pas partager mon numéro de téléphone</string>
     <string name="DefaultDeleteMenu">Menu de suppression par défaut</string>

@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <string name="AxSettings">AxGram Settings</string>
+    <string name="AxSettings">Katarsis Settings</string>
     <string name="IPv6">Connecting through IPv6</string>
     <string name="MessageMenu">Message menu</string>
     <string name="HidePhone">Hide my phone number</string>
@@ -28,7 +28,7 @@
     <string name="TransparentStatusBar">Transparent status bar</string>
     <string name="EnableResidentNotification">Show a resident notification</string>
     <string name="DisableResidentNotification">Disable resident notification</string>
-    <string name="AxGramRunning">AxGram is running</string>
+    <string name="KatarsisRunning">Katarsis is running</string>
     <string name="EventType">Sidebar icon set</string>
     <string name="ChristmasHat">Show santa hat every day</string>
     <string name="ActionBarDecoration">Title bar decoration</string>
@@ -97,9 +97,9 @@
     <string name="About">About</string>
     <string name="IgnoreBlockedAbout">You\'ll no longer see messages from blocked users in groups.</string>
     <string name="GooglePlay">Google Play</string>
-    <string name="AxPromoChannelTitle">AxGram channel</string>
+    <string name="AxPromoChannelTitle">Katarsis channel</string>
     <string name="AxPromoChannelText">News, updates and discussion.</string>
-    <string name="AxPromoSupportTitle">Support AxGram</string>
+    <string name="AxPromoSupportTitle">Support Katarsis</string>
     <string name="AxPromoSupportText">Stars go toward development: builds and new features.</string>
     <string name="AxPromoOpen">Open</string>
     <string name="SupportAuthor">Support the author</string>
@@ -133,7 +133,7 @@
     <string name="disableSwipeToNextChannel">Disable swipe to next channel</string>
     <string name="disableChoosingSticker">Send typing instead of choosing sticker</string>
     <string name="disableRemoteEmojiInteractions">Disable emoji interactions from remote</string>
-    <string name="enablePublicProxy">AxGram Public Proxy</string>
+    <string name="enablePublicProxy">Katarsis Public Proxy</string>
     <string name="autoUpdateSubInfo">Update proxies automatically</string>
     <string name="hideSendAsChannel">Hide send as channel</string>
     <string name="showSpoilersDirectly">Display Spoiler messages directly</string>
@@ -167,10 +167,10 @@
     <string name="enableLogs">Enable logs</string>
     <string name="showAxPromo">Remind about the channel and support</string>
     <string name="useOSMDroidMap">Use OSMDroid Map</string>
-    <string name="UnknownAxSettingsOption">There is no such AxGram Settings option.</string>
+    <string name="UnknownAxSettingsOption">There is no such Katarsis Settings option.</string>
     <string name="PasscodeNeeded">You have to enable passcode lock first</string>
     <string name="PasscodeAx">Passcode</string>
-    <string name="PasscodeShowInSettings">Show in AxGram Settings</string>
+    <string name="PasscodeShowInSettings">Show in Katarsis Settings</string>
     <string name="PasscodeShowInSettingsAbout">After hiding, you can **ONLY** open this page by link:</string>
     <string name="PasscodeSet">Set passcode</string>
     <string name="PasscodeEdit">Change passcode</string>
@@ -214,7 +214,7 @@
     <string name="ClearRecentChats">Clear recent chats</string>
     <string name="ClearRecentChatAlert">Do you want to clear your recent chats?</string>
     <string name="CloudConfig">Cloud Settings</string>
-    <string name="CloudConfigDesc">Save your AxGram Settings to Telegram cloud.</string>
+    <string name="CloudConfigDesc">Save your Katarsis Settings to Telegram cloud.</string>
     <string name="CloudConfigSyncDate">Last synced: %s, cloud: %s</string>
     <string name="CloudConfigSyncDateNever">never</string>
     <string name="CloudConfigSync">Sync to cloud</string>
@@ -223,7 +223,7 @@
     <string name="CloudConfigRestoreShort">Restore</string>
     <string name="CloudConfigSyncing">Syncing...</string>
     <string name="CloudConfigAutoSync">Auto sync</string>
-    <string name="CloudConfigAutoSyncDesc">Sync to cloud automatically after making changes to AxGram Settings.</string>
+    <string name="CloudConfigAutoSyncDesc">Sync to cloud automatically after making changes to Katarsis Settings.</string>
     <string name="CloudConfigSyncFailed">Failed to sync settings to cloud.</string>
     <string name="CloudConfigRestoreFailed">Failed to restore settings from cloud.</string>
     <string name="CopyCallback">Copy Callback Data</string>

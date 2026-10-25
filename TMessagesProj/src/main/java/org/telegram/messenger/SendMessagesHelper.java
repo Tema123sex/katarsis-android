@@ -130,7 +130,7 @@ import java.util.zip.ZipEntry;
 import java.util.zip.ZipInputStream;
 
 import top.qwq2333.nullgram.utils.StringUtils;
-import one.axgram.extra.AxConfig;
+import one.katarsis.extra.AxConfig;
 
 public class SendMessagesHelper extends BaseController implements NotificationCenter.NotificationCenterDelegate {
 

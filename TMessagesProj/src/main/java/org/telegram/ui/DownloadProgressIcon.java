@@ -22,7 +22,7 @@ import org.telegram.ui.Components.RLottieDrawable;
 import java.util.ArrayList;
 import java.util.HashMap;
 
-import one.axgram.extra.AxConfig;
+import one.katarsis.extra.AxConfig;
 
 public class DownloadProgressIcon extends View implements NotificationCenter.NotificationCenterDelegate {
 

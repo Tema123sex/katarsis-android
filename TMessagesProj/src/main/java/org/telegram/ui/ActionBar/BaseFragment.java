@@ -69,11 +69,11 @@ import org.telegram.ui.bots.BotWebViewAttachedSheet;
 
 import java.util.ArrayList;
 
-import one.axgram.core.AxCoreConfig;
-import one.axgram.core.helpers.UserHelper;
-import one.axgram.core.utils.VibrateUtil;
-import one.axgram.core.ui.MessageHelper;
-import one.axgram.extra.AxConfig;
+import one.katarsis.core.AxCoreConfig;
+import one.katarsis.core.helpers.UserHelper;
+import one.katarsis.core.utils.VibrateUtil;
+import one.katarsis.core.ui.MessageHelper;
+import one.katarsis.extra.AxConfig;
 
 public abstract class BaseFragment {
 

@@ -50,9 +50,9 @@ import androidx.collection.LongSparseArray;
 import androidx.core.graphics.ColorUtils;
 
 import top.qwq2333.nullgram.utils.StringUtils;
-import one.axgram.extra.AxConfig;
-import one.axgram.extra.helper.MessageHelper;
-import one.axgram.extra.ui.syntaxhighlight.SyntaxHighlight;
+import one.katarsis.extra.AxConfig;
+import one.katarsis.extra.helper.MessageHelper;
+import one.katarsis.extra.ui.syntaxhighlight.SyntaxHighlight;
 
 import org.telegram.PhoneFormat.PhoneFormat;
 import org.telegram.messenger.browser.Browser;
@@ -134,8 +134,8 @@ import java.util.regex.Pattern;
 import me.vkryl.core.BitwiseUtils;
 
 import cn.hutool.core.util.StrUtil;
-import one.axgram.core.AxCoreConfig;
-import one.axgram.core.AxLegacyConfig;
+import one.katarsis.core.AxCoreConfig;
+import one.katarsis.core.AxLegacyConfig;
 
 public class MessageObject {
     private static final int MESSAGE_ID_RESERVED_BITS_MASK = 0x70000000;
@@ -234,7 +234,7 @@ public class MessageObject {
     public int dateKeyInt;
     public String monthKey;
     public boolean deleted;
-    public boolean axDeleted; // AxGram: message was deleted by someone but kept visible (anti-delete)
+    public boolean axDeleted; // Katarsis: message was deleted by someone but kept visible (anti-delete)
     public boolean deletedByThanos;
     public float audioProgress;
     public float forceSeekTo = -1;
@@ -11223,14 +11223,14 @@ public class MessageObject {
 
     public boolean isVoiceOnce() {
         if (AxLegacyConfig.disableFlagSecure) {
-            return false; // AxGram: treat view-once voice as a normal voice message (show/save, no self-destruct)
+            return false; // Katarsis: treat view-once voice as a normal voice message (show/save, no self-destruct)
         }
         return isVoice() && messageOwner != null && messageOwner.media != null && messageOwner.media.ttl_seconds == 0x7FFFFFFF;
     }
 
     public boolean isRoundOnce() {
         if (AxLegacyConfig.disableFlagSecure) {
-            return false; // AxGram: treat view-once round video as a normal circle (show/save, no self-destruct)
+            return false; // Katarsis: treat view-once round video as a normal circle (show/save, no self-destruct)
         }
         return isRoundVideo() && messageOwner != null && messageOwner.media != null && messageOwner.media.ttl_seconds == 0x7FFFFFFF;
     }
@@ -11665,7 +11665,7 @@ public class MessageObject {
     public boolean canForwardMessage() {
         if (isQuickReply()) return false;
         if (type == TYPE_GIFT_STARS || type == TYPE_GIFT_THEME_UPDATE || type == TYPE_SUGGEST_BIRTHDAY || type == TYPE_GIFT_OFFER || type == TYPE_SHARING_OFFER || type == TYPE_COMMUNITY_CHANGED) return false;
-        // AxGram: ignore per-message noforwards so forward/save works everywhere (like desktop)
+        // Katarsis: ignore per-message noforwards so forward/save works everywhere (like desktop)
         return !(messageOwner instanceof TLRPC.TL_message_secret) && !needDrawBluredPreview() && !isLiveLocation() && type != MessageObject.TYPE_PHONE_CALL && !isSponsored();
     }
 

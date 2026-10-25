@@ -83,7 +83,7 @@ import org.telegram.ui.Components.TypingDotsDrawable;
 import java.io.File;
 import java.util.ArrayList;
 
-import one.axgram.core.AxCoreConfig;
+import one.katarsis.core.AxCoreConfig;
 
 public class PopupNotificationActivity extends Activity implements NotificationCenter.NotificationCenterDelegate {
 

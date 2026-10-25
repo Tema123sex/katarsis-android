@@ -83,8 +83,8 @@ import me.vkryl.android.animator.BoolAnimator;
 import me.vkryl.android.animator.FactorAnimator;
 import me.vkryl.android.animator.ReplaceAnimator;
 
-import one.axgram.core.AxCoreConfig;
-import one.axgram.extra.AxConfig;
+import one.katarsis.core.AxCoreConfig;
+import one.katarsis.extra.AxConfig;
 
 public class ActionBar extends FrameLayout implements FactorAnimator.Target, Theme.Colorable {
 

@@ -47,7 +47,7 @@
     <string name="TransToLang">Çeviri Hedef Dili</string>
     <string name="TransInputToLang">Çeviri Girişi Hedef Dili</string>
     <string name="More">Daha</string>
-    <string name="AxUpdatesChannel">AxGram Güncellemeleri Kanalı</string>
+    <string name="AxUpdatesChannel">Katarsis Güncellemeleri Kanalı</string>
     <string name="ShowIdAndDc">Profilde ID / DC Değerlerini Göster</string>
     <string name="UseDefaultTheme">Varsayılan Temayı Kullan *</string>
     <string name="NightMode">Gece Modu</string>
@@ -59,7 +59,7 @@
     <string name="ApplySuggestion">Tamam, uygula</string>
     <string name="DoNotRemindAgain">Bir daha hatırlatma</string>
     <string name="RemoveTitleEmoji">Başlıktaki 😶 Emojisini Kaldır</string>
-    <string name="AxProxy">AxGram Genel Proxy</string>
+    <string name="AxProxy">Katarsis Genel Proxy</string>
     <string name="PublicPrefix">Genel</string>
     <string name="DisableChatAction">Giriş Durumumu (yazıyor, vb.) Gönderme</string>
     <string name="FakeScreenshot">Ekran görüntüsü gibi davran</string>
@@ -87,9 +87,9 @@
     <string name="SortByUnmuted">Seslilere Göre Sırala</string>
     <string name="SortByUser">Kullanıcıya Göre Sırala</string>
     <string name="SortByContacts">Kişilere Göre Sırala</string>
-    <string name="AxPushService">AxGram Bildirim Hizmeti</string>
-    <string name="EnablePushAlert">Lütfen \"AxGram Bildirim Hizmeti\"ni etkinleştirin</string>
-    <string name="DisablePushAlert">Lütfen \"AxGram Bildirim Hizmeti\"ni devre dışı bırakın</string>
+    <string name="AxPushService">Katarsis Bildirim Hizmeti</string>
+    <string name="EnablePushAlert">Lütfen \"Katarsis Bildirim Hizmeti\"ni etkinleştirin</string>
+    <string name="DisablePushAlert">Lütfen \"Katarsis Bildirim Hizmeti\"ni devre dışı bırakın</string>
     <string name="DisableUndo">Geri Almayı Devre Dışı Bırak</string>
     <string name="DisableSystemAccount">Sistem Hesabını Devre Dışı Bırak</string>
     <string name="FilterMenu">Mesajlaşma Filtresi Menüsü</string>
@@ -170,7 +170,7 @@
     <string name="DisableDeveloperMode">Geliştirici Modunu Devre Dışı Bırak</string>
     <string name="DeveloperSettings">Geliştirici Ayarları</string>
     <string name="LoginSettings">Giriş Ayarları</string>
-    <string name="AxFaq">AxGram SSS</string>
+    <string name="AxFaq">Katarsis SSS</string>
     <string name="TransSite">Çeviri Platformu</string>
     <string name="OpenKayChain">OpenPGP İstemcisi</string>
     <string name="OpenPGPApp">OpenPGP Sağlayıcısı</string>
@@ -257,7 +257,7 @@
     <string name="update_download_soucre">İndirme kaynağı seçin</string>
     <string name="useCustomEmoji">Özel emoji paketi kullan</string>
     <string name="showSeconds">Zaman bilgisini saniye türünde göster</string>
-    <string name="AppUpdateAxGram">AxGram\'i güncelle</string>
+    <string name="AppUpdateKatarsis">Katarsis\'i güncelle</string>
     <string name="customPublicProxyIPNotice">Bazı bölgelerde herkese açık proxy IP adresi belirtmek (örneğin Cloudflare) erişim hızını arttırabilir.</string>
     <string name="DeleteDownloadedFileExternal">Harici dosya atlandı.</string>
     <string name="repeatConfirmText">Tekrarlamak istediğinize emin misiniz\?</string>
@@ -281,5 +281,5 @@
     <string name="InteractionSettings">Etkileşim</string>
     <string name="StickerSettings">Çıkartma</string>
     <string name="ConfirmSettings">Doğrulama</string>
-    <string name="axPremiumGiftRemoved">Premium hediyeleri AxGram\'ten kaldırıldı.</string>
+    <string name="axPremiumGiftRemoved">Premium hediyeleri Katarsis\'ten kaldırıldı.</string>
 </resources>

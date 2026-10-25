@@ -49,7 +49,7 @@ import org.telegram.ui.Components.NumberTextView;
 
 import java.util.ArrayList;
 
-import one.axgram.core.utils.VibrateUtil;
+import one.katarsis.core.utils.VibrateUtil;
 
 public class ChangeBioActivity extends BaseFragment {
 

@@ -149,10 +149,10 @@ import java.util.Stack;
 
 import me.vkryl.android.animator.BoolAnimator;
 
-import one.axgram.core.helpers.AxFilter;
-import one.axgram.core.ui.MessageHelper;
-import one.axgram.core.AxCoreConfig;
-import one.axgram.extra.AxConfig;
+import one.katarsis.core.helpers.AxFilter;
+import one.katarsis.core.ui.MessageHelper;
+import one.katarsis.core.AxCoreConfig;
+import one.katarsis.extra.AxConfig;
 
 public class DialogCell extends BaseCell implements StoriesListPlaceProvider.AvatarOverlaysView, Theme.Colorable {
 
@@ -1146,7 +1146,7 @@ public class DialogCell extends BaseCell implements StoriesListPlaceProvider.Ava
             }
             String title;
             if (currentChat != null) {
-                title = one.axgram.extra.helper.MessageHelper.INSTANCE.zalgoFilter(currentChat.title.replace('\n', ' '));
+                title = one.katarsis.extra.helper.MessageHelper.INSTANCE.zalgoFilter(currentChat.title.replace('\n', ' '));
             } else if (currentUser != null) {
                 if (UserObject.isDeleted(currentUser)) {
                     title = getString(R.string.HiddenName);
@@ -2282,7 +2282,7 @@ public class DialogCell extends BaseCell implements StoriesListPlaceProvider.Ava
         }
 
         if (AxConfig.INSTANCE.getZalgoFilter().Bool() && topicIconInName == null) {
-            nameString = one.axgram.extra.helper.MessageHelper.INSTANCE.zalgoFilter(nameString);
+            nameString = one.katarsis.extra.helper.MessageHelper.INSTANCE.zalgoFilter(nameString);
         }
         int timeWidth;
         if (drawTime) {
@@ -3753,14 +3753,14 @@ public class DialogCell extends BaseCell implements StoriesListPlaceProvider.Ava
 
         if (message != null) {
             MessageObject captionMessage = getCaptionMessage();
-            // --- AxGram hook
+            // --- Katarsis hook
             boolean isFiltered = AxFilter.isFiltered(message, null) || (captionMessage != null && AxFilter.isFiltered(captionMessage, null));
             // --- NaGram hook
             isFiltered = isFiltered || (message.messageOwner != null && message.messageOwner.hide);
             isFiltered = isFiltered || (AxCoreConfig.ignoreBlocked.Bool() && MessagesController.getInstance(currentAccount).blockePeers.indexOfKey(message.getFromChatId()) >= 0);
             if (isFiltered) {
-                one.axgram.extra.helper.MessageHelper.INSTANCE.blurify(message);
-                if (captionMessage != null) one.axgram.extra.helper.MessageHelper.INSTANCE.blurify(captionMessage);
+                one.katarsis.extra.helper.MessageHelper.INSTANCE.blurify(message);
+                if (captionMessage != null) one.katarsis.extra.helper.MessageHelper.INSTANCE.blurify(captionMessage);
             }
         }
 
@@ -6099,7 +6099,7 @@ public class DialogCell extends BaseCell implements StoriesListPlaceProvider.Ava
             }
         } else if (captionMessage != null && captionMessage.caption != null) {
             MessageObject message = captionMessage;
-            CharSequence mess = one.axgram.extra.helper.MessageHelper.INSTANCE.zalgoFilter(message.caption.toString());
+            CharSequence mess = one.katarsis.extra.helper.MessageHelper.INSTANCE.zalgoFilter(message.caption.toString());
             String emoji;
             if (!needEmoji) {
                 emoji = "";

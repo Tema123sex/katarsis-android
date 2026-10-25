@@ -55,7 +55,7 @@ import org.telegram.ui.Components.CubicBezierInterpolator;
 import org.telegram.ui.Components.LayoutHelper;
 import org.telegram.ui.Components.Premium.PremiumGradient;
 
-import one.axgram.extra.AxConfig;
+import one.katarsis.extra.AxConfig;
 
 public class GroupCreateUserCell extends FrameLayout {
 

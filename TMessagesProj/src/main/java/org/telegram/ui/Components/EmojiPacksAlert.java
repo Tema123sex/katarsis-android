@@ -85,8 +85,8 @@ import java.util.ArrayList;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
-import one.axgram.core.AxCoreConfig;
-import one.axgram.core.utils.ProxyUtil;
+import one.katarsis.core.AxCoreConfig;
+import one.katarsis.core.utils.ProxyUtil;
 
 public class EmojiPacksAlert extends BottomSheet implements NotificationCenter.NotificationCenterDelegate {
 

@@ -125,7 +125,7 @@ import javax.microedition.khronos.egl.EGLContext;
 import javax.microedition.khronos.egl.EGLDisplay;
 import javax.microedition.khronos.egl.EGLSurface;
 
-import one.axgram.core.AxCoreConfig;
+import one.katarsis.core.AxCoreConfig;
 
 @SuppressLint("ViewConstructor")
 public class InstantCameraView extends FrameLayout implements NotificationCenter.NotificationCenterDelegate {

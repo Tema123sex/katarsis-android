@@ -151,8 +151,8 @@ import java.util.Map;
 import java.util.Objects;
 import java.util.concurrent.CountDownLatch;
 
-import one.axgram.core.AxCoreConfig;
-import one.axgram.core.helpers.MonetHelper;
+import one.katarsis.core.AxCoreConfig;
+import one.katarsis.core.helpers.MonetHelper;
 
 public class Theme {
 
@@ -1527,11 +1527,11 @@ public class Theme {
         }
 
         public String getName() {
-            // AxGram: ключ темы остаётся "NekoX" — по нему тема сохранена
+            // Katarsis: ключ темы остаётся "NekoX" — по нему тема сохранена
             // у пользователей, и его смена сбросила бы выбранное оформление.
             // Меняем только отображаемое имя.
             if ("NekoX".equals(name)) {
-                return "AxGram";
+                return "Katarsis";
             }
             if ("Blue".equals(name)) {
                 return getString(R.string.ThemeClassic);

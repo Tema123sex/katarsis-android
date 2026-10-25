@@ -41,8 +41,8 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
-import one.axgram.core.AxCoreConfig;
-import one.axgram.core.utils.VibrateUtil;
+import one.katarsis.core.AxCoreConfig;
+import one.katarsis.core.utils.VibrateUtil;
 
 public abstract class BaseChartView<T extends ChartData, L extends LineViewData> extends View implements ChartPickerDelegate.Listener {
 

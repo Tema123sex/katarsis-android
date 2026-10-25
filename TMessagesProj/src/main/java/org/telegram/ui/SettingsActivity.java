@@ -153,13 +153,13 @@ import java.util.Set;
 import kotlin.Unit;
 import me.vkryl.android.animator.BoolAnimator;
 import me.vkryl.android.animator.FactorAnimator;
-import one.axgram.core.AxCoreConfig;
-import one.axgram.core.AxLegacyConfig;
-import one.axgram.core.helpers.PasscodeHelper;
-import one.axgram.core.settings.AxSettingsActivity;
-import one.axgram.core.utils.AlertUtil;
-import one.axgram.extra.AxConfig;
-import one.axgram.extra.ui.ItemOptionsPatch;
+import one.katarsis.core.AxCoreConfig;
+import one.katarsis.core.AxLegacyConfig;
+import one.katarsis.core.helpers.PasscodeHelper;
+import one.katarsis.core.settings.AxSettingsActivity;
+import one.katarsis.core.utils.AlertUtil;
+import one.katarsis.extra.AxConfig;
+import one.katarsis.extra.ui.ItemOptionsPatch;
 
 public class SettingsActivity extends BaseFragment implements NotificationCenter.NotificationCenterDelegate, ImageUpdater.ImageUpdaterDelegate, MainTabsActivity.TabFragmentDelegate, FactorAnimator.Target {
 
@@ -489,7 +489,7 @@ public class SettingsActivity extends BaseFragment implements NotificationCenter
         versionView.setTextColor(getThemedColor(Theme.key_windowBackgroundWhiteGrayText4));
         versionView.setPadding(dp(21), dp(10), dp(21), dp(10));
         versionView.setGravity(Gravity.CENTER);
-        // AxGram: version text is plain and non-interactive (no debug menu, no hidden-feature toggle)
+        // Katarsis: version text is plain and non-interactive (no debug menu, no hidden-feature toggle)
         versionView.setClickable(false);
         versionView.setLongClickable(false);
 
@@ -771,7 +771,7 @@ public class SettingsActivity extends BaseFragment implements NotificationCenter
         items.add(SettingCell.Factory.of(23, IconBackgroundColors.PURPLE.top, IconBackgroundColors.PURPLE.bottom, R.drawable.settings_features, getString(R.string.TelegramFeatures)));
         items.add(SettingCell.Factory.of(19, IconBackgroundColors.GREEN.top, IconBackgroundColors.GREEN.bottom, R.drawable.settings_policy, getString(R.string.PrivacyPolicy)));
 
-        if (false) { // AxGram: hide the Debug/logs section entirely
+        if (false) { // Katarsis: hide the Debug/logs section entirely
             items.add(UItem.asShadow(null));
             items.add(UItem.asHeader(getString(R.string.SettingsDebug)));
             items.add(SettingCell.Factory.of(20, 0xFF55CA47, 0xFF27B434, 0, getString(R.string.DebugSendLogs)));
@@ -1446,7 +1446,7 @@ public class SettingsActivity extends BaseFragment implements NotificationCenter
             listView.adapter.update(true);
         });
         o.add(R.drawable.msg_retry, LocaleController.getString(R.string.SwitchVersion), () -> {
-            Browser.openUrl(getContext(), "https://github.com/aevornyx/axgram-android/releases");
+            Browser.openUrl(getContext(), "https://github.com/aevornyx/katarsis-android/releases");
         });
 
         o.add(R.drawable.msg_search, LocaleController.getString(R.string.CheckUpdate), () -> {

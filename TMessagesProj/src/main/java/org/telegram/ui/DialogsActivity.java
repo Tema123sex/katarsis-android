@@ -280,25 +280,25 @@ import java.util.concurrent.ConcurrentHashMap;
 import java.util.Random;
 
 import kotlin.Unit;
-import one.axgram.core.BackButtonMenuRecent;
-import one.axgram.core.helpers.PasscodeHelper;
-import one.axgram.core.settings.AxGhostModeActivity;
-import one.axgram.core.ui.BottomBuilder;
-import one.axgram.core.AxCoreConfig;
-import one.axgram.core.AxLegacyConfig;
-import one.axgram.core.utils.PrivacyUtil;
-import one.axgram.core.utils.ProxyUtil;
-import one.axgram.core.utils.UIUtil;
-import one.axgram.core.utils.UpdateUtil;
-import one.axgram.core.utils.VibrateUtil;
-import one.axgram.extra.MainTabsStyle;
-import one.axgram.extra.AxConfig;
+import one.katarsis.core.BackButtonMenuRecent;
+import one.katarsis.core.helpers.PasscodeHelper;
+import one.katarsis.core.settings.AxGhostModeActivity;
+import one.katarsis.core.ui.BottomBuilder;
+import one.katarsis.core.AxCoreConfig;
+import one.katarsis.core.AxLegacyConfig;
+import one.katarsis.core.utils.PrivacyUtil;
+import one.katarsis.core.utils.ProxyUtil;
+import one.katarsis.core.utils.UIUtil;
+import one.katarsis.core.utils.UpdateUtil;
+import one.katarsis.core.utils.VibrateUtil;
+import one.katarsis.extra.MainTabsStyle;
+import one.katarsis.extra.AxConfig;
 
 import me.vkryl.android.animator.BoolAnimator;
 import me.vkryl.android.animator.FactorAnimator;
 import me.vkryl.android.util.ClickHelper;
 
-import one.axgram.extra.helper.DialogsRecentForwardHelper;
+import one.katarsis.extra.helper.DialogsRecentForwardHelper;
 
 public class DialogsActivity extends BaseFragment implements NotificationCenter.NotificationCenterDelegate, FloatingDebugProvider, FactorAnimator.Target, MainTabsActivity.TabFragmentDelegate {
     private final int ADDITIONAL_LIST_HEIGHT_DP = Build.VERSION.SDK_INT >= 31 ? 48 : 0;
@@ -3621,16 +3621,16 @@ public class DialogsActivity extends BaseFragment implements NotificationCenter.
                 statusDrawable = new AnimatedEmojiDrawable.SwapAnimatedEmojiDrawable(null, dp(26));
                 statusDrawable.center = true;
                 String title = AxConfig.INSTANCE.getCustomTitle().String();
-                // AxGram: migrate any stored old-brand custom title to the app name
+                // Katarsis: migrate any stored old-brand custom title to the app name
                 if (title == null || title.equals("Nagram") || title.equals("NekoX") || title.equals("Nekogram") || title.equals("Nekogram X")) {
-                    title = getString(R.string.AxGram);
+                    title = getString(R.string.Katarsis);
                 }
                 if (AxConfig.INSTANCE.getCustomTitleUserName().Bool()) {
                     TLRPC.User self = UserConfig.getInstance(currentAccount).getCurrentUser();
                     if (self != null && self.first_name != null) title = self.first_name;
                 }
                 actionBar.centerTitle(false);
-                if (false) { // AxGram: never draw the Nagram logo image, always plain text title
+                if (false) { // Katarsis: never draw the Nagram logo image, always plain text title
                     logoDrawable = context.getResources().getDrawable(R.drawable.ax_logo_2).mutate();
                     logoDrawable.setBounds(0, dp(2), logoDrawable.getIntrinsicWidth(), dp(2) + logoDrawable.getIntrinsicHeight());
                     logoDrawable.setColorFilter(getThemedColor(Theme.key_telegram_color_dialogsLogo), PorterDuff.Mode.MULTIPLY);
@@ -3710,7 +3710,7 @@ public class DialogsActivity extends BaseFragment implements NotificationCenter.
                         builder.setMessage(LocaleController.getString(R.string.FilterDeleteAlert));
                         builder.setNegativeButton(LocaleController.getString(R.string.Cancel), null);
                         builder.setPositiveButton(LocaleController.getString(R.string.Delete), (dialog2, which2) -> {
-                            // AxGram: локальную папку сервер не знает — не спрашиваем его.
+                            // Katarsis: локальную папку сервер не знает — не спрашиваем его.
                             if (!MessagesController.isLocalFilter(dialogFilter)) {
                                 TLRPC.TL_messages_updateDialogFilter req = new TLRPC.TL_messages_updateDialogFilter();
                                 req.id = dialogFilter.id;
@@ -5739,7 +5739,7 @@ public class DialogsActivity extends BaseFragment implements NotificationCenter.
             contentView.addView(topPanelLayout, LayoutHelper.createFrame(LayoutHelper.MATCH_PARENT, LayoutHelper.WRAP_CONTENT, Gravity.TOP, 0, -14, 0, 0));
         }
 
-        // AxGram: раньше здесь с некоторой вероятностью резолвились каналы
+        // Katarsis: раньше здесь с некоторой вероятностью резолвились каналы
         // исходного форка (@nagram_channel, @NagramTips) и показывалось
         // предложение на них подписаться. Реклама чужого проекта из нашей
         // сборки убрана; проверка настроек приватности оставлена.
@@ -7209,12 +7209,12 @@ public class DialogsActivity extends BaseFragment implements NotificationCenter.
     @Override
     public void onResume() {
         super.onResume();
-        // AxGram: редкое ненавязчивое напоминание о канале и боте поддержки.
+        // Katarsis: редкое ненавязчивое напоминание о канале и боте поддержки.
         // Показывается плашкой снизу, не чаще раза в трое суток и не раньше
-        // трёх дней после установки; отключается в настройках AxGram.
+        // трёх дней после установки; отключается в настройках Katarsis.
         if (folderId == 0 && !onlySelect) {
             AndroidUtilities.runOnUIThread(
-                    () -> one.axgram.core.helpers.AxPromoHelper.maybeShow(this), 1500);
+                    () -> one.katarsis.core.helpers.AxPromoHelper.maybeShow(this), 1500);
         }
         if (dialogStoriesCell != null) {
             dialogStoriesCell.onResume();
@@ -13958,7 +13958,7 @@ public class DialogsActivity extends BaseFragment implements NotificationCenter.
         if (AxConfig.INSTANCE.getCustomDialogsMenuTheme().Bool())
         io.addGap();
         io.addIf(AxConfig.INSTANCE.getShowRecentChatsInSidebar().Bool(), R.drawable.msg2_autodelete, LocaleController.getString(R.string.RecentChats), () -> {
-            presentFragment(new one.axgram.core.ChatHistoryActivity());
+            presentFragment(new one.katarsis.core.ChatHistoryActivity());
         });
         io.addIf(AxConfig.INSTANCE.getCustomDialogsMenuNewGroup().Bool(), R.drawable.outline_groups_24, getString(R.string.NewGroup), () -> {
             Bundle args = new Bundle();

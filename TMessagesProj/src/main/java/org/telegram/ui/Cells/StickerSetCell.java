@@ -66,8 +66,8 @@ import org.telegram.ui.Components.UniversalRecyclerView;
 import java.util.ArrayList;
 import java.util.Locale;
 
-import one.axgram.core.AxCoreConfig;
-import one.axgram.core.ui.PinnedStickerHelper;
+import one.katarsis.core.AxCoreConfig;
+import one.katarsis.core.ui.PinnedStickerHelper;
 
 public class StickerSetCell extends FrameLayout {
     private final static String LINK_PREFIX = "t.me/addstickers/";
@@ -82,7 +82,7 @@ public class StickerSetCell extends FrameLayout {
     private CheckBox2 checkBox;
     private boolean needDivider;
     private ImageView optionsButton;
-    private ImageView pinnedImageView;      // AxGram: Pinned Sticker Mark
+    private ImageView pinnedImageView;      // Katarsis: Pinned Sticker Mark
     private ImageView reorderButton;
     private TLRPC.TL_messages_stickerSet stickersSet;
     private boolean groupSearch;
@@ -124,7 +124,7 @@ public class StickerSetCell extends FrameLayout {
                 optionsButton.setContentDescription(LocaleController.getString(R.string.AccDescrMoreOptions));
                 addView(optionsButton, LayoutHelper.createFrame(40, 40, (LocaleController.isRTL ? Gravity.LEFT : Gravity.RIGHT) | Gravity.CENTER_VERTICAL));
 
-                // AxGram: Pinned Sticker Mark
+                // Katarsis: Pinned Sticker Mark
                 pinnedImageView.setImageResource(R.drawable.msg_pin_mini);
                 pinnedImageView.setColorFilter(0xFF808080);
                 addView(pinnedImageView, LayoutHelper.createFrame(20, 20, (LocaleController.isRTL ? Gravity.LEFT : Gravity.RIGHT) | Gravity.CENTER_VERTICAL, 0.0f, 0.0f, 40.0f, 0.0f));
@@ -334,7 +334,7 @@ public class StickerSetCell extends FrameLayout {
             imageView.setAlpha(1.0f);
         }
 
-        // AxGram: Pinned Sticker Mark
+        // Katarsis: Pinned Sticker Mark
         if (AxCoreConfig.enableStickerPin.Bool() && PinnedStickerHelper.getInstance(UserConfig.selectedAccount).isPinned(set.set.id)) {
             pinnedImageView.setVisibility(VISIBLE);
         } else {
@@ -412,7 +412,7 @@ public class StickerSetCell extends FrameLayout {
         }
     }
 
-    // AxGram: Pinned Sticker Mark -> Change Visibility
+    // Katarsis: Pinned Sticker Mark -> Change Visibility
     public void setPinnedMarkVisibility(boolean visible) {
         if (!AxCoreConfig.enableStickerPin.Bool()) {
             pinnedImageView.setVisibility(INVISIBLE);

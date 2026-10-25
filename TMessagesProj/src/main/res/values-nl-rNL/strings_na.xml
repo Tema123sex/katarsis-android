@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <string name="N_Config">AxGram Configuratie</string>
+    <string name="N_Config">Katarsis Configuratie</string>
     <string name="ForceCopy">Forceer kopiëren</string>
     <string name="disableSecondAddress">Tweede adresverzoek uitschakelen</string>
     <string name="InvertReply">Invert</string>
@@ -20,11 +20,11 @@
     <string name="SendReactions">Verstuur reacties</string>
     <string name="ShowReactions">Toon reacties</string>
     <string name="CustomTitle">Aangepaste titel</string>
-    <string name="CustomTitleHint">Laat leeg om AxGram te gebruiken</string>
+    <string name="CustomTitleHint">Laat leeg om Katarsis te gebruiken</string>
     <string name="CodeSyntaxHighlight">Syntaxis code benadrukken</string>
     <string name="CreateMono">Maak Monospace</string>
     <string name="CreateMonoLanguage">Taal code</string>
-    <string name="CodeSyntaxHighlightDetails">Dankzij prismjs en AxGram</string>
+    <string name="CodeSyntaxHighlightDetails">Dankzij prismjs en Katarsis</string>
     <string name="UseSystemUnlock">Wachtwoord voor ontgrendelen systeem ui</string>
     <string name="CopyPhoto">Foto kopiëren</string>
     <string name="PhotoCopied">Foto gekopieerd naar Klembord</string>
@@ -60,7 +60,7 @@
     <string name="QuickToggleAnonymousNotice">Als je eigenaar van de groep bent</string>
     <string name="RealHideTimeForSticker">Tijd echte verbergen voor stickers</string>
     <string name="ResetSettings">Instellingen opnieuw instellen</string>
-    <string name="ResetSettingsAlert">Weet u zeker dat u alle AxGram instellingen wilt herstellen?</string>
+    <string name="ResetSettingsAlert">Weet u zeker dat u alle Katarsis instellingen wilt herstellen?</string>
     <string name="HideTitle">Titel verbergen</string>
     <string name="IgnoreFolderCount">Negeer maptelling</string>
     <string name="SendWithoutMarkdown">Stuur zonder markdown</string>
@@ -77,7 +77,7 @@
     <string name="IconDecoration">Pictogram decoratie</string>
     <string name="NotificationIcon">Notificatie icoon</string>
     <string name="Official">Officiële</string>
-    <string name="AxGramLegacy">AxGram</string>
+    <string name="KatarsisLegacy">Katarsis</string>
     <string name="HalloWeen">HalloWeen</string>
     <string name="ShowOnlineStatus">Online status weergeven</string>
     <string name="ShowOnlineStatusNotice">Toon de onlinestatus van andere mensen naast hun profielfoto in groepen</string>
@@ -92,7 +92,7 @@
     <string name="ShowForumAsNormalChat">Toon forum als normale chat</string>
     <string name="DecorationNone">geen</string>
     <string name="ChatDecoration">Chat Versiering</string>
-    <string name="NeedChangeAxSettings">Je moet de AxGram instellingen wijzigen</string>
+    <string name="NeedChangeAxSettings">Je moet de Katarsis instellingen wijzigen</string>
     <string name="DoNotUnarchiveBySwipe">Dearchiveren niet door te vegen</string>
     <string name="DoNotShareMyPhoneNumber">Mijn telefoonnummer niet delen</string>
     <string name="DefaultDeleteMenu">Standaard menu verwijderen</string>

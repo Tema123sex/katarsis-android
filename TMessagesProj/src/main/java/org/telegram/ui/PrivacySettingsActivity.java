@@ -77,7 +77,7 @@ import org.telegram.ui.bots.BotBiometrySettings;
 
 import java.util.ArrayList;
 
-import one.axgram.core.AxCoreConfig;
+import one.katarsis.core.AxCoreConfig;
 
 public class PrivacySettingsActivity extends BaseFragment implements NotificationCenter.NotificationCenterDelegate {
 

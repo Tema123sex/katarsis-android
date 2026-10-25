@@ -76,7 +76,7 @@ import java.util.Comparator;
 import java.util.HashSet;
 import java.util.Map;
 
-import one.axgram.core.utils.AlertUtil;
+import one.katarsis.core.utils.AlertUtil;
 
 public class NotificationsSettingsActivity extends BaseFragment implements NotificationCenter.NotificationCenterDelegate {
 

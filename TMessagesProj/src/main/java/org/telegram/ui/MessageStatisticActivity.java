@@ -87,7 +87,7 @@ import org.telegram.ui.Stories.StoriesUtilities;
 
 import java.util.ArrayList;
 
-import one.axgram.core.AxCoreConfig;
+import one.katarsis.core.AxCoreConfig;
 
 public class MessageStatisticActivity extends BaseFragment implements NotificationCenter.NotificationCenterDelegate {
 

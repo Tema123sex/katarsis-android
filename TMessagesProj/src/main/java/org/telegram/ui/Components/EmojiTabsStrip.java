@@ -48,8 +48,8 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
 
-import one.axgram.core.AxCoreConfig;
-import one.axgram.extra.AxConfig;
+import one.katarsis.core.AxCoreConfig;
+import one.katarsis.extra.AxConfig;
 
 public class EmojiTabsStrip extends ScrollableHorizontalScrollView {
 

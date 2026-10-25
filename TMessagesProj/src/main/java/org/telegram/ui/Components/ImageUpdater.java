@@ -67,7 +67,7 @@ import java.util.ArrayList;
 import java.util.HashMap;
 
 import kotlin.Unit;
-import one.axgram.core.ui.BottomBuilder;
+import one.katarsis.core.ui.BottomBuilder;
 
 public class ImageUpdater implements NotificationCenter.NotificationCenterDelegate, PhotoCropActivity.PhotoEditActivityDelegate {
     private final static int ID_TAKE_PHOTO = 0,

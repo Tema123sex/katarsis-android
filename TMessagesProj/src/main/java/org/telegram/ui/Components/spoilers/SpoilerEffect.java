@@ -59,7 +59,7 @@ import java.util.Stack;
 import java.util.WeakHashMap;
 import java.util.concurrent.atomic.AtomicReference;
 
-import one.axgram.core.AxCoreConfig;
+import one.katarsis.core.AxCoreConfig;
 
 public class SpoilerEffect extends Drawable {
     public final static int MAX_PARTICLES_PER_ENTITY = measureMaxParticlesCount();

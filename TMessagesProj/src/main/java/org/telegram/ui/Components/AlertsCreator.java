@@ -179,13 +179,13 @@ import java.util.regex.Pattern;
 import java.util.stream.Collectors;
 
 import kotlin.Unit;
-import one.axgram.core.helpers.PasscodeHelper;
-import one.axgram.core.ui.BottomBuilder;
-import one.axgram.core.AxCoreConfig;
-import one.axgram.core.utils.AlertUtil;
-import one.axgram.core.utils.VibrateUtil;
-import static one.axgram.core.settings.AxChatSettingsActivity.getDeleteMenuChecks;
-import one.axgram.extra.AxConfig;
+import one.katarsis.core.helpers.PasscodeHelper;
+import one.katarsis.core.ui.BottomBuilder;
+import one.katarsis.core.AxCoreConfig;
+import one.katarsis.core.utils.AlertUtil;
+import one.katarsis.core.utils.VibrateUtil;
+import static one.katarsis.core.settings.AxChatSettingsActivity.getDeleteMenuChecks;
+import one.katarsis.extra.AxConfig;
 
 public class AlertsCreator {
     public final static int PERMISSIONS_REQUEST_TOP_ICON_SIZE = 72;

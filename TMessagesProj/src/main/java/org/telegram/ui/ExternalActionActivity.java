@@ -50,7 +50,7 @@ import org.telegram.ui.Components.SizeNotifierFrameLayout;
 
 import java.util.ArrayList;
 
-import one.axgram.core.AxLegacyConfig;
+import one.katarsis.core.AxLegacyConfig;
 
 public class ExternalActionActivity extends Activity implements INavigationLayout.INavigationLayoutDelegate {
 

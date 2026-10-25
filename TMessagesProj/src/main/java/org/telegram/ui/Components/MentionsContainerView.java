@@ -55,7 +55,7 @@ import org.telegram.ui.PhotoViewer;
 
 import java.util.ArrayList;
 
-import one.axgram.extra.AxConfig;
+import one.katarsis.extra.AxConfig;
 
 public class MentionsContainerView extends FrameLayout implements NotificationCenter.NotificationCenterDelegate {
 

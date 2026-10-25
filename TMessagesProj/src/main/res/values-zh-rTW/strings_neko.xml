@@ -24,7 +24,7 @@
     <string name="TransparentStatusBar">使用完全透明的狀態列</string>
     <string name="EnableResidentNotification">請讓貓咪住在通知欄裡吧</string>
     <string name="DisableResidentNotification">果然通知欄還是太擠了</string>
-    <string name="AxGramRunning">貓貓奔跑中</string>
+    <string name="KatarsisRunning">貓貓奔跑中</string>
     <string name="EventType">抽屜圖示集</string>
     <string name="ChristmasHat">一直顯示聖誕帽</string>
     <string name="ActionBarDecoration">標題欄裝飾</string>
@@ -122,7 +122,7 @@
     <string name="disableSwipeToNextChannel">禁用滑動到下個未讀頻道</string>
     <string name="disableChoosingSticker">選擇貼圖時輸入狀態為輸入中</string>
     <string name="disableRemoteEmojiInteractions">禁用遠端表情符號互動</string>
-    <string name="enablePublicProxy">AxGram 公共代理</string>
+    <string name="enablePublicProxy">Katarsis 公共代理</string>
     <string name="autoUpdateSubInfo">自動更新代理</string>
     <string name="hideSendAsChannel">隱藏以頻道身份傳送</string>
     <string name="showSpoilersDirectly">禁用雙擊反應</string>

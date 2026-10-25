@@ -14,7 +14,7 @@ import org.telegram.ui.Components.blur3.BlurredBackgroundWithFadeDrawable;
 import org.telegram.ui.Components.blur3.drawable.color.BlurredBackgroundColorProvider;
 import org.telegram.ui.Components.blur3.source.BlurredBackgroundSourceColor;
 
-import one.axgram.extra.AxConfig;
+import one.katarsis.extra.AxConfig;
 
 public class ChatActivityFadeView extends View implements Theme.Colorable {
     private BlurredBackgroundWithFadeDrawable fadeDrawableTop;

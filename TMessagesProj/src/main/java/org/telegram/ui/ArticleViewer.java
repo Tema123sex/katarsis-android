@@ -241,12 +241,12 @@ import org.telegram.ui.iv.Latex;
 
 import cn.hutool.core.util.StrUtil;
 import kotlin.Unit;
-import one.axgram.core.ui.BottomBuilder;
-import one.axgram.core.AxCoreConfig;
-import one.axgram.core.parts.ArticleTransKt;
-import one.axgram.core.transtale.TranslateDb;
-import one.axgram.core.utils.AlertUtil;
-import one.axgram.core.utils.ProxyUtil;
+import one.katarsis.core.ui.BottomBuilder;
+import one.katarsis.core.AxCoreConfig;
+import one.katarsis.core.parts.ArticleTransKt;
+import one.katarsis.core.transtale.TranslateDb;
+import one.katarsis.core.utils.AlertUtil;
+import one.katarsis.core.utils.ProxyUtil;
 
 public class ArticleViewer extends IArticleViewer implements NotificationCenter.NotificationCenterDelegate {
 

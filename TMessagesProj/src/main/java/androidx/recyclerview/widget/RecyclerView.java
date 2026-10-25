@@ -97,8 +97,8 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
-import one.axgram.core.AxCoreConfig;
-import one.axgram.core.utils.VibrateUtil;
+import one.katarsis.core.AxCoreConfig;
+import one.katarsis.core.utils.VibrateUtil;
 
 /**
  * A flexible view for providing a limited window into a large data set.

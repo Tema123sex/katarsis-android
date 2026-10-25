@@ -95,9 +95,9 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
-import one.axgram.core.AxCoreConfig;
-import one.axgram.core.utils.VibrateUtil;
-import one.axgram.extra.AxConfig;
+import one.katarsis.core.AxCoreConfig;
+import one.katarsis.core.utils.VibrateUtil;
+import one.katarsis.extra.AxConfig;
 
 public class ActionBarLayout extends FrameLayout implements INavigationLayout, FloatingDebugProvider {
 

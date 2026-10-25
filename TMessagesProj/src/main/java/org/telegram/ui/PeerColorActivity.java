@@ -132,7 +132,7 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 
-import one.axgram.extra.helper.LocalPeerColorHelper;
+import one.katarsis.extra.helper.LocalPeerColorHelper;
 
 public class PeerColorActivity extends BaseFragment implements NotificationCenter.NotificationCenterDelegate {
 

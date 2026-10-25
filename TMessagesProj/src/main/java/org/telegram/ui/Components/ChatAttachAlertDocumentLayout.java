@@ -96,8 +96,8 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.LinearSmoothScroller;
 import androidx.recyclerview.widget.RecyclerView;
 
-import one.axgram.core.helpers.remote.EmojiHelper;
-import one.axgram.core.utils.EnvUtil;
+import one.katarsis.core.helpers.remote.EmojiHelper;
+import one.katarsis.core.utils.EnvUtil;
 
 public class ChatAttachAlertDocumentLayout extends ChatAttachAlert.AttachAlertLayout {
 

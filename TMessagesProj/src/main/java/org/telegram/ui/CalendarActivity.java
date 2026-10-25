@@ -69,7 +69,7 @@ import java.time.YearMonth;
 import java.util.ArrayList;
 import java.util.Calendar;
 
-import one.axgram.core.AxCoreConfig;
+import one.katarsis.core.AxCoreConfig;
 
 public class CalendarActivity extends BaseFragment implements NotificationCenter.NotificationCenterDelegate {
 

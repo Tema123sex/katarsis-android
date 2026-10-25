@@ -66,8 +66,8 @@ import org.telegram.ui.Components.chat.ViewPositionWatcher;
 import java.util.Objects;
 
 import kotlin.Unit;
-import one.axgram.core.ui.BottomBuilder;
-import one.axgram.core.AxCoreConfig;
+import one.katarsis.core.ui.BottomBuilder;
+import one.katarsis.core.AxCoreConfig;
 
 public class AvatarPreviewer {
 

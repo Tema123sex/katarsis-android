@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <string name="N_Config">AxGram Ρύθμιση</string>
+    <string name="N_Config">Katarsis Ρύθμιση</string>
     <string name="ForceCopy">Εξαναγκασμός Αντιγραφής</string>
     <string name="disableSecondAddress">Απενεργοποίηση Δεύτερης Αίτησης Διεύθυνσης</string>
     <string name="InvertReply">Αναστροφή</string>
@@ -20,11 +20,11 @@
     <string name="SendReactions">Αποστολή Αντιδράσεων</string>
     <string name="ShowReactions">Εμφάνιση Αντιδράσεων</string>
     <string name="CustomTitle">Προσαρμοσμένος Τίτλος</string>
-    <string name="CustomTitleHint">Αφήστε κενό για χρήση AxGram</string>
+    <string name="CustomTitleHint">Αφήστε κενό για χρήση Katarsis</string>
     <string name="CodeSyntaxHighlight">Επισήμανση σύνταξης κώδικα</string>
     <string name="CreateMono">Δημιουργία Monospace</string>
     <string name="CreateMonoLanguage">Κωδικός γλώσσας</string>
-    <string name="CodeSyntaxHighlightDetails">Χάρη στο prismjs και το AxGram</string>
+    <string name="CodeSyntaxHighlightDetails">Χάρη στο prismjs και το Katarsis</string>
     <string name="UseSystemUnlock">Κωδικός ξεκλειδώματος χρήση συστήματος ui</string>
     <string name="CopyPhoto">Αντιγραφή Φωτογραφίας</string>
     <string name="PhotoCopied">Η φωτογραφία αντιγράφηκε στο πρόχειρο</string>
@@ -60,7 +60,7 @@
     <string name="QuickToggleAnonymousNotice">Αν είστε ιδιοκτήτης της ομάδας</string>
     <string name="RealHideTimeForSticker">Πραγματικός χρόνος απόκρυψης αυτοκόλλητων</string>
     <string name="ResetSettings">Επαναφορά Ρυθμίσεων</string>
-    <string name="ResetSettingsAlert">Είστε βέβαιοι ότι θέλετε να επαναφέρετε όλες τις AxGram ρυθμίσεις?</string>
+    <string name="ResetSettingsAlert">Είστε βέβαιοι ότι θέλετε να επαναφέρετε όλες τις Katarsis ρυθμίσεις?</string>
     <string name="HideTitle">Απόκρυψη Τίτλου</string>
     <string name="IgnoreFolderCount">Παράβλεψη Καταμέτρησης Φακέλων</string>
     <string name="SendWithoutMarkdown">Αποστολή χωρίς markdown</string>
@@ -77,7 +77,7 @@
     <string name="IconDecoration">Διακόσμηση Εικονιδίων</string>
     <string name="NotificationIcon">Εικονίδιο Ειδοποιήσεων</string>
     <string name="Official">Επίσημο</string>
-    <string name="AxGramLegacy">AxGram</string>
+    <string name="KatarsisLegacy">Katarsis</string>
     <string name="HalloWeen">HalloWeen</string>
     <string name="ShowOnlineStatus">Εμφάνιση Κατάστασης Online</string>
     <string name="ShowOnlineStatusNotice">Εμφάνιση της online κατάστασης των άλλων ατόμων δίπλα στο προφίλ τους φωτογραφία σε ομάδες</string>

@@ -7,7 +7,7 @@ static const char *SIGN = "3A0F57FE06485D0B90D0ACD990E3A30328E3988D";
 
 extern "C" {
 int verifySign(JNIEnv *env) {
-    // AxGram: self-built and signed with our own keystore — skip Nagram's
+    // Katarsis: self-built and signed with our own keystore — skip Nagram's
     // anti-repackaging signature check (it hardcodes Nagram's cert SHA1).
     return JNI_OK;
     jobject application = getApplication(env);

@@ -66,7 +66,7 @@ import org.telegram.ui.Components.RLottieDrawable;
 import org.telegram.ui.Components.Text;
 import org.telegram.ui.Stars.StarsIntroActivity;
 
-import one.axgram.extra.AxConfig;
+import one.katarsis.extra.AxConfig;
 
 public class ShareDialogCell extends FrameLayout implements NotificationCenter.NotificationCenterDelegate {
 

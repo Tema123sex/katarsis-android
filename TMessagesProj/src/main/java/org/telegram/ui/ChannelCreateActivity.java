@@ -95,8 +95,8 @@ import org.telegram.ui.Components.TypefaceSpan;
 import java.util.ArrayList;
 
 import kotlin.Unit;
-import one.axgram.core.ui.BottomBuilder;
-import one.axgram.core.utils.VibrateUtil;
+import one.katarsis.core.ui.BottomBuilder;
+import one.katarsis.core.utils.VibrateUtil;
 
 public class ChannelCreateActivity extends BaseFragment implements NotificationCenter.NotificationCenterDelegate, ImageUpdater.ImageUpdaterDelegate {
 

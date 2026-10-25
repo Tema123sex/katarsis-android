@@ -79,8 +79,8 @@ import me.vkryl.core.BitwiseUtils;
 
 import cn.hutool.core.util.NumberUtil;
 import cn.hutool.core.util.StrUtil;
-import one.axgram.core.AxCoreConfig;
-import one.axgram.core.database.ObjectBoxKt;
+import one.katarsis.core.AxCoreConfig;
+import one.katarsis.core.database.ObjectBoxKt;
 
 public class MessagesStorage extends BaseController {
 
@@ -2690,7 +2690,7 @@ public class MessagesStorage extends BaseController {
                     }
                     return 0;
                 });
-                FileLog.d("AxGram папки: загружено из базы [" + axDumpFilters(dialogFilters) + "]");
+                FileLog.d("Katarsis папки: загружено из базы [" + axDumpFilters(dialogFilters) + "]");
 
                 if (updateCounters) {
                     calcUnreadCounters(true);
@@ -3288,7 +3288,7 @@ public class MessagesStorage extends BaseController {
                 SparseArray<MessagesController.DialogFilter> filtersToDelete = new SparseArray<>();
                 for (int a = 0, N = dialogFilters.size(); a < N; a++) {
                     MessagesController.DialogFilter filter = dialogFilters.get(a);
-                    // AxGram: локальные папки на сервере не существуют, поэтому
+                    // Katarsis: локальные папки на сервере не существуют, поэтому
                     // их нет и в присланном списке. Без этой проверки они
                     // попадали бы в удаление при каждой синхронизации.
                     if (MessagesController.isLocalFilter(filter.id)) {
@@ -3623,7 +3623,7 @@ public class MessagesStorage extends BaseController {
             anythingChanged = true;
         }
         boolean orderChanged = false;
-        // AxGram: локальных папок в присланном порядке нет — сервер о них не знает.
+        // Katarsis: локальных папок в присланном порядке нет — сервер о них не знает.
         // Просто отправить их в конец было бы неудобно: пользователь перетащил
         // папку в середину, а следующая синхронизация её оттуда унесла. Поэтому
         // запоминаем, за какой серверной папкой стоит каждая локальная, и после
@@ -3703,7 +3703,7 @@ public class MessagesStorage extends BaseController {
             });
             saveDialogFiltersOrderInternal();
         }
-        FileLog.d("AxGram папки: синхронизация, сервер прислал " + filtersOrder
+        FileLog.d("Katarsis папки: синхронизация, сервер прислал " + filtersOrder
                 + ", получилось [" + axDumpFilters(dialogFilters) + "]");
         int remote = anythingChanged ? 1 : 2;
         calcUnreadCounters(true);
@@ -3746,7 +3746,7 @@ public class MessagesStorage extends BaseController {
         });
     }
 
-    /** AxGram: печатает папки как «id:порядок» — чтобы видеть, где рушится порядок. */
+    /** Katarsis: печатает папки как «id:порядок» — чтобы видеть, где рушится порядок. */
     private static String axDumpFilters(java.util.List<MessagesController.DialogFilter> list) {
         StringBuilder sb = new StringBuilder();
         for (int a = 0; a < list.size(); a++) {
@@ -3776,7 +3776,7 @@ public class MessagesStorage extends BaseController {
             }
             state.dispose();
             state = null;
-            FileLog.d("AxGram папки: записываю порядок [" + axDumpFilters(dialogFilters) + "]");
+            FileLog.d("Katarsis папки: записываю порядок [" + axDumpFilters(dialogFilters) + "]");
         } catch (Exception e) {
             checkSQLException(e);
         } finally {
@@ -4506,7 +4506,7 @@ public class MessagesStorage extends BaseController {
 
     public void deleteDialog(long did, int messagesOnly) {
         storageQueue.postRunnable(() -> {
-            // === AxGram anti-delete: очистка истории идёт мимо markMessagesAsDeleted ===
+            // === Katarsis anti-delete: очистка истории идёт мимо markMessagesAsDeleted ===
             // Когда собеседник очищает переписку «у обоих», сюда приходит удаление
             // всего диалога целиком, а не список идентификаторов сообщений. Без
             // этого перехвата вся история просто исчезала, хотя анти-удаление
@@ -4524,20 +4524,20 @@ public class MessagesStorage extends BaseController {
                             TLRPC.Message axMsg = TLRPC.Message.TLdeserialize(axData, axData.readInt32(false), false);
                             axData.reuse();
                             if (axMsg != null) {
-                                one.axgram.core.AxDeletedMessages.getInstance().saveMessage(currentAccount, did, axMsg);
+                                one.katarsis.core.AxDeletedMessages.getInstance().saveMessage(currentAccount, did, axMsg);
                                 axSaved++;
                             }
                         }
                     }
                     axCursor.dispose();
                     if (axSaved > 0) {
-                        FileLog.d("AxGram: сохранено " + axSaved + " сообщений перед очисткой истории " + did);
+                        FileLog.d("Katarsis: сохранено " + axSaved + " сообщений перед очисткой истории " + did);
                     }
                 } catch (Throwable axError) {
-                    FileLog.e("AxGram clear-history: " + axError);
+                    FileLog.e("Katarsis clear-history: " + axError);
                 }
             }
-            // === end AxGram ===
+            // === end Katarsis ===
             SQLiteCursor cursor = null;
             SQLiteCursor cursor2 = null;
             SQLitePreparedStatement state5 = null;
@@ -4577,7 +4577,7 @@ public class MessagesStorage extends BaseController {
                     cursor = null;
                     deleteFromDownloadQueue(idsToDelete, true);
                     AndroidUtilities.runOnUIThread(() -> getFileLoader().cancelLoadFiles(namesToDelete));
-                    // AxGram: сами файлы не трогаем — сообщения уже уехали в архив, и без
+                    // Katarsis: сами файлы не трогаем — сообщения уже уехали в архив, и без
                     // вложений от них остались бы пустые пузыри. Для секретных чатов
                     // поведение прежнее: там удаление должно быть настоящим.
                     if (DialogObject.isEncryptedDialog(did)) {
@@ -14462,7 +14462,7 @@ public class MessagesStorage extends BaseController {
                     arrayList.add(cursor.intValue(0));
                 }
                 if (arrayList != null) {
-                    // AxGram: keep self-destruct / one-time media instead of wiping it (anti-destruct).
+                    // Katarsis: keep self-destruct / one-time media instead of wiping it (anti-destruct).
                     // emptyMessagesMedia(dialogId, arrayList);
                 }
                 cursor.dispose();
@@ -14737,7 +14737,7 @@ public class MessagesStorage extends BaseController {
                 HashMap<TopicKey, int[]> topicsMessagesToUpdate = new HashMap<>();
                 LongSparseArray<ArrayList<Integer>> messagesByDialogs = new LongSparseArray<>();
                 String ids = TextUtils.join(",", messages);
-                // === AxGram anti-delete: save incoming messages before they are removed ===
+                // === Katarsis anti-delete: save incoming messages before they are removed ===
                 try {
                     org.telegram.SQLite.SQLiteCursor axCursor = dialogId != 0
                             ? database.queryFinalized("SELECT uid, data FROM messages_v2 WHERE mid IN(" + ids + ") AND uid = " + dialogId)
@@ -14749,16 +14749,16 @@ public class MessagesStorage extends BaseController {
                             TLRPC.Message axMsg = TLRPC.Message.TLdeserialize(axData, axData.readInt32(false), false);
                             axData.reuse();
                             if (axMsg != null) {
-                                // AxGram: save all deleted messages incl. our own (media etc.), so they persist after restart
-                                one.axgram.core.AxDeletedMessages.getInstance().saveMessage(currentAccount, axDid, axMsg);
+                                // Katarsis: save all deleted messages incl. our own (media etc.), so they persist after restart
+                                one.katarsis.core.AxDeletedMessages.getInstance().saveMessage(currentAccount, axDid, axMsg);
                             }
                         }
                     }
                     axCursor.dispose();
                 } catch (Throwable axError) {
-                    FileLog.e("AxGram anti-delete: " + axError);
+                    FileLog.e("Katarsis anti-delete: " + axError);
                 }
-                // === end AxGram ===
+                // === end Katarsis ===
                 ArrayList<File> filesToDelete = new ArrayList<>();
                 ArrayList<String> namesToDelete = new ArrayList<>();
                 ArrayList<Pair<Long, Integer>> idsToDelete = new ArrayList<>();
@@ -15494,7 +15494,7 @@ public class MessagesStorage extends BaseController {
     private ArrayList<Long> markMessagesAsDeletedInternal(long channelId, int mid, boolean deleteFiles) {
         SQLiteCursor cursor = null;
         SQLitePreparedStatement state = null;
-        // === AxGram anti-delete: канал обрезает историю целиком, не по списку id ===
+        // === Katarsis anti-delete: канал обрезает историю целиком, не по списку id ===
         // Этот путь идёт мимо перехвата в markMessagesAsDeletedInternal(список),
         // поэтому старые посты канала пропадали без следа. Сохраняем их заранее.
         try {
@@ -15507,19 +15507,19 @@ public class MessagesStorage extends BaseController {
                     TLRPC.Message axMsg = TLRPC.Message.TLdeserialize(axData, axData.readInt32(false), false);
                     axData.reuse();
                     if (axMsg != null) {
-                        one.axgram.core.AxDeletedMessages.getInstance().saveMessage(currentAccount, -channelId, axMsg);
+                        one.katarsis.core.AxDeletedMessages.getInstance().saveMessage(currentAccount, -channelId, axMsg);
                         axSaved++;
                     }
                 }
             }
             axCursor.dispose();
             if (axSaved > 0) {
-                FileLog.d("AxGram: сохранено " + axSaved + " сообщений перед обрезкой истории канала " + (-channelId));
+                FileLog.d("Katarsis: сохранено " + axSaved + " сообщений перед обрезкой истории канала " + (-channelId));
             }
         } catch (Throwable axError) {
-            FileLog.e("AxGram channel-truncate: " + axError);
+            FileLog.e("Katarsis channel-truncate: " + axError);
         }
-        // === end AxGram ===
+        // === end Katarsis ===
         try {
             ArrayList<Long> dialogsIds = new ArrayList<>();
             LongSparseArray<Integer[]> dialogsToUpdate = new LongSparseArray<>();

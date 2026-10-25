@@ -68,9 +68,9 @@ import org.telegram.ui.Components.URLSpanNoUnderline;
 import java.util.concurrent.atomic.AtomicReference;
 
 import kotlin.Unit;
-import one.axgram.core.AxCoreConfig;
-import one.axgram.core.ui.BottomBuilder;
-import one.axgram.extra.AxConfig;
+import one.katarsis.core.AxCoreConfig;
+import one.katarsis.core.ui.BottomBuilder;
+import one.katarsis.extra.AxConfig;
 
 public class AboutLinkCell extends FrameLayout {
 

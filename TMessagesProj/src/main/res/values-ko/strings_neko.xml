@@ -25,7 +25,7 @@
     <string name="TransparentStatusBar">투명 상태 표시줄</string>
     <string name="EnableResidentNotification">참가자 알람 표시</string>
     <string name="DisableResidentNotification">참가자 알람 중지</string>
-    <string name="AxGramRunning">네코그램이 실행 중 입니다</string>
+    <string name="KatarsisRunning">네코그램이 실행 중 입니다</string>
     <string name="EventType">사이드바 아이콘 세트</string>
     <string name="ChristmasHat">크리스마스 모자 매일 보여주기</string>
     <string name="ActionBarDecoration">제목 표시줄 꾸미기</string>

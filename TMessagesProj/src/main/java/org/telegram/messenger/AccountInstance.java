@@ -8,8 +8,8 @@ import org.telegram.ui.Components.Paint.PersistColorPalette;
 
 import java.util.concurrent.ConcurrentHashMap;
 
-import one.axgram.core.helpers.UserHelper;
-import one.axgram.core.ui.MessageHelper;
+import one.katarsis.core.helpers.UserHelper;
+import one.katarsis.core.ui.MessageHelper;
 
 public class AccountInstance {
 

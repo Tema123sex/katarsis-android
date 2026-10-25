@@ -38,7 +38,7 @@ import org.telegram.tgnet.TLRPC;
 import org.telegram.ui.Components.voip.RTMPStreamPipOverlay;
 import org.telegram.ui.GroupCallActivity;
 
-import one.axgram.core.AxCoreConfig;
+import one.katarsis.core.AxCoreConfig;
 
 import static android.view.WindowManager.LayoutParams.FLAG_NOT_FOCUSABLE;
 

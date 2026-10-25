@@ -147,7 +147,7 @@ import java.util.List;
 import java.util.Locale;
 import java.util.Objects;
 
-import one.axgram.core.AxCoreConfig;
+import one.katarsis.core.AxCoreConfig;
 
 public class PremiumPreviewFragment extends BaseFragment implements NotificationCenter.NotificationCenterDelegate {
     public final static String TRANSACTION_PATTERN = "^(.*?)(?:\\.\\.\\d*|)$";

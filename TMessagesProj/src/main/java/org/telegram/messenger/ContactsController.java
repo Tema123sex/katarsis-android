@@ -51,8 +51,8 @@ import java.util.concurrent.ConcurrentHashMap;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
-import one.axgram.core.AxCoreConfig;
-import one.axgram.extra.helper.MessageHelper;
+import one.katarsis.core.AxCoreConfig;
+import one.katarsis.extra.helper.MessageHelper;
 
 import androidx.collection.LongSparseArray;
 

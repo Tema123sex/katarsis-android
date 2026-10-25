@@ -118,8 +118,8 @@ import java.util.List;
 import java.util.Locale;
 import java.util.concurrent.CountDownLatch;
 
-import one.axgram.core.AxCoreConfig;
-import one.axgram.core.utils.VibrateUtil;
+import one.katarsis.core.AxCoreConfig;
+import one.katarsis.core.utils.VibrateUtil;
 
 public class ChatEditActivity extends BaseFragment implements ImageUpdater.ImageUpdaterDelegate, NotificationCenter.NotificationCenterDelegate {
 

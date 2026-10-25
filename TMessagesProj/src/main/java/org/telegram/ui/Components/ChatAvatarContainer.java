@@ -71,7 +71,7 @@ import java.util.concurrent.atomic.AtomicReference;
 import me.vkryl.android.animator.BoolAnimator;
 import me.vkryl.android.animator.FactorAnimator;
 
-import one.axgram.extra.helper.MessageHelper;
+import one.katarsis.extra.helper.MessageHelper;
 
 public class ChatAvatarContainer extends FrameLayout implements FactorAnimator.Target, NotificationCenter.NotificationCenterDelegate {
 

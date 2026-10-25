@@ -15,7 +15,7 @@ import android.os.Build;
 
 import java.io.File;
 
-import one.axgram.core.utils.FileUtil;
+import one.katarsis.core.utils.FileUtil;
 
 public class NativeLoader {
 

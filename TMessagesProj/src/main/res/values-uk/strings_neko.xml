@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <string name="AxSettings">Налаштування AxGram</string>
+    <string name="AxSettings">Налаштування Katarsis</string>
     <string name="IPv6">Підключення через IPv6</string>
     <string name="MessageMenu">Меню повідомлень</string>
     <string name="HidePhone">Сховати мій номер телефону</string>
@@ -25,7 +25,7 @@
     <string name="TransparentStatusBar">Прозорий рядок стану</string>
     <string name="EnableResidentNotification">Показувати сповіщення редактора</string>
     <string name="DisableResidentNotification">Вимкнути сповіщення резидента</string>
-    <string name="AxGramRunning">Некограм працює</string>
+    <string name="KatarsisRunning">Некограм працює</string>
     <string name="EventType">Набір іконок бічної панелі</string>
     <string name="ChristmasHat">Шапка Санти щодня</string>
     <string name="ActionBarDecoration">Прикраса заголовка</string>
@@ -110,7 +110,7 @@
     <string name="ProviderMicrosoftTranslator">Microsoft Translator</string>
     <string name="ProviderYouDao">YouDao Translate</string>
     <string name="pressTitleToOpenAllChats">Натисніть на заголовок, щоб відкрити теку \"Всі чати\"</string>
-    <string name="enablePublicProxy">Загальнодоступний проксі AxGram</string>
+    <string name="enablePublicProxy">Загальнодоступний проксі Katarsis</string>
     <string name="autoUpdateSubInfo">Оновлювати проксі автоматично</string>
     <string name="hideSendAsChannel">Сховати надсилання як канал</string>
     <string name="DontSendGreetingSticker">Не слати вітальної наліпки</string>

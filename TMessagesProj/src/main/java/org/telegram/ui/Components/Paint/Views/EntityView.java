@@ -31,7 +31,7 @@ import java.util.Arrays;
 import java.util.List;
 import java.util.UUID;
 
-import one.axgram.core.AxCoreConfig;
+import one.katarsis.core.AxCoreConfig;
 
 public class EntityView extends FrameLayout {
     private final static List<Integer> STICKY_ANGLES = Arrays.asList(

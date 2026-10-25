@@ -46,7 +46,7 @@ public class UnifiedPushListenerServiceProvider implements PushListenerControlle
                 UnifiedPush.register(
                         ApplicationLoader.applicationContext,
                         "default",
-                        "AxGram Web Push",
+                        "Katarsis Web Push",
                         null
                 );
             } catch (Throwable e) {

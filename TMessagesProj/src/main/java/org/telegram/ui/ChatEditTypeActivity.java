@@ -88,7 +88,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.concurrent.CountDownLatch;
 
-import one.axgram.core.utils.VibrateUtil;
+import one.katarsis.core.utils.VibrateUtil;
 
 public class ChatEditTypeActivity extends BaseFragment implements NotificationCenter.NotificationCenterDelegate {
 

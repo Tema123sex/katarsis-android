@@ -11,7 +11,7 @@ import org.webrtc.VideoSink;
 import java.nio.ByteBuffer;
 import java.util.concurrent.CountDownLatch;
 
-import one.axgram.core.AxCoreConfig;
+import one.katarsis.core.AxCoreConfig;
 
 public class NativeInstance {
 
@@ -70,7 +70,7 @@ public class NativeInstance {
     }
 
     public static NativeInstance makeGroup(String logPath, long videoCapturer, boolean screencast, boolean noiseSupression, PayloadCallback payloadCallback, AudioLevelsCallback audioLevelsCallback, VideoSourcesCallback unknownParticipantsCallback, RequestBroadcastPartCallback requestBroadcastPartCallback, RequestBroadcastPartCallback cancelRequestBroadcastPartCallback, RequestCurrentTimeCallback requestCurrentTimeCallback, boolean isConference) {
-        // AxGram: Custom Audio Bitrate
+        // Katarsis: Custom Audio Bitrate
         ContextUtils.initialize(ApplicationLoader.applicationContext);
         NativeInstance instance = new NativeInstance();
         instance.payloadCallback = payloadCallback;

@@ -9,7 +9,7 @@
     <string name="AddToSavedMessages">Sačuvaj poruku</string>
     <string name="Repeat">Ponovi</string>
     <string name="CreateMention">Napravi pominjanje</string>
-    <string name="AxGramRunning">AxGram radi</string>
+    <string name="KatarsisRunning">Katarsis radi</string>
     <string name="NameOrder">Red imena</string>
     <string name="FirstLast">Prvo poslednji</string>
     <string name="IgnoreBlocked">Sakrij poruke od blokiranog korisnika</string>
@@ -17,7 +17,7 @@
     <string name="ChristmasHat">Prikaži Deda Mrazovu kapicu svaki dan</string>
     <string name="DeleteAllFromSelfAlert">Upozorenje! Ova radnja će **izbrisati sve poruke od tebe** u ovom ćaskanju za **sve** učesnike.</string>
     <string name="TypefaceUseDefault">Koristi podrazumevani sistemski font</string>
-    <string name="AxSettings">AxGram podešavanja</string>
+    <string name="AxSettings">Katarsis podešavanja</string>
     <string name="DeleteAllFromSelf">Obriši sve od mene</string>
     <string name="BotLogin">Prijava bota</string>
     <string name="Connection">Veza</string>

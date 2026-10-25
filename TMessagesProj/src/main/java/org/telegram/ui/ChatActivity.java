@@ -377,30 +377,30 @@ import me.vkryl.core.reference.ReferenceList;
 
 import cn.hutool.core.util.StrUtil;
 import kotlin.Unit;
-import one.axgram.core.BackButtonMenuRecent;
-import one.axgram.core.DialogConfig;
-import one.axgram.core.AxCoreConfig;
-import one.axgram.core.AxLegacyConfig;
-import one.axgram.core.helpers.AxFilter;
-import one.axgram.core.helpers.remote.EmojiHelper;
-import one.axgram.core.helpers.remote.PagePreviewRulesHelper;
-import one.axgram.core.parts.MessageTransKt;
-import one.axgram.core.settings.AxSettingsActivity;
-import one.axgram.core.transtale.Translator;
-import one.axgram.core.transtale.popupwrapper.LanguageDetector;
-import one.axgram.core.ui.BottomBuilder;
-import one.axgram.core.ui.MessageDetailsActivity;
-import one.axgram.core.utils.AlertUtil;
-import one.axgram.core.utils.EnvUtil;
-import one.axgram.core.utils.PGPUtil;
-import one.axgram.core.utils.ProxyUtil;
-import one.axgram.core.utils.TelegramUtil;
-import one.axgram.extra.AxConfig;
-import one.axgram.extra.helper.DoubleTap;
-import one.axgram.extra.helper.MessageHelper;
-import one.axgram.extra.helper.MessageMenuCompact;
-import one.axgram.extra.helper.MotionPhotoHelper;
-import one.axgram.extra.helper.SystemAiServiceHelper;
+import one.katarsis.core.BackButtonMenuRecent;
+import one.katarsis.core.DialogConfig;
+import one.katarsis.core.AxCoreConfig;
+import one.katarsis.core.AxLegacyConfig;
+import one.katarsis.core.helpers.AxFilter;
+import one.katarsis.core.helpers.remote.EmojiHelper;
+import one.katarsis.core.helpers.remote.PagePreviewRulesHelper;
+import one.katarsis.core.parts.MessageTransKt;
+import one.katarsis.core.settings.AxSettingsActivity;
+import one.katarsis.core.transtale.Translator;
+import one.katarsis.core.transtale.popupwrapper.LanguageDetector;
+import one.katarsis.core.ui.BottomBuilder;
+import one.katarsis.core.ui.MessageDetailsActivity;
+import one.katarsis.core.utils.AlertUtil;
+import one.katarsis.core.utils.EnvUtil;
+import one.katarsis.core.utils.PGPUtil;
+import one.katarsis.core.utils.ProxyUtil;
+import one.katarsis.core.utils.TelegramUtil;
+import one.katarsis.extra.AxConfig;
+import one.katarsis.extra.helper.DoubleTap;
+import one.katarsis.extra.helper.MessageHelper;
+import one.katarsis.extra.helper.MessageMenuCompact;
+import one.katarsis.extra.helper.MotionPhotoHelper;
+import one.katarsis.extra.helper.SystemAiServiceHelper;
 
 @SuppressWarnings("unchecked")
 public class ChatActivity extends BaseFragment implements
@@ -4411,9 +4411,9 @@ public class ChatActivity extends BaseFragment implements
                 } else if (id == 888) {
                     dumpCanvas();
                 } else if (id == 8901) {
-                    presentFragment(new one.axgram.core.AxDeletedMessagesActivity(dialog_id));
+                    presentFragment(new one.katarsis.core.AxDeletedMessagesActivity(dialog_id));
                 } else if (id == 8902) {
-                    presentFragment(new one.axgram.core.AxDeletedMessagesActivity(dialog_id, true));
+                    presentFragment(new one.katarsis.core.AxDeletedMessagesActivity(dialog_id, true));
                 } else if (id == 889) {
                     sendDebugRichMessage();
                 } else {
@@ -7927,7 +7927,7 @@ public class ChatActivity extends BaseFragment implements
                     return false;
                 } else {
                     AlertDialog.Builder builder = new AlertDialog.Builder(getParentActivity(), themeDelegate);
-                    builder.setTitle(LocaleController.getString(R.string.AxGram));
+                    builder.setTitle(LocaleController.getString(R.string.Katarsis));
                     builder.setMessage(LocaleController.getString(R.string.ClearSearch));
                     builder.setPositiveButton(LocaleController.getString(R.string.ClearButton), (dialogInterface, i) -> mentionContainer.getAdapter().clearRecentHashtags());
                     builder.setNegativeButton(LocaleController.getString(R.string.Cancel), null);
@@ -8974,7 +8974,7 @@ public class ChatActivity extends BaseFragment implements
                     AlertDialog.Builder builder = new AlertDialog.Builder(getParentActivity(), themeDelegate);
                     builder.setMessage(LocaleController.getString(R.string.AreYouSureUnblockContact));
                     builder.setPositiveButton(LocaleController.getString(R.string.OK), (dialogInterface, i) -> getMessagesController().unblockPeer(currentUser.id));
-                    builder.setTitle(LocaleController.getString(R.string.AxGram));
+                    builder.setTitle(LocaleController.getString(R.string.Katarsis));
                     builder.setNegativeButton(LocaleController.getString(R.string.Cancel), null);
                     showDialog(builder.create());
                 }
@@ -12189,7 +12189,7 @@ public class ChatActivity extends BaseFragment implements
             builder.show();
         });
 
-        // AxGram: long press pinned list button
+        // Katarsis: long press pinned list button
         pinnedListButton.setOnLongClickListener(v -> {
             if (getParentActivity() == null) {
                 return false;
@@ -14938,7 +14938,7 @@ public class ChatActivity extends BaseFragment implements
             if (currentEncryptedChat != null && messagesController.secretWebpagePreview == 2) {
                 AndroidUtilities.runOnUIThread(() -> {
                     AlertDialog.Builder builder = new AlertDialog.Builder(getParentActivity(), themeDelegate);
-                    builder.setTitle(LocaleController.getString(R.string.AxGram));
+                    builder.setTitle(LocaleController.getString(R.string.Katarsis));
                     builder.setPositiveButton(LocaleController.getString(R.string.OK), (dialog, which) -> {
                         messagesController.secretWebpagePreview = 1;
                         MessagesController.getGlobalMainSettings().edit().putInt("secretWebpage2", getMessagesController().secretWebpagePreview).apply();
@@ -19585,7 +19585,7 @@ public class ChatActivity extends BaseFragment implements
             }
             if (grantResults != null && grantResults.length != 0 && grantResults[0] != PackageManager.PERMISSION_GRANTED) {
                 AlertDialog.Builder builder = new AlertDialog.Builder(getParentActivity(), themeDelegate);
-                builder.setTitle(LocaleController.getString(R.string.AxGram));
+                builder.setTitle(LocaleController.getString(R.string.Katarsis));
                 builder.setMessage(LocaleController.getString(R.string.PermissionNoAudioVideoWithHint));
                 builder.setNegativeButton(LocaleController.getString(R.string.PermissionOpenSettings), (dialog, which) -> {
                     try {
@@ -21460,24 +21460,24 @@ public class ChatActivity extends BaseFragment implements
         }
         ArrayList<MessageObject> messArr = (ArrayList<MessageObject>) args[2];
 
-        // === AxGram anti-delete: re-inject session-cached deleted messages so they persist
+        // === Katarsis anti-delete: re-inject session-cached deleted messages so they persist
         // across chat re-entry (until app restart), rendered inline with full media. ===
         try {
             if (dialog_id != 0 && !messArr.isEmpty()) {
-                ArrayList<MessageObject> axCached = one.axgram.core.AxDeletedMessages.getCachedDeleted(dialog_id);
+                ArrayList<MessageObject> axCached = one.katarsis.core.AxDeletedMessages.getCachedDeleted(dialog_id);
                 if (axCached.isEmpty()) {
                     // Not in session cache yet → load persisted deleted messages from DB and
                     // reconstruct them (so they survive app restart, shown inline with media).
-                    java.util.List<TLRPC.Message> axDb = one.axgram.core.AxDeletedMessages.getInstance().getMessages(currentAccount, dialog_id);
+                    java.util.List<TLRPC.Message> axDb = one.katarsis.core.AxDeletedMessages.getInstance().getMessages(currentAccount, dialog_id);
                     for (int di = 0; di < axDb.size(); di++) {
                         try {
                             MessageObject axMo = new MessageObject(currentAccount, axDb.get(di), true, true);
                             axMo.axDeleted = true;
-                            one.axgram.core.AxDeletedMessages.cacheDeleted(dialog_id, axMo);
+                            one.katarsis.core.AxDeletedMessages.cacheDeleted(dialog_id, axMo);
                         } catch (Throwable ignore) {
                         }
                     }
-                    axCached = one.axgram.core.AxDeletedMessages.getCachedDeleted(dialog_id);
+                    axCached = one.katarsis.core.AxDeletedMessages.getCachedDeleted(dialog_id);
                 }
                 if (!axCached.isEmpty()) {
                     int axMinId = Integer.MAX_VALUE;
@@ -21507,9 +21507,9 @@ public class ChatActivity extends BaseFragment implements
                 }
             }
         } catch (Throwable axErr) {
-            FileLog.e("AxGram reinject: " + axErr);
+            FileLog.e("Katarsis reinject: " + axErr);
         }
-        // === end AxGram ===
+        // === end Katarsis ===
 
         boolean universalNotify = false;
         HashMap<Integer, MessageObject> oldMessages = null;
@@ -26311,7 +26311,7 @@ public class ChatActivity extends BaseFragment implements
     private void processNewMessages(ArrayList<MessageObject> arr, final boolean animatedFromBottom) {
         FileLog.d("processNewMessages " + arr.size() + " messages");
 
-        // AxGram: proactively save & cache incoming one-time / self-destruct media so it survives
+        // Katarsis: proactively save & cache incoming one-time / self-destruct media so it survives
         // after being viewed (and wiped) on this or another device — the file reference can't be
         // refreshed later, and the message media gets emptied on read.
         try {
@@ -26325,7 +26325,7 @@ public class ChatActivity extends BaseFragment implements
                 final long axDid = dialog_id;
                 final int axAccount = currentAccount;
                 Utilities.globalQueue.postRunnable(() ->
-                        one.axgram.core.AxOnceMessages.getInstance().saveMessage(axAccount, axDid, axOwner));
+                        one.katarsis.core.AxOnceMessages.getInstance().saveMessage(axAccount, axDid, axOwner));
                 if (!axm.mediaExists()) {
                     TLRPC.Document axDoc = axm.getDocument();
                     if (axDoc != null) {
@@ -26339,7 +26339,7 @@ public class ChatActivity extends BaseFragment implements
                 }
             }
         } catch (Throwable axDlErr) {
-            FileLog.e("AxGram one-time media cache: " + axDlErr);
+            FileLog.e("Katarsis one-time media cache: " + axDlErr);
         }
 
         final boolean isBot = UserObject.isBot(currentUser);
@@ -27272,7 +27272,7 @@ public class ChatActivity extends BaseFragment implements
         processDeletedMessages(markAsDeletedMessages, channelId, sent, true);
     }
     private void processDeletedMessages(ArrayList<Integer> markAsDeletedMessages, long channelId, boolean sent, boolean thanos) {
-        // === AxGram anti-delete: keep incoming deleted messages visible with a marker ===
+        // === Katarsis anti-delete: keep incoming deleted messages visible with a marker ===
         try {
             if (chatMode != MODE_SCHEDULED && chatMode != MODE_QUICK_REPLIES) {
                 ArrayList<Integer> axKeep = new ArrayList<>();
@@ -27285,7 +27285,7 @@ public class ChatActivity extends BaseFragment implements
                     if (mo != null && mo.messageOwner != null && !mo.scheduled && !mo.isSponsored() && !mo.axDeleted) {
                         mo.axDeleted = true;
                         mo.forceUpdate = true; // like desktop requestItemViewRefresh/Resize — force cell to re-layout
-                        // AxGram: voice notes / round videos that were never downloaded can't be fetched
+                        // Katarsis: voice notes / round videos that were never downloaded can't be fetched
                         // after deletion (the file reference can no longer be refreshed via the message).
                         // Cache them now, while the reference from the original message is still valid.
                         try {
@@ -27296,20 +27296,20 @@ public class ChatActivity extends BaseFragment implements
                                 }
                             }
                         } catch (Throwable axDlErr) {
-                            FileLog.e("AxGram anti-delete media cache: " + axDlErr);
+                            FileLog.e("Katarsis anti-delete media cache: " + axDlErr);
                         }
-                        // AxGram: сообщение остаётся в чате, поэтому штатный код,
+                        // Katarsis: сообщение остаётся в чате, поэтому штатный код,
                         // снимающий выделение с удалённых, до него не доходит.
                         // Само гашение делается ниже, одним проходом по видимым
                         // ячейкам — по отдельности не годится, кружки висят на всех.
                         axNeedClearSelection = true;
-                        one.axgram.core.AxDeletedMessages.cacheDeleted(dialog_id, mo); // keep across chat re-entry (session)
+                        one.katarsis.core.AxDeletedMessages.cacheDeleted(dialog_id, mo); // keep across chat re-entry (session)
                         axKeep.add(markAsDeletedMessages.get(i));
                         axKeptObjects.add(mo);
                     } else if (mo != null && mo.axDeleted) {
                         // second delete of an already-kept message → remove it for real (session + DB)
-                        one.axgram.core.AxDeletedMessages.uncacheDeleted(dialog_id, mo.getId());
-                        one.axgram.core.AxDeletedMessages.getInstance().deleteOne(currentAccount, dialog_id, mo.getId());
+                        one.katarsis.core.AxDeletedMessages.uncacheDeleted(dialog_id, mo.getId());
+                        one.katarsis.core.AxDeletedMessages.getInstance().deleteOne(currentAccount, dialog_id, mo.getId());
                     }
                 }
                 if (!axKeep.isEmpty()) {
@@ -27372,15 +27372,15 @@ public class ChatActivity extends BaseFragment implements
                             FileLog.d("AXDESELECT свёрнуто выделение, осталось=" + axLeft
                                     + " ячеек=" + chatListView.getChildCount());
                         } catch (Throwable axSelErr) {
-                            FileLog.e("AxGram deselect: " + axSelErr);
+                            FileLog.e("Katarsis deselect: " + axSelErr);
                         }
                     });
                 }
             }
         } catch (Throwable axError) {
-            FileLog.e("AxGram inline anti-delete: " + axError);
+            FileLog.e("Katarsis inline anti-delete: " + axError);
         }
-        // === end AxGram ===
+        // === end Katarsis ===
         ArrayList<Integer> removedIndexes = new ArrayList<>();
         ArrayList<Integer> thanosMessagesIndexes = new ArrayList<>();
         final int currentTime = getConnectionsManager().getCurrentTime();
@@ -28775,7 +28775,7 @@ public class ChatActivity extends BaseFragment implements
                 menu.add(R.id.menu_groupbolditalic, R.id.menu_underline, order++, stringBuilder);
             }
         }
-        // AxGram: Move Spoiler back
+        // Katarsis: Move Spoiler back
         if (chat && AxConfig.INSTANCE.getShowTextQuote().Bool()) {
             menu.add(R.id.menu_groupbolditalic, R.id.menu_quote, order++, LocaleController.getString(R.string.Quote));
         }
@@ -33121,7 +33121,7 @@ public class ChatActivity extends BaseFragment implements
                         processSelectedOption(options.get(i));
                     });
                     if (option == OPTION_TRANSLATE) {
-                        // AxGram: Official Translation Move to neko_btn_translate
+                        // Katarsis: Official Translation Move to neko_btn_translate
                     }
                     cell.setOnLongClickListener(v1 -> {
                         if (selectedObject == null || i < 0 || i >= options.size()) {
@@ -34235,7 +34235,7 @@ public class ChatActivity extends BaseFragment implements
                         return;
                     }
                     AlertDialog.Builder builder = new AlertDialog.Builder(getParentActivity(), themeDelegate);
-                    builder.setTitle(LocaleController.getString(R.string.AxGram));
+                    builder.setTitle(LocaleController.getString(R.string.Katarsis));
                     builder.setMessage(LocaleController.getString(R.string.EditMessageError));
                     builder.setPositiveButton(LocaleController.getString(R.string.OK), null);
                     showDialog(builder.create());
@@ -34625,7 +34625,7 @@ public class ChatActivity extends BaseFragment implements
                                 return;
                             }
                             AlertDialog.Builder builder = new AlertDialog.Builder(getParentActivity(), themeDelegate);
-                            builder.setTitle(LocaleController.getString(R.string.AxGram));
+                            builder.setTitle(LocaleController.getString(R.string.Katarsis));
                             builder.setMessage(LocaleController.getString(R.string.IncorrectTheme));
                             builder.setPositiveButton(LocaleController.getString(R.string.OK), null);
                             preserveDim = true;
@@ -34644,7 +34644,7 @@ public class ChatActivity extends BaseFragment implements
                                 return;
                             }
                             AlertDialog.Builder builder = new AlertDialog.Builder(getParentActivity(), themeDelegate);
-                            builder.setTitle(LocaleController.getString(R.string.AxGram));
+                            builder.setTitle(LocaleController.getString(R.string.Katarsis));
                             builder.setMessage(LocaleController.getString(R.string.IncorrectLocalization));
                             builder.setPositiveButton(LocaleController.getString(R.string.OK), null);
                             preserveDim = true;
@@ -36316,7 +36316,7 @@ public class ChatActivity extends BaseFragment implements
             return;
         }
         AlertDialog.Builder builder = new AlertDialog.Builder(getParentActivity(), themeDelegate);
-        builder.setTitle(LocaleController.getString(R.string.AxGram));
+        builder.setTitle(LocaleController.getString(R.string.Katarsis));
         builder.setPositiveButton(LocaleController.getString(R.string.OK), null);
         if (message.type == MessageObject.TYPE_VIDEO) {
             builder.setMessage(LocaleController.getString(R.string.NoPlayerInstalled));
@@ -37001,7 +37001,7 @@ public class ChatActivity extends BaseFragment implements
         TLRPC.User user = getMessagesController().getUser(uid);
         if (ask) {
             AlertDialog.Builder builder = new AlertDialog.Builder(getParentActivity(), themeDelegate);
-            builder.setTitle(LocaleController.getString(R.string.AxGram));
+            builder.setTitle(LocaleController.getString(R.string.Katarsis));
             String name;
             if (user != null) {
                 name = ContactsController.formatName(user.first_name, user.last_name);
@@ -39403,7 +39403,7 @@ public class ChatActivity extends BaseFragment implements
 
                 var msg = messages.get(position - messagesStartRow);
 
-                // --- AxGram hook
+                // --- Katarsis hook
                 if (AxConfig.INSTANCE.getRegexFiltersEnabled().Bool() && (AxConfig.INSTANCE.getRegexFiltersEnableInChats().Bool() || ChatObject.isChannel(currentChat))) {
                     var group = getGroup(msg.getGroupId());
                     var msgToCheck = group == null ? msg : group.findCaptionMessageObject();
@@ -39412,7 +39412,7 @@ public class ChatActivity extends BaseFragment implements
                         return -1000;
                     }
                 }
-                // --- AxGram hook
+                // --- Katarsis hook
                 // --- NaGram hook
                 if (msg != null && msg.messageOwner != null && msg.messageOwner.hide) {
                     return -1000;
@@ -40028,7 +40028,7 @@ public class ChatActivity extends BaseFragment implements
             if (chatMode == MODE_SAVED || chatMode == MODE_SUGGESTIONS || threadMessageId == 0 && !UserObject.isReplyUser(currentUser) || threadMessageObject != null && threadMessageObject.getRepliesCount() < 10) {
                 searchItem.setVisibility(View.GONE);
             }
-            // AxGram: hide viewInChat Item when searching
+            // Katarsis: hide viewInChat Item when searching
             if (viewInChatItem != null)
                 viewInChatItem.setVisibility(View.VISIBLE);
             searchItemVisible = false;
@@ -44672,7 +44672,7 @@ public class ChatActivity extends BaseFragment implements
         }
         if (action == 1 && (channelParticipant instanceof TLRPC.TL_channelParticipantAdmin || participant instanceof TLRPC.TL_chatParticipantAdmin)) {
             AlertDialog.Builder builder2 = new AlertDialog.Builder(getParentActivity());
-            builder2.setTitle(LocaleController.getString("AxGram", R.string.AxGram));
+            builder2.setTitle(LocaleController.getString("Katarsis", R.string.Katarsis));
             builder2.setMessage(LocaleController.formatString("AdminWillBeRemoved", R.string.AdminWillBeRemoved, ContactsController.formatName(user.first_name, user.last_name)));
             builder2.setPositiveButton(LocaleController.getString("OK", R.string.OK), (dialog, which) -> {
                 if (channelParticipant != null) {
@@ -45802,7 +45802,7 @@ public class ChatActivity extends BaseFragment implements
 
     private void updateBotHelpCellClick(BotHelpCell cell) {
         final boolean translateButtonEnabled = MessagesController.getInstance(currentAccount).getTranslateController().isContextTranslateEnabled();
-        // AxGram: remove Language Detector
+        // Katarsis: remove Language Detector
         {
             cell.setClickable(false);
         }

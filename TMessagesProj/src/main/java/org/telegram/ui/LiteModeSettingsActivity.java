@@ -71,7 +71,7 @@ import org.telegram.ui.Components.ThanosEffect;
 
 import java.util.ArrayList;
 
-import one.axgram.core.AxCoreConfig;
+import one.katarsis.core.AxCoreConfig;
 
 public class LiteModeSettingsActivity extends BaseFragment {
 

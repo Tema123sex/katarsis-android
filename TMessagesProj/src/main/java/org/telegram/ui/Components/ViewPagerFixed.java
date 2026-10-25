@@ -58,8 +58,8 @@ import org.telegram.ui.Stories.recorder.HintView2;
 
 import java.util.ArrayList;
 
-import one.axgram.extra.AxConfig;
-import one.axgram.extra.TabStyle;
+import one.katarsis.extra.AxConfig;
+import one.katarsis.extra.TabStyle;
 
 public class ViewPagerFixed extends FrameLayout {
 
@@ -2248,7 +2248,7 @@ public class ViewPagerFixed extends FrameLayout {
             if (!isEditing && orderChanged) {
                 MessagesStorage.getInstance(UserConfig.selectedAccount).saveDialogFiltersOrder();
                 TLRPC.TL_messages_updateDialogFiltersOrder req = new TLRPC.TL_messages_updateDialogFiltersOrder();
-                // AxGram: локальные папки на сервере не существуют — в порядок не попадают.
+                // Katarsis: локальные папки на сервере не существуют — в порядок не попадают.
                 req.order.addAll(MessagesController.getInstance(UserConfig.selectedAccount).getRemoteFiltersOrder());
                 ConnectionsManager.getInstance(UserConfig.selectedAccount).sendRequest(req, (response, error) -> {
 

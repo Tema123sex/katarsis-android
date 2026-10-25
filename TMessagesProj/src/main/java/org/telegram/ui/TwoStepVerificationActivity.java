@@ -79,8 +79,8 @@ import org.telegram.ui.Components.VerticalPositionAutoAnimator;
 import java.util.ArrayList;
 import java.util.Locale;
 
-import one.axgram.core.ui.EditTextAutoFill;
-import one.axgram.core.utils.VibrateUtil;
+import one.katarsis.core.ui.EditTextAutoFill;
+import one.katarsis.core.utils.VibrateUtil;
 
 public class TwoStepVerificationActivity extends BaseFragment implements NotificationCenter.NotificationCenterDelegate {
 
@@ -983,9 +983,9 @@ public class TwoStepVerificationActivity extends BaseFragment implements Notific
                         } else {
                             timeString = LocaleController.formatPluralString("Minutes", time / 60);
                         }
-                        showAlertWithText(getString(R.string.AxGram), LocaleController.formatString("FloodWaitTime", R.string.FloodWaitTime, timeString));
+                        showAlertWithText(getString(R.string.Katarsis), LocaleController.formatString("FloodWaitTime", R.string.FloodWaitTime, timeString));
                     } else {
-                        showAlertWithText(getString(R.string.AxGram), error.text);
+                        showAlertWithText(getString(R.string.Katarsis), error.text);
                     }
                 }
             });
@@ -1122,9 +1122,9 @@ public class TwoStepVerificationActivity extends BaseFragment implements Notific
                                 } else {
                                     timeString = LocaleController.formatPluralString("Minutes", time / 60);
                                 }
-                                showAlertWithText(getString(R.string.AxGram), LocaleController.formatString("FloodWaitTime", R.string.FloodWaitTime, timeString));
+                                showAlertWithText(getString(R.string.Katarsis), LocaleController.formatString("FloodWaitTime", R.string.FloodWaitTime, timeString));
                             } else {
-                                showAlertWithText(getString(R.string.AxGram), error.text);
+                                showAlertWithText(getString(R.string.Katarsis), error.text);
                             }
                         });
                     }

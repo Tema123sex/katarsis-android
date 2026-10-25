@@ -73,9 +73,9 @@ import org.telegram.ui.Stories.recorder.HintView2;
 import java.util.ArrayList;
 import java.util.Map;
 
-import one.axgram.core.AxLegacyConfig;
-import one.axgram.core.AxCoreConfig;
-import one.axgram.core.folder.FolderIconHelper;
+import one.katarsis.core.AxLegacyConfig;
+import one.katarsis.core.AxCoreConfig;
+import one.katarsis.core.folder.FolderIconHelper;
 
 @SuppressLint("ViewConstructor")
 public class FilterTabsView extends FrameLayout {
@@ -1821,7 +1821,7 @@ public class FilterTabsView extends FrameLayout {
         if (!isEditing && orderChanged) {
             MessagesStorage.getInstance(UserConfig.selectedAccount).saveDialogFiltersOrder();
             TLRPC.TL_messages_updateDialogFiltersOrder req = new TLRPC.TL_messages_updateDialogFiltersOrder();
-            // AxGram: локальные папки на сервере не существуют — в порядок не попадают.
+            // Katarsis: локальные папки на сервере не существуют — в порядок не попадают.
             req.order.addAll(MessagesController.getInstance(UserConfig.selectedAccount).getRemoteFiltersOrder());
             MessagesController.getInstance(UserConfig.selectedAccount).lockFiltersInternal();
             ConnectionsManager.getInstance(UserConfig.selectedAccount).sendRequest(req, (response, error) -> {

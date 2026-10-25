@@ -61,7 +61,7 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
-import one.axgram.core.AxCoreConfig;
+import one.katarsis.core.AxCoreConfig;
 
 public final class BulletinFactory {
 

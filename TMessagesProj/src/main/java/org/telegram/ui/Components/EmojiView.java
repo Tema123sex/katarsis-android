@@ -171,9 +171,9 @@ import java.util.Objects;
 import me.vkryl.android.animator.BoolAnimator;
 import me.vkryl.android.animator.FactorAnimator;
 
-import one.axgram.core.AxCoreConfig;
-import one.axgram.core.ui.PinnedStickerHelper;
-import one.axgram.extra.AxConfig;
+import one.katarsis.core.AxCoreConfig;
+import one.katarsis.core.ui.PinnedStickerHelper;
+import one.katarsis.extra.AxConfig;
 
 @SuppressLint("ViewConstructor")
 public class EmojiView extends FrameLayout implements

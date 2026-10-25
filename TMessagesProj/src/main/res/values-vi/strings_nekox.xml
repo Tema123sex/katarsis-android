@@ -47,7 +47,7 @@
     <string name="TransToLang">Dịch ngôn ngữ được chọn</string>
     <string name="TransInputToLang">Dịch ngôn ngữ đầu vào được chọn</string>
     <string name="More">Thêm</string>
-    <string name="AxUpdatesChannel">Kênh cập nhật AxGram</string>
+    <string name="AxUpdatesChannel">Kênh cập nhật Katarsis</string>
     <string name="ShowIdAndDc">Hiển thị ID / DC trong hồ sơ</string>
     <string name="UseDefaultTheme">Sử dụng chủ đề mặc định *</string>
     <string name="NightMode">Chế độ ban đêm</string>
@@ -59,7 +59,7 @@
     <string name="ApplySuggestion">OK, Áp dụng</string>
     <string name="DoNotRemindAgain">Không nhắc lại</string>
     <string name="RemoveTitleEmoji">Xóa emoji trong tiêu đề</string>
-    <string name="AxProxy">AxGram Proxy công khai</string>
+    <string name="AxProxy">Katarsis Proxy công khai</string>
     <string name="PublicPrefix">Công khai</string>
     <string name="DisableChatAction">Không hiện trạng thái đang nhập tin nhắn của tôi</string>
     <string name="FakeScreenshot">Giả vờ chụp màn hình</string>
@@ -87,9 +87,9 @@
     <string name="SortByUnmuted">Sắp xếp theo Bật thông báo</string>
     <string name="SortByUser">Sắp xếp theo Người dùng</string>
     <string name="SortByContacts">Sắp xếp theo Danh bạ</string>
-    <string name="AxPushService">Dịch vụ AxGram Push</string>
-    <string name="EnablePushAlert">Vui lòng kích hoạt \"Dịch vụ AxGram Push\"</string>
-    <string name="DisablePushAlert">Vui lòng tắt \"Dịch vụ AxGram Push\"</string>
+    <string name="AxPushService">Dịch vụ Katarsis Push</string>
+    <string name="EnablePushAlert">Vui lòng kích hoạt \"Dịch vụ Katarsis Push\"</string>
+    <string name="DisablePushAlert">Vui lòng tắt \"Dịch vụ Katarsis Push\"</string>
     <string name="DisableUndo">Tắt hoàn tác</string>
     <string name="DisableSystemAccount">Tắt tài khoản hệ thống</string>
     <string name="FilterMenu">Menu Bộ lọc Hộp thoại</string>
@@ -170,7 +170,7 @@
     <string name="DisableDeveloperMode">Tắt Chế độ nhà phát triển</string>
     <string name="DeveloperSettings">Cài đặt nhà phát triển</string>
     <string name="LoginSettings">Cài đặt đăng nhập</string>
-    <string name="AxFaq">FAQ AxGram</string>
+    <string name="AxFaq">FAQ Katarsis</string>
     <string name="TransSite">Nền tảng Dịch</string>
     <string name="OpenKayChain">Ứng dụng khách OpenPGP</string>
     <string name="OpenPGPApp">Nhà cung cấp OpenPGP</string>
@@ -271,7 +271,7 @@
     <string name="ShareMessages">Chia sẻ</string>
     <string name="AutoCheckUpdatePreview">Xem trước (Không ổn định)</string>
     <string name="AxUpdateTranslationHint">Nhấn để dịch nhật ký thay đổi</string>
-    <string name="AppUpdateAxGram">Cập nhật AxGram</string>
+    <string name="AppUpdateKatarsis">Cập nhật Katarsis</string>
     <string name="Name">Tên</string>
     <string name="channelAlias">Bí danh của kênh</string>
     <string name="labelChannelUserDetails">Nếu người gửi tin nhắn là \"Kênh\", nó sẽ được gắn nhãn \"Kênh\".</string>

@@ -59,7 +59,7 @@ import java.util.List;
 
 import moe.hx030.momogram.maplibre.GeoUtils;
 import cn.hutool.core.util.ArrayUtil;
-import one.axgram.core.AxLegacyConfig;
+import one.katarsis.core.AxLegacyConfig;
 
 @SuppressWarnings("unchecked")
 public class TLRPC {

@@ -36,7 +36,7 @@ import org.telegram.ui.ProxyListActivity;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
-import one.axgram.core.utils.StrUtil;
+import one.katarsis.core.utils.StrUtil;
 import org.telegram.ui.Components.RadioButton;
 
 public class LanguageCell extends FrameLayout {

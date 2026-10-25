@@ -1,23 +1,23 @@
-# AxGram для Android
+# Katarsis для Android
 
 Неофициальный клиент Telegram: сохраняет удалённые и отредактированные
 сообщения, умеет режим призрака — и не отправляет наружу ничего о вас.
 
-> **Изменённая версия.** AxGram — форк [Nagram](https://github.com/NextAlone/Nagram)
+> **Изменённая версия.** Katarsis — форк [Nagram](https://github.com/NextAlone/Nagram)
 > (который сам является форком Telegram для Android). Изменения внесены aevornyx
 > в июле–августе 2026 года; перечень — в [NOTICE.md](NOTICE.md).
 >
-> AxGram не связан с Telegram Messenger LLP и не является официальным клиентом.
+> Katarsis не связан с Telegram Messenger LLP и не является официальным клиентом.
 
 ## Скачать
 
 Готовые сборки — в разделе
-[Releases](https://github.com/aevornyx/axgram-android/releases/latest).
+[Releases](https://github.com/aevornyx/katarsis-android/releases/latest).
 
 | Что скачивать | Кому |
 |---|---|
-| `AxGram-…-arm64-v8a.apk` | почти всем — современные телефоны |
-| `AxGram-…-armeabi-v7a.apk` | старые устройства |
+| `Katarsis-…-arm64-v8a.apk` | почти всем — современные телефоны |
+| `Katarsis-…-armeabi-v7a.apk` | старые устройства |
 
 Если не знаете, какой у вас процессор, берите **arm64-v8a**: он подходит
 подавляющему большинству телефонов, выпущенных после 2015 года.
@@ -31,7 +31,7 @@ Android заблокирует установку файла, скачанног
 
 ## Чем отличается от исходного форка
 
-AxGram собран на основе [Nagram](https://github.com/NextAlone/Nagram) и
+Katarsis собран на основе [Nagram](https://github.com/NextAlone/Nagram) и
 отличается прежде всего тем, чего в нём **нет**.
 
 **Наружу не уходит ничего.** Из сборки вырезаны Sentry и Firebase Crashlytics.
@@ -83,7 +83,7 @@ ALIAS_PASS=пароль
 
 ```bash
 keytool -genkeypair -v -keystore TMessagesProj/release.keystore \
-        -alias axgram -keyalg RSA -keysize 4096 -validity 10000
+        -alias katarsis -keyalg RSA -keysize 4096 -validity 10000
 ```
 
 Ключ в репозиторий не попадает (`*.keystore` в `.gitignore`). **Не теряйте

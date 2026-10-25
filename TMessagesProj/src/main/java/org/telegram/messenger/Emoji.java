@@ -45,9 +45,9 @@ import java.util.HashMap;
 import java.util.Locale;
 import java.util.Objects;
 
-import one.axgram.core.AxCoreConfig;
-import one.axgram.core.helpers.remote.EmojiHelper;
-import one.axgram.extra.AxConfig;
+import one.katarsis.core.AxCoreConfig;
+import one.katarsis.core.helpers.remote.EmojiHelper;
+import one.katarsis.extra.AxConfig;
 
 public class Emoji {
 

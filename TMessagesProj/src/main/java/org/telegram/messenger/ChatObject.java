@@ -39,8 +39,8 @@ import java.util.HashMap;
 import java.util.HashSet;
 import java.util.List;
 
-import one.axgram.core.DialogConfig;
-import one.axgram.core.helpers.remote.PeerColorHelper;
+import one.katarsis.core.DialogConfig;
+import one.katarsis.core.helpers.remote.PeerColorHelper;
 import me.vkryl.core.BitwiseUtils;
 
 public class ChatObject {

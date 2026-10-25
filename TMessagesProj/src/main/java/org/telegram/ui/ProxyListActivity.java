@@ -76,8 +76,8 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
-import one.axgram.core.utils.AlertUtil;
-import one.axgram.core.utils.ProxyUtil;
+import one.katarsis.core.utils.AlertUtil;
+import one.katarsis.core.utils.ProxyUtil;
 
 public class ProxyListActivity extends BaseFragment implements NotificationCenter.NotificationCenterDelegate {
     private final static boolean IS_PROXY_ROTATION_AVAILABLE = true;

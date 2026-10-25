@@ -39,7 +39,7 @@ import org.telegram.ui.Components.voip.VoIPToggleButton;
 import org.telegram.ui.GroupCallActivity;
 import org.telegram.ui.LaunchActivity;
 
-import one.axgram.core.utils.VibrateUtil;
+import one.katarsis.core.utils.VibrateUtil;
 
 public class GroupCallPipAlertView extends LinearLayout implements VoIPService.StateListener, NotificationCenter.NotificationCenterDelegate {
 

@@ -8,8 +8,8 @@
 
 package org.telegram.ui.Components;
 
-import static one.axgram.extra.helper.MessageHelper.canSendAsDice;
-import static one.axgram.extra.helper.MessageHelper.containsMarkdown;
+import static one.katarsis.extra.helper.MessageHelper.canSendAsDice;
+import static one.katarsis.extra.helper.MessageHelper.containsMarkdown;
 import static org.telegram.messenger.AndroidUtilities.dp;
 import static org.telegram.messenger.AndroidUtilities.dpf2;
 import static org.telegram.messenger.AndroidUtilities.lerp;
@@ -248,20 +248,20 @@ import cn.hutool.core.util.StrUtil;
 import kotlin.Unit;
 import kotlin.text.StringsKt;
 import top.qwq2333.nullgram.utils.StringUtils;
-import one.axgram.core.AxCoreConfig;
-import one.axgram.core.cc.CCConverter;
-import one.axgram.core.cc.CCTarget;
-import one.axgram.core.helpers.remote.ChatExtraButtonsHelper;
-import one.axgram.core.transtale.TranslateDb;
-import one.axgram.core.transtale.Translator;
-import one.axgram.core.transtale.TranslatorKt;
-import one.axgram.core.ui.BottomBuilder;
-import one.axgram.core.utils.AlertUtil;
-import one.axgram.core.utils.PGPUtil;
-import one.axgram.core.utils.UIUtil;
-import one.axgram.extra.AxConfig;
-import one.axgram.extra.helper.Dialogs;
-import one.axgram.extra.ui.syntaxhighlight.SyntaxHighlight;
+import one.katarsis.core.AxCoreConfig;
+import one.katarsis.core.cc.CCConverter;
+import one.katarsis.core.cc.CCTarget;
+import one.katarsis.core.helpers.remote.ChatExtraButtonsHelper;
+import one.katarsis.core.transtale.TranslateDb;
+import one.katarsis.core.transtale.Translator;
+import one.katarsis.core.transtale.TranslatorKt;
+import one.katarsis.core.ui.BottomBuilder;
+import one.katarsis.core.utils.AlertUtil;
+import one.katarsis.core.utils.PGPUtil;
+import one.katarsis.core.utils.UIUtil;
+import one.katarsis.extra.AxConfig;
+import one.katarsis.extra.helper.Dialogs;
+import one.katarsis.extra.ui.syntaxhighlight.SyntaxHighlight;
 
 import me.vkryl.android.animator.BoolAnimator;
 import me.vkryl.android.animator.FactorAnimator;

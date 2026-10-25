@@ -39,8 +39,8 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Locale;
 
-import one.axgram.core.AxCoreConfig;
-import one.axgram.core.location.AxLocation;
+import one.katarsis.core.AxCoreConfig;
+import one.katarsis.core.location.AxLocation;
 
 @SuppressLint("MissingPermission")
 public class LocationController extends BaseController implements NotificationCenter.NotificationCenterDelegate, ILocationServiceProvider.IAPIConnectionCallbacks, ILocationServiceProvider.IAPIOnConnectionFailedListener {

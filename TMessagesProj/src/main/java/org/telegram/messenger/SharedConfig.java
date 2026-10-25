@@ -57,12 +57,12 @@ import java.util.concurrent.CopyOnWriteArraySet;
 import java.util.stream.Collectors;
 
 import cn.hutool.core.util.StrUtil;
-import one.axgram.core.AxCoreConfig;
-import one.axgram.core.utils.AlertUtil;
-import one.axgram.core.utils.EnvUtil;
-import one.axgram.core.utils.FileUtil;
-import one.axgram.core.utils.UIUtil;
-import one.axgram.extra.AxConfig;
+import one.katarsis.core.AxCoreConfig;
+import one.katarsis.core.utils.AlertUtil;
+import one.katarsis.core.utils.EnvUtil;
+import one.katarsis.core.utils.FileUtil;
+import one.katarsis.core.utils.UIUtil;
+import one.katarsis.extra.AxConfig;
 
 import java.util.List;
 import java.util.Locale;
@@ -860,7 +860,7 @@ public class SharedConfig {
     }
 
     public static boolean isAppUpdateAvailable() {
-        if (true) return false; // AxGram: no in-app updater (Nagram update prompts disabled)
+        if (true) return false; // Katarsis: no in-app updater (Nagram update prompts disabled)
         if (pendingAppUpdate == null || pendingAppUpdate.document == null || !ApplicationLoader.isStandaloneBuild()) {
             return false;
         }

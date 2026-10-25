@@ -49,7 +49,7 @@ import org.telegram.ui.Stories.recorder.HintView2;
 
 import java.util.Locale;
 
-import one.axgram.core.AxCoreConfig;
+import one.katarsis.core.AxCoreConfig;
 
 public class ChatGreetingsView extends LinearLayout {
 

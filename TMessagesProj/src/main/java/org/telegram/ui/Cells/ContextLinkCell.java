@@ -61,7 +61,7 @@ import java.io.File;
 import java.util.ArrayList;
 import java.util.Locale;
 
-import one.axgram.core.AxCoreConfig;
+import one.katarsis.core.AxCoreConfig;
 
 public class ContextLinkCell extends FrameLayout implements DownloadController.FileDownloadProgressListener {
 

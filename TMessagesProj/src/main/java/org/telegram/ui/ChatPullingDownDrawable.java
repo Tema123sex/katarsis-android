@@ -44,7 +44,7 @@ import org.telegram.ui.Components.StaticLayoutEx;
 
 import java.util.ArrayList;
 
-import one.axgram.core.AxCoreConfig;
+import one.katarsis.core.AxCoreConfig;
 
 public class ChatPullingDownDrawable implements NotificationCenter.NotificationCenterDelegate {
 

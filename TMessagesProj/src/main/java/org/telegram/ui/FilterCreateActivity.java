@@ -108,8 +108,8 @@ import org.telegram.ui.Components.spoilers.SpoilersTextView;
 import java.util.ArrayList;
 import java.util.Collections;
 
-import one.axgram.core.folder.FolderIconHelper;
-import one.axgram.core.folder.IconSelectorAlert;
+import one.katarsis.core.folder.FolderIconHelper;
+import one.katarsis.core.folder.IconSelectorAlert;
 
 public class FilterCreateActivity extends BaseFragment {
 
@@ -199,7 +199,7 @@ public class FilterCreateActivity extends BaseFragment {
         if (filter == null) {
             filter = new MessagesController.DialogFilter();
             final MessagesController controller = getMessagesController();
-            // AxGram: пока не упёрлись в серверный лимит — обычная папка,
+            // Katarsis: пока не упёрлись в серверный лимит — обычная папка,
             // которая синхронизируется. Дальше создаём локальную: сервер
             // отверг бы её с DIALOG_FILTERS_TOO_MUCH.
             int serverLimit = controller.getEffectiveFiltersLimit();
@@ -209,7 +209,7 @@ public class FilterCreateActivity extends BaseFragment {
             while (controller.dialogFiltersById.get(filter.id) != null) {
                 filter.id++;
             }
-            FileLog.d("AxGram папки: новая папка id=" + filter.id + (local ? " (локальная)" : " (серверная)")
+            FileLog.d("Katarsis папки: новая папка id=" + filter.id + (local ? " (локальная)" : " (серверная)")
                     + ", серверных сейчас " + remoteCount + ", предел " + serverLimit
                     + ", настоящий Premium=" + controller.hasRealPremium());
             filter.name = "";
@@ -247,7 +247,7 @@ public class FilterCreateActivity extends BaseFragment {
         if (loadingInvites) {
             return;
         }
-        // AxGram: локальная папка серверу неизвестна, ссылок у неё быть не может.
+        // Katarsis: локальная папка серверу неизвестна, ссылок у неё быть не может.
         if (filter == null || !filter.isChatlist() || MessagesController.isLocalFilter(filter)) {
             return;
         }
@@ -309,7 +309,7 @@ public class FilterCreateActivity extends BaseFragment {
         }));
         nameRow = items.size();
         items.add(ItemInner.asEdit());
-        // AxGram: честно предупреждаем, что папка сверх лимита живёт только здесь —
+        // Katarsis: честно предупреждаем, что папка сверх лимита живёт только здесь —
         // иначе пользователь будет искать её на другом устройстве и не найдёт.
         items.add(ItemInner.asShadow(MessagesController.isLocalFilter(filter)
                 ? "Эта папка хранится только на этом устройстве: Telegram не даёт синхронизировать больше "
@@ -386,7 +386,7 @@ public class FilterCreateActivity extends BaseFragment {
             items.add(ItemInner.asShadow(LocaleController.getString(R.string.FolderTagColorInfo)));
         }
 
-        // AxGram: локальную папку поделить нельзя — она есть только на этом устройстве.
+        // Katarsis: локальную папку поделить нельзя — она есть только на этом устройстве.
         boolean canShareFolder = !MessagesController.isLocalFilter(filter);
         if (!canShareFolder) {
             // раздел со ссылками пропускаем целиком
@@ -839,7 +839,7 @@ public class FilterCreateActivity extends BaseFragment {
                     progressDialog.show();
                 }
                 final AlertDialog progressDialogFinal = progressDialog;
-                // AxGram: локальную папку удаляем только у себя — сервер о ней не знает.
+                // Katarsis: локальную папку удаляем только у себя — сервер о ней не знает.
                 if (MessagesController.isLocalFilter(filter)) {
                     if (progressDialogFinal != null) {
                         try {
@@ -1114,7 +1114,7 @@ public class FilterCreateActivity extends BaseFragment {
         fragment.getMessagesStorage().saveDialogFilter(filter, atBegin, true);
         if (atBegin) {
             TLRPC.TL_messages_updateDialogFiltersOrder req = new TLRPC.TL_messages_updateDialogFiltersOrder();
-            // AxGram: локальные папки на сервере не существуют — в порядок не попадают.
+            // Katarsis: локальные папки на сервере не существуют — в порядок не попадают.
             req.order.addAll(fragment.getMessagesController().getRemoteFiltersOrder());
             fragment.getConnectionsManager().sendRequest(req, null);
         }
@@ -1135,7 +1135,7 @@ public class FilterCreateActivity extends BaseFragment {
         } else {
             progressDialog = null;
         }
-        // AxGram: локальная папка на сервер не отправляется — сервер о ней не знает
+        // Katarsis: локальная папка на сервер не отправляется — сервер о ней не знает
         // и отверг бы запрос лимитом. Сразу применяем изменения и пишем в базу.
         if (MessagesController.isLocalFilter(filter)) {
             if (progressDialog != null) {
@@ -1247,7 +1247,7 @@ public class FilterCreateActivity extends BaseFragment {
             }
         }
         fragment.getConnectionsManager().sendRequest(req, (response, error) -> AndroidUtilities.runOnUIThread(() -> {
-            // AxGram: сервер отказал по лимиту папок. Раньше папка всё равно
+            // Katarsis: сервер отказал по лимиту папок. Раньше папка всё равно
             // создавалась, но с серверным идентификатором — и при следующей
             // синхронизации молча исчезала. Теперь она становится локальной.
             if (error != null && error.text != null && error.text.contains("DIALOG_FILTERS_TOO_MUCH")
@@ -1270,7 +1270,7 @@ public class FilterCreateActivity extends BaseFragment {
                     localId++;
                 }
                 filter.id = localId;
-                FileLog.d("AxGram папки: сервер отказал, пересоздаю папку локальной с id=" + localId);
+                FileLog.d("Katarsis папки: сервер отказал, пересоздаю папку локальной с id=" + localId);
                 processAddFilter(filter, newFilterFlags, newFilterEmoticon, newFilterName, newFilterNameEntities, newFilterNoanimate, newFilterColor, newAlwaysShow, newNeverShow, true, atBegin, hasUserChanged, resetUnreadCounter, fragment, onFinish);
                 if (fragment.getParentActivity() != null) {
                     BulletinFactory.of(fragment).createSimpleBulletin(

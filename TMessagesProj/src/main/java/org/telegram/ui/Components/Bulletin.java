@@ -85,7 +85,7 @@ import java.lang.annotation.Retention;
 import java.util.ArrayList;
 import java.util.List;
 
-import one.axgram.extra.AxConfig;
+import one.katarsis.extra.AxConfig;
 
 public class Bulletin {
 

@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <string name="AxSettings">Настройки AxGram</string>
+    <string name="AxSettings">Настройки Katarsis</string>
     <string name="IPv6">Предпочитать IPv6 соединение</string>
     <string name="MessageMenu">Меню действий с сообщением</string>
     <string name="HidePhone">Скрыть мой номер телефона</string>
@@ -25,7 +25,7 @@
     <string name="TransparentStatusBar">Прозрачная полоска статуса</string>
     <string name="EnableResidentNotification">Отображать постоянное уведомление</string>
     <string name="DisableResidentNotification">Скрыть постоянное уведомление</string>
-    <string name="AxGramRunning">AxGram запущен</string>
+    <string name="KatarsisRunning">Katarsis запущен</string>
     <string name="EventType">Набор значков бокового меню</string>
     <string name="ChristmasHat">Рождественский колпак в заголовке</string>
     <string name="ActionBarDecoration">Оформление заголовка</string>
@@ -93,9 +93,9 @@
     <string name="About">О проекте</string>
     <string name="IgnoreBlockedAbout">Вы больше не будете видеть сообщения от заблокированных пользователей в группах.</string>
     <string name="GooglePlay">Google Play</string>
-    <string name="AxPromoChannelTitle">Канал AxGram</string>
+    <string name="AxPromoChannelTitle">Канал Katarsis</string>
     <string name="AxPromoChannelText">Новости, обновления и обсуждения проекта.</string>
-    <string name="AxPromoSupportTitle">Поддержать AxGram</string>
+    <string name="AxPromoSupportTitle">Поддержать Katarsis</string>
     <string name="AxPromoSupportText">Звёзды идут на разработку: сборки и новые функции.</string>
     <string name="AxPromoOpen">Открыть</string>
     <string name="SupportAuthor">Поддержать автора</string>
@@ -129,7 +129,7 @@
     <string name="disableChoosingSticker">Отправлять «печатает» вместо «выбирает стикер»</string>
     <string name="hideGroupSticker">Скрыть стикер группы</string>
     <string name="disableRemoteEmojiInteractions">Отключить удаленное взаимодействие с эмодзи</string>
-    <string name="enablePublicProxy">Публичный прокси AxGram</string>
+    <string name="enablePublicProxy">Публичный прокси Katarsis</string>
     <string name="autoUpdateSubInfo">Автоматическое обновление прокси-серверов</string>
     <string name="hideSendAsChannel">Скрыть «Отправить как канал»</string>
     <string name="showSpoilersDirectly">Раскрывать спойлеры сразу</string>
@@ -160,5 +160,5 @@
     <string name="useOSMDroidMap">Используйте карту OSMDroid</string>
     <string name="mapDriftingFixForGoogleMaps">Исправить дрейф Карт Google в Китае</string>
     <string name="enhancedFileLoader">Увеличить скорость загрузки</string>
-    <string name="ResetSettingsAlert">Сбросить все настройки AxGram?</string>
+    <string name="ResetSettingsAlert">Сбросить все настройки Katarsis?</string>
 </resources>

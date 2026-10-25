@@ -37,8 +37,8 @@ import java.util.Locale;
 import java.util.concurrent.ConcurrentHashMap;
 
 import cn.hutool.core.util.StrUtil;
-import one.axgram.core.AxCoreConfig;
-import one.axgram.core.helpers.AxFilter;
+import one.katarsis.core.AxCoreConfig;
+import one.katarsis.core.helpers.AxFilter;
 
 public class DownloadController extends BaseController implements NotificationCenter.NotificationCenterDelegate {
 
@@ -879,14 +879,14 @@ public class DownloadController extends BaseController implements NotificationCe
             return canPreloadStories() ? 2 : 0;
         }
 
-        // --- AxGram hook
+        // --- Katarsis hook
 
         var isFiltered = AxFilter.isFiltered(new MessageObject(currentAccount, message, false, false), null);
         if (isFiltered) {
             return 0;
         }
 
-        // --- AxGram hook
+        // --- Katarsis hook
 
         int type;
         boolean isVideo;

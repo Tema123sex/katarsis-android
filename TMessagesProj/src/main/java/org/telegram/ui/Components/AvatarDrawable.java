@@ -42,7 +42,7 @@ import org.telegram.ui.ActionBar.Theme;
 
 import java.util.ArrayList;
 
-import one.axgram.extra.AxConfig;
+import one.katarsis.extra.AxConfig;
 
 public class AvatarDrawable extends Drawable {
 

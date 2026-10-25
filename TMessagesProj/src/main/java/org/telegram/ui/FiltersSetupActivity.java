@@ -72,9 +72,9 @@ import org.telegram.ui.Components.UndoView;
 
 import java.util.ArrayList;
 
-import one.axgram.core.folder.FolderIconHelper;
+import one.katarsis.core.folder.FolderIconHelper;
 
-import one.axgram.core.AxCoreConfig;
+import one.katarsis.core.AxCoreConfig;
 
 public class FiltersSetupActivity extends BaseFragment implements NotificationCenter.NotificationCenterDelegate {
 
@@ -625,7 +625,7 @@ public class FiltersSetupActivity extends BaseFragment implements NotificationCe
             getNotificationCenter().postNotificationName(NotificationCenter.dialogFiltersUpdated);
             getMessagesStorage().saveDialogFiltersOrder();
             TLRPC.TL_messages_updateDialogFiltersOrder req = new TLRPC.TL_messages_updateDialogFiltersOrder();
-            // AxGram: локальные папки на сервере не существуют — в порядок не попадают.
+            // Katarsis: локальные папки на сервере не существуют — в порядок не попадают.
             req.order.addAll(getMessagesController().getRemoteFiltersOrder());
             getConnectionsManager().sendRequest(req, (response, error) -> {
 
@@ -738,7 +738,7 @@ public class FiltersSetupActivity extends BaseFragment implements NotificationCe
 
     public void createFolder(INavigationLayout navigationLayout) {
         final int count = getMessagesController().getDialogFilters().size();
-        // AxGram: окно «лимит достигнут» больше не нужно — папки сверх серверного
+        // Katarsis: окно «лимит достигнут» больше не нужно — папки сверх серверного
         // лимита создаются локальными. Ограничение осталось одно: общее число
         // папок, чтобы список не разрастался бесконтрольно.
         if (count >= MAX_TOTAL_FILTERS) {
@@ -746,7 +746,7 @@ public class FiltersSetupActivity extends BaseFragment implements NotificationCe
             if (getContext() != null) {
                 AlertDialog.Builder builder = new AlertDialog.Builder(getContext());
                 builder.setTitle("Больше папок не поместится");
-                builder.setMessage("В AxGram можно держать до " + MAX_TOTAL_FILTERS
+                builder.setMessage("В Katarsis можно держать до " + MAX_TOTAL_FILTERS
                         + " папок. Удали ненужную, чтобы освободить место.");
                 builder.setPositiveButton(LocaleController.getString(R.string.OK), null);
                 showDialog(builder.create());
@@ -951,7 +951,7 @@ public class FiltersSetupActivity extends BaseFragment implements NotificationCe
                                     progressDialog.show();
                                 }
                                 final AlertDialog progressDialogFinal = progressDialog;
-                                // AxGram: локальную папку удаляем только у себя.
+                                // Katarsis: локальную папку удаляем только у себя.
                                 if (MessagesController.isLocalFilter(filter)) {
                                     if (progressDialogFinal != null) {
                                         try {

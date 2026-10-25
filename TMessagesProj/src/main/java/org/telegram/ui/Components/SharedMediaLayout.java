@@ -174,11 +174,11 @@ import java.util.HashSet;
 import java.util.Objects;
 
 import kotlin.Unit;
-import one.axgram.core.AxLegacyConfig;
-import one.axgram.core.ui.BottomBuilder;
-import one.axgram.core.utils.AlertUtil;
-import one.axgram.core.utils.ProxyUtil;
-import one.axgram.extra.AxConfig;
+import one.katarsis.core.AxLegacyConfig;
+import one.katarsis.core.ui.BottomBuilder;
+import one.katarsis.core.utils.AlertUtil;
+import one.katarsis.core.utils.ProxyUtil;
+import one.katarsis.extra.AxConfig;
 
 @SuppressWarnings("unchecked")
 public class SharedMediaLayout extends FrameLayout implements NotificationCenter.NotificationCenterDelegate, DialogCell.DialogCellDelegate {

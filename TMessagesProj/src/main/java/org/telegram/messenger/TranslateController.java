@@ -52,9 +52,9 @@ import java.util.Locale;
 import java.util.Objects;
 import java.util.Set;
 
-import one.axgram.core.transtale.popupwrapper.LanguageDetector;
-import one.axgram.extra.AxConfig;
-import one.axgram.extra.SummarizeTextButtonStatus;
+import one.katarsis.core.transtale.popupwrapper.LanguageDetector;
+import one.katarsis.extra.AxConfig;
+import one.katarsis.extra.SummarizeTextButtonStatus;
 
 public class TranslateController extends BaseController {
 
@@ -877,7 +877,7 @@ public class TranslateController extends BaseController {
 
     private ArrayList<Integer> pendingLanguageChecks = new ArrayList<>();
     private void checkLanguage(MessageObject messageObject) {
-        // AxGram: remove Language Detector
+        // Katarsis: remove Language Detector
     }
 
     private void checkDialogTranslatable(MessageObject messageObject) {

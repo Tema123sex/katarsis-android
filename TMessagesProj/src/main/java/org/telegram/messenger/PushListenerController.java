@@ -31,7 +31,7 @@ import java.util.Arrays;
 import java.util.Locale;
 import java.util.concurrent.CountDownLatch;
 
-import one.axgram.extra.AxConfig;
+import one.katarsis.extra.AxConfig;
 
 @Keep
 public class PushListenerController {

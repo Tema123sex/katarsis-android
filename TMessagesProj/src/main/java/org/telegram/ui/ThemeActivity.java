@@ -124,8 +124,8 @@ import java.util.List;
 import java.util.Locale;
 import java.util.concurrent.atomic.AtomicReference;
 
-import one.axgram.core.AxCoreConfig;
-import one.axgram.extra.helper.Dialogs;
+import one.katarsis.core.AxCoreConfig;
+import one.katarsis.extra.helper.Dialogs;
 
 public class ThemeActivity extends BaseFragment implements NotificationCenter.NotificationCenterDelegate {
 

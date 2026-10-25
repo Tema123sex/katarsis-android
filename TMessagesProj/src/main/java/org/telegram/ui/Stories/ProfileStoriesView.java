@@ -56,7 +56,7 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
-import one.axgram.extra.AxConfig;
+import one.katarsis.extra.AxConfig;
 
 public class ProfileStoriesView extends View implements NotificationCenter.NotificationCenterDelegate {
 

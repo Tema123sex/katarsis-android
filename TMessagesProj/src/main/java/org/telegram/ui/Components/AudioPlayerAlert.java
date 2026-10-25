@@ -126,9 +126,9 @@ import java.io.File;
 import java.util.ArrayList;
 import java.util.List;
 
-import one.axgram.extra.AxConfig;
-import one.axgram.extra.helper.LyricsHelper;
-import one.axgram.extra.ui.LyricsView;
+import one.katarsis.extra.AxConfig;
+import one.katarsis.extra.helper.LyricsHelper;
+import one.katarsis.extra.ui.LyricsView;
 
 public class AudioPlayerAlert extends BottomSheet implements NotificationCenter.NotificationCenterDelegate, DownloadController.FileDownloadProgressListener {
 

@@ -60,7 +60,7 @@ import org.telegram.ui.Components.LayoutHelper;
 import org.telegram.ui.Components.LineProgressView;
 import org.telegram.ui.GradientClip;
 
-import one.axgram.core.AxCoreConfig;
+import one.katarsis.core.AxCoreConfig;
 
 public class WebActionBar extends FrameLayout {
     private final Theme.ResourcesProvider resourcesProvider;

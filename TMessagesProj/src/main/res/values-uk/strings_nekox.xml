@@ -47,7 +47,7 @@
     <string name="TransToLang">Переклад на мову</string>
     <string name="TransInputToLang">Переклад із мови</string>
     <string name="More">Більше</string>
-    <string name="AxUpdatesChannel">Канал оновлень AxGram</string>
+    <string name="AxUpdatesChannel">Канал оновлень Katarsis</string>
     <string name="ShowIdAndDc">Показати ID / DC в профілі</string>
     <string name="UseDefaultTheme">Використовувати стандартну тему *</string>
     <string name="NightMode">Нічний режим</string>
@@ -59,7 +59,7 @@
     <string name="ApplySuggestion">Добре, застосувати</string>
     <string name="DoNotRemindAgain">Не нагадувати більше</string>
     <string name="RemoveTitleEmoji">Видаляти смайли в назві</string>
-    <string name="AxProxy">Публічний проксі AxGram</string>
+    <string name="AxProxy">Публічний проксі Katarsis</string>
     <string name="PublicPrefix">Загальнодоступна</string>
     <string name="DisableChatAction">Не надсилати мій статус вводу</string>
     <string name="FakeScreenshot">Імітувати знімок екрану</string>
@@ -87,9 +87,9 @@
     <string name="SortByUnmuted">Сортувати за ввімк. звуком</string>
     <string name="SortByUser">Сортувати за користувачем</string>
     <string name="SortByContacts">Сортувати за контактами</string>
-    <string name="AxPushService">Push-сервіс AxGram</string>
-    <string name="EnablePushAlert">Будь ласка, ввімкніть Push-сервіс AxGram</string>
-    <string name="DisablePushAlert">Будь ласка, вимкніть Push-сервіс AxGram</string>
+    <string name="AxPushService">Push-сервіс Katarsis</string>
+    <string name="EnablePushAlert">Будь ласка, ввімкніть Push-сервіс Katarsis</string>
+    <string name="DisablePushAlert">Будь ласка, вимкніть Push-сервіс Katarsis</string>
     <string name="DisableUndo">Вимкнути скасування</string>
     <string name="DisableSystemAccount">Вимкнути системний обліковий запис</string>
     <string name="FilterMenu">Меню фільтру діалогів</string>
@@ -170,7 +170,7 @@
     <string name="DisableDeveloperMode">Вимкнути режим розробки</string>
     <string name="DeveloperSettings">Параметри розробки</string>
     <string name="LoginSettings">Параметри входу</string>
-    <string name="AxFaq">Питання AxGram</string>
+    <string name="AxFaq">Питання Katarsis</string>
     <string name="TransSite">Платформа перекладу</string>
     <string name="OpenKayChain">Клієнт OpenPGP</string>
     <string name="OpenPGPApp">Провайдер OpenPGP</string>
@@ -271,7 +271,7 @@
     <string name="rememberAllBackMessages">Пам\'ятати натиснені відповіді</string>
     <string name="AutoCheckUpdatePreview">Випробувальна (нестабільна)</string>
     <string name="AxUpdateTranslationHint">Торкніть, щоб перекласти журнал змін</string>
-    <string name="AppUpdateAxGram">Оновити AxGram</string>
+    <string name="AppUpdateKatarsis">Оновити Katarsis</string>
     <string name="Name">Ім\'я</string>
     <string name="channelAlias">Псевдонім каналу</string>
     <string name="labelChannelUserDetails">Підписувати повідомлення з каналу відповідно.</string>
@@ -281,5 +281,5 @@
     <string name="StickerSettings">Стікер</string>
     <string name="ConfirmSettings">Підтвердження</string>
     <string name="InteractionSettings">Взаємодія</string>
-    <string name="axPremiumGiftRemoved">Premium в подарунок видаляється в AxGram.</string>
+    <string name="axPremiumGiftRemoved">Premium в подарунок видаляється в Katarsis.</string>
 </resources>

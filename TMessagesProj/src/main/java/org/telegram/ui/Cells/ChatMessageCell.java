@@ -262,14 +262,14 @@ import me.vkryl.android.animator.BoolAnimator;
 import me.vkryl.android.animator.FactorAnimator;
 import me.vkryl.core.BitwiseUtils;
 
-import one.axgram.core.AxCoreConfig;
-import one.axgram.core.AxLegacyConfig;
+import one.katarsis.core.AxCoreConfig;
+import one.katarsis.core.AxLegacyConfig;
 
-import one.axgram.core.helpers.TimeStringHelper;
-import one.axgram.core.utils.NeteaseEmbed;
-import one.axgram.extra.AxConfig;
+import one.katarsis.core.helpers.TimeStringHelper;
+import one.katarsis.core.utils.NeteaseEmbed;
+import one.katarsis.extra.AxConfig;
 
-import static one.axgram.extra.helper.MessageHelper.showForwardDate;
+import static one.katarsis.extra.helper.MessageHelper.showForwardDate;
 
 public class ChatMessageCell extends BaseCell implements SeekBar.SeekBarDelegate, ImageReceiver.ImageReceiverDelegate,
         DownloadController.FileDownloadProgressListener, TextSelectionHelper.SelectableView,
@@ -6952,7 +6952,7 @@ public class ChatMessageCell extends BaseCell implements SeekBar.SeekBarDelegate
                 currentMessageObject.richLayout.detach(this);
             }
             currentMessageObject = messageObject;
-            setAlpha(messageObject != null && messageObject.axDeleted ? 0.75f : 1.0f); // AxGram: dim deleted messages (like desktop semiTransparentDeletedMessages)
+            setAlpha(messageObject != null && messageObject.axDeleted ? 0.75f : 1.0f); // Katarsis: dim deleted messages (like desktop semiTransparentDeletedMessages)
             currentMessagesGroup = groupedMessages;
             wasAllChats = isAllChats;
             lastTime = -2;
@@ -13658,7 +13658,7 @@ public class ChatMessageCell extends BaseCell implements SeekBar.SeekBarDelegate
             } else if (drawInstantViewType == 20) {
                 str = getString(R.string.OpenGift);
             } else if (drawInstantViewType == 21) {
-                str = getString(R.string.AppUpdate).replace("Telegram", LocaleController.getString(R.string.AxGram));
+                str = getString(R.string.AppUpdate).replace("Telegram", LocaleController.getString(R.string.Katarsis));
             } else if (drawInstantViewType == 23) {
                 str = getString(R.string.OpenStickerSet);
             } else if (drawInstantViewType == 24) {
@@ -18629,10 +18629,10 @@ public class ChatMessageCell extends BaseCell implements SeekBar.SeekBarDelegate
             timeString = LocaleController.getInstance().getFormatterDay().format((long) (messageObject.messageOwner.date) * 1000);
         }
         if (currentMessageObject.axDeleted) {
-            timeString = "🗑 " + timeString; // AxGram: mark anti-deleted messages
+            timeString = "🗑 " + timeString; // Katarsis: mark anti-deleted messages
         }
         if (currentMessageObject.messageOwner != null && currentMessageObject.messageOwner.media != null && currentMessageObject.messageOwner.media.ttl_seconds != 0) {
-            timeString = "🔥 " + timeString; // AxGram: mark one-time / self-destruct / timed media
+            timeString = "🔥 " + timeString; // Katarsis: mark one-time / self-destruct / timed media
         }
         if (currentMessageObject.messageOwner.video_processing_pending) {
             timeString = formatString(R.string.ScheduledTimeApprox, timeString);
@@ -22454,7 +22454,7 @@ public class ChatMessageCell extends BaseCell implements SeekBar.SeekBarDelegate
                 } else if (currentMessageObject.isOutOwner()) {
                     color = getThemedColor(isDrawSelectionBackground() ? Theme.key_chat_outAdminSelectedText : Theme.key_chat_outAdminText);
                 } else if (AxConfig.INSTANCE.getColoredAdminTitle().Bool()) {
-                    // AxGram: звание администратора рисуется цветом имени отправителя.
+                    // Katarsis: звание администратора рисуется цветом имени отправителя.
                     // Настройка существовала в исходном форке, но её значение нигде
                     // не читалось — переключатель ничего не делал.
                     color = Theme.chat_namePaint.getColor();
@@ -28303,7 +28303,7 @@ public class ChatMessageCell extends BaseCell implements SeekBar.SeekBarDelegate
 
     @Override
     public void setAlpha(float alpha) {
-        // AxGram: удалённые сообщения показываются приглушёнными. Прозрачность
+        // Katarsis: удалённые сообщения показываются приглушёнными. Прозрачность
         // ставится при привязке сообщения, но аниматор списка по завершении
         // вставки нового сбрасывает её в единицу у всех ячеек — удалённые на миг
         // становились как обычные. Ловим сброс здесь, в единственной точке, через

@@ -38,8 +38,8 @@ import org.telegram.ui.Components.voip.CellFlickerDrawable;
 
 import java.util.Locale;
 
-import one.axgram.core.TextViewEffects;
-import one.axgram.core.helpers.remote.UpdateHelper;
+import one.katarsis.core.TextViewEffects;
+import one.katarsis.core.helpers.remote.UpdateHelper;
 
 public class BlockingUpdateView extends FrameLayout implements NotificationCenter.NotificationCenterDelegate {
 
@@ -95,7 +95,7 @@ public class BlockingUpdateView extends FrameLayout implements NotificationCente
         titleTextView.setTextSize(TypedValue.COMPLEX_UNIT_DIP, 20);
         titleTextView.setGravity(Gravity.CENTER_HORIZONTAL | Gravity.TOP);
         titleTextView.setTypeface(AndroidUtilities.bold());
-        titleTextView.setText(LocaleController.getString(R.string.UpdateTelegram).replace("Telegram", LocaleController.getString(R.string.AxGram)));
+        titleTextView.setText(LocaleController.getString(R.string.UpdateTelegram).replace("Telegram", LocaleController.getString(R.string.Katarsis)));
         container.addView(titleTextView, LayoutHelper.createFrame(LayoutHelper.WRAP_CONTENT, LayoutHelper.WRAP_CONTENT, Gravity.CENTER_HORIZONTAL | Gravity.TOP));
 
         textView = new TextViewEffects(context);

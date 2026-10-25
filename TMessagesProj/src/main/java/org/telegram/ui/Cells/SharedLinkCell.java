@@ -63,7 +63,7 @@ import java.util.Locale;
 import java.util.Stack;
 import java.util.concurrent.atomic.AtomicReference;
 
-import one.axgram.core.AxCoreConfig;
+import one.katarsis.core.AxCoreConfig;
 
 public class SharedLinkCell extends FrameLayout {
     private final static int SPOILER_TYPE_LINK = 0,

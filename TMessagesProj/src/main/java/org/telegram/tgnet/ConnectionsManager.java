@@ -80,14 +80,14 @@ import java.util.concurrent.atomic.AtomicInteger;
 import javax.net.ssl.SSLException;
 
 import cn.hutool.core.util.StrUtil;
-import one.axgram.core.AxCoreConfig;
-import one.axgram.core.AxLegacyConfig;
-import one.axgram.core.utils.AxGhostUtils;
-import one.axgram.core.utils.DnsFactory;
-import one.axgram.core.ErrorDatabase;
+import one.katarsis.core.AxCoreConfig;
+import one.katarsis.core.AxLegacyConfig;
+import one.katarsis.core.utils.AxGhostUtils;
+import one.katarsis.core.utils.DnsFactory;
+import one.katarsis.core.ErrorDatabase;
 
-import one.axgram.core.utils.ProxyUtil;
-import one.axgram.extra.AxConfig;
+import one.katarsis.core.utils.ProxyUtil;
+import one.katarsis.extra.AxConfig;
 
 public class ConnectionsManager extends BaseController {
 

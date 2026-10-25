@@ -86,7 +86,7 @@ import org.telegram.ui.LaunchActivity;
 import java.util.ArrayList;
 
 import kotlin.Unit;
-import one.axgram.core.ui.BottomBuilder;
+import one.katarsis.core.ui.BottomBuilder;
 
 public class BottomSheet extends Dialog implements BaseFragment.AttachedSheet {
     private final static boolean AVOID_SYSTEM_CUTOUT_FULLSCREEN = false;

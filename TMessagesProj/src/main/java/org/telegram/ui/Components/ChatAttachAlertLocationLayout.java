@@ -95,9 +95,9 @@ import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 import kotlin.Unit;
-import one.axgram.core.AxCoreConfig;
-import one.axgram.core.location.AxLocation;
-import one.axgram.core.ui.BottomBuilder;
+import one.katarsis.core.AxCoreConfig;
+import one.katarsis.core.location.AxLocation;
+import one.katarsis.core.ui.BottomBuilder;
 
 public class ChatAttachAlertLocationLayout extends ChatAttachAlert.AttachAlertLayout implements NotificationCenter.NotificationCenterDelegate {
 
@@ -1923,7 +1923,7 @@ public class ChatAttachAlertLocationLayout extends ChatAttachAlert.AttachAlertLa
         return themeDescriptions;
     }
 
-    // AxGram: OpenStreetMap
+    // Katarsis: OpenStreetMap
     private TextView getAttributionOverlay(Context context) {
         attributionOverlay = new TextView(context);
         attributionOverlay.setText(Html.fromHtml("© <a href=\"https://www.openstreetmap.org/copyright\">OpenStreetMap</a> contributors"));

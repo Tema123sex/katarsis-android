@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <string name="N_Config">AxGram Config</string>
+    <string name="N_Config">Katarsis Config</string>
     <string name="ForceCopy">Kopyalamaya Zorla</string>
     <string name="InvertReply">Ters çevir</string>
     <string name="Great">Harika</string>
@@ -20,11 +20,11 @@
     <string name="ShowReactions">Tepkileri Göster</string>
     <string name="ScrollableChatPreview">Kaydırılabilir Sohbet Önizlemesi</string>
     <string name="CustomTitle">Özel Başlık</string>
-    <string name="CustomTitleHint">AxGram\'ı kullanmak için boş bırakın</string>
+    <string name="CustomTitleHint">Katarsis\'ı kullanmak için boş bırakın</string>
     <string name="CodeSyntaxHighlight">Kod sözdizimi vurgulaması</string>
     <string name="CreateMono">Create Monospace</string>
     <string name="CreateMonoLanguage">Kod dili</string>
-    <string name="CodeSyntaxHighlightDetails">Prismjs ve AxGram sayesinde</string>
+    <string name="CodeSyntaxHighlightDetails">Prismjs ve Katarsis sayesinde</string>
     <string name="UseSystemUnlock">Şifreyi Açmak için  kullanıcı arayüzünü kullanın</string>
     <string name="CopyPhoto">Fotoğrafı Kopyala</string>
     <string name="PhotoCopied">Fotoğraf Panoya kopyalandı</string>

@@ -16,7 +16,7 @@ import java.net.URLEncoder;
 import java.nio.charset.StandardCharsets;
 
 import it.belloworld.mercurygram.WebPushDecryptor;
-import one.axgram.extra.AxConfig;
+import one.katarsis.extra.AxConfig;
 
 public class UnifiedPushService extends PushService {
 

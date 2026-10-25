@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <string name="N_Config">Preferencias de AxGram</string>
+    <string name="N_Config">Preferencias de Katarsis</string>
     <string name="ForceCopy">Forzar copiado</string>
     <string name="disableSecondAddress">Desactivar segunda solicitud de dirección</string>
     <string name="InvertReply">Invertir</string>
@@ -20,11 +20,11 @@
     <string name="SendReactions">Enviar reacciones</string>
     <string name="ShowReactions">Mostrar reacciones</string>
     <string name="CustomTitle">Título personalizado</string>
-    <string name="CustomTitleHint">Dejar en blanco para usar AxGram</string>
+    <string name="CustomTitleHint">Dejar en blanco para usar Katarsis</string>
     <string name="CodeSyntaxHighlight">Resaltar la sintaxis del código</string>
     <string name="CreateMono">Crear monoespaciado</string>
     <string name="CreateMonoLanguage">Lenguaje de código</string>
-    <string name="CodeSyntaxHighlightDetails">Gracias a Prismjs y AxGram</string>
+    <string name="CodeSyntaxHighlightDetails">Gracias a Prismjs y Katarsis</string>
     <string name="UseSystemUnlock">Usar interfaz del sistema para el desbloqueo por contraseña</string>
     <string name="CopyPhoto">Copiar foto</string>
     <string name="PhotoCopied">Foto copiada al portapapeles</string>
@@ -60,7 +60,7 @@
     <string name="QuickToggleAnonymousNotice">Si eres el dueño del grupo</string>
     <string name="RealHideTimeForSticker">Tiempo de ocultación real para stickers</string>
     <string name="ResetSettings">Restablecer Ajustes</string>
-    <string name="ResetSettingsAlert">¿Está seguro de que desea restablecer todos los AxGram Ajustes?</string>
+    <string name="ResetSettingsAlert">¿Está seguro de que desea restablecer todos los Katarsis Ajustes?</string>
     <string name="HideTitle">Ocultar el título</string>
     <string name="IgnoreFolderCount">Ignorar contador de carpetas</string>
     <string name="SendWithoutMarkdown">Enviar sin markdown</string>
@@ -77,7 +77,7 @@
     <string name="IconDecoration">Decoración de los iconos</string>
     <string name="NotificationIcon">Icono de la notificación</string>
     <string name="Official">Oficial</string>
-    <string name="AxGramLegacy">AxGram</string>
+    <string name="KatarsisLegacy">Katarsis</string>
     <string name="HalloWeen">Halloween</string>
     <string name="ShowOnlineStatus">Mostrar el estado en línea</string>
     <string name="ShowOnlineStatusNotice">Mostrar el estado en línea de las otras personas junto a su foto del perfil en grupos</string>

@@ -118,17 +118,17 @@ import java.util.concurrent.atomic.AtomicBoolean;
 import java.util.concurrent.atomic.AtomicReference;
 
 import kotlin.Unit;
-import one.axgram.core.ui.BottomBuilder;
-import one.axgram.core.AxCoreConfig;
-import one.axgram.core.ui.PinnedStickerHelper;
-import one.axgram.core.utils.AlertUtil;
-import one.axgram.core.utils.EnvUtil;
-import one.axgram.core.utils.FileUtil;
-import one.axgram.core.utils.ShareUtil;
-import one.axgram.core.utils.StickersUtil;
-import one.axgram.core.utils.UIUtil;
-import one.axgram.extra.AxConfig;
-import one.axgram.extra.helper.ExternalStickerCacheHelper;
+import one.katarsis.core.ui.BottomBuilder;
+import one.katarsis.core.AxCoreConfig;
+import one.katarsis.core.ui.PinnedStickerHelper;
+import one.katarsis.core.utils.AlertUtil;
+import one.katarsis.core.utils.EnvUtil;
+import one.katarsis.core.utils.FileUtil;
+import one.katarsis.core.utils.ShareUtil;
+import one.katarsis.core.utils.StickersUtil;
+import one.katarsis.core.utils.UIUtil;
+import one.katarsis.extra.AxConfig;
+import one.katarsis.extra.helper.ExternalStickerCacheHelper;
 
 public class StickersActivity extends BaseFragment implements NotificationCenter.NotificationCenterDelegate {
 

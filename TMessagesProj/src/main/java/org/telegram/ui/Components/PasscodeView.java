@@ -87,11 +87,11 @@ import java.util.LinkedList;
 import java.util.List;
 import java.util.concurrent.Executor;
 
-import one.axgram.core.AxCoreConfig;
-import one.axgram.core.helpers.PasscodeHelper;
-import one.axgram.core.utils.VibrateUtil;
+import one.katarsis.core.AxCoreConfig;
+import one.katarsis.core.helpers.PasscodeHelper;
+import one.katarsis.core.utils.VibrateUtil;
 
-import one.axgram.extra.AxConfig;
+import one.katarsis.extra.AxConfig;
 
 public class PasscodeView extends FrameLayout implements NotificationCenter.NotificationCenterDelegate {
     private final static float BACKGROUND_SPRING_STIFFNESS = 300f;
@@ -1227,7 +1227,7 @@ public class PasscodeView extends FrameLayout implements NotificationCenter.Noti
                         }
                     });
                     final BiometricPrompt.PromptInfo promptInfo = new BiometricPrompt.PromptInfo.Builder()
-                            .setTitle(LocaleController.getString(R.string.UnlockToUse).replace("Telegram", LocaleController.getString(R.string.AxGram)))
+                            .setTitle(LocaleController.getString(R.string.UnlockToUse).replace("Telegram", LocaleController.getString(R.string.Katarsis)))
                             .setNegativeButtonText(LocaleController.getString(R.string.UsePIN))
                             .setAllowedAuthenticators(BiometricManager.Authenticators.BIOMETRIC_STRONG)
                             .build();

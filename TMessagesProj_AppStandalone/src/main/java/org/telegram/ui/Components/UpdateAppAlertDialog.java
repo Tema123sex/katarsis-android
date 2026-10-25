@@ -32,7 +32,7 @@ import org.telegram.messenger.SvgHelper;
 import org.telegram.tgnet.TLRPC;
 import org.telegram.ui.ActionBar.BottomSheet;
 import org.telegram.ui.ActionBar.Theme;
-import one.axgram.core.parts.DialogTransKt;
+import one.katarsis.core.parts.DialogTransKt;
 
 public class UpdateAppAlertDialog extends BottomSheet {
 

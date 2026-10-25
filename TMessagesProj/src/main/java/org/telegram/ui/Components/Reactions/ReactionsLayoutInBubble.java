@@ -67,7 +67,7 @@ import java.util.Comparator;
 import java.util.HashMap;
 import java.util.Objects;
 
-import one.axgram.extra.AxConfig;
+import one.katarsis.extra.AxConfig;
 
 public class ReactionsLayoutInBubble {
 

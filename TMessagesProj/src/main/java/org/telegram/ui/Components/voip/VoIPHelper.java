@@ -69,7 +69,7 @@ import java.util.HashSet;
 import java.util.Locale;
 import java.util.Set;
 
-import one.axgram.core.AxCoreConfig;
+import one.katarsis.core.AxCoreConfig;
 
 public class VoIPHelper {
 

@@ -294,7 +294,7 @@ public class LPhotoPaintView extends SizeNotifierFrameLayoutPhoto implements IPh
         queue = new DispatchQueue("Paint");
 
         bitmapToEdit = bitmap;
-        // AxGram: Ignore face detection related
+        // Katarsis: Ignore face detection related
 //        facesBitmap = originalBitmap;
         originalBitmapRotation = originalRotation;
         undoStore = new UndoStore();
@@ -2853,7 +2853,7 @@ public class LPhotoPaintView extends SizeNotifierFrameLayoutPhoto implements IPh
             baseScale = 0.75f;
         }
         StickerPosition defaultPosition = new StickerPosition(centerPositionForEntity(), baseScale, rotation);
-        // AxGram: Remove face detection parts
+        // Katarsis: Remove face detection parts
         return defaultPosition;
     }
 

@@ -39,7 +39,7 @@ import java.io.FileOutputStream;
 import java.util.ArrayList;
 
 import kotlin.Unit;
-import one.axgram.core.ui.BottomBuilder;
+import one.katarsis.core.ui.BottomBuilder;
 
 public class WallpaperUpdater {
 

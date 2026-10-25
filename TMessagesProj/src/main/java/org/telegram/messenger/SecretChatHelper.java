@@ -35,7 +35,7 @@ import java.util.Collections;
 import java.util.Locale;
 import java.util.concurrent.ConcurrentHashMap;
 
-import one.axgram.core.utils.AlertUtil;
+import one.katarsis.core.utils.AlertUtil;
 
 public class SecretChatHelper extends BaseController {
 

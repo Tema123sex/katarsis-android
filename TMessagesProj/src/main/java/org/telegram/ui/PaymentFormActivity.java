@@ -167,7 +167,7 @@ import java.util.Objects;
 import java.util.Optional;
 import java.util.Scanner;
 
-import one.axgram.core.AxCoreConfig;
+import one.katarsis.core.AxCoreConfig;
 
 public class PaymentFormActivity extends BaseFragment implements NotificationCenter.NotificationCenterDelegate {
     private final static List<String> WEBVIEW_PROTOCOLS = Arrays.asList(

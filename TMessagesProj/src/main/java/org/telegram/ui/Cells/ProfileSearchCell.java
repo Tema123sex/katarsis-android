@@ -72,8 +72,8 @@ import org.telegram.ui.community.CommunityUtils;
 
 import java.util.Locale;
 
-import one.axgram.extra.AxConfig;
-import one.axgram.extra.helper.MessageHelper;
+import one.katarsis.extra.AxConfig;
+import one.katarsis.extra.helper.MessageHelper;
 
 public class ProfileSearchCell extends BaseCell implements NotificationCenter.NotificationCenterDelegate, Theme.Colorable {
 

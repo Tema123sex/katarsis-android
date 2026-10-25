@@ -143,12 +143,12 @@ import me.vkryl.core.BitwiseUtils;
 import java.util.stream.Collectors;
 
 import cn.hutool.core.thread.ThreadUtil;
-import one.axgram.core.ui.InternalFilters;
-import one.axgram.core.AxCoreConfig;
-import one.axgram.core.AxLegacyConfig;
-import one.axgram.core.utils.AlertUtil;
-import one.axgram.core.utils.UIUtil;
-import one.axgram.extra.AxConfig;
+import one.katarsis.core.ui.InternalFilters;
+import one.katarsis.core.AxCoreConfig;
+import one.katarsis.core.AxLegacyConfig;
+import one.katarsis.core.utils.AlertUtil;
+import one.katarsis.core.utils.UIUtil;
+import one.katarsis.extra.AxConfig;
 
 public class MessagesController extends BaseController implements NotificationCenter.NotificationCenterDelegate {
 
@@ -186,7 +186,7 @@ public class MessagesController extends BaseController implements NotificationCe
     public ConcurrentHashMap<Long, Integer> dialogs_read_outbox_max = new ConcurrentHashMap<>(100, 1.0f, 2);
     public LongSparseArray<TLRPC.Dialog> dialogs_dict = new LongSparseArray<>();
     public LongSparseArray<ArrayList<MessageObject>> dialogMessage = new LongSparseArray<>();
-    // AxGram: ignoreBlocked, Messages cache for Dialog Cell
+    // Katarsis: ignoreBlocked, Messages cache for Dialog Cell
     public LongSparseArray<MessageObject> dialogMessageFromUnblocked = new LongSparseArray<>();
     public LongSparseArray<MessageObject> dialogMessagesByRandomIds = new LongSparseArray<>();
     public LongSparseIntArray deletedHistory = new LongSparseIntArray();
@@ -291,7 +291,7 @@ public class MessagesController extends BaseController implements NotificationCe
     public SparseIntArray businessFeaturesTypesToPosition = new SparseIntArray();
     
     /**
-     * AxGram: папки, существующие только на этом устройстве.
+     * Katarsis: папки, существующие только на этом устройстве.
      *
      * Telegram ограничивает число папок на стороне сервера и отвечает
      * DIALOG_FILTERS_TOO_MUCH при попытке создать лишнюю. Обойти это нельзя:
@@ -341,7 +341,7 @@ public class MessagesController extends BaseController implements NotificationCe
     }
 
     /**
-     * Настоящий Premium, а не «локальный» из настроек AxGram: сервер считает
+     * Настоящий Premium, а не «локальный» из настроек Katarsis: сервер считает
      * папки по нему, и подставлять сюда isPremium() нельзя — иначе клиент решит,
      * что места ещё много, и получит отказ.
      */
@@ -363,7 +363,7 @@ public class MessagesController extends BaseController implements NotificationCe
         int known = mainPreferences.getInt(key, Integer.MAX_VALUE);
         if (reached < known) {
             mainPreferences.edit().putInt(key, reached).apply();
-            FileLog.d("AxGram папки: сервер отказал на " + reached + " папках, запомнил этот предел"
+            FileLog.d("Katarsis папки: сервер отказал на " + reached + " папках, запомнил этот предел"
                     + (premium ? " (с Premium)" : ""));
         }
     }
@@ -987,7 +987,7 @@ public class MessagesController extends BaseController implements NotificationCe
 
     public void lockFiltersInternal() {
         boolean changed = false;
-        // AxGram: локальные папки хранятся только на устройстве, серверного лимита
+        // Katarsis: локальные папки хранятся только на устройстве, серверного лимита
         // не занимают и замка получать не должны. Считаем превышение по обычным
         // папкам и пропускаем локальные при развешивании замков.
         int overLimit = getUserConfig().isPremium()
@@ -6643,7 +6643,7 @@ public class MessagesController extends BaseController implements NotificationCe
                     TLRPC.MessageMedia axNewMedia = MessageObject.getMedia(message);
                     boolean axExpiredOnce = axNewMedia != null && axNewMedia.ttl_seconds != 0
                             && (axNewMedia.photo instanceof TLRPC.TL_photoEmpty || axNewMedia.document instanceof TLRPC.TL_documentEmpty);
-                    // AxGram: keep the original one-time media instead of the emptied placeholder
+                    // Katarsis: keep the original one-time media instead of the emptied placeholder
                     if (!axExpiredOnce) {
                         existMessageObject.messageOwner.media = axNewMedia;
                     }
@@ -6903,7 +6903,7 @@ public class MessagesController extends BaseController implements NotificationCe
     }
 
     public boolean isChatNoForwards(TLRPC.Chat chat) {
-        // AxGram: always allow saving/forwarding from restricted chats (like desktop).
+        // Katarsis: always allow saving/forwarding from restricted chats (like desktop).
         if (true) {
             return false;
         }
@@ -6944,7 +6944,7 @@ public class MessagesController extends BaseController implements NotificationCe
     }
 
     public boolean isUserNoForwards(TLRPC.UserFull userFull) {
-        // AxGram: always allow saving/forwarding (like desktop)
+        // Katarsis: always allow saving/forwarding (like desktop)
         if (true) {
             return false;
         }
@@ -22370,7 +22370,7 @@ public class MessagesController extends BaseController implements NotificationCe
         if (mode == ChatActivity.MODE_QUICK_REPLIES) {
             QuickRepliesController.getInstance(currentAccount).checkLocalMessages(messages);
         }
-        // === AxGram: сохранение одноразовых сообщений ===
+        // === Katarsis: сохранение одноразовых сообщений ===
         // Раньше этот перехват стоял в ChatActivity.processNewMessages, то есть
         // срабатывал только при ОТКРЫТОМ чате. Одноразовое, пришедшее в фоновый
         // чат, к моменту открытия уже уничтожено на сервере и не сохранялось.
@@ -22387,7 +22387,7 @@ public class MessagesController extends BaseController implements NotificationCe
                     final long axDid = dialogId;
                     final int axAccount = currentAccount;
                     Utilities.globalQueue.postRunnable(() ->
-                            one.axgram.core.AxOnceMessages.getInstance().saveMessage(axAccount, axDid, axOwner));
+                            one.katarsis.core.AxOnceMessages.getInstance().saveMessage(axAccount, axDid, axOwner));
                     // Файл тоже нужно забрать сразу: ссылку на него потом не обновить.
                     if (!axm.mediaExists()) {
                         TLRPC.Document axDoc = axm.getDocument();
@@ -22402,10 +22402,10 @@ public class MessagesController extends BaseController implements NotificationCe
                     }
                 }
             } catch (Throwable axErr) {
-                FileLog.e("AxGram one-time save: " + axErr);
+                FileLog.e("Katarsis one-time save: " + axErr);
             }
         }
-        // === end AxGram ===
+        // === end Katarsis ===
 
         getNotificationCenter().postNotificationName(NotificationCenter.didReceiveNewMessages, dialogId, messages, scheduled, mode);
 

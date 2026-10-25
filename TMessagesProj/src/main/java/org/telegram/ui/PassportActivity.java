@@ -143,7 +143,7 @@ import java.util.TimerTask;
 
 import javax.crypto.Cipher;
 
-import one.axgram.core.utils.VibrateUtil;
+import one.katarsis.core.utils.VibrateUtil;
 
 public class PassportActivity extends BaseFragment implements NotificationCenter.NotificationCenterDelegate {
 

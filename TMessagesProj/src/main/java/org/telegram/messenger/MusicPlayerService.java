@@ -49,7 +49,7 @@ import org.telegram.ui.LaunchActivity;
 
 import java.io.File;
 
-import one.axgram.extra.helper.LyricsHelper;
+import one.katarsis.extra.helper.LyricsHelper;
 
 public class MusicPlayerService extends Service implements NotificationCenter.NotificationCenterDelegate {
 

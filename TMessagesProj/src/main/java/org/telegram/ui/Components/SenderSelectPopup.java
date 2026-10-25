@@ -53,8 +53,8 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
-import one.axgram.core.AxCoreConfig;
-import one.axgram.extra.AxConfig;
+import one.katarsis.core.AxCoreConfig;
+import one.katarsis.extra.AxConfig;
 
 public class SenderSelectPopup extends ActionBarPopupWindow {
     public final static float SPRING_STIFFNESS = 750f;

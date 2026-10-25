@@ -72,7 +72,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-import one.axgram.core.AxCoreConfig;
+import one.katarsis.core.AxCoreConfig;
 
 public class ChatAttachAlertPhotoLayoutPreview extends ChatAttachAlert.AttachAlertLayout {
 

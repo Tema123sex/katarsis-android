@@ -24,7 +24,7 @@ import androidx.annotation.Nullable;
 import org.telegram.messenger.FileLog;
 import org.telegram.ui.Components.SizeNotifierFrameLayout;
 
-import one.axgram.core.AxCoreConfig;
+import one.katarsis.core.AxCoreConfig;
 
 public abstract class BaseCell extends ViewGroup implements SizeNotifierFrameLayout.IViewWithInvalidateCallback {
 

@@ -92,8 +92,8 @@ import java.nio.charset.StandardCharsets;
 import java.util.ArrayList;
 import java.util.concurrent.atomic.AtomicBoolean;
 
-import one.axgram.core.helpers.PasscodeHelper;
-import one.axgram.core.utils.VibrateUtil;
+import one.katarsis.core.helpers.PasscodeHelper;
+import one.katarsis.core.utils.VibrateUtil;
 
 public class PasscodeActivity extends BaseFragment implements NotificationCenter.NotificationCenterDelegate {
     public final static int TYPE_MANAGE_CODE_SETTINGS = 0,

@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <string name="N_Config">AxGram 構成</string>
+    <string name="N_Config">Katarsis 構成</string>
     <string name="ForceCopy">強制コピー</string>
     <string name="disableSecondAddress">2番目のアドレスリクエストを無効にする</string>
     <string name="InvertReply">反転</string>
@@ -20,7 +20,7 @@
     <string name="SendReactions">リアクションを送信</string>
     <string name="ShowReactions">リアクションの表示</string>
     <string name="CustomTitle">カスタムタイトル</string>
-    <string name="CustomTitleHint">AxGramを使用するには空白のままにしてください</string>
+    <string name="CustomTitleHint">Katarsisを使用するには空白のままにしてください</string>
     <string name="CodeSyntaxHighlight">コードの構文ハイライト</string>
     <string name="CreateMono">Monospaceを作成</string>
     <string name="CreateMonoLanguage">コード言語</string>
@@ -60,7 +60,7 @@
     <string name="QuickToggleAnonymousNotice">あなたがグループの所有者である場合</string>
     <string name="RealHideTimeForSticker">ステッカーをリアルタイムに隠す</string>
     <string name="ResetSettings">設定をリセット</string>
-    <string name="ResetSettingsAlert">「AxGram 設定」をリセットしますか？</string>
+    <string name="ResetSettingsAlert">「Katarsis 設定」をリセットしますか？</string>
     <string name="HideTitle">タイトルを隠す</string>
     <string name="IgnoreFolderCount">フォルダ数を無視</string>
     <string name="SendWithoutMarkdown">マークダウンなしで送信</string>
@@ -77,7 +77,7 @@
     <string name="IconDecoration">アイコン装飾</string>
     <string name="NotificationIcon">通知アイコン</string>
     <string name="Official">オフィシャル</string>
-    <string name="AxGramLegacy">AxGram</string>
+    <string name="KatarsisLegacy">Katarsis</string>
     <string name="HalloWeen">HalloWeen</string>
     <string name="ShowOnlineStatus">オンライン状態を表示</string>
     <string name="ShowOnlineStatusNotice">グループ内のプロフィール写真の隣に他の人のオンライン状態を表示する</string>

@@ -40,7 +40,7 @@ import org.telegram.ui.DialogsActivity;
 
 import java.util.ArrayList;
 
-import one.axgram.core.folder.FolderIconHelper;
+import one.katarsis.core.folder.FolderIconHelper;
 
 public class FiltersListBottomSheet extends BottomSheet implements NotificationCenter.NotificationCenterDelegate {
 

@@ -470,7 +470,7 @@ public class BackButtonMenu {
         }
     }
 
-    // AxGram: History Chats
+    // Katarsis: History Chats
 
     public static ActionBarPopupWindow showHistory(BaseFragment thisFragment, View backButton) {
         if (thisFragment == null) {

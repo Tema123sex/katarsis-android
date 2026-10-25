@@ -65,8 +65,8 @@ import org.telegram.ui.PaymentFormActivity;
 
 import java.util.ArrayList;
 
-import one.axgram.core.AxCoreConfig;
-import one.axgram.core.helpers.AppRestartHelper;
+import one.katarsis.core.AxCoreConfig;
+import one.katarsis.core.helpers.AppRestartHelper;
 
 @SuppressWarnings("FieldCanBeLocal")
 @Deprecated // use Bulletin instead

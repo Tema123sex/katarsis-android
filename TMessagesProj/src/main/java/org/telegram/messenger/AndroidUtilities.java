@@ -244,11 +244,11 @@ import java.util.zip.GZIPOutputStream;
 
 import me.vkryl.core.BitwiseUtils;
 
-import one.axgram.core.AxCoreConfig;
-import one.axgram.core.utils.EnvUtil;
-import one.axgram.core.utils.FileUtil;
-import one.axgram.core.utils.TelegramUtil;
-import one.axgram.extra.helper.ColorOsHelper;
+import one.katarsis.core.AxCoreConfig;
+import one.katarsis.core.utils.EnvUtil;
+import one.katarsis.core.utils.FileUtil;
+import one.katarsis.core.utils.TelegramUtil;
+import one.katarsis.extra.helper.ColorOsHelper;
 
 public class AndroidUtilities {
     public final static int REPLACING_TAG_TYPE_LINK = 0;
@@ -1837,7 +1837,7 @@ public class AndroidUtilities {
             if (pathString.matches(Pattern.quote(new File(ApplicationLoader.applicationContext.getCacheDir(), "voip_logs").getAbsolutePath()) + "/\\d+\\.log")) {
                 return false;
             }
-            // AxGram: Allow send media
+            // Katarsis: Allow send media
             if (pathString.startsWith(EnvUtil.getTelegramPath().toString())) {
                 return false;
             }
@@ -3634,7 +3634,7 @@ public class AndroidUtilities {
         }
         File storageDir = null;
         if (Environment.MEDIA_MOUNTED.equals(Environment.getExternalStorageState())) {
-            storageDir = new File(Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_PICTURES), "AxGram");
+            storageDir = new File(Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_PICTURES), "Katarsis");
             if (!storageDir.mkdirs()) {
                 if (!storageDir.exists()) {
                     if (BuildVars.LOGS_ENABLED) {
@@ -6685,7 +6685,7 @@ public class AndroidUtilities {
 
     public static String getBuildVersionInfo() {
         String[] abi = Build.SUPPORTED_ABIS[0].toLowerCase(Locale.ROOT).split("-");
-        return "AxGram v" + BuildConfig.VERSION_NAME + " (" + BuildConfig.BUILD_TIMESTAMP + ") " + abi[abi.length - 1];
+        return "Katarsis v" + BuildConfig.VERSION_NAME + " (" + BuildConfig.BUILD_TIMESTAMP + ") " + abi[abi.length - 1];
 //        try {
 //            PackageInfo pInfo = ApplicationLoader.applicationContext.getPackageManager().getPackageInfo(ApplicationLoader.applicationContext.getPackageName(), 0);
 //            int code = pInfo.versionCode / 10;

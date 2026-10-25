@@ -44,7 +44,7 @@
     <string name="TransToLang">Zielsprache der Übersetzung</string>
     <string name="TransInputToLang">Quellsprache der Übersetzung</string>
     <string name="More">Mehr</string>
-    <string name="AxUpdatesChannel">AxGram-Update-Kanal</string>
+    <string name="AxUpdatesChannel">Katarsis-Update-Kanal</string>
     <string name="ShowIdAndDc">ID/DC im Profil anzeigen</string>
     <string name="UseDefaultTheme">Standardthema verwenden*</string>
     <string name="NightMode">Nachtmodus</string>
@@ -56,7 +56,7 @@
     <string name="ApplySuggestion">Okay, anwenden</string>
     <string name="DoNotRemindAgain">Nicht mehr erinnern</string>
     <string name="RemoveTitleEmoji">Emoji im Titel entfernen</string>
-    <string name="AxProxy">Öffentlicher AxGram-Proxy</string>
+    <string name="AxProxy">Öffentlicher Katarsis-Proxy</string>
     <string name="PublicPrefix">Öffentlich</string>
     <string name="DisableChatAction">Meinen Eingabestatus nicht senden</string>
     <string name="FakeScreenshot">Screenshot vortäuschen</string>
@@ -84,9 +84,9 @@
     <string name="SortByUnmuted">Nach nicht Stummgeschalten sortieren</string>
     <string name="SortByUser">Nach Nutzern sortieren</string>
     <string name="SortByContacts">Nach Kontakten sortieren</string>
-    <string name="AxPushService">AxGram Push-Service</string>
-    <string name="EnablePushAlert">Bitte aktiviere den AxGram Push-Service</string>
-    <string name="DisablePushAlert">Bitte deaktiviere den AxGram Push-Service</string>
+    <string name="AxPushService">Katarsis Push-Service</string>
+    <string name="EnablePushAlert">Bitte aktiviere den Katarsis Push-Service</string>
+    <string name="DisablePushAlert">Bitte deaktiviere den Katarsis Push-Service</string>
     <string name="DisableUndo">Rückgängig machen deaktivieren</string>
     <string name="DisableSystemAccount">Systemkonto deaktivieren</string>
     <string name="FilterMenu">Dialog Filtermenü</string>
@@ -164,7 +164,7 @@
     <string name="DisableDeveloperMode">Entwicklermodus deaktivieren</string>
     <string name="DeveloperSettings">Entwickleroptionen</string>
     <string name="LoginSettings">Anmeldeeinstellungen</string>
-    <string name="AxFaq">AxGram FAQ</string>
+    <string name="AxFaq">Katarsis FAQ</string>
     <string name="TransSite">Plattform übersetzen</string>
     <string name="OpenKayChain">OpenPGP-Client</string>
     <string name="OpenPGPApp">OpenPGP-Anbieter</string>
@@ -273,7 +273,7 @@
     <string name="Name">Name</string>
     <string name="setChannelAliasName">Kanalname festlegen</string>
     <string name="channelAliasDetails">Kanalbenutzerbezeichnung muss aktiviert sein.</string>
-    <string name="AppUpdateAxGram">AxGram aktualisieren</string>
+    <string name="AppUpdateKatarsis">Katarsis aktualisieren</string>
     <string name="AutoCheckUpdatePreview">Vorschau (Instabil)</string>
     <string name="labelChannelUser">Kanalbenutzerbezeichnung</string>
     <string name="AxUpdateTranslationHint">Zum Übersetzen des Änderungsprotokolls betätigen</string>

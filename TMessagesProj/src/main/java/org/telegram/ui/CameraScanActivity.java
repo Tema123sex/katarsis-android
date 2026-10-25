@@ -1392,7 +1392,7 @@ public class CameraScanActivity extends BaseFragment {
                     text = null;
                 }
             } else */
-            // AxGram: Remove google parts visionQrReader
+            // Katarsis: Remove google parts visionQrReader
 
             if (qrReader != null) {
                 LuminanceSource source;

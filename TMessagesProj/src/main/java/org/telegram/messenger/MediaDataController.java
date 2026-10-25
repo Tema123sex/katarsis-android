@@ -114,11 +114,11 @@ import java.util.concurrent.atomic.AtomicInteger;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
-import one.axgram.core.DialogConfig;
-import one.axgram.core.AxCoreConfig;
-import one.axgram.core.ui.PinnedStickerHelper;
-import one.axgram.extra.AxConfig;
-import one.axgram.extra.helper.ExternalStickerCacheHelper;
+import one.katarsis.core.DialogConfig;
+import one.katarsis.core.AxCoreConfig;
+import one.katarsis.core.ui.PinnedStickerHelper;
+import one.katarsis.extra.AxConfig;
+import one.katarsis.extra.helper.ExternalStickerCacheHelper;
 
 @SuppressWarnings("unchecked")
 public class MediaDataController extends BaseController {
@@ -2632,7 +2632,7 @@ public class MediaDataController extends BaseController {
             processLoadedStickers(type, newStickerArray, false, (int) (System.currentTimeMillis() / 1000), res.hash2, onDone);
         } else {
             LongSparseArray<TLRPC.TL_messages_stickerSet> newStickerSets = new LongSparseArray<>();
-            // AxGram: Pin Sticker
+            // Katarsis: Pin Sticker
             if (AxCoreConfig.enableStickerPin.Bool() && type == MediaDataController.TYPE_IMAGE) {
                 PinnedStickerHelper ins = PinnedStickerHelper.getInstance(UserConfig.selectedAccount);
                 if (ins.reorderPinnedStickersForSS(res.sets, true))
@@ -3446,7 +3446,7 @@ public class MediaDataController extends BaseController {
             int finalCurrentIndex = AxCoreConfig.enableStickerPin.Bool() && type == TYPE_IMAGE && PinnedStickerHelper.getInstance(UserConfig.selectedAccount).isPinned(stickerSet.id)
                     ? PinnedStickerHelper.getInstance(UserConfig.selectedAccount).pinnedList.size()
                     : currentIndex;
-            // AxGram: Pin Sticker, Fix undo for Archiving and Deleting
+            // Katarsis: Pin Sticker, Fix undo for Archiving and Deleting
             Context finalContext = context;
             boolean[] undoDone = new boolean[1];
             markSetUninstalling(stickerSet.id, true);
@@ -7257,7 +7257,7 @@ public class MediaDataController extends BaseController {
         boolean isPre = false;
         final String mono = "`";
         final String pre = "```";
-        while (!(one.axgram.extra.AxConfig.INSTANCE.getNewMarkdownParser().Bool() || one.axgram.extra.AxConfig.INSTANCE.getDisableMarkdown().Bool()) && parseMarkdown && (index = TextUtils.indexOf(message[0], !isPre ? mono : pre, lastIndex)) != -1) {
+        while (!(one.katarsis.extra.AxConfig.INSTANCE.getNewMarkdownParser().Bool() || one.katarsis.extra.AxConfig.INSTANCE.getDisableMarkdown().Bool()) && parseMarkdown && (index = TextUtils.indexOf(message[0], !isPre ? mono : pre, lastIndex)) != -1) {
             if (start == -1) {
                 isPre = message[0].length() - index > 2 && message[0].charAt(index + 1) == '`' && message[0].charAt(index + 2) == '`';
                 start = index;
@@ -7344,8 +7344,8 @@ public class MediaDataController extends BaseController {
         }
 
         // Nagram: call new markdown parser before processing Spanned
-        if (!one.axgram.extra.AxConfig.INSTANCE.getDisableMarkdown().Bool() && one.axgram.extra.AxConfig.INSTANCE.getNewMarkdownParser().Bool() && parseMarkdown) {
-            one.axgram.extra.helper.EntitiesHelper.parseMarkdown(message, allowStrike);
+        if (!one.katarsis.extra.AxConfig.INSTANCE.getDisableMarkdown().Bool() && one.katarsis.extra.AxConfig.INSTANCE.getNewMarkdownParser().Bool() && parseMarkdown) {
+            one.katarsis.extra.helper.EntitiesHelper.parseMarkdown(message, allowStrike);
         }
 
         if (message[0] instanceof Spanned) {
@@ -7540,7 +7540,7 @@ public class MediaDataController extends BaseController {
         if (entities == null) entities = new ArrayList<>();
         if (parseMarkdown) {
             // Nagram: skip old regex parsing when using new parser or markdown disabled
-            if (one.axgram.extra.AxConfig.INSTANCE.getNewMarkdownParser().Bool() || one.axgram.extra.AxConfig.INSTANCE.getDisableMarkdown().Bool()) return entities;
+            if (one.katarsis.extra.AxConfig.INSTANCE.getNewMarkdownParser().Bool() || one.katarsis.extra.AxConfig.INSTANCE.getDisableMarkdown().Bool()) return entities;
             cs = parsePattern(cs, BOLD_PATTERN, entities, obj -> new TLRPC.TL_messageEntityBold());
             cs = parsePattern(cs, ITALIC_PATTERN, entities, obj -> new TLRPC.TL_messageEntityItalic());
             cs = parsePattern(cs, SPOILER_PATTERN, entities, obj -> new TLRPC.TL_messageEntitySpoiler());

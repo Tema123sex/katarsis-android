@@ -76,8 +76,8 @@ import java.lang.reflect.Method;
 import java.util.ArrayList;
 import java.util.List;
 
-import one.axgram.extra.AxConfig;
-import one.axgram.extra.helper.SystemAiServiceHelper;
+import one.katarsis.extra.AxConfig;
+import one.katarsis.extra.helper.SystemAiServiceHelper;
 import org.lsposed.hiddenapibypass.HiddenApiBypass;
 
 public class EditTextBoldCursor extends EditTextEffects {

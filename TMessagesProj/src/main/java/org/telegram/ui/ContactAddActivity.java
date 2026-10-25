@@ -75,7 +75,7 @@ import org.telegram.ui.LNavigation.NavigationExt;
 import java.io.File;
 import java.util.ArrayList;
 
-import one.axgram.extra.AxConfig;
+import one.katarsis.extra.AxConfig;
 
 public class ContactAddActivity extends BaseFragment implements NotificationCenter.NotificationCenterDelegate, ImageUpdater.ImageUpdaterDelegate {
 

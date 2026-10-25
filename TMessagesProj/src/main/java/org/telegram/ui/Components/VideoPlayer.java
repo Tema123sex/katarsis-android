@@ -109,7 +109,7 @@ import java.util.HashSet;
 import java.util.List;
 import java.util.Map;
 
-import one.axgram.extra.AxConfig;
+import one.katarsis.extra.AxConfig;
 
 @SuppressLint("NewApi")
 public class VideoPlayer implements Player.Listener, VideoListener, AnalyticsListener, NotificationCenter.NotificationCenterDelegate {

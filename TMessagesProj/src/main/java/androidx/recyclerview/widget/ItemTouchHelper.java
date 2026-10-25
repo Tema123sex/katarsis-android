@@ -45,8 +45,8 @@ import org.telegram.ui.Cells.DialogCell;
 import java.util.ArrayList;
 import java.util.List;
 
-import one.axgram.core.AxCoreConfig;
-import one.axgram.extra.AxConfig;
+import one.katarsis.core.AxCoreConfig;
+import one.katarsis.extra.AxConfig;
 
 /**
  * This is a utility class to add swipe to dismiss and drag & drop support to RecyclerView.

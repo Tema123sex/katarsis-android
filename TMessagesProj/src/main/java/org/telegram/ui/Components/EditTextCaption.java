@@ -68,13 +68,13 @@ import java.util.List;
 import java.util.Locale;
 
 import cn.hutool.core.util.StrUtil;
-import one.axgram.core.AxCoreConfig;
-import one.axgram.core.transtale.TranslateDb;
-import one.axgram.core.transtale.Translator;
-import one.axgram.core.transtale.TranslatorKt;
-import one.axgram.core.utils.AlertUtil;
-import one.axgram.extra.AxConfig;
-import one.axgram.extra.ui.syntaxhighlight.SyntaxHighlight;
+import one.katarsis.core.AxCoreConfig;
+import one.katarsis.core.transtale.TranslateDb;
+import one.katarsis.core.transtale.Translator;
+import one.katarsis.core.transtale.TranslatorKt;
+import one.katarsis.core.utils.AlertUtil;
+import one.katarsis.extra.AxConfig;
+import one.katarsis.extra.ui.syntaxhighlight.SyntaxHighlight;
 
 public class EditTextCaption extends EditTextBoldCursor implements FloatingToolbar.StyleDelegate {
 

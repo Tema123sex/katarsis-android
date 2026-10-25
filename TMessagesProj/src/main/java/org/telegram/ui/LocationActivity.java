@@ -130,8 +130,8 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Locale;
 
-import one.axgram.core.AxCoreConfig;
-import one.axgram.core.location.AxLocation;
+import one.katarsis.core.AxCoreConfig;
+import one.katarsis.core.location.AxLocation;
 
 public class LocationActivity extends BaseFragment implements NotificationCenter.NotificationCenterDelegate {
 

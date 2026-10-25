@@ -102,9 +102,9 @@ import java.util.Map;
 import java.util.concurrent.CountDownLatch;
 import java.util.function.Consumer;
 
-import one.axgram.core.AxLegacyConfig;
-import one.axgram.core.AxCoreConfig;
-import one.axgram.extra.AxConfig;
+import one.katarsis.core.AxLegacyConfig;
+import one.katarsis.core.AxCoreConfig;
+import one.katarsis.extra.AxConfig;
 
 public class NotificationsController extends BaseController implements NotificationCenter.NotificationCenterDelegate {
 
@@ -6419,7 +6419,7 @@ public class NotificationsController extends BaseController implements Notificat
     }
 
     public static int getNotificationIconResId() {
-        // AxGram: always use the plain Telegram status-bar icon, never the Nagram/Neko branded ones
+        // Katarsis: always use the plain Telegram status-bar icon, never the Nagram/Neko branded ones
         return R.drawable.notification;
     }
 

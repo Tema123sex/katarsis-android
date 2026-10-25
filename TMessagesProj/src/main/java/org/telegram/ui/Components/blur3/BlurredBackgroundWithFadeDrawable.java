@@ -32,7 +32,7 @@ import org.telegram.ui.Components.blur3.source.BlurredBackgroundSourceBitmap;
 import org.telegram.ui.Components.blur3.source.BlurredBackgroundSourceColor;
 import org.telegram.ui.Components.blur3.source.BlurredBackgroundSourceRenderNode;
 
-import one.axgram.extra.AxConfig;
+import one.katarsis.extra.AxConfig;
 
 public class BlurredBackgroundWithFadeDrawable extends Drawable {
     private final Paint maskFadeGradientPaint = new Paint(Paint.ANTI_ALIAS_FLAG);

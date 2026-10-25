@@ -62,9 +62,9 @@ import java.util.ArrayList;
 import java.util.concurrent.atomic.AtomicReference;
 
 import kotlin.Unit;
-import one.axgram.core.ui.BottomBuilder;
-import one.axgram.core.AxCoreConfig;
-import one.axgram.core.utils.EnvUtil;
+import one.katarsis.core.ui.BottomBuilder;
+import one.katarsis.core.AxCoreConfig;
+import one.katarsis.core.utils.EnvUtil;
 
 public class DataSettingsActivity extends BaseFragment {
 

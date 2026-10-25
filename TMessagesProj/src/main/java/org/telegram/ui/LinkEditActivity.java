@@ -71,7 +71,7 @@ import org.telegram.ui.Stories.recorder.KeyboardNotifier;
 
 import java.util.ArrayList;
 
-import one.axgram.core.utils.VibrateUtil;
+import one.katarsis.core.utils.VibrateUtil;
 
 public class LinkEditActivity extends BaseFragment {
 

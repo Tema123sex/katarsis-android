@@ -135,11 +135,11 @@ import java.util.TimerTask;
 import java.util.concurrent.ConcurrentHashMap;
 import java.util.concurrent.CountDownLatch;
 
-import one.axgram.core.AxCoreConfig;
-import one.axgram.core.AxLegacyConfig;
-import one.axgram.core.SaveToDownloadReceiver;
-import one.axgram.extra.AxConfig;
-import one.axgram.extra.helper.AudioEnhance;
+import one.katarsis.core.AxCoreConfig;
+import one.katarsis.core.AxLegacyConfig;
+import one.katarsis.core.SaveToDownloadReceiver;
+import one.katarsis.extra.AxConfig;
+import one.katarsis.extra.helper.AudioEnhance;
 
 public class MediaController implements AudioManager.OnAudioFocusChangeListener, NotificationCenter.NotificationCenterDelegate, SensorEventListener {
 

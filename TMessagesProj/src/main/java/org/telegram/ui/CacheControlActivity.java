@@ -154,11 +154,11 @@ import java.util.HashSet;
 import java.util.Objects;
 
 import kotlin.Unit;
-import one.axgram.core.helpers.remote.EmojiHelper;
-import one.axgram.core.ui.BottomBuilder;
-import one.axgram.core.utils.EnvUtil;
-import one.axgram.core.utils.FileUtil;
-import one.axgram.core.utils.UIUtil;
+import one.katarsis.core.helpers.remote.EmojiHelper;
+import one.katarsis.core.ui.BottomBuilder;
+import one.katarsis.core.utils.EnvUtil;
+import one.katarsis.core.utils.FileUtil;
+import one.katarsis.core.utils.UIUtil;
 
 public class CacheControlActivity extends BaseFragment implements NotificationCenter.NotificationCenterDelegate {
 

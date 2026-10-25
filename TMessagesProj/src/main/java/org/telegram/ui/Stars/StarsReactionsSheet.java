@@ -108,7 +108,7 @@ import java.util.Collections;
 
 import me.vkryl.android.animator.BoolAnimator;
 
-import one.axgram.core.AxCoreConfig;
+import one.katarsis.core.AxCoreConfig;
 
 public class StarsReactionsSheet extends BottomSheet implements NotificationCenter.NotificationCenterDelegate {
 

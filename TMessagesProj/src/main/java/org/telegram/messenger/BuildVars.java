@@ -28,13 +28,13 @@ public class BuildVars {
     public static int APP_ID = 4;
     public static String APP_HASH = "014b35b6184100b085b0d0572f9b5103";
 
-    // AxGram: это ключ Google от исходного проекта, оставлять его в своей
+    // Katarsis: это ключ Google от исходного проекта, оставлять его в своей
     // сборке незачем — запросы к Google шли бы под чужим ключом. Вход через
     // firebase мы и так выключаем принудительно (LoginActivity), а пустое
     // значение отключает SafetyNet окончательно.
     public static String SAFETYNET_KEY = "";
     public static int BUILD_VERSION; // generated
-    public static String GITHUB_RELEASE_URL = "https://github.com/aevornyx/axgram-android/releases";
+    public static String GITHUB_RELEASE_URL = "https://github.com/aevornyx/katarsis-android/releases";
 
     public static int OFFICAL_APP_ID = 4;
     public static String OFFICAL_APP_HASH = "014b35b6184100b085b0d0572f9b5103";
@@ -42,7 +42,7 @@ public class BuildVars {
     public static int TGX_APP_ID = 21724;
     public static String TGX_APP_HASH = "3e0cb5efcd52300aec5994fdfc5bdc16";
 
-    // AxGram: passkey-вход сервер принимает только от официальных app id.
+    // Katarsis: passkey-вход сервер принимает только от официальных app id.
     // С нашим ключом кнопка появлялась бы, но вход по ней не проходил —
     // сам апстрим помечает это как то, что в форках надо выключать.
     public static boolean SUPPORTS_PASSKEYS = false;
@@ -60,12 +60,12 @@ public class BuildVars {
 
         if (ApplicationLoader.applicationContext != null) {
             SharedPreferences sharedPreferences = ApplicationLoader.applicationContext.getSharedPreferences("systemConfig", Context.MODE_PRIVATE);
-            // AxGram: логи выключены по умолчанию. Тип сборки называется "debug"
+            // Katarsis: логи выключены по умолчанию. Тип сборки называется "debug"
             // по техническим причинам (нативная часть собирается только для него),
             // но сборка распространяется пользователям — писать их переписку
             // в журнал на диске без спроса нельзя. Включается вручную:
             // Профиль → нажать на версию → «Включить логи».
-            LOGS_ENABLED = one.axgram.core.AxCoreConfig.enableLogs.Bool()
+            LOGS_ENABLED = one.katarsis.core.AxCoreConfig.enableLogs.Bool()
                     || sharedPreferences.getBoolean("logsEnabled", false);
             if (LOGS_ENABLED) {
                 final Thread.UncaughtExceptionHandler pastHandler = Thread.getDefaultUncaughtExceptionHandler();

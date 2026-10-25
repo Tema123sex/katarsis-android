@@ -347,22 +347,22 @@ import java.util.Objects;
 import java.util.concurrent.atomic.AtomicBoolean;
 
 import kotlin.Unit;
-import one.axgram.core.AxCoreConfig;
-import one.axgram.core.AxLegacyConfig;
-import one.axgram.core.transtale.TranslateDb;
-import one.axgram.core.transtale.Translator;
-import one.axgram.core.transtale.TranslatorKt;
-import one.axgram.core.ui.BottomBuilder;
-import one.axgram.core.utils.AlertUtil;
-import one.axgram.core.utils.ProxyUtil;
-import one.axgram.core.utils.VibrateUtil;
-import one.axgram.extra.AxConfig;
-import one.axgram.extra.helper.MessageHelper;
+import one.katarsis.core.AxCoreConfig;
+import one.katarsis.core.AxLegacyConfig;
+import one.katarsis.core.transtale.TranslateDb;
+import one.katarsis.core.transtale.Translator;
+import one.katarsis.core.transtale.TranslatorKt;
+import one.katarsis.core.ui.BottomBuilder;
+import one.katarsis.core.utils.AlertUtil;
+import one.katarsis.core.utils.ProxyUtil;
+import one.katarsis.core.utils.VibrateUtil;
+import one.katarsis.extra.AxConfig;
+import one.katarsis.extra.helper.MessageHelper;
 
 import me.vkryl.android.animator.BoolAnimator;
 import me.vkryl.android.animator.FactorAnimator;
 import me.vkryl.core.reference.ReferenceList;
-import one.axgram.extra.helper.MotionPhotoHelper;
+import one.katarsis.extra.helper.MotionPhotoHelper;
 
 @SuppressLint("WrongConstant")
 @SuppressWarnings("unchecked")
@@ -4670,7 +4670,7 @@ public class PhotoViewer implements NotificationCenter.NotificationCenterDelegat
 
     private void showDownloadAlert() {
         AlertDialog.Builder builder = new AlertDialog.Builder(parentActivity, resourcesProvider);
-        builder.setTitle(getString(R.string.AxGram));
+        builder.setTitle(getString(R.string.Katarsis));
         builder.setPositiveButton(getString("OK", R.string.OK), null);
         boolean alreadyDownloading = currentMessageObject != null && currentMessageObject.isVideo() && FileLoader.getInstance(currentMessageObject.currentAccount).isLoadingFile(currentFileNames[0]);
         if (alreadyDownloading) {
@@ -12827,7 +12827,7 @@ public class PhotoViewer implements NotificationCenter.NotificationCenterDelegat
                         }
                         AlertDialog.Builder builder = new AlertDialog.Builder(parentActivity, resourcesProvider);
                         builder.setMessage(getString("DiscardChanges", R.string.DiscardChanges));
-                        builder.setTitle(getString("AxGram", R.string.AxGram));
+                        builder.setTitle(getString("Katarsis", R.string.Katarsis));
                         builder.setPositiveButton(getString("OK", R.string.OK), (dialogInterface, i) -> switchToEditMode(0));
                         builder.setNegativeButton(getString("Cancel", R.string.Cancel), null);
                         showAlertDialog(builder);

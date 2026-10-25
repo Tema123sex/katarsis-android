@@ -7,7 +7,7 @@
             android:viewportWidth="512"
             android:viewportHeight="512">
             <group android:name="group">
-                <!-- AxGram: letter "A" drawn with the two side legs first, then the crossbar. -->
+                <!-- Katarsis: letter "A" drawn with the two side legs first, then the crossbar. -->
                 <path
                     android:name="leg_left"
                     android:strokeColor="#0095ff"

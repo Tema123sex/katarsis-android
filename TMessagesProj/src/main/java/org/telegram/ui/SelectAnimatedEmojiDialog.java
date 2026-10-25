@@ -142,7 +142,7 @@ import java.util.LinkedHashSet;
 import java.util.List;
 import java.util.Objects;
 
-import one.axgram.core.AxCoreConfig;
+import one.katarsis.core.AxCoreConfig;
 
 public class SelectAnimatedEmojiDialog extends FrameLayout implements NotificationCenter.NotificationCenterDelegate {
 

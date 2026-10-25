@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <string name="N_Config">Настройки AxGram</string>
+    <string name="N_Config">Настройки Katarsis</string>
     <string name="ForceCopy">Принудительное копирование</string>
     <string name="disableSecondAddress">Отключить второй запрос адреса</string>
     <string name="InvertReply">Инвертировать</string>
@@ -20,11 +20,11 @@
     <string name="SendReactions">Отправить реакцию</string>
     <string name="ShowReactions">Показать реакции</string>
     <string name="CustomTitle">Пользовательский заголовок</string>
-    <string name="CustomTitleHint">Оставьте поле пустым, чтобы использовать «AxGram»</string>
+    <string name="CustomTitleHint">Оставьте поле пустым, чтобы использовать «Katarsis»</string>
     <string name="CodeSyntaxHighlight">Подсветка синтаксиса кода</string>
     <string name="CreateMono">Создать моноширинный</string>
     <string name="CreateMonoLanguage">Язык кода</string>
-    <string name="CodeSyntaxHighlightDetails">Спасибо prismjs и AxGram</string>
+    <string name="CodeSyntaxHighlightDetails">Спасибо prismjs и Katarsis</string>
     <string name="UseSystemUnlock">Разблокировка паролем с помощью системного интерфейса</string>
     <string name="CopyPhoto">Копировать фото</string>
     <string name="PhotoCopied">Фото скопировано в буфер обмена</string>
@@ -60,7 +60,7 @@
     <string name="QuickToggleAnonymousNotice">Если вы владелец группы.</string>
     <string name="RealHideTimeForSticker">Скрыть время для стикеров</string>
     <string name="ResetSettings">Сброс настроек</string>
-    <string name="ResetSettingsAlert">Вы уверены, что хотите сбросить все «Настройки AxGram»?</string>
+    <string name="ResetSettingsAlert">Вы уверены, что хотите сбросить все «Настройки Katarsis»?</string>
     <string name="HideTitle">Скрыть заголовок</string>
     <string name="IgnoreFolderCount">Игнорировать количество папок</string>
     <string name="SendWithoutMarkdown">Отправить без разметки</string>
@@ -77,7 +77,7 @@
     <string name="IconDecoration">Оформление значков</string>
     <string name="NotificationIcon">Иконка уведомления</string>
     <string name="Official">Официальная</string>
-    <string name="AxGramLegacy">AxGram</string>
+    <string name="KatarsisLegacy">Katarsis</string>
     <string name="HalloWeen">Хэллоуин</string>
     <string name="ShowOnlineStatus">Показывать онлайн статус</string>
     <string name="ShowOnlineStatusNotice">Отображать онлайн статус других людей рядом с фотографией их профиля в группах.</string>

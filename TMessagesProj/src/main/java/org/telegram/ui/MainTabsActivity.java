@@ -89,10 +89,10 @@ import java.util.Collections;
 
 import me.vkryl.android.animator.BoolAnimator;
 import me.vkryl.android.animator.FactorAnimator;
-import one.axgram.core.BackButtonMenuRecent;
-import one.axgram.core.helpers.PasscodeHelper;
-import one.axgram.extra.MainTabsStyle;
-import one.axgram.extra.AxConfig;
+import one.katarsis.core.BackButtonMenuRecent;
+import one.katarsis.core.helpers.PasscodeHelper;
+import one.katarsis.extra.MainTabsStyle;
+import one.katarsis.extra.AxConfig;
 
 public class MainTabsActivity extends ViewPagerActivity implements NotificationCenter.NotificationCenterDelegate, FactorAnimator.Target {
 

@@ -37,7 +37,7 @@ import org.telegram.ui.ActionBar.Theme;
 
 import java.util.Locale;
 
-import one.axgram.core.AxCoreConfig;
+import one.katarsis.core.AxCoreConfig;
 
 public class ProximitySheet extends FrameLayout {
 

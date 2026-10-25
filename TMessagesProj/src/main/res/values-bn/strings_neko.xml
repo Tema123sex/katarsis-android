@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <string name="AxGramRunning">নিকোগ্রাম চলছে</string>
+    <string name="KatarsisRunning">নিকোগ্রাম চলছে</string>
     <string name="Snowflakes">তুষারকণা</string>
     <string name="Experiment">পরীক্ষামূলক</string>
     <string name="DeleteAccount">টেলিগ্রাম অ্যাকাউন্ট মুছে ফেলুন</string>

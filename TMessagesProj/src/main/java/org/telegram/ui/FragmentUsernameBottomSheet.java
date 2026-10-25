@@ -41,7 +41,7 @@ import org.telegram.ui.Components.LinkSpanDrawable;
 import org.telegram.ui.Components.RLottieImageView;
 import org.telegram.ui.Stories.recorder.ButtonWithCounterView;
 
-import one.axgram.core.utils.AlertUtil;
+import one.katarsis.core.utils.AlertUtil;
 
 public class FragmentUsernameBottomSheet {
 

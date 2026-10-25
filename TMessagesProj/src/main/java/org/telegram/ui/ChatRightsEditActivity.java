@@ -95,7 +95,7 @@ import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Locale;
 
-import one.axgram.core.utils.VibrateUtil;
+import one.katarsis.core.utils.VibrateUtil;
 
 public class ChatRightsEditActivity extends BaseFragment implements NotificationCenter.NotificationCenterDelegate {
 

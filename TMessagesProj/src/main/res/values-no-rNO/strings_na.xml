@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <string name="N_Config">AxGram konfigurasjon</string>
+    <string name="N_Config">Katarsis konfigurasjon</string>
     <string name="ForceCopy">Tving kopi</string>
     <string name="disableSecondAddress">Deaktiver annenstedsforespørsel</string>
     <string name="InvertReply">Invert</string>
@@ -20,11 +20,11 @@
     <string name="SendReactions">Send reaksjoner</string>
     <string name="ShowReactions">Vis Reaksjoner</string>
     <string name="CustomTitle">Tilpasset tittel</string>
-    <string name="CustomTitleHint">La stå tomt for å bruke AxGram</string>
+    <string name="CustomTitleHint">La stå tomt for å bruke Katarsis</string>
     <string name="CodeSyntaxHighlight">Fremheving av kode syntaks</string>
     <string name="CreateMono">Opprett monospace</string>
     <string name="CreateMonoLanguage">Kode språk</string>
-    <string name="CodeSyntaxHighlightDetails">Takk til fengsler og AxGram</string>
+    <string name="CodeSyntaxHighlightDetails">Takk til fengsler og Katarsis</string>
     <string name="UseSystemUnlock">Passord opplåsning bruk system ui</string>
     <string name="CopyPhoto">Kopier bilde</string>
     <string name="PhotoCopied">Bilde kopiert til utklippstavlen</string>
@@ -60,7 +60,7 @@
     <string name="QuickToggleAnonymousNotice">Hvis du er eier av gruppen</string>
     <string name="RealHideTimeForSticker">Sannsynlig tid for klistremerker</string>
     <string name="ResetSettings">Tilbakestill innstillinger</string>
-    <string name="ResetSettingsAlert">Er du sikker på at du vil tilbakestille alle AxGram innstillinger?</string>
+    <string name="ResetSettingsAlert">Er du sikker på at du vil tilbakestille alle Katarsis innstillinger?</string>
     <string name="HideTitle">Skjul tittel</string>
     <string name="IgnoreFolderCount">Ignorer mappetelling</string>
     <string name="SendWithoutMarkdown">Send uten markdown</string>
@@ -77,7 +77,7 @@
     <string name="IconDecoration">Ikon dekorasjon</string>
     <string name="NotificationIcon">Notifikasjons ikon</string>
     <string name="Official">Offisiell</string>
-    <string name="AxGramLegacy">AxGram</string>
+    <string name="KatarsisLegacy">Katarsis</string>
     <string name="HalloWeen">HalloWeen</string>
     <string name="ShowOnlineStatus">Vis tilkoblet status</string>
     <string name="ShowOnlineStatusNotice">Vis statusen på nettet til andre personer ved siden av deres profilbilde i grupper</string>
@@ -92,7 +92,7 @@
     <string name="ShowForumAsNormalChat">Vis forum som normal chat</string>
     <string name="DecorationNone">Ingen</string>
     <string name="ChatDecoration">Chat dekorasjon</string>
-    <string name="NeedChangeAxSettings">Du må endre AxGram innstillinger</string>
+    <string name="NeedChangeAxSettings">Du må endre Katarsis innstillinger</string>
     <string name="DoNotUnarchiveBySwipe">Ikke hent vekk opptak ved å dra</string>
     <string name="DoNotShareMyPhoneNumber">Ikke del mitt telefonnummer</string>
     <string name="DefaultDeleteMenu">Standard slett menyen</string>

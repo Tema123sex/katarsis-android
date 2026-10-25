@@ -39,7 +39,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Stack;
 
-import one.axgram.core.AxCoreConfig;
+import one.katarsis.core.AxCoreConfig;
 
 public class SpoilersTextView extends TextView implements TextSelectionHelper.SimpleSelectabeleView {
     private SpoilersClickDetector clickDetector;

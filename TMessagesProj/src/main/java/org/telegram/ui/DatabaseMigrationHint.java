@@ -20,8 +20,8 @@ import org.telegram.ui.ActionBar.Theme;
 import org.telegram.ui.Components.LayoutHelper;
 import org.telegram.ui.Components.RLottieImageView;
 
-import one.axgram.core.utils.EnvUtil;
-import one.axgram.core.AxCoreConfig;
+import one.katarsis.core.utils.EnvUtil;
+import one.katarsis.core.AxCoreConfig;
 
 public class DatabaseMigrationHint extends FrameLayout {
 

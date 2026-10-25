@@ -17,7 +17,7 @@
       <path
           android:pathData="M82,82h348v348h-348z"
           android:fillColor="#00FFFFFF"/>
-      <!-- AxGram: letter "A" — two side legs (gradient) + crossbar (solid), same style/weight as the old "N". -->
+      <!-- Katarsis: letter "A" — two side legs (gradient) + crossbar (solid), same style/weight as the old "N". -->
       <path
           android:pathData="M256,118 L150,393"
           android:strokeWidth="64"

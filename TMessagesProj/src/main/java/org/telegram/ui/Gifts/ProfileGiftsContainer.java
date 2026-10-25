@@ -125,7 +125,7 @@ import java.util.Objects;
 
 import me.vkryl.android.animator.BoolAnimator;
 
-import one.axgram.extra.AxConfig;
+import one.katarsis.extra.AxConfig;
 
 public class ProfileGiftsContainer extends FrameLayout implements NotificationCenter.NotificationCenterDelegate {
 

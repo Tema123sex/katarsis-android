@@ -39,8 +39,8 @@ import java.util.Map;
 import java.util.zip.GZIPInputStream;
 import java.util.zip.GZIPOutputStream;
 
-import one.axgram.core.helpers.remote.WallpaperHelper;
-import one.axgram.extra.AxConfig;
+import one.katarsis.core.helpers.remote.WallpaperHelper;
+import one.katarsis.extra.AxConfig;
 
 public class ChatThemeController extends BaseController {
 
