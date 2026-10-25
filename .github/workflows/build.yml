@@ -36,10 +36,14 @@ jobs:
           yes | sdkmanager --install "ndk;27.3.13750724" || true
           echo "ANDROID_NDK_HOME=$ANDROID_SDK_ROOT/ndk/27.3.13750724" >> $GITHUB_ENV
 
-      - name: Fix submodules
+      - name: Restore Native Libraries
         run: |
-          git submodule update --init --recursive
-          git submodule update --remote
+          git clone --depth 1 https://github.com/TelegramMessenger/boringssl.git TMessagesProj/jni/boringssl
+          git clone --depth 1 https://github.com/TelegramMessenger/ffmpeg.git TMessagesProj/jni/ffmpeg
+          git clone --depth 1 https://github.com/webmproject/libvpx.git TMessagesProj/jni/libvpx
+          
+          cd TMessagesProj/jni/boringssl && git checkout fips-20220613 || true
+          cd ../ffmpeg && git checkout release/4.4 || true
 
       - name: Decode keystore
         run: |
