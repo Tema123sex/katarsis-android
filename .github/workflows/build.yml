@@ -51,6 +51,26 @@ jobs:
           cd TMessagesProj/jni/boringssl && git checkout fips-20220613 || true
           cd ../ffmpeg && git checkout release/4.4 || true
 
+      - name: Create dummy libs for Debug build
+        run: |
+          mkdir -p TMessagesProj/jni/ffmpeg/arm64-v8a
+          mkdir -p TMessagesProj/jni/ffmpeg/armeabi-v7a
+          mkdir -p TMessagesProj/jni/libvpx/arm64-v8a
+          mkdir -p TMessagesProj/jni/libvpx/armeabi-v7a
+
+          touch TMessagesProj/jni/ffmpeg/arm64-v8a/libswscale.a
+          touch TMessagesProj/jni/ffmpeg/arm64-v8a/libavcodec.a
+          touch TMessagesProj/jni/ffmpeg/arm64-v8a/libavformat.a
+          touch TMessagesProj/jni/ffmpeg/arm64-v8a/libavutil.a
+          
+          touch TMessagesProj/jni/ffmpeg/armeabi-v7a/libswscale.a
+          touch TMessagesProj/jni/ffmpeg/armeabi-v7a/libavcodec.a
+          touch TMessagesProj/jni/ffmpeg/armeabi-v7a/libavformat.a
+          touch TMessagesProj/jni/ffmpeg/armeabi-v7a/libavutil.a
+
+          touch TMessagesProj/jni/libvpx/arm64-v8a/libvpx.a
+          touch TMessagesProj/jni/libvpx/armeabi-v7a/libvpx.a
+
       - name: Decode keystore
         run: |
           echo "${{ secrets.KEYSTORE_BASE64 }}" | base64 -d > TMessagesProj/release.keystore
@@ -67,7 +87,7 @@ jobs:
           EOF
 
       - name: Build debug APK
-        run: ./gradlew :TMessagesProj:assembleDebug --no-daemon -PdisableFFmpeg
+        run: ./gradlew :TMessagesProj:assembleDebug --no-daemon
         env:
           ANDROID_NDK_HOME: ${{ env.ANDROID_SDK_ROOT }}/ndk/27.3.13750724
           ANDROID_NDK: ${{ env.ANDROID_SDK_ROOT }}/ndk/27.3.13750724
