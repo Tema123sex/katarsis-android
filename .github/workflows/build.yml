@@ -36,6 +36,11 @@ jobs:
           yes | sdkmanager --install "ndk;27.3.13750724" || true
           echo "ANDROID_NDK_HOME=$ANDROID_SDK_ROOT/ndk/27.3.13750724" >> $GITHUB_ENV
 
+      - name: Fix submodules
+        run: |
+          git submodule update --init --recursive
+          git submodule update --remote
+
       - name: Decode keystore
         run: |
           echo "${{ secrets.KEYSTORE_BASE64 }}" | base64 -d > TMessagesProj/release.keystore
