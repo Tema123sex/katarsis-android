@@ -58,6 +58,9 @@ jobs:
 
       - name: Build debug APK
         run: ./gradlew :TMessagesProj:assembleDebug --no-daemon
+        env:
+          ANDROID_NDK_HOME: ${{ env.ANDROID_SDK_ROOT }}/ndk/27.3.13750724
+          ANDROID_NDK: ${{ env.ANDROID_SDK_ROOT }}/ndk/27.3.13750724
 
       - name: Upload APK
         uses: actions/upload-artifact@v4
