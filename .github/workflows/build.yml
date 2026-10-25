@@ -44,8 +44,8 @@ jobs:
 
           git config --global url."https://x-access-token:${{ secrets.GITHUB_TOKEN }}@github.com/".insteadOf "https://github.com/"
           
-          git clone --depth 1 https://github.com/TelegramMessenger/boringssl.git TMessagesProj/jni/boringssl
-          git clone --depth 1 https://github.com/TelegramMessenger/ffmpeg.git TMessagesProj/jni/ffmpeg
+          git clone --depth 1 https://github.com/google/boringssl.git TMessagesProj/jni/boringssl
+          git clone --depth 1 https://github.com/FFmpeg/FFmpeg.git TMessagesProj/jni/ffmpeg
           git clone --depth 1 https://github.com/webmproject/libvpx.git TMessagesProj/jni/libvpx
           
           cd TMessagesProj/jni/boringssl && git checkout fips-20220613 || true
