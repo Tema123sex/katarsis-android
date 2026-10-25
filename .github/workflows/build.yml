@@ -59,14 +59,20 @@ jobs:
           mkdir -p TMessagesProj/jni/libvpx/armeabi-v7a
 
           touch TMessagesProj/jni/ffmpeg/arm64-v8a/libswscale.a
+          touch TMessagesProj/jni/ffmpeg/arm64-v8a/libswresample.a
           touch TMessagesProj/jni/ffmpeg/arm64-v8a/libavcodec.a
           touch TMessagesProj/jni/ffmpeg/arm64-v8a/libavformat.a
           touch TMessagesProj/jni/ffmpeg/arm64-v8a/libavutil.a
+          touch TMessagesProj/jni/ffmpeg/arm64-v8a/libavfilter.a
+          touch TMessagesProj/jni/ffmpeg/arm64-v8a/libavdevice.a
           
           touch TMessagesProj/jni/ffmpeg/armeabi-v7a/libswscale.a
+          touch TMessagesProj/jni/ffmpeg/armeabi-v7a/libswresample.a
           touch TMessagesProj/jni/ffmpeg/armeabi-v7a/libavcodec.a
           touch TMessagesProj/jni/ffmpeg/armeabi-v7a/libavformat.a
           touch TMessagesProj/jni/ffmpeg/armeabi-v7a/libavutil.a
+          touch TMessagesProj/jni/ffmpeg/armeabi-v7a/libavfilter.a
+          touch TMessagesProj/jni/ffmpeg/armeabi-v7a/libavdevice.a
 
           touch TMessagesProj/jni/libvpx/arm64-v8a/libvpx.a
           touch TMessagesProj/jni/libvpx/armeabi-v7a/libvpx.a
