@@ -38,21 +38,16 @@ jobs:
 
       - name: Restore Native Libraries
         run: |
-          # Очищаем старое
-          rm -rf TMessagesProj/jni/boringssl
-          rm -rf TMessagesProj/jni/ffmpeg
-          rm -rf TMessagesProj/jni/libvpx
-          rm -rf TMessagesProj/jni/third_party
-
-          # Клонируем нужные библиотеки
-          git clone --depth 1 https://github.com/google/boringssl.git TMessagesProj/jni/boringssl
-          git clone --depth 1 https://github.com/FFmpeg/FFmpeg.git TMessagesProj/jni/ffmpeg
-          git clone --depth 1 https://github.com/webmproject/libvpx.git TMessagesProj/jni/libvpx
+          # Удаляем вашу сломанную папку jni
+          rm -rf TMessagesProj/jni
           
-          # Восстанавливаем third_party из официального Telegram
-          git clone --depth 1 https://github.com/DrKLO/Telegram.git TelegramSource
-          cp -r TelegramSource/TMessagesProj/jni/third_party TMessagesProj/jni/third_party
-          rm -rf TelegramSource
+          # Скачиваем оригинальный Nagram СО ВСЕМИ САБМОДУЛЯМИ
+          git clone --recursive --depth 1 https://github.com/NextAlone/Nagram.git NagramSource
+          
+          # Копируем папку jni из Nagram к вам
+          cp -r NagramSource/TMessagesProj/jni TMessagesProj/jni
+          
+          rm -rf NagramSource
 
       - name: Decode keystore
         run: |
