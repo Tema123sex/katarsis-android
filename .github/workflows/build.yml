@@ -36,19 +36,6 @@ jobs:
           yes | sdkmanager --install "ndk;27.3.13750724" || true
           echo "ANDROID_NDK_HOME=$ANDROID_SDK_ROOT/ndk/27.3.13750724" >> $GITHUB_ENV
 
-      - name: Restore Native Libraries
-        run: |
-          # Удаляем вашу сломанную папку jni
-          rm -rf TMessagesProj/jni
-          
-          # Скачиваем оригинальный Nagram СО ВСЕМИ САБМОДУЛЯМИ
-          git clone --recursive --depth 1 https://github.com/NextAlone/Nagram.git NagramSource
-          
-          # Копируем папку jni из Nagram к вам
-          cp -r NagramSource/TMessagesProj/jni TMessagesProj/jni
-          
-          rm -rf NagramSource
-
       - name: Decode keystore
         run: |
           echo "${{ secrets.KEYSTORE_BASE64 }}" | base64 -d > TMessagesProj/release.keystore
@@ -65,7 +52,7 @@ jobs:
           EOF
 
       - name: Build debug APK
-        run: ./gradlew :TMessagesProj:assembleDebug --no-daemon
+        run: ./gradlew :TMessagesProj:assembleDebug --no-daemon -PdisableNativeBuild
         env:
           ANDROID_NDK_HOME: ${{ env.ANDROID_SDK_ROOT }}/ndk/27.3.13750724
           ANDROID_NDK: ${{ env.ANDROID_SDK_ROOT }}/ndk/27.3.13750724
